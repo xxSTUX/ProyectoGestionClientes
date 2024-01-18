@@ -23,7 +23,7 @@ El proyecto está dividido en dos directorios principales: `frontend` y `backend
 - Git
 
 ### Configuración del Entorno
-1. Clonar el repositorio usando: git clone https://github.com/username/ProyectoGestionClientes.git
+1. Clonar el repositorio usando: git clone https://github.com/xxSTUX/ProyectoGestionClientes.git
 2. Navegar al directorio `frontend` y ejecutar: npm install para instalar las dependencias de Angular.
 3. Navegar al directorio `backend` y abrir el archivo de solución `.sln` con Visual Studio 2022.
 
