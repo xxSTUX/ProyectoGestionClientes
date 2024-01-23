@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Backend",
+    "\\Backend\\Controllers",
+    "\\Backend\\Models",
+    "\\Frontend"
   ],
-  "SelectedNode": "\\.github",
+  "SelectedNode": "\\Frontend\\.editorconfig",
   "PreviewInSolutionExplorer": false
 }
