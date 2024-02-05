@@ -40,4 +40,4 @@ Si deseas contribuir al proyecto, por favor sigue estos pasos:
 4. Envía un pull request con una descripción detallada de tus cambios.
 
 ## Licencia
-Este software es propiedad privada de HIBERUS TECNOLOGIAS DE LA INFORMACION SL. El uso, distribución y modificación del código están estrictamente limitados a los empleados de HIBERUS TECNOLOGIAS DE LA INFORMACION SL y solo dentro de los términos acordados en la política de la empresa y en el acuerdo de licencia de software, ver el archivo LICENSE.md para más detalles.
+Este software es propiedad privada de HIBERUS TECNOLOGIAS DE LA INFORMACION SL. El uso, distribución y modificación del código están estrictamente limitados a los empleados de HIBERUS TECNOLOGIAS DE LA INFORMACION SL y solo dentro de los términos acordados en la política de la empresa y en el acuerdo de licencia de software, ver el archivo LICENSE.md para más detallessssssssssssssssss.
