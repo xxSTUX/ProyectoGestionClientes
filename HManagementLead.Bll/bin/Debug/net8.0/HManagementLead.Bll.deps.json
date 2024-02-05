@@ -1,0 +1,64 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "HManagementLead.Bll/1.0.0": {
+        "dependencies": {
+          "HManagementLead.Bll.Interfaces": "1.0.0",
+          "HManagementLead.Dal.Interfaces": "1.0.0",
+          "HManagementLead.Entities": "1.0.0"
+        },
+        "runtime": {
+          "HManagementLead.Bll.dll": {}
+        }
+      },
+      "HManagementLead.Bll.Interfaces/1.0.0": {
+        "dependencies": {
+          "HManagementLead.Entities": "1.0.0"
+        },
+        "runtime": {
+          "HManagementLead.Bll.Interfaces.dll": {}
+        }
+      },
+      "HManagementLead.Dal.Interfaces/1.0.0": {
+        "dependencies": {
+          "HManagementLead.Entities": "1.0.0"
+        },
+        "runtime": {
+          "HManagementLead.Dal.Interfaces.dll": {}
+        }
+      },
+      "HManagementLead.Entities/1.0.0": {
+        "runtime": {
+          "HManagementLead.Entities.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HManagementLead.Bll/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HManagementLead.Bll.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HManagementLead.Dal.Interfaces/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HManagementLead.Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
