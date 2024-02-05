@@ -1,0 +1,517 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead\\HManagementLead.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj",
+        "projectName": "HManagementLead.Bll.Interfaces",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\HManagementLead.Bll.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\HManagementLead.Bll.csproj",
+        "projectName": "HManagementLead.Bll",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\HManagementLead.Bll.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj",
+        "projectName": "HManagementLead.Dal.Interfaces",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\HManagementLead.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\HManagementLead.Dal.csproj",
+        "projectName": "HManagementLead.Dal",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\HManagementLead.Dal.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal.Interfaces\\HManagementLead.Dal.Interfaces.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj",
+        "projectName": "HManagementLead.Data",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.Logging.Console": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Serilog.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj",
+        "projectName": "HManagementLead.Entities",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\HManagementLead.Entities.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Entities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead\\HManagementLead.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead\\HManagementLead.csproj",
+        "projectName": "HManagementLead",
+        "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead\\HManagementLead.csproj",
+        "packagesPath": "C:\\Users\\mamine\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\mamine\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll.Interfaces\\HManagementLead.Bll.Interfaces.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\HManagementLead.Bll.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Bll\\HManagementLead.Bll.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\HManagementLead.Dal.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Dal\\HManagementLead.Dal.csproj"
+              },
+              "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj": {
+                "projectPath": "C:\\Users\\mamine\\OneDrive - HIBERUS SISTEMAS INFORMATICOS S.L\\Escritorio\\ProyectoGestionClientes2\\Backend\\HManagementLead.Data\\HManagementLead.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Serilog.AspNetCore": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Serilog.Extensions.Logging": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Serilog.Sinks.File": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
