@@ -38,6 +38,7 @@ namespace HManagementLead.Dal
 
         public async Task<ClienteDetalle> UpdateClienteAsync(ClienteDetalle cliente)
         {
+            
             var nuevoCliente = new Cliente(cliente);
             _context.Clientes.Add(nuevoCliente);
             _context.Update(nuevoCliente);
