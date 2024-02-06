@@ -22,14 +22,12 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    const username = this.loginForm.get('username')?.value;
-    const password = this.loginForm.get('password')?.value;
-
+    let username = (<HTMLInputElement>document.getElementById('username')).value;
+    var password = (<HTMLInputElement>document.getElementById('password')).value;
     if (this.authService.login(username, password)) {
-      alert("Correcto")
+      this.router.navigate(['dashboard']);
     } else {
-      alert("ERROR")
-      // this.router.navigate(['errorLogin']);
+      this.router.navigate(['errorLogin']);
     }
   }
 

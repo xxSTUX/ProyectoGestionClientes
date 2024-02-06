@@ -1,96 +1,84 @@
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
-            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                    <span class="fs-5 d-none d-sm-inline">Menu</span>
-                </a>
-                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link align-middle px-0">
-                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Home</span>
-                        </a>
+
+<div class="flex-shrink-0 p-3" style="width: 280px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24">
+            <use xlink:href="#bootstrap"></use>
+        </svg>
+        <span class="fs-5 fw-semibold">Collapsible</span>
+    </a>
+    <ul class="list-unstyled ps-0">
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" type="button"
+                data-toggle="collapse" data-target="#home-collapse" aria-controls="home-collapse" aria-expanded="false"
+                aria-label="Toggle navigation">
+                Home
+            </button>
+            <div class="collapse" id="home-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a>
                     </li>
-                    <li class="nav-item dropdown m-2">
-                        <a href="#" class="px-0 align-middle text-white text-decoration-none d-block d-sm-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i>
-                        </a>
-                        <a href="#" class="px-0 align-middle dropdown-toggle text-white text-decoration-none d-none d-sm-inline" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i> Seccion1
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="submenu1">
-                            <a href="#" class="dropdown-item">Item 1</a>
-                            <a href="#" class="dropdown-item">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Subsección 1</a>
-                            <a href="#" class="dropdown-item">Subsección 2</a>
-                        </div>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Updates</a>
                     </li>
-                    <li class="nav-item dropdown m-2">
-                        <a href="#" class="px-0 align-middle text-white text-decoration-none d-block d-sm-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i>
-                        </a>
-                        <a href="#" class="px-0 align-middle dropdown-toggle text-white text-decoration-none d-none d-sm-inline" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i> Seccion2
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="submenu1">
-                            <a href="#" class="dropdown-item">Item 1</a>
-                            <a href="#" class="dropdown-item">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Subsección 1</a>
-                            <a href="#" class="dropdown-item">Subsección 2</a>
-                        </div>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Reports</a>
                     </li>
-                    
-                    <li class="nav-item dropdown m-2">
-                        <a href="#" class="px-0 align-middle text-white text-decoration-none d-block d-sm-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i>
-                        </a>
-                        <a href="#" class="px-0 align-middle dropdown-toggle text-white text-decoration-none d-none d-sm-inline" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i> Seccion3
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="submenu1">
-                            <a href="#" class="dropdown-item">Item 1</a>
-                            <a href="#" class="dropdown-item">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Subsección 1</a>
-                            <a href="#" class="dropdown-item">Subsección 2</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown m-2">
-                        <a href="#" class="px-0 align-middle text-white text-decoration-none d-block d-sm-none" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i>
-                        </a>
-                        <a href="#" class="px-0 align-middle dropdown-toggle text-white text-decoration-none d-none d-sm-inline" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fs-4 bi-speedometer2"></i> Seccion4
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="submenu1">
-                            <a href="#" class="dropdown-item">Item 1</a>
-                            <a href="#" class="dropdown-item">Item 2</a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">Subsección 1</a>
-                            <a href="#" class="dropdown-item">Subsección 2</a>
-                        </div>
-                    </li>
-                    
                 </ul>
-                <hr>
-                <div class="dropdown pb-4">
-                    
-                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-                        <li><a class="dropdown-item" href="#">New project...</a></li>
-                        <li><a class="dropdown-item" href="#">Settings</a></li>
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Sign out</a></li>
-                    </ul>
-                </div>
             </div>
-        </div>
-    </div>
-    
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" type="button"
+                data-toggle="collapse" data-target="#dash-boardcollapse" aria-controls="dash-boardcollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                Dashboard
+            </button>
+            <div class="collapse" id="dash-boardcollapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Overview</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Weekly</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Monthly</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Annually</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-toggle="collapse" data-target="#orders-collapse" aria-expanded="false"
+                aria-controls="dash-boardcollapse">
+                Orders
+            </button>
+            <div class="collapse" id="orders-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New</a></li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Processed</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Shipped</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Returned</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="border-top my-3"></li>
+        <li class="mb-1">
+            <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                data-toggle="collapse" data-target="#account-collapse" aria-expanded="false">
+                Account
+            </button>
+            <div class="collapse" id="account-collapse">
+                <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">New...</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Profile</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Settings</a>
+                    </li>
+                    <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded">Sign out</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 </div>
-
-

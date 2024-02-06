@@ -15,7 +15,6 @@ export class AuthService {
 
   login(username: string, password: string): boolean {
     const user = this.validUsers.find((u) => u.username === username && u.password === password);
-    alert(username+"sad")
     if (user) {
       this.isAuthenticated = true;
       return true;
