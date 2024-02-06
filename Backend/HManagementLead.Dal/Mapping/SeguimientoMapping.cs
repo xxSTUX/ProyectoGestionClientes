@@ -18,6 +18,17 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
+        public static Expression<Func<Seguimiento, SeguimientoDetalle>> MapToCreateSeguimiento()
+        {
+
+            return p => new SeguimientoDetalle
+            {
+                Id = p.Id,
+                Fecha = p.Fecha,
+                
+            };
+        }
+
         public static Expression<Func<Seguimiento, Codigo>> MapSeguimientoToCodigo()
         {
             

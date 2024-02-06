@@ -80,6 +80,7 @@ namespace HManagementLead.Controllers
         {
             try
             {
+                
                 var resultado = await _proyectoService.UpdateProyectoAsync(value);
 
 

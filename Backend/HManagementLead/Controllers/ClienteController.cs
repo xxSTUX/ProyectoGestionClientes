@@ -77,6 +77,7 @@ namespace HManagementLead.Controllers
         {
             try
             {
+                
                 var resultado = await _clienteService.UpdateClienteAsync(value);
 
                 return Ok(resultado);
