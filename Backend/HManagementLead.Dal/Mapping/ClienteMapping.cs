@@ -36,6 +36,15 @@ namespace HManagementLead.Dal.Mapping
                 Seguimientos = p.Seguimientos.AsQueryable().Select(MapSeguimienClientestoToTablaIntermedia()).ToList(),
             };
         }
+        public static Expression<Func<Cliente, ClienteDetalle>> MapToCreateClientDetalle()
+        {
+
+            return p => new ClienteDetalle
+            {
+                Id = p.Id,
+                Nombre = p.Nombre
+            };
+        }
 
         public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()
         {
