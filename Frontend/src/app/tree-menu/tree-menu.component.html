@@ -55,3 +55,35 @@
       </li>
     </ul>
   </div>
+
+  <div ng-controller="DialogDemoCtrl">
+    <div class="span5 article-tree">
+    <div ng-style="{'overflow': 'auto'}">
+
+      <script type="text/ng-template"  id="tree_item_renderer">
+
+      <span  ng-click="nodeClicked(data)"  >
+   
+       <i class="{{ switcher( isLeaf(data), '', 'icon-minus-sign' )}}"></i> 
+      {{showNode(data)}}
+      </span>
+      <a href="">{{data.name}}</a>
+      
+      <ul class="some" ng-show="data.show">       
+     
+      <li ng-repeat="data in data.nodes" class="parent_li"  ng-include="'tree_item_renderer'" tree-node></li>
+      </ul>
+
+      </script>
+
+      <div class="tree well">
+
+   
+
+    <ul>
+      <li ng-repeat="data in displayTree"  ng-include="'tree_item_renderer'"></li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
