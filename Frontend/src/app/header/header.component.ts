@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   onHomeClick() {
     this.router.navigate(['/']);
@@ -28,6 +29,7 @@ export class HeaderComponent {
   }
 
   onLogoutClick() {
-    this.router.navigate(['/login']); // Redireccionar al usuario a la página de inicio de sesión después de cerrar sesión
+    this.authService.logout();
+    this.router.navigate(['login']); // Redireccionar al usuario a la página de inicio de sesión después de cerrar sesión
   }
 }
