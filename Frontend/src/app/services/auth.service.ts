@@ -12,15 +12,23 @@ export class AuthService {
   ];
 
   isAuthenticated = false;
+  currentUser: User | null = null;
 
   login(username: string, password: string): boolean {
-    const user = this.validUsers.find((u) => u.username === username && u.password === password);
+    const user = this.validUsers.find((u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
     if (user) {
       this.isAuthenticated = true;
+      this.currentUser = user;
       return true;
     } else {
       this.isAuthenticated = false;
+      this.currentUser = null;
       return false;
     }
+  }
+
+  logout() {
+    this.isAuthenticated = false;
+    this.currentUser = null;
   }
 }

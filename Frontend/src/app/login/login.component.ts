@@ -27,7 +27,7 @@ export class LoginComponent {
     if (this.authService.login(username, password)) {
       this.router.navigate(['dashboard']);
     } else {
-      this.router.navigate(['errorLogin']);
+      this.router.navigate(['error']);
     }
   }
 
