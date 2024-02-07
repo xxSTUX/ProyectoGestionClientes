@@ -13,6 +13,8 @@ export class ErrorComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   volverAPaginaPrincipal() {
+    this.authService.checkAuthentication();
+
     if (this.authService.isAuthenticated) {
       this.router.navigate(['dashboard']);
     } else {
