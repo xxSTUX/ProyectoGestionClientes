@@ -14,5 +14,8 @@ namespace HManagementLead.Dal.Interfaces
 
         Task DeleteClienteAsync(int id);
 
+        Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto);
+
+        Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento);
     }
 }

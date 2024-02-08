@@ -36,5 +36,10 @@ namespace HManagementLead.Bll
         {
             return _repository.UpdateProyectoAsync(proyecto);
         }
+
+        public Task<ProyectoDetalle> InsertSeguimientoInProyectoAsync(int id, SeguimientoDetalle seguimiento)
+        {
+            return _repository.InsertSeguimientoInProyectoAsync(id, seguimiento);
+        }
     }
 }

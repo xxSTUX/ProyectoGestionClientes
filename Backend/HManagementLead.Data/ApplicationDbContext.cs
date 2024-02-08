@@ -3,6 +3,7 @@ using HManagementLead.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using System.Diagnostics;
 
@@ -18,16 +19,17 @@ public partial class ApplicationDbContext : DbContext
         : base(options)
     {
         Database.EnsureCreated();
+        
     }
 
     public virtual DbSet<Cliente> Clientes { get; set; }
-
+    
     public virtual DbSet<Proyecto> Proyectos { get; set; }
 
-    public virtual DbSet<Seguimiento> Seguimientos { get; set; }
+    public virtual DbSet<Seguimientos> Seguimientos { get; set; }
 
-    public virtual DbSet<SeguimientoClientes> SeguimientoClientes { get; set; }
-    public virtual DbSet<Prueba> Prueba { get; set; }
+    public virtual DbSet<SeguimientoClientes> SeguimientoCliente { get; set; }
+    public virtual DbSet<SeguimientoProyectos> SeguimientoProyecto { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -52,18 +54,17 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.Property(e => e.Nombre)
                 .HasMaxLength(100)
-                .IsUnicode(false);
+                .IsUnicode(false);            
         });
-
+        
         modelBuilder.Entity<Proyecto>(entity =>
         {
-            entity.Property(e => e.FechaCreacion).HasColumnType("datetime");
             entity.Property(e => e.Nombre)
                 .HasMaxLength(200)
                 .IsUnicode(false);
 
             entity.HasOne(d => d.IdClienteNavigation).WithMany(p => p.Proyectos)
-                .HasForeignKey(d => d.IdCliente)
+                .HasForeignKey(d => d.Cliente_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Proyectos_Clientes");
         });
@@ -72,15 +73,30 @@ public partial class ApplicationDbContext : DbContext
         {
             entity.HasOne(d => d.IdClienteNavigation)
                 .WithMany(p => p.Seguimientos)
-                .HasForeignKey(d => d.IdCliente)
+                .HasForeignKey(d => d.Cliente_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_SeguimientosClientes_Clientes");
 
             entity.HasOne(d => d.IdSeguimientoNavigation)
                 .WithMany()
-                .HasForeignKey(d => d.IdSeguimiento)
+                .HasForeignKey(d => d.Seguimiento_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_SeguimientosClientes_Seguimientos");
+        });
+
+        modelBuilder.Entity<SeguimientoProyectos>(entity =>
+        {
+            entity.HasOne(d => d.IdProyectoNavigation)
+                .WithMany(p => p.Seguimientos)
+                .HasForeignKey(d => d.Proyecto_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SeguimientosProyectos_Proyectos");
+
+            entity.HasOne(d => d.IdSeguimientoNavigation)
+                .WithMany()
+                .HasForeignKey(d => d.Seguimiento_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SeguimientosProyectos_Seguimientos");
         });
 
 

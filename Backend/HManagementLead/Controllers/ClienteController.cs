@@ -106,5 +106,39 @@ namespace HManagementLead.Controllers
             }
 
         }
+
+        // POST api/<ClienteController>/
+        [HttpPost("InsertProyecto/{id}")]
+        public async Task<IActionResult> postProyecto(int id, [FromBody] ProyectoDetalle value)
+        {
+            try
+            {
+                value.IdCliente = id;
+                var resultado = await _clienteService.InsertProyectoInClienteAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
+        // POST api/<ClienteController>
+        [HttpPost("InsertSeguimiento/{id}")]
+        public async Task<IActionResult> postSeguimiento(int id, [FromBody] SeguimientoDetalle value)
+        {
+            try
+            {
+                var resultado = await _clienteService.InsertSeguimientoInClienteAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
     }
 }

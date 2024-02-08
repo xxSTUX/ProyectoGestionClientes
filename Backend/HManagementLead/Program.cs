@@ -29,7 +29,7 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     var configuration = builder.Configuration;
-    var connectionString = configuration.GetConnectionString("Prueba");
+    var connectionString = configuration.GetConnectionString("Gestion");
     options.UseSqlServer(connectionString)
     .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddSerilog()));
 });

@@ -6,32 +6,37 @@ using System.Linq.Expressions;
 namespace HManagementLead.Dal.Mapping;
     public static class ProyectoMapping
     {
-        public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(String nombreCliente)
+        public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(Microsoft.EntityFrameworkCore.DbSet<Seguimientos> seguimientos)
         {
-            
+
             return p => new ProyectoDetalle
             {
                 Id = p.Id,
-                IdCliente = p.IdCliente,
+                IdCliente = p.Cliente_id,
                 Nombre = p.Nombre,
-                FechaCreacion = p.FechaCreacion.Date,
-                NombreCliente = nombreCliente,
-
-
+                Seguimientos = (from cs in p.Seguimientos
+                                join s in seguimientos
+                                on cs.Seguimiento_id equals s.Id
+                                select new SeguimientoDetalle
+                                {
+                                    Id = s.Id,
+                                    Nombre = s.Nombre,
+                                }).ToList(),
             };
         }
+
         public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto()
         {
 
             return p => new ProyectoDetalle
             {
                 Id = p.Id,
-                IdCliente = p.IdCliente,
+                IdCliente = p.Cliente_id,
                 Nombre = p.Nombre,
-                FechaCreacion = p.FechaCreacion.Date,
             };
         }
 
+    
     public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()
         {
             
@@ -57,8 +62,8 @@ namespace HManagementLead.Dal.Mapping;
 
             return p => new TablaIntermedia
             {
-                IdSuperior = p.IdCliente,
-                IdModelo = p.IdSeguimiento,
+                IdSuperior = p.Cliente_id,
+                IdModelo = p.Seguimiento_id,
             };
         }
 

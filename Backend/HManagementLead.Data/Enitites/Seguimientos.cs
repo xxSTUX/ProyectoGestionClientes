@@ -8,24 +8,22 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HManagementLead.Data.Enitites
 {
-    public partial class Seguimiento
+    public partial class Seguimientos
     {
         public int Id { get; set; }
-        public DateTime Fecha{ get; set; }
-        public virtual ICollection<SeguimientoClientes> Seguimientos { get; set; } = new List<SeguimientoClientes>();
+        public string Nombre{ get; set; }
 
+        public Seguimientos() { }
 
-        public Seguimiento() { }
-
-        public Seguimiento(int id, DateTime Fecha) 
+        public Seguimientos(int id, string nombre) 
         {
             this.Id = id;
-            this.Fecha = Fecha;
+            this.Nombre = nombre;
         }
-        public Seguimiento(SeguimientoDetalle seguimiento)
+        public Seguimientos(SeguimientoDetalle seguimiento)
         {
             Id = seguimiento.Id;
-            Fecha = seguimiento.Fecha;
+            Nombre = seguimiento.Nombre;
             
         }
     }

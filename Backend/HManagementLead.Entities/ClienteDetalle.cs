@@ -4,15 +4,15 @@ namespace HManagementLead.Entities
 {
     public class ClienteDetalle
     {
+        [JsonIgnore]
         public int Id { get; set; }
-
-        
+        [JsonPropertyName("Nombre Cliente")]
         public string Nombre { get; set; } = null!;
+        [JsonPropertyName("Proyectos")]
+        public IList<ProyectoDetalle> Proyectos { get; set; } = new List<ProyectoDetalle>();
         [JsonIgnore]
-        public IList<Codigo> Proyectos { get; set; } = new List<Codigo>();
-        [JsonIgnore]
-        public IList<TablaIntermedia> Seguimientos { get; set; } = new List<TablaIntermedia>();
-        [JsonIgnore]
-        public virtual IList<SeguimientoDetalle> SeguimientoClientes { get; set; } = new List<SeguimientoDetalle>();
-}
+        public IList<TablaIntermedia> SeguimientoCliente { get; set; } = new List<TablaIntermedia>();
+        [JsonPropertyName("Seguimientos de cliente")]
+        public virtual IList<SeguimientoDetalle> Seguimientos { get; set; } = new List<SeguimientoDetalle>();
+    }
 }

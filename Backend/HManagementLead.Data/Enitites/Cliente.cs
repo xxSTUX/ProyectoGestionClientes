@@ -8,7 +8,6 @@ public partial class Cliente
     public int Id { get; set; }
 
     public string Nombre { get; set; } = null!;
-    public Boolean Seguimiento { get; set; }
 
     public virtual ICollection<Proyecto> Proyectos { get; set; } = new List<Proyecto>();
     public virtual ICollection<SeguimientoClientes> Seguimientos { get; set; } = new List<SeguimientoClientes>();
@@ -24,11 +23,18 @@ public partial class Cliente
         Nombre = cliente.Nombre;
         foreach (var proyecto in cliente.Proyectos)
         {
-            Proyectos.Add(new Proyecto(proyecto, cliente.Id));
+            if (!proyecto.Id.Equals(0))
+            {
+                Proyectos.Add(new Proyecto(proyecto));
+            }
         }
-        foreach (var seguimientoCliente in cliente.Seguimientos)
+        foreach (var seguimientoCliente in cliente.SeguimientoCliente)
         {
-            Seguimientos.Add(new SeguimientoClientes(seguimientoCliente.IdSuperior,seguimientoCliente.IdModelo));
+            if (!seguimientoCliente.IdModelo.Equals(0))
+            {
+                Seguimientos.Add(new SeguimientoClientes(Id, seguimientoCliente.IdModelo));
+            }
+            
         }
     }
 
