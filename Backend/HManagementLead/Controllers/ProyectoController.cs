@@ -1,6 +1,8 @@
-﻿using HManagementLead.Bll.Interfaces;
+﻿using HManagementLead.Bll;
+using HManagementLead.Bll.Interfaces;
 using HManagementLead.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -63,6 +65,7 @@ namespace HManagementLead.Controllers
         {
             try
             {
+                value.IdCliente = 0;
                 var resultado = await _proyectoService.InsertProyectoAsync(value);
 
                 return Ok(resultado); ;
@@ -109,6 +112,22 @@ namespace HManagementLead.Controllers
                 throw;
             }
 
+        }
+        // POST api/<ClienteController>
+        [HttpPost("InsertSeguimiento/{id}")]
+        public async Task<IActionResult> postSeguimiento(int id, [FromBody] SeguimientoDetalle value)
+        {
+            try
+            {
+                var resultado = await _proyectoService.InsertSeguimientoInProyectoAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
         }
     }
 }

@@ -7,35 +7,35 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class SeguimientoMapping
     {
-        public static Expression<Func<Seguimiento, SeguimientoDetalle>> MapToSeguimiento()
+        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToSeguimiento()
         {
             
             return p => new SeguimientoDetalle
             {
                 Id = p.Id,
-                Fecha = p.Fecha,
+                Nombre = p.Nombre,
                 
             };
         }
 
-        public static Expression<Func<Seguimiento, SeguimientoDetalle>> MapToCreateSeguimiento()
+        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToCreateSeguimiento()
         {
 
             return p => new SeguimientoDetalle
             {
                 Id = p.Id,
-                Fecha = p.Fecha,
+                Nombre = p.Nombre,
                 
             };
         }
 
-        public static Expression<Func<Seguimiento, Codigo>> MapSeguimientoToCodigo()
+        public static Expression<Func<Seguimientos, Codigo>> MapSeguimientoToCodigo()
         {
             
             return p => new Codigo
             {
                 Id = p.Id,
-                Descripcion = p.Fecha.ToLongDateString(),
+                Descripcion = p.Nombre,
             };
         }
     }

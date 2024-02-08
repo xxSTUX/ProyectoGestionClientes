@@ -1,8 +1,12 @@
-﻿namespace HManagementLead.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace HManagementLead.Entities
 {
     public class SeguimientoDetalle
     {
+        [JsonIgnore]
         public int Id { get; set; }
-        public DateTime Fecha { get; set; }
+        [JsonPropertyName("Nombre seguimiento")]
+        public string Nombre { get; set; }
     }
 }

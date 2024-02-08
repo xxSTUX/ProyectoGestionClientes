@@ -53,57 +53,5 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
-
-        // POST api/<ClienteController>
-        [HttpPost]
-        public async Task<IActionResult> Post([FromBody] SeguimientoDetalle value)
-        {
-            try
-            {
-                var resultado = await _seguimientoService.InsertSeguimientoAsync(value);
-
-                return Ok(resultado); ;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
-                throw;
-            }
-        }
-
-        // PUT api/<ClienteController>/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] SeguimientoDetalle value)
-        {
-            try
-            {
-                var resultado = await _seguimientoService.UpdateSeguimientoAsync(value);
-
-                return Ok(resultado);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Put");
-                throw;
-            }
-        }
-
-        // DELETE api/<ClienteController>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            try
-            {
-                await _seguimientoService.DeleteSeguimientoAsync(id);
-
-                return NoContent();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Delete");
-                throw;
-            }
-
-        }
     }
 }

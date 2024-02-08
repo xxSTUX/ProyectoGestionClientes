@@ -25,7 +25,7 @@ namespace HManagementLead.Dal
 
         public Task<SeguimientoDetalle> GetSeguimientoByCliIdAsync(int id)
         {
-            var segcliente = _context.SeguimientoClientes.Where(p => p.IdCliente.Equals(id)).Select(p=> p.IdSeguimiento);
+            var segcliente = _context.SeguimientoCliente.Where(p => p.Cliente_id.Equals(id)).Select(p=> p.Seguimiento_id);
             
             return _context.Seguimientos
                 .Where(p => p.Id.Equals(segcliente))
@@ -41,7 +41,7 @@ namespace HManagementLead.Dal
 
         public async Task<int> InsertSeguimientoAsync(SeguimientoDetalle seguimiento)
         {
-            var nuevoSeguimiento = new Seguimiento(seguimiento);
+            var nuevoSeguimiento = new Seguimientos(seguimiento);
             _context.Seguimientos.Add(nuevoSeguimiento);
             await _context.SaveChangesAsync();
             return nuevoSeguimiento.Id;
@@ -59,7 +59,7 @@ namespace HManagementLead.Dal
 
         public Task<SeguimientoDetalle> UpdateSeguimientoAsync(SeguimientoDetalle seguimiento)
         {
-            var nuevoSeguimiento = new Seguimiento(seguimiento);
+            var nuevoSeguimiento = new Seguimientos(seguimiento);
             _context.Seguimientos.Add(nuevoSeguimiento);
             _context.Update(nuevoSeguimiento);
             _context.SaveChangesAsync();

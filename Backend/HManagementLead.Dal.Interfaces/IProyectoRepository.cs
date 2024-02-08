@@ -14,5 +14,7 @@ namespace HManagementLead.Dal.Interfaces
 
         Task DeleteProyectoAsync(int id);
 
+        Task<ProyectoDetalle> InsertSeguimientoInProyectoAsync(int id, SeguimientoDetalle seguimiento);
+
     }
 }

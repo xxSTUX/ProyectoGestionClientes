@@ -37,5 +37,15 @@ namespace HManagementLead.Bll
         {
             return _repository.UpdateClienteAsync(cliente);
         }
+
+        public Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto)
+        {
+            return _repository.InsertProyectoInClienteAsync(id, proyecto);
+        }
+
+        public Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento)
+        {
+            return _repository.InsertSeguimientoInClienteAsync(id, seguimiento);
+        }
     }
 }

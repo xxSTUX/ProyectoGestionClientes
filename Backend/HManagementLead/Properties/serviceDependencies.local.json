@@ -7,7 +7,7 @@
       "secretStore": "LocalSecretsFile",
       "resourceId": null,
       "type": "mssql.onprem",
-      "connectionId": "ConnectionStrings:Prueba"
+      "connectionId": "ConnectionStrings:Gestion"
     }
   }
 }
