@@ -42,6 +42,8 @@ builder.Services.AddScoped<IProyectoService, ProyectoService>();
 builder.Services.AddScoped<IProyectoRepository, ProyectoRepository>();
 builder.Services.AddScoped<ISeguimientoService, SeguimientoService>();
 builder.Services.AddScoped<ISeguimientoRepository, SeguimientoRepository>();
+builder.Services.AddScoped<ILicitacionService, LicitacionService>();
+builder.Services.AddScoped<ILicitacionRepository, LicitacionRepository>();
 
 
 //Fin de elementos a sacar a un proyecto externo

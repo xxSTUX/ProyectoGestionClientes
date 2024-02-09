@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 namespace HManagementLead.Data.Enitites
 {
 
-    [PrimaryKey(nameof(Cliente_id), nameof(Seguimiento_id))]
-    public partial class SeguimientoClientes
+    [PrimaryKey(nameof(Cliente_id), nameof(Licitacion_id))]
+    public partial class LicitacionClientes
     {
         public int Cliente_id { get; set; }
-        public int Seguimiento_id { get; set; }
+        public int Licitacion_id { get; set; }
         public virtual Cliente IdClienteNavigation { get; set; } = null!;
-        public virtual Seguimientos IdSeguimientoNavigation { get; set; } = null!;
-        public SeguimientoClientes() { }
-        public SeguimientoClientes(int IdCliente, int IdSeguimiento) 
+        public virtual Licitaciones IdLicitacionNavigation { get; set; } = null!;
+        public LicitacionClientes() { }
+        public LicitacionClientes(int IdCliente, int IdLicitacion) 
         {
             this.Cliente_id = IdCliente;
-            this.Seguimiento_id = IdSeguimiento;
+            this.Licitacion_id = IdLicitacion;
         }
+
     }
 }

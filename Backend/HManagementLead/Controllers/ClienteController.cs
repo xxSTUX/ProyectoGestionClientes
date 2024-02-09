@@ -140,5 +140,21 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
+        [HttpPost("InsertLicitacion/{id}")]
+        public async Task<IActionResult> postLicitacion(int id, [FromBody] LicitacionDetalle value)
+        {
+            try
+            {
+                var resultado = await _clienteService.InsertLicitacionInClienteAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
     }
 }
