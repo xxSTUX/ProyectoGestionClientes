@@ -1,0 +1,44 @@
+.tree-invisible {  
+    display: none;  
+  }  
+    
+  .tree ul,  
+  .tree li {  
+    margin-top: 0;  
+    margin-bottom: 0; 
+    list-style-type: none;  
+  }  
+
+  .tree {
+    width: 17%;
+    position: absolute;
+    top: 0;
+    left: 6%;
+    min-height: 100vh;
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%,
+        hsl(218, 41%, 35%) 15%,
+        hsl(218, 41%, 30%) 35%,
+        hsl(218, 41%, 20%) 75%,
+        hsl(218, 41%, 19%) 80%,
+        transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+        hsl(218, 41%, 45%) 15%,
+        hsl(218, 41%, 30%) 35%,
+        hsl(218, 41%, 20%) 75%,
+        hsl(218, 41%, 19%) 80%,
+        transparent 100%);
+    font-family: 'Arial', sans-serif;
+    box-sizing: border-box;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.mat-tree-node, .mat-nested-tree-node {
+    color: #fff;
+    border-radius: 10px;
+}
+
+button[mat-icon-button] {
+    color: #fff;
+}

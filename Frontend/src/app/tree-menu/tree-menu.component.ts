@@ -1,104 +1,30 @@
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { NestedTreeControl } from '@angular/cdk/tree';
 import { Component } from '@angular/core';
+import { MatNestedTreeNode, MatTreeModule, MatTreeNestedDataSource} from '@angular/material/tree';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { Folder } from '../../models/folder.model';
+import { FolderService } from '../services/folder.service';
 
 @Component({
   selector: 'app-tree-menu',
   standalone: true,
-  imports: [],
+  imports: [MatIconModule, MatNestedTreeNode,MatButtonModule, MatProgressBarModule, MatTreeModule],
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css'
 })
 export class TreeMenuComponent {
-  displayTree: any[] = [];
-  selectedNode: any;
+  treeControl = new NestedTreeControl<Folder>(node => node.child);  
+  dataSource = new MatTreeNestedDataSource<Folder>();   
+  
+  constructor(private folderService: FolderService) {} 
 
-  constructor() {
-    this.buildEmptyTree();
+  ngOnInit() {
+    this.folderService.getFolders().subscribe(data => {
+      this.dataSource.data = data;
+    });
   }
-
-  showNode(data: any) {
-    return data.name;
-  }
-
-  isClient(selectedNode: any) {
-    if (selectedNode == undefined) {
-      return false;
-    }
-
-    if (selectedNode.device_name != undefined) {
-      return true;
-    }
-
-    return false;
-  }
-
-  buildEmptyTree() {
-    this.displayTree = [
-      {
-        name: 'Root',
-        type_name: 'Node',
-        show: true,
-        nodes: [
-          {
-            name: 'Loose',
-            group_name: 'Node-1',
-            show: true,
-            nodes: [
-              {
-                name: 'Node-1-1',
-                device_name: 'Node-1-1',
-                show: true,
-                nodes: [],
-              },
-              {
-                name: 'Node-1-2',
-                device_name: 'Node-1-2',
-                show: true,
-                nodes: [],
-              },
-              {
-                name: 'Node-1-3',
-                device_name: 'Node-1-3',
-                show: true,
-                nodes: [],
-              },
-            ],
-          },
-          {
-            name: 'God',
-            group_name: 'Node-2',
-            show: true,
-            nodes: [
-              {
-                name: 'Vadar',
-                device_name: 'Node-2-1',
-                show: true,
-                nodes: [],
-              },
-            ],
-          },
-          {
-            name: 'Borg',
-            group_name: 'Node-3',
-            show: true,
-            nodes: [],
-          },
-          {
-            name: 'Fess',
-            group_name: 'Node-4',
-            show: true,
-            nodes: [],
-          },
-        ],
-      },
-    ];
-    [
-      {
-        name: 'Android',
-        type_name: 'Android',
-        icon: 'icon-android icon-3',
-        show: true,
-        nodes: [],
-      },
-    ];
-  }
-}
+  
+  hasChild = (_: number, node: Folder) => !!node.child && node.child.length > 0;  
+}  

@@ -1,9 +1,10 @@
-import { Component, NgModule } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { SideMenuComponent } from './side-menu/side-menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
+import { MatTreeModule } from '@angular/material/tree';
 
 @Component({
   selector: 'app-root',
