@@ -1,100 +1,80 @@
-<div class="container-fluid">
-    <div class="row flex-nowrap">
-        <div class="col-auto px-0" style="width: 280px;">
-            <div id="sidebar" class="collapse collapse-horizontal border-end " >
-                <ul class="list-unstyled ps-0">
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            type="button" data-toggle="collapse" data-target="#home-collapse"
-                            aria-controls="home-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                            Home
-                        </button>
-                        <div class="collapse" id="home-collapse" >
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Overview</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Updates</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Reports</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            type="button" data-toggle="collapse" data-target="#dash-boardcollapse"
-                            aria-controls="dash-boardcollapse" aria-expanded="false" aria-label="Toggle navigation">
-                            Dashboard
-                        </button>
-                        <div class="collapse" id="dash-boardcollapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Overview</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded  m-1">Weekly</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded  m-1">Monthly</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded  m-1">Annually</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-toggle="collapse" data-target="#orders-collapse" aria-expanded="false"
-                            aria-controls="dash-boardcollapse">
-                            Orders
-                        </button>
-                        <div class="collapse" id="orders-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">New</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Processed</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Shipped</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Returned</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="border-top my-3"></li>
-                    <li class="mb-1">
-                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
-                            data-toggle="collapse" data-target="#account-collapse" aria-expanded="false">
-                            Account
-                        </button>
-                        <div class="collapse" id="account-collapse">
-                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 ml-3 small">
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">New...</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Profile</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Settings</a>
-                                </li>
-                                <li><a href="#"
-                                        class="link-body-emphasis d-inline-flex text-decoration-none rounded m-1">Sign
-                                        out</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
+<nav class="sidebar locked ">
+    <div class="logo_items flex ">
+        <span class="nav_image">
+            <img src="../../assets/images/logoHiberus.jpg" alt="logo_img" />
+        </span>
+        <span class="logo_name">hiberus</span>
+        <i class="bi bi-lock bi-lock-fill" id="lock-icon" title="Unlock Sidebar"></i>
+        <i class="bi bi-unlock" id="sidebar-close"></i>
+    </div>
+    <div class="menu_container ">
+        <div class="menu_items">
+            <ul class="menu_item">
+                <div class="menu_title flex">
+                    <span class="title">Dashboard</span>
+                    <span class="line"></span>
+                </div>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Overview</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>All Projects</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu_item">
+                <div class="menu_title flex">
+                    <span class="title">Editor</span>
+                    <span class="line"></span>
+                </div>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Magic Build</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>New Projects</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Upload New</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="menu_item">
+                <div class="menu_title flex">
+                    <span class="title">Setting</span>
+                    <span class="line"></span>
+                </div>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Notice Board</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Award</span>
+                    </a>
+                </li>
+                <li class="item">
+                    <a href="#" class="link flex">
+                        <i class="bi bi-house"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
