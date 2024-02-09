@@ -45,16 +45,18 @@ body {
 }
 /* Sidebar */
 .sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 270px;
-  background: #fff;
-  padding: 15px 10px;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
-  transition: all 0.4s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 270px;
+    background: #fff;
+    padding: 15px 10px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    z-index: 9999;
 }
+  
 .sidebar.close {
   width: calc(55px + 20px);
 }
