@@ -13,6 +13,7 @@ public partial class Proyecto
     public string? Nombre { get; set; }
 
     public virtual ICollection<SeguimientoProyectos> Seguimientos { get; set; } = new List<SeguimientoProyectos>();
+    public virtual ICollection<LicitacionProyectos> Licitaciones { get; set; } = new List<LicitacionProyectos>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;
 

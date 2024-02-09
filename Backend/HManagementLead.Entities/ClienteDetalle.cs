@@ -14,5 +14,7 @@ namespace HManagementLead.Entities
         public IList<TablaIntermedia> SeguimientoCliente { get; set; } = new List<TablaIntermedia>();
         [JsonPropertyName("Seguimientos de cliente")]
         public virtual IList<SeguimientoDetalle> Seguimientos { get; set; } = new List<SeguimientoDetalle>();
+        [JsonPropertyName("Licitaciones de cliente")]
+        public virtual IList<LicitacionDetalle> licitaciones { get; set; } = new List<LicitacionDetalle>();
     }
 }

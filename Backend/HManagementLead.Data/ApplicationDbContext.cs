@@ -21,13 +21,14 @@ public partial class ApplicationDbContext : DbContext
         Database.EnsureCreated();
         
     }
-
+ 
     public virtual DbSet<Cliente> Clientes { get; set; }
     
     public virtual DbSet<Proyecto> Proyectos { get; set; }
 
     public virtual DbSet<Seguimientos> Seguimientos { get; set; }
-
+    public virtual DbSet<Licitaciones> Licitaciones { get; set; }
+    public virtual DbSet<LicitacionClientes> LicitacionCliente { get; set; }
     public virtual DbSet<SeguimientoClientes> SeguimientoCliente { get; set; }
     public virtual DbSet<SeguimientoProyectos> SeguimientoProyecto { get; set; }
 
@@ -99,7 +100,35 @@ public partial class ApplicationDbContext : DbContext
                 .HasConstraintName("FK_SeguimientosProyectos_Seguimientos");
         });
 
+        modelBuilder.Entity<LicitacionClientes>(entity =>
+        {
+            entity.HasOne(d => d.IdClienteNavigation)
+                .WithMany(p => p.Licitaciones)
+                .HasForeignKey(d => d.Cliente_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_LicitacionClientes_Clientes");
 
+            entity.HasOne(d => d.IdLicitacionNavigation)
+                .WithMany()
+                .HasForeignKey(d => d.Licitacion_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_LicitacionClientes_Seguimientos");
+        });
+
+        modelBuilder.Entity<LicitacionProyectos>(entity =>
+        {
+            entity.HasOne(d => d.IdProyectoNavigation)
+                .WithMany(p => p.Licitaciones)
+                .HasForeignKey(d => d.Proyecto_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SeguimientosProyectos_Proyectos");
+
+            entity.HasOne(d => d.IdLicitacionNavigation)
+                .WithMany()
+                .HasForeignKey(d => d.Licitacion_id)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SeguimientosProyectos_Seguimientos");
+        });
         OnModelCreatingPartial(modelBuilder);
     }
 

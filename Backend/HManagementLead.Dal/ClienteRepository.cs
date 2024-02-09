@@ -20,14 +20,14 @@ namespace HManagementLead.Dal
         {
             return await _context.Clientes
                 .Where(c => c.Id == id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos))
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos, _context.Licitaciones))
                 .FirstAsync();
         }
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
              
-            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos)).ToListAsync();
+            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos, _context.Licitaciones)).ToListAsync();
             return cliente;
         }
 
@@ -56,7 +56,7 @@ namespace HManagementLead.Dal
 
         public async Task DeleteClienteAsync(int id)
         {
-            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos)).FirstAsync();
+            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
             var proyectos = _context.Proyectos.Where(p => p.Cliente_id.Equals(cliente.Id)).ToList();
             foreach (var cp in proyectos)
             {
@@ -106,11 +106,38 @@ namespace HManagementLead.Dal
         public async Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento)
         {
             var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
-            var seguimientoCliente = new SeguimientoClientes(id, seguimiento.Id);
+            
 
+            _context.Seguimientos.Add(new Seguimientos(seguimiento));
+            await _context.SaveChangesAsync();
+            var a = _context.Seguimientos.ToList();
+            seguimiento.Id =  a.LastOrDefault().Id;
+            var seguimientoCliente = new SeguimientoClientes(id, seguimiento.Id);
             cliente.Seguimientos.Add(seguimientoCliente);
             _context.SeguimientoCliente.Add(seguimientoCliente);
-            _context.Seguimientos.Add(new Seguimientos(seguimiento));
+            
+            _context.Clientes.Add(cliente);
+            _context.Update(cliente);
+            await _context.SaveChangesAsync();
+            return await _context.Clientes
+                .Where(c => c.Id == cliente.Id)
+                .Select(ClienteMapping.MapToClientDetalleConProyecto())
+                .FirstAsync();
+        }
+
+        public async Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle licitacion)
+        {
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
+
+
+            _context.Licitaciones.Add(new Licitaciones(licitacion));
+            await _context.SaveChangesAsync();
+            var a = _context.Licitaciones.ToList();
+            licitacion.Id = a.LastOrDefault().Id;
+            var licitacionClientes = new LicitacionClientes(id, licitacion.Id);
+            cliente.Licitaciones.Add(licitacionClientes);
+            _context.LicitacionCliente.Add(licitacionClientes);
+
             _context.Clientes.Add(cliente);
             _context.Update(cliente);
             await _context.SaveChangesAsync();

@@ -2,12 +2,13 @@
 using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
 using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 
 namespace HManagementLead.Dal.Mapping
 {
     public static class ClienteMapping
     {
-        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(Microsoft.EntityFrameworkCore.DbSet<Seguimientos> seguimientos)
+        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(DbSet<Seguimientos> seguimientos, DbSet<Licitaciones> licitaciones)
         {
 
             return c => new ClienteDetalle
@@ -23,6 +24,14 @@ namespace HManagementLead.Dal.Mapping
                                           Id = s.Id,
                                           Nombre = s.Nombre,
                                       }).ToList(),
+                licitaciones = (from cl in c.Licitaciones
+                                join l in licitaciones
+                                on cl.Licitacion_id equals l.Id
+                                select new LicitacionDetalle
+                                {
+                                    Id = l.Id,
+                                    Nombre = l.Nombre,
+                                }).ToList(),
             };
         }
         public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto()
@@ -33,7 +42,6 @@ namespace HManagementLead.Dal.Mapping
                 Id = p.Id,
                 Nombre = p.Nombre,
                 Proyectos = p.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
-                SeguimientoCliente = p.Seguimientos.AsQueryable().Select(MapSeguimienClientestoToTablaIntermedia()).ToList(),
             };
         }
         public static Expression<Func<Cliente, ClienteDetalle>> MapToCreateClientDetalle()

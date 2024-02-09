@@ -17,5 +17,8 @@ namespace HManagementLead.Bll.Interfaces
         Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto);
 
         Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento);
+
+        Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
+        
     }
 }

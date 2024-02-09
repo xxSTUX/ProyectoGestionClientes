@@ -11,6 +11,7 @@ public partial class Cliente
 
     public virtual ICollection<Proyecto> Proyectos { get; set; } = new List<Proyecto>();
     public virtual ICollection<SeguimientoClientes> Seguimientos { get; set; } = new List<SeguimientoClientes>();
+    public virtual ICollection<LicitacionClientes> Licitaciones { get; set; } = new List<LicitacionClientes>();
 
     public Cliente()
     {
