@@ -1,37 +1,22 @@
 <header class="app-header">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="custom-menu ml-2">
-      <button type="button" id="sidebarCollapse" class="btn btn-primary" data-target="#sidebar"
-          data-toggle="collapse" class="border rounded-3 p-1 text-decoration-none">
-          <i class="bi bi-list py-1 p-1"></i>
-          <span class="sr-only">Toggle Menu</span>
-      </button>
-    </div>
     <div class="container-fluid">
-      <!-- Icono de la aplicación a la izquierda -->
       <a class="navbar-brand" (click)="onHomeClick()">
-        <i class="ti ti-home"></i> Gestión de clientes Hiberus
-      </a>
-      
-      <!-- Botón para dispositivos móviles -->
+        <i class="ti ti-home"></i> Gestión de clientes Hiberus</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedUser" aria-controls="navbarSupportedUser" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
-      <!-- Items a la derecha: Perfil de usuario -->
       <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedUser">
         <ul class="navbar-nav">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+          <li class="nav-item">
+            <a class="nav-link">
               <img src="../../assets/images/user.png" alt="User Image" width="30" height="30" class="rounded-circle"> Juan Pérez
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarUserDropdown">
-              <li><a class="dropdown-item" (click)="onProfileClick()">Mi Perfil</a></li>
-              <li><a class="dropdown-item" (click)="onAccountClick()">Mi Cuenta</a></li>
-              <li><a class="dropdown-item" (click)="onTasksClick()">Mis Tareas</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" (click)="onLogoutClick()">Cerrar Sesión</a></li>
-            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" (click)="onLogoutClick()">
+              <i class="bi bi-box-arrow-right"></i>
+            </a>
           </li>
         </ul>
       </div>
