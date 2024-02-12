@@ -32,14 +32,14 @@ sidebar: HTMLElement | null = null;
 
   toggleLock(): void {
     if (this.sidebar && this.sidebarLockBtn) {
-      this.sidebar.classList.toggle("locked");
+      this.sidebar.classList.toggle("hoverable");
 
-      if (!this.sidebar.classList.contains("locked")) {
-        this.sidebar.classList.add("hoverable");
-        this.sidebarLockBtn.classList.replace("bi-lock-fill", "bi-unlock");
-      } else {
-        this.sidebar.classList.remove("hoverable");
+      if (!this.sidebar.classList.contains("hoverable")) {
+        this.sidebar.classList.add("locked");
         this.sidebarLockBtn.classList.replace("bi-unlock", "bi-lock-fill");
+      } else {
+        this.sidebar.classList.remove("locked");
+        this.sidebarLockBtn.classList.replace("bi-lock-fill", "bi-unlock");
       }
     }
   }
