@@ -55,6 +55,7 @@ body {
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
     transition: width 0.4s ease,  opacity 0.4s ease;
     z-index: 9999;
+    
 }
   
 .sidebar.close {
