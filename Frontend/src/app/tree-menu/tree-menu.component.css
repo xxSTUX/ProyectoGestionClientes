@@ -1,7 +1,3 @@
-:host ::ng-deep .mat-tree-node {
-  min-height: auto !important;
-}
-
 .tree-invisible {  
     display: none;  
   }  
@@ -48,9 +44,4 @@
 
 button[mat-icon-button] {
     color: #fff;
-    width:20px;
-    height: 20px !important;
-
 }
-
-
