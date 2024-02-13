@@ -16,7 +16,7 @@ namespace HManagementLead.Controllers
         public ClienteController(IClienteService clienteService,
             ILogger<ClienteController> logger)
         {
-            _clienteService = clienteService ?? throw new ArgumentNullException(nameof(clienteService));
+            _clienteService = clienteService ?? throw new ArgumentNullException(nameof(clienteService)); //Si es nulo tira el ArgumentNullException
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 

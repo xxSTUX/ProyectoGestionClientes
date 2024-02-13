@@ -51,6 +51,8 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Cliente>(entity =>
         {
             entity.Property(e => e.Nombre)
@@ -121,13 +123,13 @@ public partial class ApplicationDbContext : DbContext
                 .WithMany(p => p.Licitaciones)
                 .HasForeignKey(d => d.Proyecto_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SeguimientosProyectos_Proyectos");
+                .HasConstraintName("FK_LicitacionProyectos_Proyectos");
 
             entity.HasOne(d => d.IdLicitacionNavigation)
                 .WithMany()
                 .HasForeignKey(d => d.Licitacion_id)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_SeguimientosProyectos_Seguimientos");
+                .HasConstraintName("FK_LicitacionProyectos_Seguimientos");
         });
         OnModelCreatingPartial(modelBuilder);
     }
