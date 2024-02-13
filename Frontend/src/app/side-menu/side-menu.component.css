@@ -59,8 +59,9 @@ body {
 
 .sidebar.close {
   font-size: 16px;
-  width: calc(55px + 20px);
+  width: 75px;
   transition: all 0.4s ease;
+  background: brown;
 }
 .logo_items {
   gap: 8px;
