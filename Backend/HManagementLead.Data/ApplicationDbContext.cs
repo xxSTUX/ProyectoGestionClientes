@@ -28,6 +28,7 @@ public partial class ApplicationDbContext : DbContext
 
     public virtual DbSet<Seguimientos> Seguimientos { get; set; }
     public virtual DbSet<Licitaciones> Licitaciones { get; set; }
+    public virtual DbSet<Contactos> Contactos { get; set; }
     public virtual DbSet<LicitacionClientes> LicitacionCliente { get; set; }
     public virtual DbSet<SeguimientoClientes> SeguimientoCliente { get; set; }
     public virtual DbSet<SeguimientoProyectos> SeguimientoProyecto { get; set; }

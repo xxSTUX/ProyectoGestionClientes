@@ -14,6 +14,8 @@ namespace HManagementLead.Dal
         public ClienteRepository (ApplicationDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+            if(_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            
         }
 
         public async Task<ClienteDetalle> GetClienteByIdAsync(int id)
@@ -64,27 +66,7 @@ namespace HManagementLead.Dal
                 _context.Proyectos.Add(cp);
                 _context.Update(cp);
                 await _context.SaveChangesAsync();
-            }
-            var seguimientoCliente = _context.SeguimientoCliente.Where(sc=>sc.Cliente_id.Equals(cliente.Id)).Select(ClienteMapping.MapSeguimienClientestoToTablaIntermedia()).ToList();
-            var seguimientos = _context.Seguimientos.ToList();
-            foreach (var sc in seguimientoCliente)
-            {
-
-                _context.SeguimientoCliente.Remove(new Data.Enitites.SeguimientoClientes(sc.IdSuperior,sc.IdModelo));
-                foreach (var s in seguimientos)
-                {
-                    if (s.Id.Equals(sc.IdModelo))
-                    {
-                        _context.Seguimientos.Remove(s);
-                        await _context.SaveChangesAsync();
-                    }
-                }
-                await _context.SaveChangesAsync();
-
-            }
-            _context.Clientes.Remove(new Cliente(cliente));
-            await _context.SaveChangesAsync();
-            
+            }            
         }
 
         public async Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto)
@@ -101,6 +83,20 @@ namespace HManagementLead.Dal
                 .Where(c => c.Id == cliente.Id)
                 .Select(ClienteMapping.MapToClientDetalleConProyecto())
                 .FirstAsync();
+        }
+        public async Task DeleteProyectoInClienteAsync(int id)
+        {
+            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
+            var proyectos = _context.Proyectos.Where(p => p.Cliente_id.Equals(cliente.Id)).ToList();
+            foreach (var cp in proyectos)
+            {
+                cp.Cliente_id = 1;
+                _context.Proyectos.Add(cp);
+                _context.Update(cp);
+                await _context.SaveChangesAsync();
+            }
+            await _context.SaveChangesAsync();
+
         }
 
         public async Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento)
@@ -145,6 +141,28 @@ namespace HManagementLead.Dal
                 .Where(c => c.Id == cliente.Id)
                 .Select(ClienteMapping.MapToClientDetalleConProyecto())
                 .FirstAsync();
+        }
+        private async void DeleteSeguimientosDeProyecto(ClienteDetalle cliente)
+        {
+            var seguimientoCliente = _context.SeguimientoCliente.Where(sc => sc.Cliente_id.Equals(cliente.Id)).Select(ClienteMapping.MapSeguimienClientestoToTablaIntermedia()).ToList();
+            var seguimientos = _context.Seguimientos.ToList();
+            foreach (var sc in seguimientoCliente)
+            {
+
+                _context.SeguimientoCliente.Remove(new SeguimientoClientes(sc.IdSuperior, sc.IdModelo));
+                foreach (var s in seguimientos)
+                {
+                    if (s.Id.Equals(sc.IdModelo))
+                    {
+                        _context.Seguimientos.Remove(s);
+                        await _context.SaveChangesAsync();
+                    }
+                }
+                await _context.SaveChangesAsync();
+
+            }
+            _context.Clientes.Remove(new Cliente(cliente));
+            _context.SaveChangesAsync();
         }
     }
 }
