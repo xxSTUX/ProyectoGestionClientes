@@ -28,5 +28,14 @@ namespace HManagementLead.Dal
                 .Select(LicitacionMapping.MapToLicitacion())
                 .FirstAsync();
         }
+
+        public async Task<int> InsertLicitacionAsync(LicitacionDetalle licitacion)
+        {
+            var nuevaLicitacion = new Licitaciones(licitacion);
+            _context.Licitaciones.Add(nuevaLicitacion);
+            await _context.SaveChangesAsync();
+            return nuevaLicitacion.Id;
+        }
+
     }
 }

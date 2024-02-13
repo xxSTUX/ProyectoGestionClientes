@@ -7,5 +7,7 @@ namespace HManagementLead.Dal.Interfaces
         Task<LicitacionDetalle> GetLicitacionByIdAsync(int id);
 
         Task<List<Codigo>> GetAllLicitacionAsync();
+
+        Task<int> InsertLicitacionAsync(LicitacionDetalle licitacion);
     }
 }

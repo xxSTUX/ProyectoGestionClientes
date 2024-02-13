@@ -6,6 +6,11 @@
     "mssql1": {
       "type": "mssql",
       "connectionId": "ConnectionStrings:Gestion"
+    },
+    "mssql2": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:DefaultConnection",
+      "dynamicId": null
     }
   }
 }

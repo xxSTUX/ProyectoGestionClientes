@@ -1,4 +1,5 @@
-﻿using HManagementLead.Bll.Interfaces;
+﻿using HManagementLead.Bll;
+using HManagementLead.Bll.Interfaces;
 using HManagementLead.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,6 +51,21 @@ namespace HManagementLead.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+                throw;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] LicitacionDetalle value)
+        {
+            try
+            {
+                var resultado = await _licitacionService.InsertLicitacionAsync(value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
                 throw;
             }
         }
