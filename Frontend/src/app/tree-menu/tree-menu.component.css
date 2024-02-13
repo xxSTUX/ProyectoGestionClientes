@@ -1,11 +1,11 @@
-.tree-invisible {  
-    display: none;  
-  }  
-    
-  .tree ul,  
-  .tree li {  
-    list-style-type: none;  
-  }  
+.tree-invisible {
+    display: none;
+  }
+
+  .tree ul,
+  .tree li {
+    list-style-type: none;
+  }
 
   .tree {
     width: auto;
