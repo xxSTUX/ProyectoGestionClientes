@@ -34,4 +34,8 @@ export class LoginComponent {
   onRegister() {
     this.router.navigate(['register']);
   }
+
+  onForgotten() {
+    this.router.navigate(['forgotten']);
+  }
 }
