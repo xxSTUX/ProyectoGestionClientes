@@ -1,43 +1,42 @@
 .tree-invisible {
-    display: none;
-  }
-
-  .tree ul,
-  .tree li {
-    list-style-type: none;
-  }
-
-  .tree {
-    width: auto;
-    position: absolute;
-    top: 0;
-    left: 5rem;
-    min-height: 100vh;
-    padding: 0px 50px 25px 25px;
-    background-color: hsl(218, 41%, 15%);
-    background-image: radial-gradient(650px circle at 0% 0%,
-        hsl(218, 41%, 35%) 15%,
-        hsl(218, 41%, 30%) 35%,
-        hsl(218, 41%, 20%) 75%,
-        hsl(218, 41%, 19%) 80%,
-        transparent 100%),
-      radial-gradient(1250px circle at 100% 100%,
-        hsl(218, 41%, 45%) 15%,
-        hsl(218, 41%, 30%) 35%,
-        hsl(218, 41%, 20%) 75%,
-        hsl(218, 41%, 19%) 80%,
-        transparent 100%);
-    font-family: 'Arial', sans-serif;
-    box-sizing: border-box;
-    overflow-y: auto;
-    height: 100vh;
+  display: none;
 }
 
-.mat-tree-node, .mat-nested-tree-node {
-    color: #fff;
-    border-radius: 10px;
-    margin: 0;
-    padding: 0px 0px;
+.tree ul,
+.tree li {
+  list-style-type: none;
+}
+
+.tree {
+  border-radius: 0.4rem;
+  width: auto;
+  position: absolute;
+  top: 0;
+  left: 5rem;
+  padding: 0px 50px 25px 25px;
+  background-color: hsl(218, 41%, 15%);
+  background-image: radial-gradient(650px circle at 0% 0%,
+      hsl(218, 41%, 35%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%),
+    radial-gradient(1250px circle at 100% 100%,
+      hsl(218, 41%, 45%) 15%,
+      hsl(218, 41%, 30%) 35%,
+      hsl(218, 41%, 20%) 75%,
+      hsl(218, 41%, 19%) 80%,
+      transparent 100%);
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: calc(100vh - 3.875rem);
+}
+
+.mat-tree-node,
+.mat-nested-tree-node {
+  color: #fff;
+  align-items: center;
+  align-content: center;
 }
 
 
@@ -45,3 +44,8 @@
 button[mat-icon-button] {
     color: #fff;
 }
+
+.light-button {
+  font-size: 90%;
+  margin-bottom: 1rem;
+} 

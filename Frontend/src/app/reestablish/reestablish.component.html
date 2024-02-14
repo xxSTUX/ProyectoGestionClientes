@@ -1,0 +1,31 @@
+<section class="background-radial-gradient overflow-hidden">
+    <div class="row vh-100 justify-content-center align-items-center">
+        <div class="card bg-glass col-auto bg-light p-5">
+            <div class="card-body px-4 py-5 px-md-5">
+                <p class="mb-4 opacity-70 text-center font-weight-bold" style="color: hsl(0, 0%, 0%); font-size: 24px;">
+                    Restablece tu contraseña
+                </p>                
+                <form formGroup="reestablishForm" (submit)="click()">
+                    <div class="row">
+                        <!-- Password input -->
+                        <div class="mb-4">
+                            <input type="password" id="password" formControlName="password" class="form-control" 
+                              placeholder="Contraseña" required />
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="password" id="passwordValidate" formControlName="passwordValidate" class="form-control" 
+                              placeholder="Confirma tu contraseña" required />
+                          </div>
+                    
+                        <!-- Submit button -->
+                        <button type="submit" class="btn btn-primary btn-block mb-4">
+                            Confirma el correo
+                        </button>
+                    </div>
+                </form>      
+            </div>
+        </div>
+    </div>
+</section>
+    
