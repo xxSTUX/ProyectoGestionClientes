@@ -12,7 +12,7 @@ import { FolderService } from '../services/folder.service';
   standalone: true,
   imports: [MatIconModule, MatNestedTreeNode,MatButtonModule, MatProgressBarModule, MatTreeModule],
   templateUrl: './tree-menu.component.html',
-  styleUrl: './tree-menu.component.css'
+  styleUrl: './tree-menu.component.css',
 })
 export class TreeMenuComponent {
   treeControl = new NestedTreeControl<Folder>(node => node.child);  

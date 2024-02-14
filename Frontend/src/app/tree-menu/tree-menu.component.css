@@ -1,3 +1,5 @@
+
+
 .tree-invisible {
     display: none;
   }
@@ -8,11 +10,11 @@
   }
 
   .tree {
+    border-radius: 0.2rem;
     width: auto;
     position: absolute;
     top: 0;
     left: 5rem;
-    min-height: 100vh;
     padding: 0px 50px 25px 25px;
     background-color: hsl(218, 41%, 15%);
     background-image: radial-gradient(650px circle at 0% 0%,
@@ -30,14 +32,14 @@
     font-family: 'Arial', sans-serif;
     box-sizing: border-box;
     overflow-y: auto;
-    height: 100vh;
+    height: calc(100vh - 3.875rem);
 }
 
 .mat-tree-node, .mat-nested-tree-node {
     color: #fff;
     border-radius: 10px;
     margin: 0;
-    padding: 0px 0px;
+    padding: 0;
 }
 
 
