@@ -8,12 +8,12 @@ namespace HManagementLead.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LicitacionController : ControllerBase
+    public class ContactoController : ControllerBase
     {
         private readonly ILicitacionService _licitacionService;
         private readonly ILogger<LicitacionController> _logger;
 
-        public LicitacionController(ILicitacionService licitacionService,
+        public ContactoController(ILicitacionService licitacionService,
             ILogger<LicitacionController> logger)
         {
             _licitacionService = licitacionService ?? throw new ArgumentNullException(nameof(licitacionService));
