@@ -53,6 +53,7 @@ public partial class ApplicationDbContext : DbContext
     {
 
         base.OnModelCreating(modelBuilder);
+        //Todo lo que viene ahora crea las tablas y relaciones correspondientes en la BBDD. Para crear la BBDD por primera vez haga Add-Migration [nombre]. Para incluir otras posibles migraciones haga update-database
         modelBuilder.Entity<Cliente>(entity =>
         {
             entity.Property(e => e.Nombre)

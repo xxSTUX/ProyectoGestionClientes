@@ -31,7 +31,7 @@ namespace HManagementLead.Dal
             return cliente;
         }
 
-        public async Task<int> InsertClienteAsync(ClienteDetalle cliente)
+        public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta
         {
             var nuevoCliente = new Cliente(cliente);
             _context.Clientes.Add(nuevoCliente);
@@ -54,7 +54,7 @@ namespace HManagementLead.Dal
 
         }
 
-        public async Task DeleteClienteAsync(int id)
+        public async Task DeleteClienteAsync(int id) 
         {
             var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
             var proyectos = _context.Proyectos.Where(p => p.Cliente_id.Equals(cliente.Id)).ToList();
