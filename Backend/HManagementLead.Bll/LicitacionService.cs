@@ -26,5 +26,10 @@ namespace HManagementLead.Bll
         {
             return _repository.InsertLicitacionAsync(licitacion);
         }
+
+        public Task<LicitacionDetalle> UpdateLicitacionAsync(int id, LicitacionDetalle licitacion)
+        {
+            return _repository.UpdateLicitacionAsync(id,licitacion);
+        }
     }
 }
