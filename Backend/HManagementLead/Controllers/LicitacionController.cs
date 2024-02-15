@@ -84,5 +84,20 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _licitacionService.DeleteLicitacionAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en LicitacionController Delete");
+                throw;
+            }
+        }
     }
 }

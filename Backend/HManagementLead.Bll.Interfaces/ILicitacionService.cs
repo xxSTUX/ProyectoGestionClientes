@@ -11,5 +11,7 @@ namespace HManagementLead.Bll.Interfaces
         Task<int> InsertLicitacionAsync(LicitacionDetalle licitacion);
 
         Task<LicitacionDetalle> UpdateLicitacionAsync(int id,LicitacionDetalle licitacion);
+
+        Task DeleteLicitacionAsync(int id);
     }
 }

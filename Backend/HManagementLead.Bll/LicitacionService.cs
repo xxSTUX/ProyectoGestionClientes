@@ -12,6 +12,11 @@ namespace HManagementLead.Bll
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        public Task DeleteLicitacionAsync(int id)
+        {
+            return _repository.DeleteLicitacionAsync(id);
+        }
+
         public Task<List<Codigo>> GetAllLicitacionAsync()
         {
             return _repository.GetAllLicitacionAsync();
