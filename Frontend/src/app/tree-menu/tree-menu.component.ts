@@ -6,6 +6,7 @@ import { MatNestedTreeNode, MatTreeModule, MatTreeNestedDataSource} from '@angul
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { Folder } from '../../models/folder.model';
 import { FolderService } from '../services/folder.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tree-menu',
@@ -18,7 +19,7 @@ export class TreeMenuComponent {
   treeControl = new NestedTreeControl<Folder>(node => node.child);  
   dataSource = new MatTreeNestedDataSource<Folder>();   
   
-  constructor(private folderService: FolderService) {} 
+  constructor(private folderService: FolderService, private router: Router) {} 
 
   ngOnInit() {
     this.folderService.getFolders().subscribe(data => {
@@ -27,4 +28,13 @@ export class TreeMenuComponent {
   }
   
   hasChild = (_: number, node: Folder) => !!node.child && node.child.length > 0;  
+  hasNoChild = (_: number, node: Folder) => !this.hasChild(_, node);
+
+  onNodeClick(node: Folder) {
+    if (node.name) {
+      this.router.navigate(['/dashboard'], { fragment: node.name });
+    } else {
+      this.router.navigate(['/error']);
+    }
+  }
 }  
