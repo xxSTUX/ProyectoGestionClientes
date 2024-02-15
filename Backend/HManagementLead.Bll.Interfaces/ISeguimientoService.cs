@@ -7,5 +7,11 @@ namespace HManagementLead.Bll.Interfaces
         Task<SeguimientoDetalle> GetSeguimientoByIdAsync(int id);
 
         Task<List<Codigo>> GetAllSeguimientoAsync();
+
+        Task<int> InsertSeguimientoAsync(SeguimientoDetalle seguimiento);
+
+        Task<SeguimientoDetalle> UpdateSeguimientoAsync(int id, SeguimientoDetalle seguimiento);
+
+        Task DeleteSeguimientoByIdAsync(int id);
     }
 }

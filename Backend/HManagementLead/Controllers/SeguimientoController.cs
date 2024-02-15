@@ -32,7 +32,7 @@ namespace HManagementLead.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
+                _logger.LogError(ex, "Ocurrió un error en SeguimientoController Get clientes");
                 throw;
             }
         }
@@ -49,7 +49,51 @@ namespace HManagementLead.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+                _logger.LogError(ex, "Ocurrió un error en SeguimientoController Get cliente");
+                throw;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] SeguimientoDetalle value)
+        {
+            try
+            {
+                var resultado = await _seguimientoService.InsertSeguimientoAsync(value);
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en SeguimientoController Post Seguimiento");
+                throw;
+            }
+        }
+        [HttpPut("{id}")] 
+        public async Task <IActionResult> Put(int id, [FromBody] SeguimientoDetalle value)
+        {
+            try
+            {
+                var resultado = await _seguimientoService.UpdateSeguimientoAsync(id,value);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en SeguimientoController Put Seguimiento por Id");
+                throw;
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            try
+            {
+                await _seguimientoService.DeleteSeguimientoByIdAsync(id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en SeguimientoController Delete Seguimiento por Id");
                 throw;
             }
         }

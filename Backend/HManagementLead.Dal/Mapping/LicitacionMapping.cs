@@ -5,33 +5,33 @@ using System.Linq.Expressions;
 
 namespace HManagementLead.Dal.Mapping
 {
-    public static class SeguimientoMapping
+    public static class LicitacionMapping
     {
-        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToSeguimiento()
+        public static Expression<Func<Licitaciones, LicitacionDetalle>> MapToLicitacion()
         {
-            
-            return p => new SeguimientoDetalle
+
+            return p => new LicitacionDetalle
             {
                 Id = p.Id,
                 Nombre = p.Nombre,
-                
+
             };
         }
 
-        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToCreateSeguimiento()
+        public static Expression<Func<Licitaciones, LicitacionDetalle>> MapToCreateLicitacion()
         {
 
-            return p => new SeguimientoDetalle
+            return p => new LicitacionDetalle
             {
                 Id = p.Id,
                 Nombre = p.Nombre,
-                
+
             };
         }
 
-        public static Expression<Func<Seguimientos, Codigo>> MapSeguimientoToCodigo()
+        public static Expression<Func<Licitaciones, Codigo>> MapLicitacionToCodigo()
         {
-            
+
             return p => new Codigo
             {
                 Id = p.Id,
