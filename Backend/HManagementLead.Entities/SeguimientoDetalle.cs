@@ -6,7 +6,9 @@ namespace HManagementLead.Entities
     {
         [JsonIgnore]
         public int Id { get; set; }
-        [JsonPropertyName("Nombre seguimiento")]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = null!;
+        public int ProyectoId { get; set; }
+        public DateTime Fecha { get; set; }
+        public string Tipo { get; set; } = null!;
     }
 }

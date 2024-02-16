@@ -16,7 +16,7 @@ import { Router } from '@angular/router';
   styleUrl: './tree-menu.component.css',
 })
 export class TreeMenuComponent {
-  treeControl = new NestedTreeControl<Folder>(node => node.child);  
+  treeControl = new NestedTreeControl<Folder>(node => node.proyectos);  
   dataSource = new MatTreeNestedDataSource<Folder>();   
   
   constructor(private folderService: FolderService, private router: Router) {} 
@@ -27,12 +27,12 @@ export class TreeMenuComponent {
     });
   }
   
-  hasChild = (_: number, node: Folder) => !!node.child && node.child.length > 0;  
+  hasChild = (_: number, node: Folder) => !!node.proyectos && node.proyectos.length > 0;  
   hasNoChild = (_: number, node: Folder) => !this.hasChild(_, node);
 
   onNodeClick(node: Folder) {
-    if (node.name) {
-      this.router.navigate(['/dashboard'], { fragment: node.name });
+    if (node.nombre) {
+      this.router.navigate(['/dashboard'], { fragment: node.nombre });
     } else {
       this.router.navigate(['/error']);
     }

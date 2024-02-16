@@ -1,7 +1,7 @@
 export interface Folder {
-    name: string;
+    nombre: string;
     icon: string;
     expanded: boolean;
-    child?: Folder[];
+    proyectos?: Folder[];
     url?: string;
   }

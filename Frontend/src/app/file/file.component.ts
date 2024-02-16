@@ -24,7 +24,7 @@ export class FileComponent {
   }
 
   loadTreeData() {
-    const apiUrl = `https://65c36e8e39055e7482c0e15e.mockapi.io/`;
+    const apiUrl = `https://localhost:7075/api/Cliente`;
     this.http.get(apiUrl).subscribe(data => {
       this.treeData = data;
     });

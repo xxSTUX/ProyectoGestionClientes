@@ -4,7 +4,7 @@
       <button mat-icon-button disabled>
         <mat-icon>{{node.icon}}</mat-icon>
       </button>
-      {{node.name}}
+      {{node.nombre}}
     </li>
   </mat-tree-node>
 
@@ -13,7 +13,7 @@
       <button mat-icon-button disabled>
         <mat-icon>{{node.icon}}</mat-icon>
       </button>
-      <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.name}}</a>
+      <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.nombre}}</a>
 
     </li>
   </mat-tree-node>
@@ -21,18 +21,17 @@
   <mat-nested-tree-node *matTreeNodeDef="let node; when: hasChild">
     <li>
       <div class="mat-tree-node">
-        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.name">
+        <button mat-icon-button matTreeNodeToggle [attr.aria-label]="'Toggle ' + node.nombre">
           <mat-icon class="mat-icon-rtl-mirror light-button" id="flechas">
             {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
           </mat-icon>
         </button>
         <mat-icon>{{node.icon}}</mat-icon>
-        <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.name}}</a>
+        <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.nombre}}</a>
       </div>
       <ul [class.tree-invisible]="!treeControl.isExpanded(node)" id="ul">
         <ng-container matTreeNodeOutlet></ng-container>
       </ul>
     </li>
-  </mat-nested-tree-node>
-  
+  </mat-nested-tree-node> 
 </mat-tree>
