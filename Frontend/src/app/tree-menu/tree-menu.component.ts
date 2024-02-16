@@ -6,11 +6,7 @@ import { MatNestedTreeNode, MatTreeModule, MatTreeNestedDataSource} from '@angul
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { Folder } from '../../models/folder.model';
 import { FolderService } from '../services/folder.service';
-<<<<<<< Updated upstream
-=======
-import { Router } from '@angular/router';
 import { TabmenuComponent } from '../tabmenu/tabmenu.component';
->>>>>>> Stashed changes
 
 @Component({
   selector: 'app-tree-menu',
