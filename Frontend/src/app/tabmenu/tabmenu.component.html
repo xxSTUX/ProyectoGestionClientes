@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <!-- Tabs navs -->
+    <ul class="nav nav-tabs mb-3" id="ex-with-icons" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a data-mdb-tab-init class="nav-link active" id="ex-with-icons-tab-1" href="#ex-with-icons-tabs-1"
+                role="tab" aria-controls="ex-with-icons-tabs-1" aria-selected="true"><i
+                    class="fas fa-chart-pie fa-fw me-2"></i>Crear Seguimiento</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a data-mdb-tab-init class="nav-link" id="ex-with-icons-tab-2" href="#" role="tab"
+                aria-controls="ex-with-icons-tabs-2" aria-selected="false"><i
+                    class="fas fa-chart-line fa-fw me-2"></i>Seguimientos</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a data-mdb-tab-init class="nav-link" id="ex-with-icons-tab-3" href="#" role="tab"
+                aria-controls="ex-with-icons-tabs-3" aria-selected="false"><i
+                    class="fas fa-cogs fa-fw me-2"></i>Licitaciones</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a data-mdb-tab-init class="nav-link" id="ex-with-icons-tab-3" href="#" role="tab"
+                aria-controls="ex-with-icons-tabs-3" aria-selected="false"><i
+                    class="fas fa-cogs fa-fw me-2"></i>Licitaciones</a>
+        </li>
+    </ul>
+    <!-- Tabs navs -->
+
+    <!-- Tabs content -->
+    <div class="tab-content" id="ex-with-icons-content">
+        <div class="tab-pane fade show active px-2" id="ex-with-icons-tabs-1" role="tabpanel"
+            aria-labelledby="ex-with-icons-tab-1">
+            <div class="row my-1">
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Id</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Fecha.C</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">F.Mod</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row my-3">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Usuario</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="input-group input-group-sm">
+                        <span class="input-group-text">Usuario Mod</span>
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
+                </div>
+            </div>
+            <angular-editor [placeholder]="'Enter text here...'" [config]="config"></angular-editor>
+        </div>
+        <div class="tab-pane fade" id="ex-with-icons-tabs-2 px-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-2">
+            Tab 2 content
+        </div>
+        <div class="tab-pane fade" id="ex-with-icons-tabs-3 px-2" role="tabpanel" aria-labelledby="ex-with-icons-tab-3">
+            Tab 3 content
+        </div>
+    </div>
+    <!-- Tabs content -->
+</div>
