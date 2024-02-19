@@ -12,6 +12,8 @@ namespace HManagementLead.Bll
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
+        
+
         public Task<List<Codigo>> GetAllSeguimientoAsync()
         {
             return _repository.GetAllSeguimientoAsync();
@@ -20,6 +22,21 @@ namespace HManagementLead.Bll
         public Task<SeguimientoDetalle> GetSeguimientoByIdAsync(int id)
         {
             return _repository.GetSeguimientoByIdAsync(id);
+        }
+
+        public Task<int> InsertSeguimientoAsync(SeguimientoDetalle seguimiento)
+        {
+            return _repository.InsertSeguimientoAsync(seguimiento);
+        }
+
+        public Task<SeguimientoDetalle> UpdateSeguimientoAsync(int id, SeguimientoDetalle seguimiento)
+        {
+            return _repository.UpdateSeguimientoAsync(id,seguimiento);
+        }
+
+        public Task DeleteSeguimientoByIdAsync(int id)
+        {
+            return _repository.DeleteSeguimientoByIdAsync(id);
         }
     }
 }

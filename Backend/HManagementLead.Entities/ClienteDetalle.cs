@@ -10,7 +10,6 @@ namespace HManagementLead.Entities
         public IList<ProyectoDetalle> Proyectos { get; set; } = new List<ProyectoDetalle>();
         [JsonIgnore]
         public IList<TablaIntermedia> SeguimientoCliente { get; set; } = new List<TablaIntermedia>();
-
         public virtual IList<SeguimientoDetalle> Seguimientos { get; set; } = new List<SeguimientoDetalle>();
         public virtual IList<LicitacionDetalle> licitaciones { get; set; } = new List<LicitacionDetalle>();
     }

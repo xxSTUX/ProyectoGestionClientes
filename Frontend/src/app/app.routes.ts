@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 import { ForgottenComponent } from './forgotten/forgotten.component';
 import { ReestablishComponent } from './reestablish/reestablish.component';
+import { TabmenuComponent } from './tabmenu/tabmenu.component';
+import { PruebapantallaComponent } from './pruebapantalla/pruebapantalla.component';
 import { FileComponent } from './file/file.component';
 
 export const routes: Routes = [
@@ -15,5 +17,7 @@ export const routes: Routes = [
     { path: "error", component: ErrorComponent, pathMatch: "full"},
     { path: "forgotten", component: ForgottenComponent, pathMatch: "full" },
     { path: "reestablish", component: ReestablishComponent, pathMatch: "full" },
+    { path: "tabmenu", component: TabmenuComponent, pathMatch: "full" },
+    { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
     { path: 'dashboard/:path', component: FileComponent },
 ];

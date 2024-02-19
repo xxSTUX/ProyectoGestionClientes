@@ -29,7 +29,8 @@ builder.Host.UseSerilog();
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     var configuration = builder.Configuration;
-    var connectionString = configuration.GetConnectionString("DefaultConnection");
+    //var connectionString = configuration.GetConnectionString("Gestion");
+    var connectionString = configuration.GetConnectionString("DefaultConnection"); //Si creas la BBDD con migraciones usa esta connection string.
     options.UseSqlServer(connectionString)
     .UseLoggerFactory(LoggerFactory.Create(builder => builder.AddSerilog()));
 });

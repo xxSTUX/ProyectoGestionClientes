@@ -13,7 +13,8 @@
   position: absolute;
   top: 0;
   left: 5rem;
-  padding: 0px 50px 25px 25px;
+  padding-left: -10px;
+  padding-right: 40px;
   background-color: hsl(218, 41%, 15%);
   background-image: radial-gradient(650px circle at 0% 0%,
       hsl(218, 41%, 35%) 15%,
@@ -33,19 +34,14 @@
 }
 
 .mat-tree-node,
-.mat-nested-tree-node {
+.mat-nested-tree-node,
+.mat-mdc-button-touch-target {
   color: #fff;
-  align-items: center;
-  align-content: center;
+  padding: 0%;
+  margin: 0%;
 }
-
 
 
 button[mat-icon-button] {
     color: #fff;
 }
-
-.light-button {
-  font-size: 90%;
-  margin-bottom: 1rem;
-} 

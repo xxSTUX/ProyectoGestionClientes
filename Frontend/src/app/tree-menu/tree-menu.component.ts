@@ -6,13 +6,14 @@ import { MatNestedTreeNode, MatTreeModule, MatTreeNestedDataSource} from '@angul
 import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { Folder } from '../../models/folder.model';
 import { FolderService } from '../services/folder.service';
+import { TabmenuComponent } from '../tabmenu/tabmenu.component';
 import { Router } from '@angular/router';
 import { elemento } from '../../models/elemento.model';
 
 @Component({
   selector: 'app-tree-menu',
   standalone: true,
-  imports: [MatIconModule, MatNestedTreeNode,MatButtonModule, MatProgressBarModule, MatTreeModule],
+  imports: [MatIconModule, MatNestedTreeNode,MatButtonModule, MatProgressBarModule, MatTreeModule, TabmenuComponent],
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css',
 })

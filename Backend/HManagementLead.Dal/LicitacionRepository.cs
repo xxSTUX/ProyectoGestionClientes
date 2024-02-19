@@ -15,6 +15,7 @@ namespace HManagementLead.Dal
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
+
         public async Task<List<Codigo>> GetAllLicitacionAsync()
         {
             return await _context.Licitaciones.Select(LicitacionMapping.MapLicitacionToCodigo()).ToListAsync();
@@ -37,5 +38,22 @@ namespace HManagementLead.Dal
             return nuevaLicitacion.Id;
         }
 
+        public async Task<LicitacionDetalle> UpdateLicitacionAsync(int id, LicitacionDetalle licitacion)
+        {
+            var licitacionModificada = new Licitaciones { Id = id, Nombre = licitacion.Nombre };
+            _context.Update(licitacionModificada);
+            await _context.SaveChangesAsync();
+            return await _context.Licitaciones
+                .Where(l => l.Id == id)
+                .Select(LicitacionMapping.MapToCreateLicitacion())
+                .FirstAsync();
+        }
+
+        public async Task DeleteLicitacionAsync(int id)
+        {
+            await _context.Licitaciones
+                .Where(l => l.Id == id)
+                .ExecuteDeleteAsync();
+        }
     }
 }

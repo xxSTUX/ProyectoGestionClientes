@@ -28,5 +28,34 @@ namespace HManagementLead.Dal
             return await _context.Seguimientos.Select(SeguimientoMapping.MapSeguimientoToCodigo()).ToListAsync();
 
         }
+
+        public async Task<int> InsertSeguimientoAsync(SeguimientoDetalle seguimiento)
+        {
+            var nuevoSeguimiento = new Seguimientos(seguimiento);
+            _context.Seguimientos.Add(nuevoSeguimiento);
+            await _context.SaveChangesAsync();
+            return nuevoSeguimiento.Id;
+        }
+
+        public async Task<SeguimientoDetalle> UpdateSeguimientoAsync(int id,SeguimientoDetalle seguimiento)
+        {
+            var seguimientoModificado = new Seguimientos { Id = id, Nombre = seguimiento.Nombre };
+            _context.Update(seguimientoModificado);
+            await _context.SaveChangesAsync();
+            return await _context.Seguimientos
+                .Where(s => s.Id == id)
+                .Select(SeguimientoMapping.MapToSeguimiento())
+                .FirstAsync(); 
+        }
+
+        public async Task DeleteSeguimientoByIdAsync(int id)
+        {
+            var seguimiento = await _context.Seguimientos.FindAsync(id);
+            if (seguimiento != null)
+            {
+                _context.Seguimientos.Remove(seguimiento);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }
