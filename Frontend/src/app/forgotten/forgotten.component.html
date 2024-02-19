@@ -1,26 +1,28 @@
 <section class="background-radial-gradient overflow-hidden">
     <div class="row vh-100 justify-content-center align-items-center">
-        <div class="card bg-glass col-auto bg-light p-5">
-            <div class="card-body px-4 py-5 px-md-5">
+        <div class="card bg-glass col-auto bg-light p-3">
+            <div class="card-body">
                 <p class="mb-4 opacity-70 text-center font-weight-bold" style="color: hsl(0, 0%, 0%); font-size: 24px;">
                     Recupera tu contraseña
-                </p>                
-                <form formGroup="forgottenForm"  (submit)="click()">
-                <!-- 2 column grid layout for the first and last names -->
+                </p>
+                <form formGroup="forgottenForm" (submit)="click()">
+                    <!-- 2 column grid layout for the first and last names -->
                     <div class="row">
                         <!-- Email input -->
                         <div class="mb-4">
-                            <input type="text" id="correo" formControlName="correo" class="form-control" placeholder="Correo electronico"required />
+                            <input type="email" id="correo" formControlName="correo" class="form-control"
+                                placeholder="Correo electronico" required />
                         </div>
-                    
+
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-4">
-                            Confirma el correo
-                        </button>
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block w-100">
+                                Confirma el correo
+                            </button>
+                        </div>
                     </div>
-                </form>      
+                </form>
             </div>
         </div>
     </div>
 </section>
-    

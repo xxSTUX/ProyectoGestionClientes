@@ -7,6 +7,7 @@ import { MatProgressBarModule} from '@angular/material/progress-bar';
 import { Folder } from '../../models/folder.model';
 import { FolderService } from '../services/folder.service';
 import { TabmenuComponent } from '../tabmenu/tabmenu.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tree-menu',
@@ -16,10 +17,10 @@ import { TabmenuComponent } from '../tabmenu/tabmenu.component';
   styleUrl: './tree-menu.component.css',
 })
 export class TreeMenuComponent {
-  treeControl = new NestedTreeControl<Folder>(node => node.child);  
+  treeControl = new NestedTreeControl<Folder>(node => node.proyectos);  
   dataSource = new MatTreeNestedDataSource<Folder>();   
   
-  constructor(private folderService: FolderService) {} 
+  constructor(private folderService: FolderService, private router: Router) {} 
 
   ngOnInit() {
     this.folderService.getFolders().subscribe(data => {
@@ -27,5 +28,14 @@ export class TreeMenuComponent {
     });
   }
   
-  hasChild = (_: number, node: Folder) => !!node.child && node.child.length > 0;  
+  hasChild = (_: number, node: Folder) => !!node.proyectos && node.proyectos.length > 0;  
+  hasNoChild = (_: number, node: Folder) => !this.hasChild(_, node);
+
+  onNodeClick(node: Folder) {
+    if (node.nombre) {
+      this.router.navigate(['/dashboard'], { fragment: node.nombre });
+    } else {
+      this.router.navigate(['/error']);
+    }
+  }
 }  

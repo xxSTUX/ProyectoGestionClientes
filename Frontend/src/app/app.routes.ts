@@ -7,6 +7,7 @@ import { ForgottenComponent } from './forgotten/forgotten.component';
 import { ReestablishComponent } from './reestablish/reestablish.component';
 import { TabmenuComponent } from './tabmenu/tabmenu.component';
 import { PruebapantallaComponent } from './pruebapantalla/pruebapantalla.component';
+import { FileComponent } from './file/file.component';
 
 export const routes: Routes = [
     { path: "", redirectTo: "login", pathMatch: "full" },
@@ -18,4 +19,5 @@ export const routes: Routes = [
     { path: "reestablish", component: ReestablishComponent, pathMatch: "full" },
     { path: "tabmenu", component: TabmenuComponent, pathMatch: "full" },
     { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
-]
+    { path: 'dashboard/:path', component: FileComponent },
+];

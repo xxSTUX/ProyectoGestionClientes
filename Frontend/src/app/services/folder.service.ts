@@ -8,7 +8,7 @@ import { Folder } from '../../models/folder.model';
   providedIn: 'root'
 })
 export class FolderService {
-  private apiUrl = 'https://65c36e8e39055e7482c0e15e.mockapi.io/folder';
+  private apiUrl = 'https://localhost:7075/api/Cliente';
 
   constructor(private http: HttpClient) { }
 
