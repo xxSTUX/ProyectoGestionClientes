@@ -1,22 +1,28 @@
-<div class="row">
-  <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4"><mat-tree [dataSource]="dataSource" [treeControl]="treeControl"
-      class="tree">
-      <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
-        <li class="mat-tree-node">
-          <button mat-icon-button disabled>
-            <mat-icon>{{node.icon}}</mat-icon>
-          </button>
-          {{node.name}}
-        </li>
-      </mat-tree-node>
-
-  <mat-tree-node *matTreeNodeDef="let node; when: hasNoChild">
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl" class="tree">
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodeToggle>
     <li class="mat-tree-node">
       <button mat-icon-button disabled>
         <mat-icon>{{node.icon}}</mat-icon>
       </button>
-      <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.nombre}}</a>
+      {{node.nombre}}
+    </li>
+  </mat-tree-node>
 
+
+  <mat-tree-node *matTreeNodeDef="let node; when: hasNoChild">
+    <li class="mat-tree-node">
+      <div class="mat-tree-node">
+        <button mat-icon-button disabled>
+          <mat-icon class="mat-icon-rtl light-button" id="flechas">
+            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+          </mat-icon>
+        </button>
+        <mat-icon>{{node.icon}}</mat-icon>
+        <a routerLink="['/dashboard', node.name]" (click)="onNodeClick(node)">{{node.nombre}}</a>
+      </div>
+      <ul [class.tree-invisible]="!treeControl.isExpanded(node)" id="ul">
+        <ng-container matTreeNodeOutlet>adasdasd</ng-container>
+      </ul>
     </li>
   </mat-tree-node>
   

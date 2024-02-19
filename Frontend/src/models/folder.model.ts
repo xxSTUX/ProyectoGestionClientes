@@ -2,6 +2,10 @@ export interface Folder {
     nombre: string;
     icon: string;
     expanded: boolean;
-    proyectos?: Folder[];
+    childs: Folder[];
+    child: Folder;
+    seguimientos: Folder[];
+    proyectos: Folder[];
     url?: string;
+
   }

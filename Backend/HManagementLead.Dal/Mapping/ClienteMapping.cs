@@ -15,7 +15,7 @@ namespace HManagementLead.Dal.Mapping
             {
                 Id = c.Id,
                 Nombre = c.Nombre,
-                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
+                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(seguimientos)).ToList(),
                 Seguimientos = (from cs in c.Seguimientos 
                                       join s in seguimientos
                                       on cs.Seguimiento_id equals s.Id
