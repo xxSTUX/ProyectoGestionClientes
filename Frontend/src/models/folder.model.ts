@@ -1,7 +1,11 @@
 export interface Folder {
-    name: string;
+    nombre: string;
     icon: string;
     expanded: boolean;
-    child?: Folder[];
+    childs: Folder[];
+    child: Folder;
+    seguimientos: Folder[];
+    proyectos: Folder[];
     url?: string;
+
   }

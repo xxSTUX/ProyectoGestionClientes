@@ -6,7 +6,6 @@ namespace HManagementLead.Entities
     {
         [JsonIgnore]
         public int Id { get; set; }
-        [JsonPropertyName("Nombre licitacion")]
         public string Nombre { get; set; }
     }
 }
