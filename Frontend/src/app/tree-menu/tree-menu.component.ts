@@ -17,18 +17,18 @@ import { Router } from '@angular/router';
   styleUrl: './tree-menu.component.css',
 })
 export class TreeMenuComponent {
-  treeControl = new NestedTreeControl<Folder>(node => node.proyectos);  
-  dataSource = new MatTreeNestedDataSource<Folder>();   
-  
-  constructor(private folderService: FolderService, private router: Router) {} 
+  treeControl = new NestedTreeControl<Folder>(node => node.proyectos);
+  dataSource = new MatTreeNestedDataSource<Folder>();
+
+  constructor(private folderService: FolderService, private router: Router) {}
 
   ngOnInit() {
     this.folderService.getFolders().subscribe(data => {
       this.dataSource.data = data;
     });
   }
-  
-  hasChild = (_: number, node: Folder) => !!node.proyectos && node.proyectos.length > 0;  
+
+  hasChild = (_: number, node: Folder) => !!node.proyectos && node.proyectos.length > 0;
   hasNoChild = (_: number, node: Folder) => !this.hasChild(_, node);
 
   onNodeClick(node: Folder) {
@@ -38,4 +38,4 @@ export class TreeMenuComponent {
       this.router.navigate(['/error']);
     }
   }
-}  
+}
