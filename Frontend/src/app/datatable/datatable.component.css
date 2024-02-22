@@ -1,0 +1,8 @@
+.link-sin-estilo {
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; /* Elimina el subrayado predeterminado del enlace */
+  }
+  
+  .link-sin-estilo:hover {
+    text-decoration: underline; /* Añade subrayado al pasar el ratón sobre el enlace si lo deseas */
+  }

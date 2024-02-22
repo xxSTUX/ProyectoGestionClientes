@@ -19,13 +19,13 @@ namespace HManagementLead.Dal
         {
             return _context.Proyectos
                 .Where(p => p.Id == id)
-                .Select(ProyectoMapping.MapToProyecto(_context.Seguimientos))
+                .Select(ProyectoMapping.MapToProyecto(_context.Seguimientos,_context.Licitaciones)) //Borrar el _licitaciones si no va nada.
                 .FirstAsync();
         }
 
         public async Task<List<ProyectoDetalle>> GetAllProyectosAsync()
         {
-            var cliente = await _context.Proyectos.Select(ProyectoMapping.MapToProyecto(_context.Seguimientos)).ToListAsync();
+            var cliente = await _context.Proyectos.Select(ProyectoMapping.MapToProyecto(_context.Seguimientos, _context.Licitaciones)).ToListAsync(); //Borrar el _licitaciones si no va nada
             return cliente;
 
         }
@@ -64,12 +64,12 @@ namespace HManagementLead.Dal
         public async Task<ProyectoDetalle> InsertSeguimientoInProyectoAsync(int id, SeguimientoDetalle seguimiento)
         {
             var proyecto = _context.Proyectos.FirstOrDefault(c => c.Id.Equals(id));
-            var seguimientoProyecto = new SeguimientoProyectos(id, seguimiento.Id);
-            proyecto.Seguimientos.Add(seguimientoProyecto);
+            var seguimientoProyecto = new SeguimientoProyecto(id, seguimiento.Id);
+            proyecto.SeguimientosProyectos.Add(seguimientoProyecto);
             _context.Proyectos.Add(proyecto);
             _context.Update(proyecto);
             _context.SeguimientoProyecto.Add(seguimientoProyecto);
-            _context.Seguimientos.Add(new Seguimientos(seguimiento));
+            _context.Seguimientos.Add(new Seguimiento(seguimiento));
             await _context.SaveChangesAsync();
             return await _context.Proyectos
                 .Where(c => c.Id == proyecto.Id)

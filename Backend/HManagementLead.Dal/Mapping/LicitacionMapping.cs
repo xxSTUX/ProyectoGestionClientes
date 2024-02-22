@@ -7,7 +7,7 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class LicitacionMapping
     {
-        public static Expression<Func<Licitaciones, LicitacionDetalle>> MapToLicitacion()
+        public static Expression<Func<Licitacion, LicitacionDetalle>> MapToLicitacion()
         {
 
             return p => new LicitacionDetalle
@@ -18,7 +18,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-        public static Expression<Func<Licitaciones, LicitacionDetalle>> MapToCreateLicitacion()
+        public static Expression<Func<Licitacion, LicitacionDetalle>> MapToCreateLicitacion()
         {
 
             return p => new LicitacionDetalle
@@ -29,7 +29,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-        public static Expression<Func<Licitaciones, Codigo>> MapLicitacionToCodigo()
+        public static Expression<Func<Licitacion, Codigo>> MapLicitacionToCodigo()
         {
 
             return p => new Codigo

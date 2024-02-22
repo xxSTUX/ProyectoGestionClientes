@@ -8,7 +8,7 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class ClienteMapping
     {
-        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(DbSet<Seguimientos> seguimientos, DbSet<Licitaciones> licitaciones)
+        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(DbSet<Seguimiento> seguimientos, DbSet<Licitacion> licitaciones)
         {
 
             return c => new ClienteDetalle
@@ -16,17 +16,17 @@ namespace HManagementLead.Dal.Mapping
                 Id = c.Id,
                 Nombre = c.Nombre,
                 Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
-                Seguimientos = (from cs in c.Seguimientos 
+                Seguimientos = (from cs in c.SeguimientosClientes 
                                       join s in seguimientos
-                                      on cs.Seguimiento_id equals s.Id
+                                      on cs.SeguimientoId equals s.Id
                                       select new SeguimientoDetalle
                                       {
                                           Id = s.Id,
                                           Nombre = s.Nombre,
                                       }).ToList(),
-                licitaciones = (from cl in c.Licitaciones
+                licitaciones = (from cl in c.LicitacionesClientes
                                 join l in licitaciones
-                                on cl.Licitacion_id equals l.Id
+                                on cl.LicitacionId equals l.Id
                                 select new LicitacionDetalle
                                 {
                                     Id = l.Id,
@@ -74,7 +74,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-        public static Expression<Func<Seguimientos, Codigo>> MapSeguimientoToCodigo()
+        public static Expression<Func<Seguimiento, Codigo>> MapSeguimientoToCodigo()
         {
 
             return p => new Codigo
@@ -83,13 +83,13 @@ namespace HManagementLead.Dal.Mapping
                 Descripcion = p.Nombre,
             };
         }
-        public static Expression<Func<SeguimientoClientes, TablaIntermedia>> MapSeguimienClientestoToTablaIntermedia()
+        public static Expression<Func<SeguimientoCliente, TablaIntermedia>> MapSeguimienClientestoToTablaIntermedia()
         {
 
             return p => new TablaIntermedia
             {
-                IdSuperior = p.Cliente_id,
-                IdModelo = p.Seguimiento_id,
+                IdSuperior = p.ClienteId,
+                IdModelo = p.SeguimientoId,
             };
         }
     }

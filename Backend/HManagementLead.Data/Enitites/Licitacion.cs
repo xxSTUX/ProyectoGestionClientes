@@ -8,19 +8,23 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HManagementLead.Data.Enitites
 {
-    public partial class Licitaciones //Las clases en singular, por favor
+    public partial class Licitacion //Las clases en singular, por favor
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
+        public string Tipo { get; set; }
 
-        public Licitaciones() { }
+        public virtual ICollection<LicitacionCliente> LicitacionesClientes { get; set; } = new List<LicitacionCliente>();
+        public virtual ICollection<LicitacionProyecto> LicitacionesProyectos { get; set; } = new List<LicitacionProyecto>();
 
-        public Licitaciones(int id, string nombre) 
+        public Licitacion() { }
+
+        public Licitacion(int id, string nombre) 
         {
             this.Id = id;
             this.Nombre = nombre;
         }
-        public Licitaciones(LicitacionDetalle licitacion)
+        public Licitacion(LicitacionDetalle licitacion)
         {
             Id = licitacion.Id;
             Nombre = licitacion.Nombre;
