@@ -8,19 +8,25 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace HManagementLead.Data.Enitites
 {
-    public partial class Seguimientos
+    public partial class Seguimiento
     {
         public int Id { get; set; }
         public string Nombre{ get; set; }
+        public DateTime Fecha { get; set; }
 
-        public Seguimientos() { }
+        public string Tipo { get; set; }
 
-        public Seguimientos(int id, string nombre) 
+        public virtual ICollection<SeguimientoCliente> SeguimientosClientes { get; set; } = new List<SeguimientoCliente>();
+        public virtual ICollection<SeguimientoProyecto> SeguimientosProyectos { get; set; } = new List<SeguimientoProyecto>();
+
+        public Seguimiento() { }
+
+        public Seguimiento(int id, string nombre) 
         {
             this.Id = id;
             this.Nombre = nombre;
         }
-        public Seguimientos(SeguimientoDetalle seguimiento)
+        public Seguimiento(SeguimientoDetalle seguimiento)
         {
             Id = seguimiento.Id;
             Nombre = seguimiento.Nombre;

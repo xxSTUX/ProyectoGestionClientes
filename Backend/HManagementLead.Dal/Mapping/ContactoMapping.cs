@@ -7,26 +7,26 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class ContactoMapping
     {
-        public static Expression<Func<Contactos, ContactoDetalle>> MapToContacto()
+        public static Expression<Func<Contacto, ContactoDetalle>> MapToContacto()
         {
             
             return p => new ContactoDetalle
             {
                 Id = p.Id,
-                Cargo = p.cargo,
-                Email = p.email,
-                Telefono = p.telefono,
+                Cargo = p.Cargo,
+                Email = p.Email,
+                Telefono = p.Telefono,
                 
             };
         }
 
-        public static Expression<Func<Contactos, Codigo>> MapContactoToCodigo()
+        public static Expression<Func<Contacto, Codigo>> MapContactoToCodigo()
         {
             
             return p => new Codigo
             {
                 Id = p.Id,
-                Descripcion = p.email,
+                Descripcion = p.Email,
             };
         }
     }

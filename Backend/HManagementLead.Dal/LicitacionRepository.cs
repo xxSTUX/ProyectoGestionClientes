@@ -32,7 +32,7 @@ namespace HManagementLead.Dal
 
         public async Task<int> InsertLicitacionAsync(LicitacionDetalle licitacion)
         {
-            var nuevaLicitacion = new Licitaciones(licitacion);
+            var nuevaLicitacion = new Licitacion(licitacion);
             _context.Licitaciones.Add(nuevaLicitacion);
             await _context.SaveChangesAsync();
             return nuevaLicitacion.Id;
@@ -40,7 +40,7 @@ namespace HManagementLead.Dal
 
         public async Task<LicitacionDetalle> UpdateLicitacionAsync(int id, LicitacionDetalle licitacion)
         {
-            var licitacionModificada = new Licitaciones { Id = id, Nombre = licitacion.Nombre };
+            var licitacionModificada = new Licitacion { Id = id, Nombre = licitacion.Nombre };
             _context.Update(licitacionModificada);
             await _context.SaveChangesAsync();
             return await _context.Licitaciones
