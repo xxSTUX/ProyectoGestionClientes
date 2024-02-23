@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Location } from '@angular/common';
  
 @Component({
   selector: 'app-tree-menu',
@@ -11,7 +12,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
  
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private location: Location) { }
  
   ngOnInit() {
     this.getMethod();
@@ -79,14 +80,21 @@ export class TreeMenuComponent {
       const icon = document.createElement("i");
       if (item.nodeChild && item.nodeChild.length > 0) { 
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
+      } else {
+        // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
+        listItem.addEventListener('click', (event) => {
+          event.stopPropagation();
+          this.location.go(this.location.path() + '#' + item.nodeText);
+          // Aquí puedes añadir la lógica para mostrar el nuevo componente
+        });
       }
       listItem.appendChild(icon);
       const textSpan = document.createElement("span");
       textSpan.textContent = item.nodeText;
- 
+  
       listItem.appendChild(icon);
       listItem.appendChild(textSpan);
- 
+  
       if (item.nodeChild && item.nodeChild.length > 0) {
         // Añadir evento click para cambiar el ícono y colapsar/expandir elementos hijos
         listItem.addEventListener('click', (event) => {
@@ -96,20 +104,20 @@ export class TreeMenuComponent {
           } else {
             icon.classList.replace('bi-dash-circle', 'bi-plus-circle');
           }
- 
+  
           sublist.style.display = sublist.style.display === 'none' ? '' : 'none';
         });
- 
+  
         const sublist = document.createElement("ul");
         sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
         sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
- 
+  
         this.renderBootstrapTreeView(item.nodeChild, sublist);
- 
+  
         listItem.appendChild(sublist);
       }
- 
+  
       parentElement.appendChild(listItem);
     });
-  }
+  }  
 }  

@@ -10,7 +10,9 @@
   <div class="row col p-0">
       <app-tree-menu></app-tree-menu>
   </div>
-  <!-- <div class="col ml-5 px-5">
-    <app-tabmenu></app-tabmenu>
-  </div> -->
+  <div class="row col p-0">
+    <ng-container *ngIf="fragment$ | async as fragment">
+      <app-child nodeName="fragment"></app-child>
+    </ng-container>
+  </div> 
 </div>
