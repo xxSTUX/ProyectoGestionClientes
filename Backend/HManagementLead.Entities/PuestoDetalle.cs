@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 
 namespace HManagementLead.Entities
 {
-    public class ContactoDetalle
+    public class PuestoDetalle
     {
         [JsonIgnore]
         public int Id { get; set; }
-        public string Cargo { get; set; } = null!;
-        public string Email { get; set; } = null!;
-        public string Telefono { get; set; } = null!;
+        public string Nombre { get; set; } = null!;
     }
 }

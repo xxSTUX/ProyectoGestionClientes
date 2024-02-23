@@ -38,6 +38,18 @@ namespace HManagementLead.Dal
             var nuevoCliente = new Cliente(cliente);
             _context.Clientes.Add(nuevoCliente);
             await _context.SaveChangesAsync();
+            //foreach (ProyectoDetalle proyecto in cliente.Proyectos)
+            //{
+            //    var nuevoProyecto = new Proyecto
+            //    {
+            //        ClienteId = cliente.Id,
+            //        Nombre = proyecto.Nombre,
+            //        Estado = proyecto.Estado,
+            //        Tipo = proyecto.Tipo
+            //    };
+            //    _context.Proyectos.Add(nuevoProyecto);
+            //}
+            //await _context.SaveChangesAsync();
             return nuevoCliente.Id;
         }
 

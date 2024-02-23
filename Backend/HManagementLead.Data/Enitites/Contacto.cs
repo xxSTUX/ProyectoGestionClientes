@@ -10,9 +10,9 @@ namespace HManagementLead.Data.Enitites
     {
         public int Id { get; set; }
 
-        public string Cargo { get; set; }
-        public string Email { get; set; }
-        public string Telefono { get; set; }
+        public string Cargo { get; set; } = null!;
+        public string Email { get; set; } = null!;
+        public string Telefono { get; set; } = null!;
 
         public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
         public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();

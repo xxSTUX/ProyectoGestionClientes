@@ -16,7 +16,7 @@ namespace HManagementLead.Dal.Mapping
                 Id = c.Id,
                 Nombre = c.Nombre,
                 Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(seguimientos)).ToList(),
-                Seguimientos = (from cs in c.Seguimientos 
+                Seguimientos = (from cs in c.SeguimientosClientes
                 // Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
                 // Seguimientos = (from cs in c.SeguimientosClientes 
                                       join s in seguimientos
@@ -26,7 +26,7 @@ namespace HManagementLead.Dal.Mapping
                                           Id = s.Id,
                                           Nombre = s.Nombre,
                                       }).ToList(),
-                licitaciones = (from cl in c.LicitacionesClientes
+                Licitaciones = (from cl in c.LicitacionesClientes
                                 join l in licitaciones
                                 on cl.LicitacionId equals l.Id
                                 select new LicitacionDetalle
