@@ -1,18 +1,14 @@
-.tree-invisible {
-  display: none;
+#loader {
+  display: block;
 }
-
-.tree ul,
-.tree li {
-  list-style-type: none;
-}
-
+ 
 .tree {
   border-radius: 0.4rem;
   width: auto;
   position: absolute;
   top: 0;
   left: 5rem;
+  padding-top: 1rem;
   padding-left: -10px;
   padding-right: 40px;
   background-color: hsl(218, 41%, 15%);
@@ -31,17 +27,4 @@
   box-sizing: border-box;
   overflow-y: auto;
   height: calc(100vh - 3.875rem);
-}
-
-.mat-tree-node,
-.mat-nested-tree-node,
-.mat-mdc-button-touch-target {
-  color: #fff;
-  padding: 0%;
-  margin: 0%;
-}
-
-
-button[mat-icon-button] {
-    color: #fff;
 }

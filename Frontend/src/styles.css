@@ -1,1 +1,9 @@
 @import '../node_modules/font-awesome/css/font-awesome.css';
+
+.list-group-item {
+    border: none !important;
+    padding: 0 !important;
+    color: white !important;
+    margin-left: 1rem !important;
+    background-color: #fff0 !important;
+  }

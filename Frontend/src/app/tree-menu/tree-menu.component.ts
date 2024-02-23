@@ -1,82 +1,115 @@
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component } from '@angular/core';
-import { MatNestedTreeNode, MatTreeModule, MatTreeNestedDataSource} from '@angular/material/tree';
-import { MatProgressBarModule} from '@angular/material/progress-bar';
-import { Folder } from '../../models/folder.model';
-import { FolderService } from '../services/folder.service';
-import { TabmenuComponent } from '../tabmenu/tabmenu.component';
-import { Router } from '@angular/router';
-import { elemento } from '../../models/elemento.model';
-
+import { Component} from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+ 
 @Component({
   selector: 'app-tree-menu',
   standalone: true,
-  imports: [MatIconModule, MatNestedTreeNode,MatButtonModule, MatProgressBarModule, MatTreeModule, TabmenuComponent],
+  imports: [HttpClientModule],
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css',
 })
 export class TreeMenuComponent {
-  treeControl = new NestedTreeControl<Folder>(node => node.childs);  
-  dataSource = new MatTreeNestedDataSource<Folder>();   
-  
-  constructor(private folderService: FolderService, private router: Router) {} 
-
+  data: { [key: string]: Object }[] = [];
+ 
+  constructor(private http: HttpClient) { }
+ 
   ngOnInit() {
-    this.folderService.getFolders().subscribe(data => {
-      data = this.recarga(data);
-      this.dataSource.data = data;
-      alert(data)
-    });
+    this.getMethod();
   }
-  recarga(clientes: Folder[]){
-    var pos = 0
-    clientes.forEach(cliente => {
-      var aux = new elemento();
-      cliente.proyectos.forEach(proyecto => {
-        
-        var seguimientos = new elemento();
-        seguimientos.nombre = "Seguimientos"
-        seguimientos.childs = proyecto.seguimientos;
-        console.log(seguimientos.childs.length)
-        if(seguimientos.childs.length > 0){
-          aux.childs = [seguimientos as unknown as Folder];    
-          proyecto.childs = aux.childs
+ 
+  public getJsonValue: any;
+ 
+  public getMethod() {
+    this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+      console.log(data);
+      this.getJsonValue = data;
+      for (let i = 0; i < this.getJsonValue.length; i++) {
+        let proyectos = [];
+        let seguimientos = [];
+        let licitaciones = [];
+        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) {
+          let licitacionesProyecto = [];
+          let seguimientosProyecto = [];
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].length; k++) {
+            seguimientosProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '02-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+          }
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].length; k++) {
+            licitacionesProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '03-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].Nombrelicitacion })
+          }
+          proyectos.push({
+            nodeId: String(i) + '-01-' + String(j), nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: String(i) + '-01-' + String(j) + '02-', nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+            { nodeId: String(i) + '-01-' + String(j) + '03-', nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+          });
         }
-        
-        
-      }); 
-
-      if(aux.childs === undefined){
-        cliente.childs = cliente.proyectos.concat(cliente.seguimientos)
-      }else{
-        var proyecto = new elemento();
-        proyecto.nombre = "Proyectos"
-        var seguimientos = new elemento();
-        seguimientos.nombre = "Seguimientos"
-        proyecto.childs = cliente.proyectos;
-        seguimientos.childs = cliente.seguimientos;
-        aux.childs = [proyecto as unknown as Folder,seguimientos as unknown as Folder];
-        cliente.childs = aux.childs;
+        for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) {
+          seguimientos.push({ nodeId: String(i) + '-02-' + String(j), nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+        }
+        for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) {
+          licitaciones.push({ nodeId: String(i) + '-03-' + String(j), nodeText: this.getJsonValue[i].licitaciones[j].Nombrelicitacion });
+        }
+        this.data.push({
+          nodeId: String(i), nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: String(i) + '-01', nodeText: 'Proyectos', nodeChild: proyectos },
+          { nodeId: String(i) + '-02', nodeText: 'Seguimientos', nodeChild: seguimientos },
+          { nodeId: String(i) + '-03', nodeText: 'Licitaciones', nodeChild: licitaciones }]
+        })
       }
-      if (cliente.nombre === "Hiberus") {
-        cliente.nombre = "Proyectos"
+ 
+      // Clear the existing treeview content
+      const treeviewElement = document.getElementById("treeview");
+      if (treeviewElement) {
+        treeviewElement.innerHTML = "";
+        this.renderBootstrapTreeView(this.data, treeviewElement);
       }
-      
-    });
-    
-    return clientes
-  }
-  
-  hasChild = (_: number, node: Folder) => !!node.childs && node.childs.length > 0;  
-  hasNoChild = (_: number, node: Folder) => !this.hasChild(_, node);
-
-  onNodeClick(node: Folder) {
-    if (node.nombre) {
-      this.router.navigate(['/dashboard'], { fragment: node.nombre });
-    } else {
-      this.router.navigate(['/error']);
+ 
+      // Ocultar el elemento #loader una vez que los datos se hayan cargado
+      const loaderElement = document.getElementById("loader");
+      if (loaderElement) {
+        loaderElement.style.display = "none";
+      }
     }
+    );
+  }
+ 
+ 
+ 
+  private renderBootstrapTreeView(data: any[], parentElement: HTMLElement) {
+    data.forEach(item => {
+      const listItem = document.createElement("li");
+      listItem.classList.add("list-group-item");
+      const icon = document.createElement("i");
+      if (item.nodeChild && item.nodeChild.length > 0) { 
+        icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
+      }
+      listItem.appendChild(icon);
+      const textSpan = document.createElement("span");
+      textSpan.textContent = item.nodeText;
+ 
+      listItem.appendChild(icon);
+      listItem.appendChild(textSpan);
+ 
+      if (item.nodeChild && item.nodeChild.length > 0) {
+        // Añadir evento click para cambiar el ícono y colapsar/expandir elementos hijos
+        listItem.addEventListener('click', (event) => {
+          event.stopPropagation();
+          if (icon.classList.contains('bi-plus-circle')) {
+            icon.classList.replace('bi-plus-circle', 'bi-dash-circle');
+          } else {
+            icon.classList.replace('bi-dash-circle', 'bi-plus-circle');
+          }
+ 
+          sublist.style.display = sublist.style.display === 'none' ? '' : 'none';
+        });
+ 
+        const sublist = document.createElement("ul");
+        sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
+        sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
+ 
+        this.renderBootstrapTreeView(item.nodeChild, sublist);
+ 
+        listItem.appendChild(sublist);
+      }
+ 
+      parentElement.appendChild(listItem);
+    });
   }
 }  
