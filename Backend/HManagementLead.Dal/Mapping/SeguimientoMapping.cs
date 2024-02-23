@@ -7,7 +7,7 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class SeguimientoMapping
     {
-        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToSeguimiento()
+        public static Expression<Func<Seguimiento, SeguimientoDetalle>> MapToSeguimiento()
         {
 
             return p => new SeguimientoDetalle
@@ -18,7 +18,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-        public static Expression<Func<Seguimientos, SeguimientoDetalle>> MapToCreateSeguimiento()
+        public static Expression<Func<Seguimiento, SeguimientoDetalle>> MapToCreateSeguimiento()
         {
 
             return p => new SeguimientoDetalle
@@ -29,7 +29,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-        public static Expression<Func<Seguimientos, Codigo>> MapSeguimientoToCodigo()
+        public static Expression<Func<Seguimiento, Codigo>> MapSeguimientoToCodigo()
         {
 
             return p => new Codigo

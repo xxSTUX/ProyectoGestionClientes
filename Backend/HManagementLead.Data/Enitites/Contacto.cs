@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace HManagementLead.Entities
+namespace HManagementLead.Data.Enitites
 {
-    public class ContactoDetalle
+    public partial class Contacto
     {
-        [JsonIgnore]
         public int Id { get; set; }
+
         public string Cargo { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telefono { get; set; } = null!;
+
+        public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
+        public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();
     }
 }

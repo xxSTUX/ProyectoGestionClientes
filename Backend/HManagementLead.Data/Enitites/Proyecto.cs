@@ -8,12 +8,20 @@ public partial class Proyecto
 {
     public int Id { get; set; }
 
-    public int Cliente_id { get; set; }
+    public int ClienteId { get; set; }
 
     public string? Nombre { get; set; }
 
-    public virtual ICollection<SeguimientoProyectos> Seguimientos { get; set; } = new List<SeguimientoProyectos>();
-    public virtual ICollection<LicitacionProyectos> Licitaciones { get; set; } = new List<LicitacionProyectos>();
+    public string Estado { get; set; }
+    public string Tipo { get; set; }
+    public virtual ICollection<FacturacionProyecto> FacturacionesProyectos { get; set; } = new List<FacturacionProyecto>();
+    public virtual ICollection<LicitacionProyecto> LicitacionesProyectos { get; set; } = new List<LicitacionProyecto>();
+    public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();
+    public virtual ICollection<PuestoProyecto> PuestosProyectos { get; set; } = new List<PuestoProyecto>();
+    public virtual ICollection<SeguimientoProyecto> SeguimientosProyectos { get; set; } = new List<SeguimientoProyecto>();
+
+    //public virtual ICollection<SeguimientoProyecto> Seguimientos { get; set; } = new List<SeguimientoProyecto>();
+    //public virtual ICollection<LicitacionProyecto> Licitaciones { get; set; } = new List<LicitacionProyecto>();
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;
 
@@ -26,12 +34,12 @@ public partial class Proyecto
     {
         Id = proyecto.Id;
         Nombre = proyecto.Nombre;
-        Cliente_id = proyecto.IdCliente;
+        ClienteId = proyecto.IdCliente;
         foreach (var seguimientoCliente in proyecto.SeguimientoProyecto)
         {
             if (!seguimientoCliente.IdModelo.Equals(0))
             {
-                Seguimientos.Add(new SeguimientoProyectos(Id, seguimientoCliente.IdModelo));
+                SeguimientosProyectos.Add(new SeguimientoProyecto(Id, seguimientoCliente.IdModelo));
             }
 
         }

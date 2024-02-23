@@ -31,7 +31,7 @@ namespace HManagementLead.Dal
 
         public async Task<int> InsertSeguimientoAsync(SeguimientoDetalle seguimiento)
         {
-            var nuevoSeguimiento = new Seguimientos(seguimiento);
+            var nuevoSeguimiento = new Seguimiento(seguimiento);
             _context.Seguimientos.Add(nuevoSeguimiento);
             await _context.SaveChangesAsync();
             return nuevoSeguimiento.Id;
@@ -39,7 +39,7 @@ namespace HManagementLead.Dal
 
         public async Task<SeguimientoDetalle> UpdateSeguimientoAsync(int id,SeguimientoDetalle seguimiento)
         {
-            var seguimientoModificado = new Seguimientos { Id = id, Nombre = seguimiento.Nombre };
+            var seguimientoModificado = new Seguimiento { Id = id, Nombre = seguimiento.Nombre };
             _context.Update(seguimientoModificado);
             await _context.SaveChangesAsync();
             return await _context.Seguimientos

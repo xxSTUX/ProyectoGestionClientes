@@ -38,6 +38,18 @@ namespace HManagementLead.Dal
             var nuevoCliente = new Cliente(cliente);
             _context.Clientes.Add(nuevoCliente);
             await _context.SaveChangesAsync();
+            //foreach (ProyectoDetalle proyecto in cliente.Proyectos)
+            //{
+            //    var nuevoProyecto = new Proyecto
+            //    {
+            //        ClienteId = cliente.Id,
+            //        Nombre = proyecto.Nombre,
+            //        Estado = proyecto.Estado,
+            //        Tipo = proyecto.Tipo
+            //    };
+            //    _context.Proyectos.Add(nuevoProyecto);
+            //}
+            //await _context.SaveChangesAsync();
             return nuevoCliente.Id;
         }
 
@@ -59,10 +71,10 @@ namespace HManagementLead.Dal
         public async Task DeleteClienteAsync(int id) 
         {
             var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
-            var proyectos = _context.Proyectos.Where(p => p.Cliente_id.Equals(cliente.Id)).ToList();
+            var proyectos = _context.Proyectos.Where(p => p.ClienteId.Equals(cliente.Id)).ToList();
             foreach (var cp in proyectos)
             {
-                cp.Cliente_id = 1;
+                cp.ClienteId = 1;
                 _context.Proyectos.Add(cp);
                 _context.Update(cp);
                 await _context.SaveChangesAsync();
@@ -87,10 +99,10 @@ namespace HManagementLead.Dal
         public async Task DeleteProyectoInClienteAsync(int id)
         {
             var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
-            var proyectos = _context.Proyectos.Where(p => p.Cliente_id.Equals(cliente.Id)).ToList();
+            var proyectos = _context.Proyectos.Where(p => p.ClienteId.Equals(cliente.Id)).ToList();
             foreach (var cp in proyectos)
             {
-                cp.Cliente_id = 1;
+                cp.ClienteId = 1;
                 _context.Proyectos.Add(cp);
                 _context.Update(cp);
                 await _context.SaveChangesAsync();
@@ -104,12 +116,12 @@ namespace HManagementLead.Dal
             var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
             
 
-            _context.Seguimientos.Add(new Seguimientos(seguimiento));
+            _context.Seguimientos.Add(new Seguimiento(seguimiento));
             await _context.SaveChangesAsync();
             var a = _context.Seguimientos.ToList();
             seguimiento.Id =  a.LastOrDefault().Id;
-            var seguimientoCliente = new SeguimientoClientes(id, seguimiento.Id);
-            cliente.Seguimientos.Add(seguimientoCliente);
+            var seguimientoCliente = new SeguimientoCliente(id, seguimiento.Id);
+            cliente.SeguimientosClientes.Add(seguimientoCliente);
             _context.SeguimientoCliente.Add(seguimientoCliente);
             
             _context.Clientes.Add(cliente);
@@ -126,12 +138,12 @@ namespace HManagementLead.Dal
             var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
 
 
-            _context.Licitaciones.Add(new Licitaciones(licitacion));
+            _context.Licitaciones.Add(new Licitacion(licitacion));
             await _context.SaveChangesAsync();
             var a = _context.Licitaciones.ToList();
             licitacion.Id = a.LastOrDefault().Id;
-            var licitacionClientes = new LicitacionClientes(id, licitacion.Id);
-            cliente.Licitaciones.Add(licitacionClientes);
+            var licitacionClientes = new LicitacionCliente(id, licitacion.Id);
+            cliente.LicitacionesClientes.Add(licitacionClientes);
             _context.LicitacionCliente.Add(licitacionClientes);
 
             _context.Clientes.Add(cliente);
@@ -144,12 +156,12 @@ namespace HManagementLead.Dal
         }
         private async void DeleteSeguimientosDeProyecto(ClienteDetalle cliente)
         {
-            var seguimientoCliente = _context.SeguimientoCliente.Where(sc => sc.Cliente_id.Equals(cliente.Id)).Select(ClienteMapping.MapSeguimienClientestoToTablaIntermedia()).ToList();
+            var seguimientoCliente = _context.SeguimientoCliente.Where(sc => sc.ClienteId.Equals(cliente.Id)).Select(ClienteMapping.MapSeguimienClientestoToTablaIntermedia()).ToList();
             var seguimientos = _context.Seguimientos.ToList();
             foreach (var sc in seguimientoCliente)
             {
 
-                _context.SeguimientoCliente.Remove(new SeguimientoClientes(sc.IdSuperior, sc.IdModelo));
+                _context.SeguimientoCliente.Remove(new SeguimientoCliente(sc.IdSuperior, sc.IdModelo));
                 foreach (var s in seguimientos)
                 {
                     if (s.Id.Equals(sc.IdModelo))
