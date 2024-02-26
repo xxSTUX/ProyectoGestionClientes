@@ -1,5 +1,0 @@
-.custom-col {
-    width: calc(100vw / 19); /* Dividir en 6 partes iguales */
-    float: left;
-    height: 100px; /* Ajusta la altura según sea necesario */
-  }
