@@ -6,6 +6,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabmenu',
@@ -24,6 +25,8 @@ export class TabmenuComponent {
   nombre: string = '';
   texto: string= '';
 
+  constructor(private router: Router) {}
+
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -32,8 +35,13 @@ export class TabmenuComponent {
     placeholder: 'Enter text here...',
     translate: 'no',
     defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-   
+    defaultFontName: 'Arial',  
+    toolbarHiddenButtons:[
+      [
+        'insertImage',
+        'insertVideo',
+      ]
+    ]
   };
 
   public create(){
@@ -41,11 +49,11 @@ export class TabmenuComponent {
   }
 
   public delete(){
-
+    //borrarSeguimiento(this.id);
   }
 
   public cancel(){
-
+    this.router.navigate(["login"]);
   }
 
 }
