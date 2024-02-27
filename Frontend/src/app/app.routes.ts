@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -8,6 +8,9 @@ import { ReestablishComponent } from './reestablish/reestablish.component';
 import { PruebapantallaComponent } from './pruebapantalla/pruebapantalla.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { ChildComponent } from './child/child.component';
+import { LicitacionesComponent } from './child/licitaciones/licitaciones.component';
+import { SeguimientosComponent } from './child/seguimientos/seguimientos.component';
+import { NgModule } from '@angular/core';
 
 
 export const routes: Routes = [
@@ -20,5 +23,12 @@ export const routes: Routes = [
     { path: "reestablish", component: ReestablishComponent, pathMatch: "full" },
     { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
     { path: "datatable", component: DatatableComponent, pathMatch: "full" },
-    { path: ':nodeName', component: ChildComponent }
+    { path: 'licitaciones', component: LicitacionesComponent,  },
+    { path: 'seguimientos', component: SeguimientosComponent,  },
+    { path: ':nodeName', component: ChildComponent },
 ];
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

@@ -1,18 +1,20 @@
 <div class="container-fluid">
   <div class="row m-0">
-    <div class="custom-col">
+    <div class="col-1 p0">
       <app-side-menu></app-side-menu>
     </div>
-    <div class="col">
+    <div class="col -11 p0">
       <app-header></app-header>
+      <div class="row " >
+        <div class="col-2 p0"><app-tree-menu></app-tree-menu></div>
+        <div class="col 9 p0" style="background-color: red;" ><!--Contender dinamico-->
+          <ng-container *ngIf="fragment$ | async as fragment">
+            <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
+            <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
+          </ng-container>
+        </div>
+      </div>
+
     </div>
   </div>
-  <div class="row col p-0">
-      <app-tree-menu></app-tree-menu>
-  </div>
-  <div class="row col p-0">
-    <ng-container *ngIf="fragment$ | async as fragment">
-      <app-child nodeName="fragment"></app-child>
-    </ng-container>
-  </div> 
 </div>
