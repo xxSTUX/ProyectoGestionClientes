@@ -12,15 +12,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HManagementLead.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240221111319_ModificacionNombreTabla")]
-    partial class ModificacionNombreTabla
+    [Migration("20240227083004_inicialBBDD_27_02_2023")]
+    partial class inicialBBDD_27_02_2023
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);

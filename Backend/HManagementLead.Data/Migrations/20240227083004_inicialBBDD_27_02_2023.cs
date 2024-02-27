@@ -5,7 +5,7 @@
 namespace HManagementLead.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InicialDb : Migration
+    public partial class inicialBBDD_27_02_2023 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

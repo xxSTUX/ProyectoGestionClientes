@@ -1,0 +1,40 @@
+-- Insertar datos de prueba en la tabla Clientes
+INSERT INTO Clientes (Nombre)
+VALUES ('Cliente 1'), ('Cliente 2');
+
+-- Insertar datos de prueba en la tabla Contactos
+INSERT INTO Contactos (Cargo, Email, Telefono)
+VALUES 
+    ('Cargo 1', 'email1@example.com', '123456789'),
+    ('Cargo 2', 'email2@example.com', '987654321');
+
+-- Insertar datos de prueba en la tabla Proyectos
+INSERT INTO Proyectos (ClienteId, Estado, Nombre, Tipo)
+VALUES 
+    (1, 'En progreso', 'Proyecto A', 'Tipo 1'),
+    (1, 'Finalizado', 'Proyecto B', 'Tipo 2'),
+    (2, 'En progreso', 'Proyecto C', 'Tipo 1');
+
+-- Insertar datos de prueba en la tabla Facturaciones
+INSERT INTO Facturaciones (Datos)
+VALUES 
+    ('Datos factura 1'),
+    ('Datos factura 2');
+
+-- Insertar datos de prueba en la tabla Licitaciones
+INSERT INTO Licitaciones (Nombre, Tipo)
+VALUES 
+    ('Licitacion 1', 'Tipo 1'),
+    ('Licitacion 2', 'Tipo 2');
+
+-- Insertar datos de prueba en la tabla Puestos
+INSERT INTO Puestos (Nombre)
+VALUES 
+    ('Puesto 1'),
+    ('Puesto 2');
+
+-- Insertar datos de prueba en la tabla Seguimientos
+INSERT INTO Seguimientos (Fecha, Nombre, Tipo)
+VALUES 
+    ('2024-02-27', 'Seguimiento 1', 'Tipo 1'),
+    ('2024-02-28', 'Seguimiento 2', 'Tipo 2');
