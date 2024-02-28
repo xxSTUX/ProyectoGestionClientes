@@ -21,10 +21,11 @@ import { Observable } from 'rxjs';
     imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent]
 })
 export class DashboardComponent implements OnInit {
+  //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
-
+  //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
     console.log("Componente principal inicializado");
     this.updateFragmentObservable();
@@ -37,7 +38,7 @@ export class DashboardComponent implements OnInit {
       this.cdr.detectChanges(); // Actualizar la vista
     });
   }
-
+  //obtener el valor del frgment
   updateFragmentObservable(): void {
     console.log("fragmentupdate");
     this.fragment$ = this.route.fragment.pipe(

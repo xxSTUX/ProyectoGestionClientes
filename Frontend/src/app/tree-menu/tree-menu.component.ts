@@ -85,11 +85,11 @@ export class TreeMenuComponent {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
-          this.location.go(this.location.path() + '#' + item.nodeText);
+          this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
           const newPath = this.location.path() + '#' + item.nodeText;//conseguir la ruta a la que se irá
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          //Provacar un navigationend para que se actulic el componente
-          this.router.navigateByUrl(newPath);
+
+          this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actulice el div dinamico que muestra un componente u otro
         });
       }
       listItem.appendChild(icon);
