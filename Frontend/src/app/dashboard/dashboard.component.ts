@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
@@ -23,19 +23,27 @@ import { Observable } from 'rxjs';
 export class DashboardComponent implements OnInit {
   fragment$: Observable<string> = new Observable<string>;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-    this.fragment$ = this.route.fragment.pipe(
-      map(fragment => fragment || 'default')
-    );
+    console.log("Componente principal inicializado");
+    this.updateFragmentObservable();
     // Observa los cambios de la ruta y actualiza el fragment$
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe(() => {
-      this.fragment$ = this.route.fragment.pipe(
-        map(fragment => fragment || 'default')
-      );
+      this.updateFragmentObservable();
+      console.log("La ruta ha cambiado");
+      this.cdr.detectChanges(); // Actualizar la vista
     });
   }
+
+  updateFragmentObservable(): void {
+    console.log("fragmentupdate");
+    this.fragment$ = this.route.fragment.pipe(
+      map(fragment => fragment || 'default')
+    );
+    console.log("valor frgm" + this.fragment$);
+  }
 }
+
