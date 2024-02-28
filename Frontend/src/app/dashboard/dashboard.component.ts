@@ -8,12 +8,14 @@ import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { ErrorComponent } from '../error/error.component';
+import { DatatableComponent } from '../datatable/datatable.component';
+import { DataTablesModule} from "angular-datatables"
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [HeaderComponent, SideMenuComponent,TreeMenuComponent,TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent],
+  imports: [HeaderComponent, SideMenuComponent,TreeMenuComponent,TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent,DatatableComponent,DataTablesModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
