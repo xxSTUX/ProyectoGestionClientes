@@ -38,13 +38,16 @@ export class DashboardComponent implements OnInit {
       this.cdr.detectChanges(); // Actualizar la vista
     });
   }
-  //obtener el valor del frgment
-  updateFragmentObservable(): void {
+
+updateFragmentObservable(): void {
     console.log("fragmentupdate");
     this.fragment$ = this.route.fragment.pipe(
       map(fragment => fragment || 'default')
     );
-    console.log("valor frgm" + this.fragment$);
-  }
+    this.fragment$.subscribe(fragment => {
+      console.log("Valor del fragmento:", fragment);
+    });
+}
+
 }
 

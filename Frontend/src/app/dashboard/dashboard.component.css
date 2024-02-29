@@ -1,3 +1,5 @@
-.custom-col {
-  max-width: 4.5rem;
+.custom-col{
+  width: calc(100vw/22);
+  float: left;
+  /* height: 100px; */
 }
