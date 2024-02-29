@@ -1,4 +1,4 @@
-<div class="container my-4">
+<div class="container-fluid my-4">
     <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table table-bordered">
         <thead class="bg-dark text-white">
             <tr>
@@ -12,69 +12,69 @@
         </thead>
         <tbody>
             @for (cliente of getJsonValue; track $index) {
-                <tr>
+            <tr>
                 <td>{{cliente.nombre}}</td>
                 @if (cliente.proyectos.length === 0) {
-                    <td>No tiene proyectos</td>
+                <td>No tiene proyectos</td>
                 }
                 @else {
-                    <td>
-                        
+                <td>
+
                     @for (proyecto of cliente.proyectos; track $index) {
-                        <a href="#" class="link-sin-estilo">
+                    <a href="#" class="link-sin-estilo">
                         @if ($index === (cliente.proyectos.length - 1)) {
-                            {{proyecto.nombre}}
+                        {{proyecto.nombre}}
                         }
                         @else {
-                            {{proyecto.nombre}},
-                        }
-                        </a>
-                    }
-                    </td>
-                }
-                    
-                @if (cliente.seguimientos.length === 0) {
-                    <td>No tiene seguimientos</td>
-                }
-                @else {
-                    <td>
-                        
-                    @for (seguimiento of cliente.seguimientos; track $index) {
-                        <a href="#" class="link-sin-estilo">
-                        @if ($index === (cliente.seguimientos.length - 1)) {
-                            {{seguimiento.nombre}}
-                        }
-                        @else {
-                            {{seguimiento.nombre}},
+                        {{proyecto.nombre}},
                         }
                     </a>
                     }
-                    </td>
+                </td>
+                }
+
+                @if (cliente.seguimientos.length === 0) {
+                <td>No tiene seguimientos</td>
+                }
+                @else {
+                <td>
+
+                    @for (seguimiento of cliente.seguimientos; track $index) {
+                    <a href="#" class="link-sin-estilo">
+                        @if ($index === (cliente.seguimientos.length - 1)) {
+                        {{seguimiento.nombre}}
+                        }
+                        @else {
+                        {{seguimiento.nombre}},
+                        }
+                    </a>
+                    }
+                </td>
                 }
                 @if (cliente.licitaciones.length === 0) {
-                    <td>No tiene licitaciones</td>
+                <td>No tiene licitaciones</td>
                 }
                 @else {
-                    <td>
+                <td>
                     @for (licitacion of cliente.licitaciones; track $index) {
-                        <a href="#" class="link-sin-estilo">
+                    <a href="#" class="link-sin-estilo">
                         @if ($index === (cliente.licitaciones.length - 1)) {
-                            {{licitacion.Nombrelicitacion}}
+                        {{licitacion.nombre}}
                         }
                         @else {
-                            {{licitacion.Nombrelicitacion}},
+                        {{licitacion.nombre}},
                         }
                     </a>
                     }
-                    </td>
+                </td>
                 }
                 <td style="width: 20% allign-items-center">
-                    <a class="btn btn-primary">Edit</a> 
+                    <a class="btn btn-primary">Edit</a>
                     <!-- <a class="btn btn-success">Print</a> |
                     <a class="btn btn-success">Download</a> -->
                 </td>
                 <td style="width: 20% allign-items-center">
-                    <a class="btn btn-danger">Delete</a> 
+                    <a class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             }
@@ -190,7 +190,7 @@
 
 
 
-            
+
 
 
 

@@ -4,25 +4,19 @@ import { SideMenuComponent } from '../side-menu/side-menu.component';
 import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
+import { CreaSeguimientoComponent } from "./crea-seguimiento/crea-seguimiento.component";
+import { DatatableComponent } from "../datatable/datatable.component";
+import { Subject } from 'rxjs';
+
 
 @Component({
-  selector: 'app-tabmenu',
-  standalone: true,
-  imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent,HttpClientModule, AngularEditorModule],
-  templateUrl: './tabmenu.component.html',
-  styleUrl: './tabmenu.component.css'
+    selector: 'app-tabmenu',
+    standalone: true,
+    templateUrl: './tabmenu.component.html',
+    styleUrl: './tabmenu.component.css',
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent]
 })
 export class TabmenuComponent {
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '15rem',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-   
-  };
+  
 
 }
