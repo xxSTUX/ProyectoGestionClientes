@@ -13,7 +13,7 @@ export class HeaderComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   onHomeClick() {
-    this.router.navigate(['/']);
+    this.router.navigate(['/dashboard']);
   }
 
   onProfileClick() {

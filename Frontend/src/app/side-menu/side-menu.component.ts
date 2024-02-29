@@ -1,5 +1,6 @@
 import { Component, ElementRef } from '@angular/core';
- 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-side-menu',
   standalone: true,
@@ -13,7 +14,10 @@ sidebar: HTMLElement | null = null;
   sidebarCloseBtn: HTMLElement | null = null;
   sidebarLockBtn: HTMLElement | null = null;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private router: Router) {}
+  onHomeClick() {
+    this.router.navigate(['/dashboard']);
+  }
 
   ngOnInit() {
     this.sidebar = this.elementRef.nativeElement.querySelector(".sidebar");
