@@ -25,8 +25,7 @@ export class TreeMenuComponent {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
       console.log(data);
       this.getJsonValue = data;
-      console.log("Sankiu");
-      for (let i = 0; i < 10 /*this.getJsonValue.length*/; i++) { //Recorre clientes
+      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];
         let seguimientos = [];
         let licitaciones = [];
