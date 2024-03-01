@@ -25,17 +25,18 @@ export class TreeMenuComponent {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
       console.log(data);
       this.getJsonValue = data;
-      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
+      console.log("Sankiu");
+      for (let i = 0; i < 10 /*this.getJsonValue.length*/; i++) { //Recorre clientes
         let proyectos = [];
         let seguimientos = [];
         let licitaciones = [];
         for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].length; k++) { //Recorre seguimientos dentro del proyecto
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
             seguimientosProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '02-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
           }
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].length; k++) { //Recorre licitaciones dentro del proyecto
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
             licitacionesProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '03-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
           }
           proyectos.push({

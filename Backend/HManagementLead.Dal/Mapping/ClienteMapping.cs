@@ -15,7 +15,7 @@ namespace HManagementLead.Dal.Mapping
             {
                 Id = c.Id,
                 Nombre = c.Nombre,
-                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(seguimientos)).ToList(),
+                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(seguimientos, licitaciones)).ToList(),
                 Seguimientos = (from cs in c.SeguimientosClientes
                 // Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
                 // Seguimientos = (from cs in c.SeguimientosClientes 
