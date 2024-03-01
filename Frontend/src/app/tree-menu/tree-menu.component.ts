@@ -74,22 +74,30 @@ export class TreeMenuComponent {
 
 
 
-  private renderBootstrapTreeView(data: any[], parentElement: HTMLElement) {
+  private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
       const icon = document.createElement("i");
+
       if (item.nodeChild && item.nodeChild.length > 0) {
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
       } else {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
-          this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
-          const newPath = this.location.path() + '#' + item.nodeText;//conseguir la ruta a la que se irá
+          // Obtener el padre
+          this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
+          const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-
-          this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actulice el div dinamico que muestra un componente u otro
+          // Obtener el ID del nodo clicado
+          const clickedNodeId = item.nodeId;
+          console.log('ID del nodo clicado:', clickedNodeId);
+          // Obtener el padre del nodo que ya no tiene mas hijos, el elemento padre del que depende el item que tiene el evento de click
+          if (parentNode) {
+            console.log('El padre del nodo sin hijos es:', parentNode.nodeText);
+          }
+          this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
         });
       }
       listItem.appendChild(icon);
@@ -116,7 +124,7 @@ export class TreeMenuComponent {
         sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
         sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
 
-        this.renderBootstrapTreeView(item.nodeChild, sublist);
+        this.renderBootstrapTreeView(item.nodeChild, sublist, item);
 
         listItem.appendChild(sublist);
       }
@@ -124,4 +132,6 @@ export class TreeMenuComponent {
       parentElement.appendChild(listItem);
     });
   }
+
+
 }
