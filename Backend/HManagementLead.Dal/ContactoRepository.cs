@@ -17,7 +17,7 @@ namespace HManagementLead.Dal
 
         public async Task<List<Codigo>> GetAllContactoAsync()
         {
-            return await _context.Licitaciones.Select(LicitacionMapping.MapLicitacionToCodigo()).ToListAsync();
+            return await _context.Contactos.Select(ContactoMapping.MapContactoToCodigo()).ToListAsync();
 
         }
 

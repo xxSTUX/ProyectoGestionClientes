@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-tree-menu',
   standalone: true,
@@ -29,7 +30,7 @@ export class TreeMenuComponent {
         let proyectos = [];
         let seguimientos = [];
         let licitaciones = [];
-        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos
+        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
@@ -54,6 +55,7 @@ export class TreeMenuComponent {
           { nodeId: String(i) + '-02', nodeText: 'Seguimientos', nodeChild: seguimientos },
           { nodeId: String(i) + '-03', nodeText: 'Licitaciones', nodeChild: licitaciones }]
         })
+        
       }
 
       // Clear the existing treeview content
@@ -76,6 +78,7 @@ export class TreeMenuComponent {
 
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
+      this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
       const icon = document.createElement("i");

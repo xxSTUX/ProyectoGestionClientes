@@ -22,6 +22,7 @@
     "@angular/router": "^17.1.0",
     "@circlon/angular-tree-component": "^11.0.4",
     "@kolkov/angular-editor": "^3.0.0-beta.0",
+    "@syncfusion/ej2-angular-navigations": "^24.2.8",
     "@syncfusion/ej2-base": "^24.2.7",
     "angular-datatables": "^17.0.0",
     "angular-tree-component": "^8.5.6",

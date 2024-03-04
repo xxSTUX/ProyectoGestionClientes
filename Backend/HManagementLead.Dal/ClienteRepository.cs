@@ -174,7 +174,7 @@ namespace HManagementLead.Dal
 
             }
             _context.Clientes.Remove(new Cliente(cliente));
-            _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
     }
 }
