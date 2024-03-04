@@ -23,7 +23,6 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
-      console.log(data);
       this.getJsonValue = data;
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];
@@ -33,26 +32,26 @@ export class TreeMenuComponent {
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
-            seguimientosProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '02-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+            seguimientosProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
           }
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
-            licitacionesProyecto.push({ nodeId: String(i) + '-01-' + String(j) + '03-' + String(k), nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+            licitacionesProyecto.push({ nodeId:this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
           }
           proyectos.push({
-            nodeId: String(i) + '-01-' + String(j), nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: String(i) + '-01-' + String(j) + '02-', nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-            { nodeId: String(i) + '-01-' + String(j) + '03-', nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+            nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: String(i) + String(j) , nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+            { nodeId: String(i)  + String(j) , nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
           });
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { //Recorre seguimientos del cliente
-          seguimientos.push({ nodeId: String(i) + '-02-' + String(j), nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+          seguimientos.push({ nodeId:  this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
         }
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
-          licitaciones.push({ nodeId: String(i) + '-03-' + String(j), nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+          licitaciones.push({ nodeId:this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
         }
         this.data.push({
-          nodeId: String(i), nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: String(i) + '-01', nodeText: 'Proyectos', nodeChild: proyectos },
-          { nodeId: String(i) + '-02', nodeText: 'Seguimientos', nodeChild: seguimientos },
-          { nodeId: String(i) + '-03', nodeText: 'Licitaciones', nodeChild: licitaciones }]
+          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: "", nodeText: 'Proyectos', nodeChild: proyectos },
+          { nodeId: String(i) + '', nodeText: 'Seguimientos', nodeChild: seguimientos },
+          { nodeId: String(i) + '', nodeText: 'Licitaciones', nodeChild: licitaciones }]
         })
       }
 
@@ -90,9 +89,10 @@ export class TreeMenuComponent {
           this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
           const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          // Obtener el ID del nodo clicado
-          const clickedNodeId = item.nodeId;
-          console.log('ID del nodo clicado:', clickedNodeId);
+          alert(item.nodeId);
+          console.log('ID del nodo clicado:', item.nodeId);
+
+
           // Obtener el padre del nodo que ya no tiene mas hijos, el elemento padre del que depende el item que tiene el evento de click
           if (parentNode) {
             console.log('El padre del nodo sin hijos es:', parentNode.nodeText);

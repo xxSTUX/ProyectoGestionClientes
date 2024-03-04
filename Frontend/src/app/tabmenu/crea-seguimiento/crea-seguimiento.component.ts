@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 import { NgModule } from '@angular/core';
@@ -20,9 +20,11 @@ export class CreaSeguimientoComponent {
   usuarioMod: string = '';
   nombre: string = '';
   texto: string= '';
- 
-  constructor(private router: Router) {}
- 
+
+  constructor(private router: Router,@Inject(Number) public _id?:string) {
+    if (_id != null) this.id = _id;
+  }
+
   config: AngularEditorConfig = {
     editable: true,
     spellcheck: true,
@@ -31,7 +33,7 @@ export class CreaSeguimientoComponent {
     placeholder: 'Enter text here...',
     translate: 'no',
     defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',  
+    defaultFontName: 'Arial',
     toolbarHiddenButtons:[
       [
         'insertImage',
@@ -39,15 +41,15 @@ export class CreaSeguimientoComponent {
       ]
     ]
   };
- 
+
   public create(){
     alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
   }
- 
+
   public delete(){
     //borrarSeguimiento(this.id);
   }
- 
+
   public cancel(){
     this.router.navigate(["login"]);
   }
