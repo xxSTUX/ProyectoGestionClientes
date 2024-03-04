@@ -40,7 +40,7 @@
                 <td>
 
                     @for (seguimiento of cliente.seguimientos; track $index) {
-                    <a href="#" class="link-sin-estilo">
+                    <a href="/dashboard#Seguimiento/{{seguimiento.id}}" class="link-sin-estilo">
                         @if ($index === (cliente.seguimientos.length - 1)) {
                         {{seguimiento.nombre}}
                         }

@@ -8,48 +8,48 @@ namespace HManagementLead.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactoController : ControllerBase
+    public class PuestoController : ControllerBase
     {
-        private readonly IContactoService _contactoService;
-        private readonly ILogger<ContactoController> _logger;
+        private readonly IPuestoService _puestoService;
+        private readonly ILogger<PuestoController> _logger;
 
-        public ContactoController(IContactoService contactoService,
-            ILogger<ContactoController> logger)
+        public PuestoController(IPuestoService puestoService,
+            ILogger<PuestoController> logger)
         {
-            _contactoService = contactoService ?? throw new ArgumentNullException(nameof(contactoService));
+            _puestoService = puestoService ?? throw new ArgumentNullException(nameof(puestoService));
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 
-        // GET: api/<ClienteController>
+        // GET api/<FacturacionController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var resultado = await _contactoService.GetAllContactoAsync();
+                var resultado = await _puestoService.GetAllPuestoAsync();
 
                 return Ok(resultado);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
+                _logger.LogError(ex, "Ocurrió un error en PuestoController Get puestos");
                 throw;
             }
         }
 
-        // GET api/<ClienteController>/5
+        // GET api/<FacturacionController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var resultado = await _contactoService.GetContactoByIdAsync(id);
+                var resultado = await _puestoService.GetPuestoByIdAsync(id);
 
                 return Ok(resultado);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+                _logger.LogError(ex, "Ocurrió un error en PuestoController Get puesto");
                 throw;
             }
         }

@@ -7,7 +7,7 @@ namespace HManagementLead.Bll
     public class ContactoService : IContactoService
     {
         private readonly IContactoRepository _repository;
-        ContactoService(IContactoRepository repository) 
+        public ContactoService(IContactoRepository repository) 
         { 
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }

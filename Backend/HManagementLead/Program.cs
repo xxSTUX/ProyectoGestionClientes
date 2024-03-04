@@ -45,6 +45,13 @@ builder.Services.AddScoped<ISeguimientoService, SeguimientoService>();
 builder.Services.AddScoped<ISeguimientoRepository, SeguimientoRepository>();
 builder.Services.AddScoped<ILicitacionService, LicitacionService>();
 builder.Services.AddScoped<ILicitacionRepository, LicitacionRepository>();
+builder.Services.AddScoped<IContactoService, ContactoService>();
+builder.Services.AddScoped<IContactoRepository, ContactoRepository>();
+builder.Services.AddScoped<IFacturacionService, FacturacionService>();
+builder.Services.AddScoped<IFacturacionRepository, FacturacionRepository>();
+builder.Services.AddScoped<IPuestoService, PuestoService>();
+builder.Services.AddScoped<IPuestoRepository, PuestoRepository>();
+
 
 
 //Fin de elementos a sacar a un proyecto externo

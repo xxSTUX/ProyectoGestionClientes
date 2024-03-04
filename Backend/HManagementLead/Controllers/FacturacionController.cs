@@ -8,48 +8,48 @@ namespace HManagementLead.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ContactoController : ControllerBase
+    public class FacturacionController : ControllerBase
     {
-        private readonly IContactoService _contactoService;
-        private readonly ILogger<ContactoController> _logger;
+        private readonly IFacturacionService _facturacionService;
+        private readonly ILogger<FacturacionController> _logger;
 
-        public ContactoController(IContactoService contactoService,
-            ILogger<ContactoController> logger)
+        public FacturacionController(IFacturacionService facturacionService,
+            ILogger<FacturacionController> logger)
         {
-            _contactoService = contactoService ?? throw new ArgumentNullException(nameof(contactoService));
+            _facturacionService = facturacionService ?? throw new ArgumentNullException(nameof(facturacionService));
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
         }
 
-        // GET: api/<ClienteController>
+        // GET api/<FacturacionController>
         [HttpGet]
         public async Task<IActionResult> Get()
         {
             try
             {
-                var resultado = await _contactoService.GetAllContactoAsync();
+                var resultado = await _facturacionService.GetAllFacturacionAsync();
 
                 return Ok(resultado);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
+                _logger.LogError(ex, "Ocurrió un error en FacturacionController Get facturaciones");
                 throw;
             }
         }
 
-        // GET api/<ClienteController>/5
+        // GET api/<FacturacionController>/5
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
             try
             {
-                var resultado = await _contactoService.GetContactoByIdAsync(id);
+                var resultado = await _facturacionService.GetFacturacionByIdAsync(id);
 
                 return Ok(resultado);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+                _logger.LogError(ex, "Ocurrió un error en FacturacionController Get facturacion");
                 throw;
             }
         }
