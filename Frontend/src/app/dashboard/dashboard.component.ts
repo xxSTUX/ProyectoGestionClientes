@@ -50,6 +50,10 @@ updateFragmentObservable(): void {
       console.log("Valor del fragmento:", fragment);
     });
 }
+getFragmentTipoNodo(fragment: string): string {
+  const fragmentType = fragment.split('=')[0];
+  return fragmentType;
+}
 
 }
 
