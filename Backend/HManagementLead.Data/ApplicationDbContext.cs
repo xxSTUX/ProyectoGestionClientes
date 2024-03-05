@@ -21,7 +21,6 @@ public partial class ApplicationDbContext : DbContext
         Database.EnsureCreated();
         
     }
-
     public DbSet<Cliente> Clientes => Set<Cliente>();
     public DbSet<Contacto> Contactos => Set<Contacto>();
     public DbSet<ContactoCliente> ContactoCliente => Set<ContactoCliente>();
