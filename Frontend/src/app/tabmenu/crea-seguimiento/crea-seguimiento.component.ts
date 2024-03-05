@@ -21,8 +21,8 @@ export class CreaSeguimientoComponent {
   nombre: string = '';
   texto: string= '';
 
-  constructor(private router: Router,@Inject(Number) public _id?:string) {
-    if (_id != null) this.id = _id;
+  constructor(private router: Router) {
+
   }
 
   config: AngularEditorConfig = {

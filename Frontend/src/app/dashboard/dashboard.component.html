@@ -36,18 +36,19 @@
             <div class="col"><app-header></app-header>
                 <div class="row">
                     <div class="col-2"><app-tree-menu></app-tree-menu></div>
-                    <div class="col mr-3" ><!--Contender dinamico-->
-			                <ng-container *ngIf="fragment$ | async as fragment">
-                        <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
-            			      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
-            			      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
-          		          </ng-container>
-		                </div>
+                    <div class="col mr-3"><!--Contenedor dinámico-->
+                      <ng-container *ngIf="fragment$ | async as fragment">
+                          <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
+                          <app-licitaciones *ngIf="getFragmentTipoNodo(fragment) === 'Licitaciones'"></app-licitaciones>
+                          <app-seguimientos *ngIf="getFragmentTipoNodo(fragment) === 'Seguimientos'"></app-seguimientos>
+                      </ng-container>
+                  </div>
+
                 </div>
             </div>
         </div>
     </div>
-    
+
 </body>
 
 </html>
