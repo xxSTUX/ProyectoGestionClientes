@@ -22,8 +22,7 @@ export class CreaSeguimientoComponent {
   texto: string= '';
 
   constructor(private router: Router) {
-    // ,@Inject(Number) public _id?:string
-    // if (_id != null) this.id = _id;
+
   }
 
   config: AngularEditorConfig = {
