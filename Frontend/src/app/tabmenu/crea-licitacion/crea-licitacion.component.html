@@ -1,0 +1,29 @@
+<body>
+    <div class="row my-1">
+        <div class="col-4">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Id</span>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="id" readonly></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Nombre</span>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="nombre"></textarea>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Tipo</span>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="tipo"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row my-1">
+        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-block btn-outline-dark" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
+        <div class="col-md-2 col-sm-3 col-xs-11 text-center"><button type="button" class="btn btn-light btn-outline-dark" (click)="create()"><a class="text-success">Crear</a></button></div>
+        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-outline-dark" (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
+    </div>
+  </body>
