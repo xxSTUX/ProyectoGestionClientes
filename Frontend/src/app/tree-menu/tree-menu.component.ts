@@ -24,38 +24,7 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
-      this.getJsonValue = data;
-      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
-        let proyectos = [];
-        let seguimientos = [];
-        let licitaciones = [];
-        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
-          let licitacionesProyecto = [];
-          let seguimientosProyecto = [];
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
-            seguimientosProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
-          }
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
-            licitacionesProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
-          }
-          proyectos.push({
-            nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: String(i) + String(j), nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-            { nodeId: String(i) + String(j), nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
-          });
-        }
-        for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { //Recorre seguimientos del cliente
-          seguimientos.push({ nodeId: this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
-        }
-        for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
-          licitaciones.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
-        }
-        this.data.push({
-          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: "", nodeText: 'Proyectos', nodeChild: proyectos },
-          { nodeId: String(i) + '', nodeText: 'Seguimientos', nodeChild: seguimientos },
-          { nodeId: String(i) + '', nodeText: 'Licitaciones', nodeChild: licitaciones }]
-        })
 
-      }
         this.getJsonValue = data;
         for (let i = 0; i < this.getJsonValue.length; i++) { // Recorre clientes
             let proyectos = [];
@@ -88,7 +57,7 @@ export class TreeMenuComponent {
             })
 
         }
-
+        console.log('datos tratados' + data);
         // Clear the existing treeview content
         const treeviewElement = document.getElementById("treeview");
         if (treeviewElement) {
@@ -108,9 +77,10 @@ export class TreeMenuComponent {
 
 
 
+
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
-      this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
+      //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
       const icon = document.createElement("i");
@@ -124,14 +94,17 @@ export class TreeMenuComponent {
           // Obtener el padre
           //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien
           let itemPadre = parentNode.nodeText;
+          let itemId = item.nodeId;
           if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
           itemPadre = 'Cliente';
+          //itemId = idCliente;
           }
 
-          this.location.go(this.location.path() + '#' + itemPadre + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
-          const newPath = this.location.path() + '#' + itemPadre + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
+
+          this.location.go(this.location.path() + '#' + itemPadre + '=' + itemId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
+          const newPath = this.location.path() + '#' + itemPadre + '=' + itemId;//conseguir la ruta padre del item + el id del elemento clickado
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          alert('Nodo: ' +  itemPadre + ' ID:' + item.nodeId);
+          alert('Nodo: ' +  itemPadre + ' ID:' + item.nodeId + 'listimte: ');
           console.log('ID del nodo clicado:', item.nodeId);
 
 
