@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { data } from 'jquery';
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,24 @@ export class ApiService {
       tipo:tipo
     };
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
+  }
+  async postLicitacionFromAPI(nombre:string,tipo:string) {
+      const bodyProyecto = {
+        nombre: nombre,
+        tipo:tipo
+      };
+      console.log(bodyProyecto)
+      const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/2', {
+        method: 'POST',
+        headers: {
+          'accept': '*/*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(bodyProyecto),
+      });
+  
+      if (!response.ok) {
+        throw new Error(`Error! Status: ${response.status}`);
+      }
   }
 }
