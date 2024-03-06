@@ -24,6 +24,38 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+      this.getJsonValue = data;
+      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
+        let proyectos = [];
+        let seguimientos = [];
+        let licitaciones = [];
+        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
+          let licitacionesProyecto = [];
+          let seguimientosProyecto = [];
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
+            seguimientosProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+          }
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
+            licitacionesProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+          }
+          proyectos.push({
+            nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: String(i) + String(j), nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+            { nodeId: String(i) + String(j), nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+          });
+        }
+        for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { //Recorre seguimientos del cliente
+          seguimientos.push({ nodeId: this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+        }
+        for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
+          licitaciones.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+        }
+        this.data.push({
+          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: "", nodeText: 'Proyectos', nodeChild: proyectos },
+          { nodeId: String(i) + '', nodeText: 'Seguimientos', nodeChild: seguimientos },
+          { nodeId: String(i) + '', nodeText: 'Licitaciones', nodeChild: licitaciones }]
+        })
+
+      }
         this.getJsonValue = data;
         for (let i = 0; i < this.getJsonValue.length; i++) { // Recorre clientes
             let proyectos = [];
