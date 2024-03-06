@@ -24,4 +24,5 @@
   box-sizing: border-box;
   overflow-y: auto;
   height: calc(100vh - 3.875rem);
+  font-size: small;
 }
