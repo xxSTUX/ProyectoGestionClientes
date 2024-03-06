@@ -4,10 +4,8 @@
  
 .tree {
   border-radius: 0.4rem;
-  position: absolute;
   top: 0;
   padding-top: 1rem;
-  padding-left: -10px;
   padding-right: 40px;
   background-color: hsl(218, 41%, 15%);
   background-image: radial-gradient(650px circle at 0% 0%,
