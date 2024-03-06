@@ -1,4 +1,4 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
 
-  constructor(private http: HttpClient, private location: Location,private router: Router) { }
+  constructor(private http: HttpClient, private location: Location, private router: Router) { }
 
   ngOnInit() {
     this.getMethod();
