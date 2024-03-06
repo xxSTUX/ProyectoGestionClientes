@@ -28,7 +28,7 @@ namespace HManagementLead.Data.Enitites
         {
             Id = licitacion.Id;
             Nombre = licitacion.Nombre;
-            
+            Tipo = licitacion.Tipo;
         }
     }
 }

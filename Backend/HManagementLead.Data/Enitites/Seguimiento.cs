@@ -30,6 +30,7 @@ namespace HManagementLead.Data.Enitites
         {
             Id = seguimiento.Id;
             Nombre = seguimiento.Nombre;
+            Tipo = seguimiento.Tipo;
             
         }
     }
