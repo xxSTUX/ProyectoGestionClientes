@@ -28,7 +28,7 @@ export class CreaClienteComponent {
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
 
         const body = {
-            nombreCliente: nombreCliente,
+            nombre: nombreCliente,
         }
 
         alert("Se va a crear el cliente: "+nombreCliente);
@@ -37,6 +37,6 @@ export class CreaClienteComponent {
             console.log(response);
         });
         console.log("Se deberia haber creado un nuevo cliente");
-        this.router.navigate(['login']);
+        this.router.navigate(['dashboard']);
     }
 }
