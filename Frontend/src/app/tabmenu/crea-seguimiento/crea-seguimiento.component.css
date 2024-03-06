@@ -6,3 +6,9 @@
 .no-resize{
     resize: none;
 }
+.input-group-text{
+    font-size: small !important;
+}
+*{
+    font-size: small;
+}
