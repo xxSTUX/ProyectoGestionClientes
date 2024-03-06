@@ -6,6 +6,7 @@ using HManagementLead.Dal.Interfaces;
 using HManagementLead.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +25,15 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 builder.Host.UseSerilog();
+
+//Configuracion CORS
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("http://localhost:4200")  // Aqui ponemos la IP y puerto del frontend
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
 
 //Configuración ef core 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -57,6 +67,9 @@ builder.Services.AddScoped<IPuestoRepository, PuestoRepository>();
 //Fin de elementos a sacar a un proyecto externo
 
 var app = builder.Build();
+
+//Anadimos las politicas de CORS
+app.UseCors("AllowSpecificOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
