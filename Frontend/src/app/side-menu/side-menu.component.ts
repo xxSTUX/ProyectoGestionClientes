@@ -1,12 +1,13 @@
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
 
 @Component({
-  selector: 'app-side-menu',
-  standalone: true,
-  imports: [],
-  templateUrl: './side-menu.component.html',
-  styleUrl: './side-menu.component.css'
+    selector: 'app-side-menu',
+    standalone: true,
+    templateUrl: './side-menu.component.html',
+    styleUrl: './side-menu.component.css',
+    imports: [CreaClienteComponent]
 })
 export class SideMenuComponent {
 sidebar: HTMLElement | null = null;
@@ -17,6 +18,10 @@ sidebar: HTMLElement | null = null;
   constructor(private elementRef: ElementRef, private router: Router) {}
   onHomeClick() {
     this.router.navigate(['/dashboard']);
+  }
+
+  openCreaCliente(event: Event) {
+    event.preventDefault();
   }
 
   ngOnInit() {
