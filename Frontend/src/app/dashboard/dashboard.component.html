@@ -5,14 +5,20 @@
               </div>
             <div class="col"><app-header></app-header>
                 <div class="row">
-                    <div class="col-4"><app-tree-menu></app-tree-menu></div>
-                    <div class="col" ><!--Contender dinamico-->
-                        <div class="container-fluid" *ngIf="fragment$ | async as fragment">
-                        <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
-            			      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
-            			      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
-          		          </div>
-		                </div>
+                    <p-splitter [panelSizes]="[25, 75]" [minSizes]="[15, 50]">
+                        <ng-template pTemplate>
+                            <!-- Contenido del primer panel (árbol) -->
+                            <app-tree-menu></app-tree-menu>
+                        </ng-template>
+                        <ng-template pTemplate>
+                            <!-- Contenido del segundo panel (tabmenu) -->
+                            <div class="container-fluid" *ngIf="fragment$ | async as fragment">
+                                <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
+                                      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
+                                      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
+                                    </div>
+                        </ng-template>
+                    </p-splitter>
                 </div>
             </div>
         </div>
