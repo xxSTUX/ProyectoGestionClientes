@@ -4,6 +4,7 @@ import { OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-datatable',
@@ -18,7 +19,7 @@ export class DatatableComponent implements OnInit {
   public postJsonValue: any;
   public keysJson: any;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private apiService: ApiService) {
 
   }
 
@@ -37,7 +38,8 @@ export class DatatableComponent implements OnInit {
   }
 
   public getMethod(){
-    this.http.get("https://localhost:7075/api/cliente").subscribe((data) => {console.log(data);
+    this.apiService.getDataClientesFromAPI().subscribe((data) => {console.log(data);
+    //this.http.get("https://localhost:7075/api/cliente").subscribe((data) => {console.log(data);
     this.getJsonValue = data;
     this.dtTrigger.next(null);
     //this.keysJson = Object.keys(this.getJsonValue[0]); //Para coger las keys del json y emplearlas como nombre de columna

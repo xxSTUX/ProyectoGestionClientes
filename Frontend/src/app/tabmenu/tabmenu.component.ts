@@ -5,7 +5,9 @@ import { HeaderComponent } from '../header/header.component';
 import { HttpClientModule} from '@angular/common/http';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 import { CreaSeguimientoComponent } from "./crea-seguimiento/crea-seguimiento.component";
+import { CreaLicitacionComponent } from "./crea-licitacion/crea-licitacion.component";
 import { DatatableComponent } from "../datatable/datatable.component";
+
 import { Subject } from 'rxjs';
 
 
@@ -14,7 +16,7 @@ import { Subject } from 'rxjs';
     standalone: true,
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent]
 })
 export class TabmenuComponent {
   
