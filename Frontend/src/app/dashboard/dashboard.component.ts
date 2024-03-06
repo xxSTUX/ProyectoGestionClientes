@@ -11,6 +11,7 @@ import { ErrorComponent } from '../error/error.component';
 import { LicitacionesComponent } from "../child/licitaciones/licitaciones.component";
 import { SeguimientosComponent } from "../child/seguimientos/seguimientos.component";
 import { Observable } from 'rxjs';
+import { SplitterModule } from "primeng/splitter";
 
 
 @Component({
@@ -18,9 +19,11 @@ import { Observable } from 'rxjs';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule]
 })
 export class DashboardComponent implements OnInit {
+
+  halal = true;
   //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 

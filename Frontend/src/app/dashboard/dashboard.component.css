@@ -3,3 +3,9 @@
   float: left;
   /* height: 100px; */
 }
+
+ :host {
+  ::ng-deep .p-splitter-panel-nested {
+    display: block !important;
+  } 
+}

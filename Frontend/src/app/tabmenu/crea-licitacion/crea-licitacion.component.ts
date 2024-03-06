@@ -1,27 +1,24 @@
-import { Component, Inject } from '@angular/core';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'app-crea-seguimiento',
+  selector: 'app-crea-licitacion',
   standalone: true,
   imports: [AngularEditorModule,FormsModule, HttpClientModule],
-  templateUrl: './crea-seguimiento.component.html',
-  styleUrl: './crea-seguimiento.component.css'
+  templateUrl: './crea-licitacion.component.html',
+  styleUrl: './crea-licitacion.component.css'
 })
-export class CreaSeguimientoComponent {
-  id:string = '';
-  fechaCre: string = '';
-  fechaMod: string = '';
-  usuario: string = '';
-  usuarioMod: string = '';
-  nombre: string = '';
-  texto: string= '';
+export class CreaLicitacionComponent {
 
-  constructor(private router: Router, private http: HttpClient) {
+  id:string = '1';
+  nombre: string = '';
+  tipo: string= '';
+
+  constructor(private router: Router, private http: HttpClient, private apiService: ApiService) {
     // ,@Inject(Number) public _id?:string
     // if (_id != null) this.id = _id;
   }
@@ -47,9 +44,9 @@ export class CreaSeguimientoComponent {
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
     const body = {
       nombre: this.nombre,
-      tipo: this.texto
+      tipo: this.tipo
     }
-    this.http.post("https://localhost:7075/api/cliente", body);
+    console.log(this.apiService.postLicitacionFromAPI(body.nombre,body.tipo));
   }
 
   public delete(){
@@ -59,5 +56,4 @@ export class CreaSeguimientoComponent {
   public cancel(){
     this.router.navigate(["login"]);
   }
-
 }
