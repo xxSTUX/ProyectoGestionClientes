@@ -46,10 +46,9 @@
     </div>
 </div>
     <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="texto"></angular-editor>
-    <div class="row my-1">
-        <div class="col-md-6 col-sm-1 col-xs-1"></div>
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-block btn-outline-dark" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11 text-center"><button type="button" class="btn btn-light btn-outline-dark" (click)="create()"><a class="text-success">Crear</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-outline-dark" (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
+    <div class="row my-1 pt-2">
+        <div class="col-md-1 col-sm-3 col-xs-11"><button type="button" class="btn btn-light" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
+        <div class="col-md-1 col-sm-3 col-xs-11"><button type="button" class="btn btn-light " (click)="create()"><a class="text-success">Crear</a></button></div>
+        <div class="col-md-1 col-sm-3 col-xs-11 p-0"><button type="button" class="btn btn-light " (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
     </div>
   </body>
