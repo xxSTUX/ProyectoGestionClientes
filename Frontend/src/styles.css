@@ -1,6 +1,6 @@
 @import '../node_modules/font-awesome/css/font-awesome.css';
 
-/* en esta parte del código, si no la entienden, contactar a mamine@hiberus.com */
+
 .list-group-item {
     border: none !important;
     padding: 0 !important;
@@ -12,5 +12,5 @@
 .list-group-item:hover {
     color: #00ccff !important;
     cursor: pointer !important;
-    
+
 }
