@@ -38,13 +38,14 @@ export class ApiService {
     };
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
   }
-  async postLicitacionFromAPI(nombre:string,tipo:string) {
+  async postLicitacionFromAPI(nombre:string,tipo:string,id:string,ganada:string) {
       const bodyProyecto = {
         nombre: nombre,
-        tipo:tipo
+        tipo:tipo,
+        ganada:ganada
       };
       console.log(bodyProyecto)
-      const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/2', {
+      const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
           'accept': '*/*',

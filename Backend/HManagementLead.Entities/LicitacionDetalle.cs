@@ -8,5 +8,6 @@ namespace HManagementLead.Entities
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
         public string Tipo { get; set; } = null!;
+        public int Ganada { get; set; } = 0;
     }
 }

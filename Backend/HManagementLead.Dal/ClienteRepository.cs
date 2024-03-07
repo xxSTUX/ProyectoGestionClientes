@@ -14,7 +14,6 @@ namespace HManagementLead.Dal
         public ClienteRepository (ApplicationDbContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
-            if(_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
             
         }
 
@@ -28,7 +27,8 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
-             
+            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            await _context.SaveChangesAsync();
             var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos, _context.Licitaciones)).ToListAsync();
             return cliente;
         }

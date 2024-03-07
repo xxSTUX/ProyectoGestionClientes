@@ -6,3 +6,23 @@
   .link-sin-estilo:hover {
     text-decoration: underline; /* Añade subrayado al pasar el ratón sobre el enlace si lo deseas */
   }
+
+.mybutton:hover a{
+    color: white !important;
+}
+.mybutton:hover {
+    background-color: rgb(6, 6, 121);
+    color: white !important;
+}
+.mybutton{
+    margin: 0;
+    color: black;
+    border-color: rgb(136, 136, 224);
+    border-width: 1px;
+    font-size: small;
+    background-color: aliceblue;
+
+}
+a{
+    text-decoration: none;
+}
