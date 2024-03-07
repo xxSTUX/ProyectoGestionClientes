@@ -30,34 +30,36 @@ export class TreeMenuComponent {
             let proyectos = [];
             let seguimientos = [];
             let licitaciones = [];
+            let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
+
             for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { // Recorre proyectos del cliente
                 let licitacionesProyecto = [];
                 let seguimientosProyecto = [];
                 for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { // Recorre seguimientos dentro del proyecto
-                    seguimientosProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+                    seguimientosProyecto.push({ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
                 }
                 for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { // Recorre licitaciones dentro del proyecto
-                    licitacionesProyecto.push({ nodeId: this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+                    licitacionesProyecto.push({ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
                 }
                 proyectos.push({
-                    nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-                    { nodeId: this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+                    nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+                    { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
                 });
             }
             for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
-                seguimientos.push({ nodeId: this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+                seguimientos.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
             }
             for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { // Recorre licitaciones del cliente
-                licitaciones.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+                licitaciones.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
             }
             this.data.push({
-                nodeId: this.getJsonValue[i].id, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: this.getJsonValue[i].id, nodeText: 'Proyectos', nodeChild: proyectos },
-                { nodeId: this.getJsonValue[i].id, nodeText: 'Seguimientos', nodeChild: seguimientos },
-                { nodeId: this.getJsonValue[i].id, nodeText: 'Licitaciones', nodeChild: licitaciones }]
+                nodeId: clienteId, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
+                { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
+                { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones }]
             })
 
         }
-        console.log('datos tratados' + data);
+
         // Clear the existing treeview content
         const treeviewElement = document.getElementById("treeview");
         if (treeviewElement) {
@@ -70,9 +72,9 @@ export class TreeMenuComponent {
         if (loaderElement) {
             loaderElement.style.display = "none";
         }
-    }
-    );
+    });
 }
+
 
 
 
@@ -80,6 +82,7 @@ export class TreeMenuComponent {
 
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
+      //console.log('item tratado: ' + JSON.stringify(item, null, 2));
       //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
@@ -92,26 +95,23 @@ export class TreeMenuComponent {
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
           // Obtener el padre
-          //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien
+          //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien si no es ninguno de estos buscar el cliente
           let itemPadre = parentNode.nodeText;
-          let itemId = item.nodeId;
+          let itemId = item.nodeId.toString();
           if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
-          itemPadre = 'Cliente';
-          //itemId = idCliente;
+            itemPadre = 'Cliente';
+            console.log('if:', itemId);
+            itemId = itemId.split("-")[0];
+            alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
+          }else{
+            console.log('else:', itemId);
+            itemId = itemId.split("-")[1];
           }
-
-
           this.location.go(this.location.path() + '#' + itemPadre + '=' + itemId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
           const newPath = this.location.path() + '#' + itemPadre + '=' + itemId;//conseguir la ruta padre del item + el id del elemento clickado
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          alert('Nodo: ' +  itemPadre + ' ID:' + item.nodeId + 'listimte: ');
-          console.log('ID del nodo clicado:', item.nodeId);
-
-
-          // Obtener el padre del nodo que ya no tiene mas hijos, el elemento padre del que depende el item que tiene el evento de click
-          if (parentNode) {
-            console.log('El padre del nodo sin hijos es:', itemPadre);
-          }
+          //alert('Nodo: ' +  itemPadre + ' ID:' + itemId);
+          console.log('ID del nodo clicado:', itemId);
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
         });
       }
@@ -145,6 +145,7 @@ export class TreeMenuComponent {
       }
 
       parentElement.appendChild(listItem);
+
     });
   }
 
