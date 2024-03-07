@@ -28,7 +28,9 @@ export class TreeMenuComponent {
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];
         let seguimientos = [];
-        let licitaciones = [];
+        let licitacionesEnEstudio = [];
+        let licitacionesGanadas = [];
+        let licitacionesPerdidas = [];
         for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
@@ -47,12 +49,34 @@ export class TreeMenuComponent {
           seguimientos.push({ nodeId: this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
         }
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
-          licitaciones.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+          console.log(this.getJsonValue[i].licitaciones)
+          switch (this.getJsonValue[i].licitaciones[j].ganada) {
+            case 0:
+              licitacionesEnEstudio.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+            case 1:
+              licitacionesGanadas.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+            case 2:
+              licitacionesPerdidas.push({ nodeId: this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+          }
+        }
+        let licitaciones = [];
+        if(licitacionesEnEstudio.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio})
+        }
+        if(licitacionesGanadas.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas})
+        }
+        if(licitacionesPerdidas.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas})
         }
         this.data.push({
           nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: "", nodeText: 'Proyectos', nodeChild: proyectos },
           { nodeId: String(i) + '', nodeText: 'Seguimientos', nodeChild: seguimientos },
-          { nodeId: String(i) + '', nodeText: 'Licitaciones', nodeChild: licitaciones }]
+          { nodeId: String(i) + '', nodeText: 'Licitaciones', nodeChild: licitaciones
+          }]
         })
 
       }
@@ -92,7 +116,6 @@ export class TreeMenuComponent {
           this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
           const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
           // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          alert(item.nodeId);
           console.log('ID del nodo clicado:', item.nodeId);
 
 
