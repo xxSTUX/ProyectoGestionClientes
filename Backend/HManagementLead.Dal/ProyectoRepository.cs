@@ -57,7 +57,7 @@ namespace HManagementLead.Dal
 
             return _context.Proyectos
                 .Where(c => c.Id == proyecto.Id)
-                .Select(ProyectoMapping.MapToProyecto(_context.Seguimientos))
+                .Select(ProyectoMapping.MapToProyecto(_context))
                 .FirstAsync();
         }
 

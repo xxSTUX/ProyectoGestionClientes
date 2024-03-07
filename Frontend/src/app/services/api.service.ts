@@ -58,4 +58,24 @@ export class ApiService {
         throw new Error(`Error! Status: ${response.status}`);
       }
   }
+  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
+    const bodyProyecto = {
+      nombre: nombre,
+      fechaCre:fechaCre,
+      observaciones:observaciones
+    };
+    console.log(bodyProyecto)
+    const response = await fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyProyecto),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
+}
 }
