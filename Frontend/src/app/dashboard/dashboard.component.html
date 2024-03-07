@@ -16,6 +16,7 @@
                               <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
                               <app-licitaciones *ngIf="getFragmentTipoNodo(fragment) === 'Licitaciones'"></app-licitaciones>
                               <app-seguimientos *ngIf="getFragmentTipoNodo(fragment) === 'Seguimientos'"></app-seguimientos>
+                              <app-tabmenu *ngIf="getFragmentTipoNodo(fragment) === 'Cliente'"></app-tabmenu>
                           </ng-container>
                         </ng-template>
                     </p-splitter>
