@@ -24,51 +24,72 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+      this.getJsonValue = data;
+      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
+        let proyectos = [];
+        let seguimientos = [];
+        let licitacionesEnEstudio = [];
+        let licitacionesGanadas = [];
+        let licitacionesPerdidas = [];
+        let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
 
-        this.getJsonValue = data;
-        for (let i = 0; i < this.getJsonValue.length; i++) { // Recorre clientes
-            let proyectos = [];
-            let seguimientos = [];
-            let licitaciones = [];
-            let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
-
-            for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { // Recorre proyectos del cliente
-                let licitacionesProyecto = [];
-                let seguimientosProyecto = [];
-                for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { // Recorre seguimientos dentro del proyecto
-                    seguimientosProyecto.push({ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
-                }
-                for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { // Recorre licitaciones dentro del proyecto
-                    licitacionesProyecto.push({ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
-                }
-                proyectos.push({
-                    nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-                    { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
-                });
-            }
-            for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
-                seguimientos.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
-            }
-            for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { // Recorre licitaciones del cliente
-                licitaciones.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
-            }
-            this.data.push({
-                nodeId: clienteId, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
-                { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
-                { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones }]
-            })
-
+        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
+          let licitacionesProyecto = [];
+          let seguimientosProyecto = [];
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
+            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+          }
+          for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
+            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+          }
+          proyectos.push({
+            nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+            { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+          });
         }
+        for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
+          seguimientos.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+      }
+        for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
+          switch (this.getJsonValue[i].licitaciones[j].ganada) {
+            case 0:
+              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+            case 1:
+              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+            case 2:
+              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              break;
+          }
+        }
+        let licitaciones = [];
+        if(licitacionesEnEstudio.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio})
+        }
+        if(licitacionesGanadas.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas})
+        }
+        if(licitacionesPerdidas.length > 0){
+          licitaciones.push({nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas})
+        }
+        this.data.push({
+          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
+          { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
+          { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
+          }]
+        })
 
-        // Clear the existing treeview content
-        const treeviewElement = document.getElementById("treeview");
+      }
+
+      // Clear the existing treeview content
+      const treeviewElement = document.getElementById("treeview");
         if (treeviewElement) {
             treeviewElement.innerHTML = "";
             this.renderBootstrapTreeView(this.data, treeviewElement);
         }
-
-        // Ocultar el elemento #loader una vez que los datos se hayan cargado
-        const loaderElement = document.getElementById("loader");
+      // Ocultar el elemento #loader una vez que los datos se hayan cargado
+     const loaderElement = document.getElementById("loader");
         if (loaderElement) {
             loaderElement.style.display = "none";
         }
@@ -130,7 +151,6 @@ private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentN
         } else {
           icon.classList.replace('bi-dash-circle', 'bi-plus-circle');
         }
-
         sublist.style.display = sublist.style.display === 'none' ? '' : 'none';
       });
 
@@ -142,12 +162,7 @@ private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentN
 
       listItem.appendChild(sublist);
     }
-
     parentElement.appendChild(listItem);
 
   });
-}
-
-
-
-}
+}}
