@@ -4,3 +4,14 @@
 .input-group-text{
     font-size: small !important;
 }
+button:hover{
+    background-color: rgb(146, 146, 255);
+    color: white !important;
+   
+}
+button{
+    box-shadow: 0 0 5px rgb(146, 146, 255);
+}
+.input-group{
+    margin: 0.8rem;
+}
