@@ -6,6 +6,16 @@
                 <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="id" readonly></textarea>
             </div>
         </div>
+        <!-- <div class="col-4">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text" aria-label="With textarea">Estado</span>
+                <select id="cars" name="cars" class="form-control no-resize col-4" aria-label="With textarea" [(ngModel)]="ganada">
+                    <option value="0">En estudio</option>
+                    <option value="1">Ganada</option>
+                    <option value="2">Perdida</option>
+                </select>
+            </div>
+        </div> -->
     </div>
     <div class="row">
         <div class="col-4">
@@ -21,9 +31,9 @@
             </div>
         </div>
     </div>
-    <div class="row my-1 pt-2">
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-block" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11 text-center"><button type="button" class="btn btn-light " (click)="create()"><a class="text-success">Crear</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light" (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
+    <div class="row my-1 ml-1 pt-2">
+        <div class="col-md-1 col-sm-3 col-xs-11"><button type="button" class="btn btn-light" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
+        <div class="col-md-1 col-sm-3 col-xs-11"><button type="button" class="btn btn-light " (click)="create()"><a class="text-success">Crear</a></button></div>
+        <div class="col-md-1 col-sm-3 col-xs-11 p-0"><button type="button" class="btn btn-light" (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
     </div>
   </body>

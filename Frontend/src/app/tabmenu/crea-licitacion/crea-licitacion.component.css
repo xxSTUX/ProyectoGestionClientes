@@ -4,13 +4,22 @@
 .input-group-text{
     font-size: small !important;
 }
-button:hover{
-    background-color: rgb(146, 146, 255);
+button:hover a{
     color: white !important;
-   
+}
+button:hover {
+    
+    background-color: rgb(6, 6, 121);
 }
 button{
-    box-shadow: 0 0 5px rgb(146, 146, 255);
+    margin: 0;
+    border-color: rgb(136, 136, 224);
+    border-width: 1px;
+    font-size: small;
+
+}
+a{
+    text-decoration: none;
 }
 .input-group{
     margin: 0.8rem;
