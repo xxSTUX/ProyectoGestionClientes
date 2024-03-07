@@ -98,8 +98,9 @@ private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentN
         let itemId = item.nodeId.toString();
         if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
           itemPadre = 'Cliente';
-          console.log('if:', itemId);
+          
           itemId = itemId.split("-")[0];
+          console.log('Id del liente:', itemId);
           alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
         }else{
           console.log('else:', itemId);
