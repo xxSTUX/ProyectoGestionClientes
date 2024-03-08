@@ -14,7 +14,7 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './crea-seguimiento.component.css'
 })
 export class CreaSeguimientoComponent {
-  id:string = '';
+  id:string = '1';
   fechaCre!: Date;
   nombre: string = '';
   observaciones: string= '';

@@ -38,13 +38,12 @@ export class ApiService {
     };
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
   }
-  async postLicitacionFromAPI(nombre:string,tipo:string,id:string,ganada:string) {
+  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,ganada:string) {
       const bodyProyecto = {
         nombre: nombre,
         tipo:tipo,
         ganada:ganada
       };
-      console.log(bodyProyecto)
       const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
@@ -52,19 +51,24 @@ export class ApiService {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(bodyProyecto),
-      });
-  
+      });  
       if (!response.ok) {
         throw new Error(`Error! Status: ${response.status}`);
       }
   }
+
   async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
+    
+    var oParser = new DOMParser();
+    var oDOM = oParser.parseFromString(observaciones, "text/html");
+    var text = oDOM.body.innerText;
+
     const bodyProyecto = {
       nombre: nombre,
+      tipo:"",
       fechaCre:fechaCre,
-      observaciones:observaciones
+      observaciones:text
     };
-    console.log(bodyProyecto)
     const response = await fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {
@@ -73,7 +77,6 @@ export class ApiService {
       },
       body: JSON.stringify(bodyProyecto),
     });
-
     if (!response.ok) {
       throw new Error(`Error! Status: ${response.status}`);
     }

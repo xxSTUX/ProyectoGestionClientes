@@ -24,26 +24,9 @@ export class CreaLicitacionComponent {
     // if (_id != null) this.id = _id;
   }
 
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '32vh',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons:[
-      [
-        'insertImage',
-        'insertVideo',
-      ]
-    ]
-  };
-
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    console.log(this.apiService.postLicitacionFromAPI(this.nombre,this.tipo,this.id,this.ganada));
+    console.log(this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.ganada));
   }
 
   public delete(){
