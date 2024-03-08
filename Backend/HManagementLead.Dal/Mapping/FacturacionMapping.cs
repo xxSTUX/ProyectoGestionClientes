@@ -26,7 +26,7 @@ namespace HManagementLead.Dal.Mapping
 
             return f => new Codigo
             {
-                Id = f.Id,
+                CodigoId = f.Id,
                 Descripcion = f.Datos
             };
         }

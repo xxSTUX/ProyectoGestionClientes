@@ -65,7 +65,7 @@ namespace HManagementLead.Dal.Mapping
             
             return p => new Codigo
             {
-                Id = p.Id,
+                CodigoId = p.Id,
                 Descripcion = p.Nombre,
             };
         }
@@ -75,7 +75,7 @@ namespace HManagementLead.Dal.Mapping
         {
             return p => new Codigo
             {
-                Id = p.Id,
+                CodigoId = p.Id,
                 Descripcion = p.Nombre,
             };
         }
@@ -85,7 +85,7 @@ namespace HManagementLead.Dal.Mapping
 
             return p => new Codigo
             {
-                Id = p.Id,
+                CodigoId = p.Id,
                 Descripcion = p.Nombre,
             };
         }

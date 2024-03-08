@@ -33,6 +33,14 @@ namespace HManagementLead.Dal
             return cliente;
         }
 
+        public async Task<List<Codigo>> GetAllClientesAsyncToCodigo()
+        {
+            //if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            //await _context.SaveChangesAsync();
+            var codigo = await _context.Clientes.Select(ClienteMapping.MapClienteToCodigo()).ToListAsync();
+            return codigo;
+        }
+
         public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta
         {
             var nuevoCliente = new Cliente(cliente);
