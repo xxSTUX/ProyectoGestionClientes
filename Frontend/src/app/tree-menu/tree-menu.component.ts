@@ -56,7 +56,7 @@ export class TreeMenuComponent {
         })
 
       }
-
+      console.log("Hola gianfranco");
       // Clear the existing treeview content
       const treeviewElement = document.getElementById("treeview");
       if (treeviewElement) {
@@ -77,12 +77,21 @@ export class TreeMenuComponent {
 
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
-      this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
+      //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
       const icon = document.createElement("i");
+      let nodePath = "";
 
+      if (!parentNode) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
+        item.textContent ="Cliente/" + item.nodeText;
+      }
+      else{ //Si 
+        item.textContent = parentNode.textContent + "/" + item.nodeText; // Concatenar el nombre del padre a la ruta
+      }
+      
       if (item.nodeChild && item.nodeChild.length > 0) {
+        
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
       } else {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
@@ -106,6 +115,14 @@ export class TreeMenuComponent {
       listItem.appendChild(icon);
       const textSpan = document.createElement("span");
       textSpan.textContent = item.nodeText;
+      
+
+      textSpan.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
+        event.stopPropagation();
+      
+        const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
+        window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
+      }); //Hasta aqui 
 
       listItem.appendChild(icon);
       listItem.appendChild(textSpan);
