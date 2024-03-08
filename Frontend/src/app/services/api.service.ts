@@ -30,13 +30,23 @@ export class ApiService {
     };
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyCliente);
   }
-  postProyectosFromAPI(id:number, nombre:String, tipo:String): Observable<any> {
+  async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:String) {
     const bodyProyecto = {
-      id:id,
       nombre: nombre,
+      estado:estado,
       tipo:tipo
     };
-    return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
+    const response = await fetch('https://localhost:7075/api/Cliente/InsertProyecto/'+ id, {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyProyecto),
+    });  
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
   }
   async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,ganada:string) {
       const bodyProyecto = {
