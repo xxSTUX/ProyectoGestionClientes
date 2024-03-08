@@ -24,3 +24,7 @@ a{
 .input-group{
     margin: 0.8rem;
 }
+.mylabel{
+    background-color: rgb(16, 45, 139);
+    color: white;
+}

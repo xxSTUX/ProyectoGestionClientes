@@ -20,3 +20,8 @@
 .button .btn-label {
     margin-right: 0.3rem;
 }
+
+.mylabel{
+    background-color: rgb(16, 45, 139);
+    color: white;
+}
