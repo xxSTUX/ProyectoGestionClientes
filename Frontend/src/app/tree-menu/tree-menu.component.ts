@@ -110,43 +110,46 @@ export class TreeMenuComponent {
       if (!parentNode) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
         item.textContent ="Cliente/" + item.nodeText;
       }
-      else{ //Si 
+      else{ //Si
         item.textContent = parentNode.textContent + "/" + item.nodeText; // Concatenar el nombre del padre a la ruta
       }
-      
+
       if (item.nodeChild && item.nodeChild.length > 0) {
-        
+
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
+        listItem.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
+          event.stopPropagation();
+
+          this.location.go(this.location.path() + '#' + item.textContent); // Cambiamos la ruta parentNode.Text + "/" +
+          //window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
+        }); //Hasta aqui
       } else {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
           // Obtener el padre
-          this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
-          const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
-          // Aquí puedes añadir la lógica para mostrar el nuevo componente
-          alert(item.nodeId);
-          console.log('ID del nodo clicado:', item.nodeId);
-
-
-          // Obtener el padre del nodo que ya no tiene mas hijos, el elemento padre del que depende el item que tiene el evento de click
-          if (parentNode) {
-            console.log('El padre del nodo sin hijos es:', parentNode.nodeText);
+          //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien si no es ninguno de estos buscar el cliente
+          let itemPadre = parentNode.nodeText;
+          let itemId = item.nodeId.toString();
+          if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
+            itemPadre = 'Cliente';
+            itemId = itemId.split("-")[0];
+            alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
+          }else{
+            console.log('else:', itemId);
+            itemId = itemId.split("-")[1];
           }
+          this.location.go(this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Cambiamos la ruta parentNode.Text + "/" +
+          const newPath = (this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Actualizamos la ruta en consecuencia al nombre
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
         });
       }
       listItem.appendChild(icon);
       const textSpan = document.createElement("span");
       textSpan.textContent = item.nodeText;
-      
 
-      textSpan.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
-        event.stopPropagation();
-      
-        const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
-        window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
-      }); //Hasta aqui 
+
+
 
       listItem.appendChild(icon);
       listItem.appendChild(textSpan);

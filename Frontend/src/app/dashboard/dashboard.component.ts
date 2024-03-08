@@ -52,8 +52,22 @@ updateFragmentObservable(): void {
     });
 }
 getFragmentTipoNodo(fragment: string): string {
-  const fragmentType = fragment.split('=')[0];
-  return fragmentType;
+
+  const fragmentType = fragment;
+
+// Buscar la parte deseada de la URL usando una expresión regular
+const regex = /#\/([^=]+)=/; // Captura todo lo que está entre '#/' y '='
+const match = fragmentType.match(regex);
+let fragResultado = "";
+
+if (match && match.length > 1) {
+    const fragmet = match[1];
+    fragResultado = fragment;
+    console.log("fragmet a pasar:", fragmet);
+} else {
+    console.error("Error al obtener elfragmet");
+}
+  return fragResultado;
 }
 
 }

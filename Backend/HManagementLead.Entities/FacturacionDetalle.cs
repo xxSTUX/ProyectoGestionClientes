@@ -9,7 +9,7 @@ namespace HManagementLead.Entities
 {
     public class FacturacionDetalle
     {
-        [JsonIgnore]
+        
         public int Id { get; set; }
         public string Datos { get; set; } = null!;
     }
