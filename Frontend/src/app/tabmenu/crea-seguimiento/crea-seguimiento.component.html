@@ -14,42 +14,20 @@
                 <!-- <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="fechaCre" readonly></textarea> -->
             </div>
         </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">F.Mod</span>
-                <input type="date" id="start" name="trip-start" [(ngModel)]="fechaMod" />
-                <!-- <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="fechaMod" readonly></textarea> -->
-            </div>
-        </div>
     </div>
     <div class="row my-3">
         <div class="col">
-        </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">Usuario</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;"
-                    [(ngModel)]="usuario" readonly></textarea>
-            </div>
-        </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">Usuario Mod</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;"
-                    [(ngModel)]="usuarioMod" readonly></textarea>
-            </div>
         </div>
     </div>
     <div class="row my-3">
         <div class="col">
             <div class="input-group input-group-sm">
                 <span class="input-group-text">Nombre</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;"
-                    [(ngModel)]="nombre"></textarea>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="nombre"></textarea>
             </div>
         </div>
     </div>
-    <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="texto"></angular-editor>
+    <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="observaciones"></angular-editor>
     <button type="button" class="button btn btn-labeled btn-light float-right" (click)="cancel()">
         <span class="btn-label"><i class="bi bi-backspace-fill "></i></span>Cancelar</button>
         

@@ -8,26 +8,28 @@ namespace HManagementLead.Dal.Mapping
 {
     public static class ClienteMapping
     {
-        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(DbSet<Seguimiento> seguimientos, DbSet<Licitacion> licitaciones)
+        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto(ApplicationDbContext dbContext)
         {
 
             return c => new ClienteDetalle
             {
                 Id = c.Id,
                 Nombre = c.Nombre,
-                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(seguimientos, licitaciones)).ToList(),
+                Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto(dbContext)).ToList(),
                 Seguimientos = (from cs in c.SeguimientosClientes
                 // Proyectos = c.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
                 // Seguimientos = (from cs in c.SeguimientosClientes 
-                                      join s in seguimientos
+                                      join s in dbContext.Seguimientos
                                       on cs.SeguimientoId equals s.Id
                                       select new SeguimientoDetalle
                                       {
                                           Id = s.Id,
                                           Nombre = s.Nombre,
+                                          Fecha = s.Fecha,
+                                          Observaciones = s.Observaciones,
                                       }).ToList(),
                 Licitaciones = (from cl in c.LicitacionesClientes
-                                join l in licitaciones
+                                join l in dbContext.Licitaciones
                                 on cl.LicitacionId equals l.Id
                                 select new LicitacionDetalle
                                 {
