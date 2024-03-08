@@ -24,12 +24,13 @@ export class ApiService {
   }
 
    
-  postClientesFromAPI(nombre:String): Observable<any> {
+  postClientesFromAPI(nombre:number): Observable<any> {
     const bodyCliente = {
       nombre: nombre
     };
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyCliente);
   }
+
   postProyectosFromAPI(id:number, nombre:String, tipo:String): Observable<any> {
     const bodyProyecto = {
       id:id,
@@ -57,4 +58,17 @@ export class ApiService {
         throw new Error(`Error! Status: ${response.status}`);
       }
   }
+
+  putClienteFromAPI(id: number, nombre: string): Observable<any> {
+    const bodyCliente = {
+      nombre: nombre,
+    };
+  
+    return this.http.put<any>('https://localhost:7075/api/proyecto/${id}', bodyCliente);
+  }
+
+  deleteClientFromAPI(id: number): Observable<any> {
+    return this.http.delete<any>(`https://localhost:7075/api/cliente/${{id}}`);
+  }
+  
 }

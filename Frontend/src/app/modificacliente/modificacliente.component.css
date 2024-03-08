@@ -1,0 +1,11 @@
+.no-resize{
+  resize: none;
+}
+  
+.toast-container {
+  /* Assuming this is the parent container you want centered */
+  position: absolute; /* Remove from parent flow */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center horizontally & vertically */
+}

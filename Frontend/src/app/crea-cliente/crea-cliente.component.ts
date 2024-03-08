@@ -17,13 +17,13 @@ export class CreaClienteComponent {
 
     creaClienteForm: FormGroup;
 
-    constructor(private fb: FormBuilder,private http: HttpClient, private router: Router) {
+    constructor(private fb: FormBuilder, private http: HttpClient, private router: Router) {
         this.creaClienteForm = this.fb.group({
             nombreCliente: ['', Validators.required],
-          });
+        });
     }
 
-    creaCliente(){
+    creaCliente() {
 
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
 
@@ -31,12 +31,14 @@ export class CreaClienteComponent {
             nombre: nombreCliente,
         }
 
-        alert("Se va a crear el cliente: "+nombreCliente);
-        this.http.post("https://localhost:7075/api/cliente", body).subscribe((response) => {
-        // La respuesta se recibe aquí
-            console.log(response);
-        });
-        console.log("Se deberia haber creado un nuevo cliente");
-        this.router.navigate(['dashboard']);
+        this.http.post("https://localhost:7075/api/cliente", body).subscribe(
+            (response) => {
+                console.log(response); // Muestra la respuesta en la consola del navegador
+                // Aquí puedes realizar cualquier otra acción que necesites con la respuesta
+            },
+            (error) => {
+                console.error(error); // En caso de que haya un error en la solicitud
+            }
+        );
     }
 }

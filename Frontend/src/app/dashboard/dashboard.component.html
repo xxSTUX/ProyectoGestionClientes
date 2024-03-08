@@ -16,6 +16,7 @@
                                 <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
                                       <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
                                       <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
+                                      <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
                                     </div>
                         </ng-template>
                     </p-splitter>
