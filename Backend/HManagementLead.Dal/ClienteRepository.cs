@@ -21,7 +21,7 @@ namespace HManagementLead.Dal
         {
             return await _context.Clientes
                 .Where(c => c.Id == id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos, _context.Licitaciones))
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
         }
 
@@ -29,8 +29,16 @@ namespace HManagementLead.Dal
         {
             if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
             await _context.SaveChangesAsync();
-            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context.Seguimientos, _context.Licitaciones)).ToListAsync();
+            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
             return cliente;
+        }
+
+        public async Task<List<Codigo>> GetAllClientesAsyncToCodigo()
+        {
+            //if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            //await _context.SaveChangesAsync();
+            var codigo = await _context.Clientes.Select(ClienteMapping.MapClienteToCodigo()).ToListAsync();
+            return codigo;
         }
 
         public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta

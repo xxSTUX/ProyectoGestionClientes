@@ -12,6 +12,7 @@ import { LicitacionesComponent } from './child/licitaciones/licitaciones.compone
 import { SeguimientosComponent } from './child/seguimientos/seguimientos.component';
 import { NgModule } from '@angular/core';
 import { CreaClienteComponent } from './crea-cliente/crea-cliente.component';
+import { CreaProyectoComponent } from './crea-proyecto/crea-proyecto.component';
 
 
 export const routes: Routes = [
@@ -24,10 +25,11 @@ export const routes: Routes = [
     { path: "reestablish", component: ReestablishComponent, pathMatch: "full" },
     { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
     { path: "datatable", component: DatatableComponent, pathMatch: "full" },
+    { path: "creaproyecto",component:CreaProyectoComponent, pathMatch: "full" },
     { path: "creacliente", component: CreaClienteComponent, pathMatch: "full" },
     { path: 'licitaciones', component: LicitacionesComponent,  },
     { path: 'seguimientos', component: SeguimientosComponent,  },
-    { path: ':nodeName', component: ChildComponent },
+    { path: ':nodeName', component: ChildComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

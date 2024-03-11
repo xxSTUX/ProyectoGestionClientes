@@ -1,12 +1,12 @@
 ﻿using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HManagementLead.Data;
 
 public partial class Cliente
 {
     public int Id { get; set; }
-
     public string Nombre { get; set; } = null!;
 
     public virtual ICollection<Proyecto> Proyectos { get; set; } = new List<Proyecto>();
