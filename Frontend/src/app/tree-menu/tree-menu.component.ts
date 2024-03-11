@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
-  selector: 'app-tree-menu',
-  standalone: true,
-  imports: [HttpClientModule],
-  templateUrl: './tree-menu.component.html',
-  styleUrl: './tree-menu.component.css',
+    selector: 'app-tree-menu',
+    standalone: true,
+    templateUrl: './tree-menu.component.html',
+    styleUrl: './tree-menu.component.css',
+    imports: [HttpClientModule, LoadingComponent]
 })
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];

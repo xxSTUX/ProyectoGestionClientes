@@ -12,6 +12,7 @@ import { LicitacionesComponent } from "../child/licitaciones/licitaciones.compon
 import { SeguimientosComponent } from "../child/seguimientos/seguimientos.component";
 import { Observable } from 'rxjs';
 import { SplitterModule } from "primeng/splitter";
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
@@ -19,7 +20,7 @@ import { SplitterModule } from "primeng/splitter";
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent]
 })
 export class DashboardComponent implements OnInit {
 
