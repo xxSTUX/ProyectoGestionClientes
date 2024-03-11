@@ -1,26 +1,27 @@
-import { Component, Inject, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
-import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
-import { NgModule } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ApiService } from '../services/api.service';
 import * as bootstrap from 'bootstrap';
 import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
 import { AniadecontactoComponent } from "../aniadecontacto/aniadecontacto.component";
+import { CommonModule } from '@angular/common';
+import { Observable, map } from 'rxjs';
 
 interface Elemento{
   id: any;
   click: boolean;
   nombre: string;
+  deleted:boolean;
 }
 
 @Component({
-    selector: 'app-modificacliente',
-    standalone: true,
-    templateUrl: './modificacliente.component.html',
-    styleUrl: './modificacliente.component.css',
-    imports: [AngularEditorModule, FormsModule, HttpClientModule, CreaClienteComponent, AniadecontactoComponent]
+  selector: 'app-modificacliente',
+  standalone: true,
+  templateUrl: './modificacliente.component.html',
+  styleUrls: ['./modificacliente.component.css'],
+  imports: [AngularEditorModule, FormsModule, HttpClientModule, CreaClienteComponent, AniadecontactoComponent, CommonModule]
 })
 
 export class ModificaclienteComponent {
@@ -35,13 +36,10 @@ export class ModificaclienteComponent {
     delay:2000
   }
 
-  contactos=[{click: true, nombre:'marrakech', id:1}, {click: false, nombre:'federicou', id:2}, {click: true, nombre:'andaneelmacnifico', id:3}, {click: true, nombre:'marrakech', id:1}, {click: false, nombre:'federicou', id:2}, {click: true, nombre:'andaneelmacnifico', id:3}];
-
-  proyectos=[{click: true, nombre:'proyecto1', id:1}, {click: false, nombre:'proyecto2', id:2}];
-
-  licitaciones=[{click: true, nombre:'licitacion1', id:1}, {click: false, nombre:'licitacion2', id:2}];
-
-  seguimientos=[{click: true, nombre:'seguimiento1', id:1}, {click: false, nombre:'seguimiento2', id:2}];
+  contactos: Observable<any> | undefined;
+  proyectos: Observable<any> | undefined;
+  licitaciones: Observable<any> | undefined;
+  seguimientos: Observable<any> | undefined;
 
   creatabla(nombreelemento: string, elementos: Elemento[]) {
     const tabla = document.getElementById(nombreelemento);
@@ -53,44 +51,115 @@ export class ModificaclienteComponent {
         checkbox.type = 'checkbox';
         checkbox.checked = elemento.click;
         tdCheckbox.appendChild(checkbox);
-  
+
         const tdNombre = document.createElement('td');
         tdNombre.textContent = elemento.nombre;
-  
+
         const tdBotones = document.createElement('td');
         const botonModificar = document.createElement('button');
         botonModificar.textContent = 'Modificar';
         botonModificar.addEventListener('click', () => this.modifica(elemento.id));
         const botonEliminar = document.createElement('button');
         botonEliminar.textContent = 'Eliminar';
-        botonEliminar.addEventListener('click', () => this.eliminar(elemento.id));
-  
+        botonEliminar.addEventListener('click', () => this.eliminar());
+
         tdBotones.appendChild(botonModificar);
         tdBotones.appendChild(botonEliminar);
-  
+
         tr.appendChild(tdCheckbox);
         tr.appendChild(tdNombre);
         tr.appendChild(tdBotones);
-  
+
         tabla.appendChild(tr);
       }
     }
   }
-  
-  modifica(id: number) {
-    alert("Se va a modificar el id: "+ id);
+
+  async modifica(id: number) {
+    const contacto = await this.apiService.getContactoById(id).toPromise();
+    if (contacto) {
+      // Mostrar el popup con los datos del contacto
+      // Puedes usar un modal o cualquier otra forma de mostrar la información del contacto
+      alert(`ID: ${contacto.id}
+      Cargo: ${contacto.cargo}
+      Email: ${contacto.email}
+      Teléfono: ${contacto.telefono}`);
+
+      // Código para editar los datos del contacto
+      const cargoEditado = prompt("Introduce el nuevo cargo:", contacto.cargo);
+      const emailEditado = prompt("Introduce el nuevo email:", contacto.email);
+      const telefonoEditado = prompt("Introduce el nuevo teléfono:", contacto.telefono);
+
+      // Actualizar la información del contacto
+      const updatedContact = {
+        cargo: cargoEditado ? cargoEditado : contacto.cargo,
+        email: emailEditado ? emailEditado : contacto.email,
+        telefono: telefonoEditado ? telefonoEditado : contacto.telefono,
+      };
+
+      await this.apiService.putContactoFromAPI(id, updatedContact).toPromise();
+
+      alert("Contacto actualizado correctamente");
+    } else {
+      alert("No se ha encontrado el contacto con ID " + id);
+    }
   }
+
+  async eliminar() {
+    // Recorrer todos los contactos
+    this.contactos?.forEach(contacto => {
+      // Si el contacto está seleccionado, marcarlo como eliminado
+      if (contacto.click) {
+        contacto.deleted = true;
+      }
+    });
   
-  eliminar(id: number) {
-    alert("Se va a eliminar el id: " + id);
+    alert("Contactos marcados como eliminados correctamente");
   }
   
 
-  ngOnInit(){
-    this.creatabla('bodytable-contactos', this.contactos);
-    this.creatabla('bodytable-proyectos', this.proyectos);
-    this.creatabla('bodytable-licitaciones', this.licitaciones);
-    this.creatabla('bodytable-seguimientos', this.seguimientos);
+  toggleTodos(event: any) {
+    let isChecked = event.target.checked;
+    this.contactos?.forEach(contacto => contacto.click = isChecked);
+  }
+  
+  hayContactosSeleccionados(): Observable<boolean> | undefined {
+    return this.contactos?.pipe(
+      map((contactos: Elemento[]) => {
+        let haySeleccionados = contactos.some(contacto => contacto.click);
+        console.log('hayContactosSeleccionados:', haySeleccionados);
+        return haySeleccionados;
+      })
+    );
+  }   
+   
+
+  ngOnInit() {
+    // **Llamada a la API solo una vez**
+    this.contactos = this.apiService.getDataContactosFromAPI().pipe(
+      map(contactos => contactos.filter((contacto: Elemento) => {
+        return !contacto.deleted && typeof contacto === 'object';
+      }))
+    );    
+    this.proyectos = this.apiService.getDataProyectosFromAPI();
+    this.licitaciones = this.apiService.getDataLicitacionesFromAPI();
+    this.seguimientos = this.apiService.getDataSeguimientosFromAPI();
+
+    this.contactos.subscribe((data) => {
+      this.creatabla('bodytable-contactos', data);
+    });
+
+    this.proyectos.subscribe((data) => {
+      this.creatabla('bodytable-proyectos', data);
+    });
+
+    this.licitaciones.subscribe((data) => {
+      this.creatabla('bodytable-licitaciones', data);
+    });
+
+    this.seguimientos.subscribe((data) => {
+      this.creatabla('bodytable-seguimientos', data);
+    });
   }
 
   updateClient(){

@@ -15,9 +15,9 @@ namespace HManagementLead.Dal
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
 
-        public async Task<List<Codigo>> GetAllContactoAsync()
+        public async Task<List<ContactoDetalle>> GetAllContactoAsync()
         {
-            return await _context.Contactos.Select(ContactoMapping.MapContactoToCodigo()).ToListAsync();
+            return await _context.Contactos.Select(ContactoMapping.MapToContacto()).ToListAsync();
 
         }
 

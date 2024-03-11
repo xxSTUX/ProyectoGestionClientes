@@ -20,7 +20,13 @@ export class ApiService {
     return this.http.get<any>('https://localhost:7075/api/licitacion');
   }
   getDataSeguimientosFromAPI(): Observable<any> {
-    return this.http.get<any>('"https://localhost:7075/api/seguimineto');
+    return this.http.get<any>('https://localhost:7075/api/seguimineto');
+  }
+  getDataContactosFromAPI():Observable<any> {
+    return this.http.get<any>('https://localhost:7075/api/contacto');
+  }
+  getContactoById(id: number):Observable<any> {
+    return this.http.get<any>(`https://localhost:7075/api/contacto/${id}`);
   }
 
    
@@ -69,6 +75,16 @@ export class ApiService {
 
   deleteClientFromAPI(id: number): Observable<any> {
     return this.http.delete<any>(`https://localhost:7075/api/cliente/${{id}}`);
+  }
+
+  putContactoFromAPI(id: number, updatedContact: any): Observable<any> {
+    const bodyContacto = {
+      cargo: updatedContact.cargo,
+      email: updatedContact.email,
+      telefono: updatedContact.telefono,
+    };
+  
+    return this.http.put<any>(`https://localhost:7075/api/contacto/${id}`, bodyContacto);
   }
   
 }

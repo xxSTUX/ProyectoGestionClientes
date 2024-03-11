@@ -27,6 +27,30 @@
         </div>
         <div class="row">
             <div class="col-4">
+                <!-- CARD contactos -->
+                <div class="card">
+                    <div class="card__descr-wrapper">
+                        <p class="card__title">
+                            <input type="checkbox" (change)="toggleTodos($event)"> Contactos
+                        </p>
+                        <div class="card__descr">
+                            <table class="" id="tablacontactos">
+                                <tbody>
+                                    <ng-container *ngFor="let contacto of contactos | async">
+                                        <tr *ngIf="!contacto.deleted">
+                                            <td><input type="checkbox" [(ngModel)]="contacto.click"></td>
+                                            <td class="clickeable" (click)="modifica(contacto.id)">{{contacto.cargo}}</td>
+                                        </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                            <button *ngIf="(hayContactosSeleccionados() | async)" (click)="eliminar()">Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="row my-1">
                     <div class="col-4">Contactos</div>
                     <div class="col-6"><button class="btn btn-primary btn-sm" (click)="toasty()">Añadir</button></div>
