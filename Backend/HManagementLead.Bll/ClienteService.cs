@@ -8,8 +8,8 @@ namespace HManagementLead.Bll
     public class ClienteService : IClienteService
     {
         private readonly IClienteRepository _repository;
-        public ClienteService(IClienteRepository repository) 
-        { 
+        public ClienteService(IClienteRepository repository)
+        {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
@@ -21,6 +21,11 @@ namespace HManagementLead.Bll
         public Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
             var resultado = _repository.GetAllClientesAsync();
+            return resultado;
+        }
+
+        public Task<List<ClienteBasicCompleto>> GetAllClientesBasicCompletoAsync(){
+            var resultado = _repository.GetAllClientesBasicCompletoAsync();
             return resultado;
         }
 

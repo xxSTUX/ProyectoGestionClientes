@@ -9,6 +9,8 @@ namespace HManagementLead.Bll.Interfaces
 
         Task<ClienteBasicCompleto> GetClienteBasicCompletoByIdAsync(int id);
 
+        Task<List<ClienteBasicCompleto>> GetAllClientesBasicCompletoAsync();
+
         Task<List<ClienteDetalle>> GetAllClientesAsync();
 
         Task<int> InsertClienteAsync(ClienteDetalle cliente);

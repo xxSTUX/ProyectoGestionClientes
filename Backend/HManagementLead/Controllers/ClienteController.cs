@@ -69,6 +69,22 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+        [HttpGet("Basic/Completos")]
+        public async Task<IActionResult> GetBasic2()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesBasicCompletoAsync();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
+
         [HttpGet("Basic/Completo/{id}")]
         public async Task<IActionResult> GetBasic(int id)
         {

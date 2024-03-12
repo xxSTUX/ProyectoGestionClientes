@@ -41,6 +41,12 @@ namespace HManagementLead.Dal
             return cliente;
         }
 
+        public async Task<List<ClienteBasicCompleto>> GetAllClientesBasicCompletoAsync()
+        {
+            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).ToListAsync();
+            return cliente;
+        }
+
 
         public async Task<List<ClienteBasic>> GetAllClientesBasicAsync() {
             var cliente = await _context.Clientes
