@@ -4,6 +4,7 @@ using HManagementLead.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HManagementLead.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240308113122_NuevosAtributos")]
+    partial class NuevosAtributos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -37,23 +40,6 @@ namespace HManagementLead.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Clientes");
-                });
-
-            modelBuilder.Entity("HManagementLead.Data.Enitites.ClienteBasic", b =>
-                {
-                    b.Property<int>("ClienteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ClienteId");
-
-                    b.ToTable("ClienteBasic");
                 });
 
             modelBuilder.Entity("HManagementLead.Data.Enitites.Contacto", b =>
@@ -167,23 +153,6 @@ namespace HManagementLead.Data.Migrations
                     b.ToTable("Licitaciones");
                 });
 
-            modelBuilder.Entity("HManagementLead.Data.Enitites.LicitacionBasic", b =>
-                {
-                    b.Property<int>("LicitacionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("LicitacionId"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("LicitacionId");
-
-                    b.ToTable("LicitacionBasic");
-                });
-
             modelBuilder.Entity("HManagementLead.Data.Enitites.LicitacionCliente", b =>
                 {
                     b.Property<int>("ClienteId")
@@ -212,23 +181,6 @@ namespace HManagementLead.Data.Migrations
                     b.HasIndex("LicitacionId");
 
                     b.ToTable("LicitacionProyecto");
-                });
-
-            modelBuilder.Entity("HManagementLead.Data.Enitites.ProyectoBasic", b =>
-                {
-                    b.Property<int>("ProyectoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProyectoId"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ProyectoId");
-
-                    b.ToTable("ProyectoBasic");
                 });
 
             modelBuilder.Entity("HManagementLead.Data.Enitites.ProyectoContacto", b =>
@@ -319,23 +271,6 @@ namespace HManagementLead.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Seguimientos");
-                });
-
-            modelBuilder.Entity("HManagementLead.Data.Enitites.SeguimientoBasic", b =>
-                {
-                    b.Property<int>("SeguimientoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SeguimientoId"));
-
-                    b.Property<string>("Nombre")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SeguimientoId");
-
-                    b.ToTable("SeguimientoBasic");
                 });
 
             modelBuilder.Entity("HManagementLead.Data.Enitites.SeguimientoCliente", b =>

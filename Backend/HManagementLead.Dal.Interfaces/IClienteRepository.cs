@@ -1,10 +1,12 @@
-﻿using HManagementLead.Entities;
+﻿using HManagementLead.Data.Enitites;
+using HManagementLead.Entities;
 
 namespace HManagementLead.Dal.Interfaces
 {
     public  interface IClienteRepository
     {
         Task<ClienteDetalle> GetClienteByIdAsync(int id);
+        Task<ClienteBasicCompleto> GetClienteBasicCompletoByIdAsync(int id);
 
         Task<List<ClienteDetalle>> GetAllClientesAsync();
 
@@ -20,5 +22,7 @@ namespace HManagementLead.Dal.Interfaces
 
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
+        Task<List<ClienteBasic>> GetAllClientesBasicAsync();
+
     }
 }

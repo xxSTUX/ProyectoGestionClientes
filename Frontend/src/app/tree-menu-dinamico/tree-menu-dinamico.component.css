@@ -1,0 +1,47 @@
+#loader {
+    display: block;
+  }
+   
+  .tree {
+    border-radius: 0.4rem;
+    top: 0;
+    padding-top: 1rem;
+    padding-right: 40px;
+    margin-right: 0;
+    background-color: hsl(218, 41%, 15%);
+    background-image: radial-gradient(650px circle at 0% 0%,
+        hsl(218, 41%, 35%) 15%,
+        hsl(218, 41%, 30%) 35%,
+        hsl(218, 41%, 20%) 75%,
+        hsl(218, 41%, 19%) 80%,
+        transparent 100%),
+      radial-gradient(1250px circle at 100% 100%,
+        hsl(218, 41%, 45%) 15%,
+        hsl(218, 41%, 30%) 35%,
+        hsl(218, 41%, 20%) 75%,
+        hsl(218, 41%, 19%) 80%,
+        transparent 100%);
+    box-sizing: border-box;
+    overflow-y: auto;
+    height: calc(100vh - 3.875rem);
+    font-size: small;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 1.2rem;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+  }

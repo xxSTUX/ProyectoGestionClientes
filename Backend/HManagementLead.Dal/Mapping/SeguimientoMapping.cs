@@ -38,5 +38,14 @@ namespace HManagementLead.Dal.Mapping
                 Descripcion = p.Nombre,
             };
         }
+        public static Expression<Func<Cliente, SeguimientoBasic>> MapSeguimientoToSeguimientoBasic()
+        {
+
+            return p => new SeguimientoBasic
+            {
+                SeguimientoId = p.Id,
+                Nombre = p.Nombre,
+            };
+        }
     }
 }

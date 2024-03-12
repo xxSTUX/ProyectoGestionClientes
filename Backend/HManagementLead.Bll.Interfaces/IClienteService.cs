@@ -1,10 +1,13 @@
-﻿using HManagementLead.Entities;
+﻿using HManagementLead.Data.Enitites;
+using HManagementLead.Entities;
 
 namespace HManagementLead.Bll.Interfaces
 {
     public interface IClienteService
     {
         Task<ClienteDetalle> GetClienteByIdAsync(int id);
+
+        Task<ClienteBasicCompleto> GetClienteBasicCompletoByIdAsync(int id);
 
         Task<List<ClienteDetalle>> GetAllClientesAsync();
 
@@ -21,6 +24,8 @@ namespace HManagementLead.Bll.Interfaces
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
 
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
+
+        Task<List<ClienteBasic>> GetAllClientesBasicAsync();
 
 
     }

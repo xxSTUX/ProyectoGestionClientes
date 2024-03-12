@@ -37,6 +37,7 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
         [HttpGet("Codigo")]
         public async Task<IActionResult> GetCodigo()
         {
@@ -45,7 +46,38 @@ namespace HManagementLead.Controllers
                 var resultado = await _clienteService.GetAllClientesAsyncToCodigo();
 
                 return Ok(resultado);
-    }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
+
+        [HttpGet("Basic")]
+        public async Task<IActionResult> GetBasic()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesBasicAsync();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
+        [HttpGet("Basic/Completo/{id}")]
+        public async Task<IActionResult> GetBasic(int id)
+        {
+            try
+            {
+                var resultado = await _clienteService.GetClienteBasicCompletoByIdAsync(id);
+
+                return Ok(resultado);
+            }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
@@ -54,6 +86,24 @@ namespace HManagementLead.Controllers
         }
 
         // GET api/<ClienteController>/5
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(int id)
+        //    {
+        //        try
+        //        {
+        //            var resultado = await _clienteService.GetClienteByIdAsync(id);
+
+        //            return Ok(resultado);
+        //}
+        //        catch (Exception ex)
+        //        {
+        //            _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+        //            throw;
+        //        }
+        //    }
+
+
+
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
@@ -69,6 +119,12 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
+
+
+
+
+
 
         // POST api/<ClienteController>
         [HttpPost]

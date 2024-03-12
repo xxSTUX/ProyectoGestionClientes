@@ -39,6 +39,12 @@ public partial class ApplicationDbContext : DbContext
     public DbSet<SeguimientoCliente> SeguimientoCliente => Set<SeguimientoCliente>();
     public DbSet<SeguimientoProyecto> SeguimientoProyecto => Set<SeguimientoProyecto>();
 
+    //Tablas carga treemap
+    public DbSet<ClienteBasic> ClienteBasic => Set<ClienteBasic>();
+    public DbSet<SeguimientoBasic> SeguimientoBasic => Set<SeguimientoBasic>();
+    public DbSet<ProyectoBasic> ProyectoBasic => Set<ProyectoBasic>();
+    public DbSet<LicitacionBasic> LicitacionBasic => Set<LicitacionBasic>();
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured) return;

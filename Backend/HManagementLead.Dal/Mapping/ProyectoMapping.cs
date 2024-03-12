@@ -26,6 +26,32 @@ namespace HManagementLead.Dal.Mapping;
             };   
         }
 
+    public static Expression<Func<Proyecto, ProyectoBasic>> MapToProyectoBasic(ApplicationDbContext dbContext)
+    {
+
+        return p => new ProyectoBasic
+        {
+            ProyectoId = p.Id,
+            Nombre = p.Nombre,
+            Seguimientos = (from cs in p.SeguimientosProyectos
+                            join s in dbContext.Seguimientos
+                            on cs.SeguimientoId equals s.Id
+                            select new SeguimientoBasic
+                            {
+                                SeguimientoId = s.Id,
+                                Nombre = s.Nombre,
+                            }).ToList(),
+            Licitaciones = (from cl in p.LicitacionesProyectos
+                            join l in dbContext.Licitaciones
+                            on cl.LicitacionId equals l.Id
+                            select new LicitacionBasic
+                            {
+                                LicitacionId = l.Id,
+                                Nombre = l.Nombre,
+                            }).ToList()
+        };
+    }
+
     public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(DbSet<Seguimiento> seguimientos, DbSet<Licitacion> licitaciones) //Igual que la funcion de arriba pero pasandole las licitaciones tambien
     {
 
@@ -94,6 +120,16 @@ namespace HManagementLead.Dal.Mapping;
                 IdModelo = p.SeguimientoId,
             };
         }
+        public static Expression<Func<Cliente, ProyectoBasic>> MapProyectoToProyectoBasic()
+        {
+
+            return p => new ProyectoBasic
+            {
+                ProyectoId = p.Id,
+                Nombre = p.Nombre,
+            };
+        }
+
 
 
 }

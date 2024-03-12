@@ -1,5 +1,6 @@
 ﻿using HManagementLead.Bll.Interfaces;
 using HManagementLead.Dal.Interfaces;
+using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
 
 namespace HManagementLead.Bll
@@ -26,6 +27,11 @@ namespace HManagementLead.Bll
         public Task<ClienteDetalle> GetClienteByIdAsync(int id)
         {
             return _repository.GetClienteByIdAsync(id);
+        }
+
+        public Task<ClienteBasicCompleto> GetClienteBasicCompletoByIdAsync(int id)
+        {
+            return _repository.GetClienteBasicCompletoByIdAsync(id);
         }
 
         public Task<int> InsertClienteAsync(ClienteDetalle cliente)
@@ -55,6 +61,11 @@ namespace HManagementLead.Bll
 
         public Task<List<Codigo>> GetAllClientesAsyncToCodigo() {
             return _repository.GetAllClientesAsyncToCodigo();
+        }
+
+        public Task<List<ClienteBasic>> GetAllClientesBasicAsync()
+        {
+            return _repository.GetAllClientesBasicAsync();
         }
     }
 }

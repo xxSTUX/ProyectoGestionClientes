@@ -38,5 +38,14 @@ namespace HManagementLead.Dal.Mapping
                 Descripcion = p.Nombre,
             };
         }
+        public static Expression<Func<Cliente, LicitacionBasic>> MapLicitacionToLicitacionBasic()
+        {
+
+            return p => new LicitacionBasic
+            {
+                LicitacionId = p.Id,
+                Nombre = p.Nombre,
+            };
+        }
     }
 }

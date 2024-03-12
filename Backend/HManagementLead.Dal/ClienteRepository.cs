@@ -25,11 +25,27 @@ namespace HManagementLead.Dal
                 .FirstAsync();
         }
 
+        public async Task<ClienteBasicCompleto> GetClienteBasicCompletoByIdAsync(int id)
+        {
+            return await _context.Clientes
+                .Where(c => c.Id == id)
+                .Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context))
+                .FirstAsync();
+        }
+
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
             if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
             await _context.SaveChangesAsync();
             var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
+            return cliente;
+        }
+
+
+        public async Task<List<ClienteBasic>> GetAllClientesBasicAsync() {
+            var cliente = await _context.Clientes
+                .OrderBy(c => c.Nombre)
+                .Select(ClienteMapping.MapClienteToClienteBasic()).ToListAsync();
             return cliente;
         }
 

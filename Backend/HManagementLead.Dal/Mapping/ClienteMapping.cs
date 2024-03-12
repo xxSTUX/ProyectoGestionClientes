@@ -40,6 +40,33 @@ namespace HManagementLead.Dal.Mapping
                                 }).ToList(),
             };
         }
+
+        public static Expression<Func<Cliente, ClienteBasicCompleto>> MapToClientBasicDetalleConProyecto(ApplicationDbContext dbContext)
+        {
+            return c => new ClienteBasicCompleto
+            {
+                ClienteId = c.Id,
+                Nombre = c.Nombre,
+                Proyectos = c.Proyectos.AsQueryable().OrderBy(p => p.Nombre).Select(ProyectoMapping.MapToProyectoBasic(dbContext)).ToList(),
+                Seguimientos = (from cs in c.SeguimientosClientes
+                                join s in dbContext.Seguimientos
+                                on cs.SeguimientoId equals s.Id
+                                select new SeguimientoBasic
+                                {
+                                    SeguimientoId = s.Id,
+                                    Nombre = s.Nombre,
+                                }).OrderBy(s => s.Nombre).ToList(),
+                Licitaciones = (from cl in c.LicitacionesClientes
+                                join l in dbContext.Licitaciones
+                                on cl.LicitacionId equals l.Id
+                                select new LicitacionBasic
+                                {
+                                    LicitacionId = l.Id,
+                                    Nombre = l.Nombre,
+                                }).OrderBy(l => l.Nombre).ToList(),
+            };
+        }
+
         public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto()
         {
 
@@ -67,6 +94,16 @@ namespace HManagementLead.Dal.Mapping
             {
                 CodigoId = p.Id,
                 Descripcion = p.Nombre,
+            };
+        }
+
+        public static Expression<Func<Cliente, ClienteBasic>> MapClienteToClienteBasic()
+        {
+
+            return p => new ClienteBasic
+            {
+                ClienteId = p.Id,
+                Nombre = p.Nombre,
             };
         }
 

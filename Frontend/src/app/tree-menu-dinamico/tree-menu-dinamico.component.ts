@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { NavigationEnd, Router } from '@angular/router';
-
 
 @Component({
-  selector: 'app-tree-menu',
+  selector: 'app-tree-menu-dinamico',
   standalone: true,
   imports: [HttpClientModule],
-  templateUrl: './tree-menu.component.html',
-  styleUrl: './tree-menu.component.css',
+  templateUrl: './tree-menu-dinamico.component.html',
+  styleUrl: './tree-menu-dinamico.component.css'
 })
-export class TreeMenuComponent {
+export class TreeMenuDinamicoComponent {
   data: { [key: string]: Object }[] = [];
   clienteData: { [key: string]: Object }[] = [];
   public nodoAbierto = 0;
@@ -34,65 +33,18 @@ export class TreeMenuComponent {
   public getJsonValueCliente: any;
 
   public getMethod() {
-    this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+    this.http.get("https://localhost:7075/api/cliente/Basic").subscribe((data: any) => {
       this.getJsonValue = data;
       console.log(data);
-      
-      for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
-        let proyectos = [];
-        let seguimientos = [];
-        let licitacionesEnEstudio = [];
-        let licitacionesGanadas = [];
-        let licitacionesPerdidas = [];
-        let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
 
-        for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
-          let licitacionesProyecto = [];
-          let seguimientosProyecto = [];
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
-            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
-          }
-          for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
-            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
-          }
-          proyectos.push({
-            nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-            { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
-          });
-        }
-        for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
-          seguimientos.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
-      }
-        for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
-          switch (this.getJsonValue[i].licitaciones[j].ganada) {
-            case 0:
-              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
-              break;
-            case 1:
-              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
-              break;
-            case 2:
-              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
-              break;
-          }
-        }
-        let licitaciones = [];
-        if(licitacionesEnEstudio.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio})
-        }
-        if(licitacionesGanadas.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas})
-        }
-        if(licitacionesPerdidas.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas})
-        }
-        this.data.push({
-          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
-          { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
-          { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
-          }]
-        });
-      }
+      //Para el proximo día tengo que hacer los bucles y la logica correspondiente para la carga dinamica del arbol.
+      for (let i = 0; i < this.getJsonValue.length; i++) {
+        let clienteId = this.getJsonValue[i].clienteId;
+        this.data.push({nodeId: "Cliente " + clienteId + " " + i, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId +" Proyectos", nodeText: 'Proyectos', nodeChild: []  },
+                                                                                                          { nodeId:  clienteId + " Seguimientos", nodeText: 'Seguimientos', nodeChild: [] },
+                                                                                                          { nodeId:  clienteId +" Licitaciones", nodeText: 'Licitaciones', nodeChild: []}]
+      });
+      } 
       // Clear the existing treeview content
       const treeviewElement = document.getElementById("treeview");
         if (treeviewElement) {
@@ -108,13 +60,15 @@ export class TreeMenuComponent {
     );
   }
 
+
+
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
       //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item");
       const icon = document.createElement("i");
-
+      
       if (!parentNode) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
         item.textContent ="Cliente#" + item.nodeText; //Cambiar posteriormente el # por un / cuando hagamos la logica de los otros componentes.
       }
@@ -122,8 +76,45 @@ export class TreeMenuComponent {
         item.textContent = parentNode.textContent + "#" + item.nodeText; // Concatenar el nombre del padre a la ruta. Cambiar cuando hagamos la logica el # por un /
       }
 
+        icon.addEventListener('click', (event) => {
+          if((item.nodeId.split(" ")[0] == "Cliente")){
+            event.stopPropagation();
+            let dataIndex = item.nodeId.split(" ")[2]
+            
+            this.http.get("https://localhost:7075/api/cliente/Basic/Completo/"+ item.nodeId.split(" ")[1]).subscribe((clienteData: any) => { //Id del cliente --> item.nodeId.split(" ")[1]
+            this.getJsonValueCliente = clienteData;
+            console.log(this.getJsonValueCliente);
+            // console.log(this.data);
+             console.log(this.getJsonValueCliente.nombre);
+            // console.log(this.getJsonValueCliente.clienteId);
+            item.nodeId = item.nodeId.replace(/\s/g, ',');
+            for(let i = 0; i < this.getJsonValueCliente.proyectos.length;i++){//Proyectos
+              let seguimientosProyecto = [];
+              let licitacionesProyecto = [];
+              for (let j = 0; j < this.getJsonValueCliente.proyectos[i].seguimientos.length;j++){ //Recorre seguimientos de un proyecto
+                seguimientosProyecto.push({nodeId:"Seguimiento " + this.getJsonValueCliente.proyectos[i].seguimientos[j].seguimientoId,nodeText:this.getJsonValueCliente.proyectos[i].seguimientos[j].nombre})
+              }
+              for(let j = 0; j < this.getJsonValueCliente.proyectos[i].licitaciones.length;j++){//Recorre licitaciones de un proyecto
+                licitacionesProyecto.push({nodeId:"Licitacion " + this.getJsonValueCliente.proyectos[i].licitaciones[j].licitacionId,nodeText:this.getJsonValueCliente.proyectos[i].licitaciones[j].nombre})
+              }
+              data[dataIndex].nodeChild[0].nodeChild.push({nodeId: "Proyecto " + this.getJsonValueCliente.proyectos[i].proyectoId, nodeText: this.getJsonValueCliente.proyectos[i].nombre, nodeChild: [{nodeId: "Seguimientos " + this.getJsonValueCliente.proyectos[i].proyectoId, nodeText: "Seguimientos",nodeChild:seguimientosProyecto},
+                                                                                                                                                                                                                                    {nodeId: "Licitaciones " + this.getJsonValueCliente.proyectos[i].proyectoId, nodeText: "Licitaciones",nodeChild:licitacionesProyecto}]});
+            }
+            for(let i = 0; i < this.getJsonValueCliente.seguimientos.length;i++){//Seguimientos
+              data[dataIndex].nodeChild[1].nodeChild.push({nodeId: "Seguimiento " + this.getJsonValueCliente.seguimientos[i].seguimientoId, nodeText: this.getJsonValueCliente.seguimientos[i].nombre/*, nodeChild: []*/});
+            }
+            for(let i = 0; i < this.getJsonValueCliente.licitaciones.length;i++){//Licitaciones
+              data[dataIndex].nodeChild[2].nodeChild.push({nodeId: "Licitacion " + this.getJsonValueCliente.licitaciones[i].licitacionId, nodeText: this.getJsonValueCliente.licitaciones[i].nombre/*, nodeChild: []*/});
+            }
+          
+            console.log(this.data);
+            this.actualizarArbol();
+          });
+          } 
+        });
+      
       if ((item.nodeChild && item.nodeChild.length > 0)) { //Caso en el que se añade el icono de + //  Posible logica || (item.nodeId.split(" ")[0] == "Cliente")
-
+        
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
       } else {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
@@ -162,20 +153,11 @@ export class TreeMenuComponent {
       listItem.appendChild(icon);
       listItem.appendChild(textSpan);
 
-      if (item.nodeChild && item.nodeChild.length > 0) {
+      if ((item.nodeChild && item.nodeChild.length > 0) && item.nodeId.split(" ")[0] != "Cliente") {
         // Añadir evento click para cambiar el ícono y colapsar/expandir elementos hijos
         //listItem
-        listItem.addEventListener('click', (event) => {
-          event.stopPropagation();
-          if (icon.classList.contains('bi-plus-circle')) { //Si tiene un botón +
-            icon.classList.replace('bi-plus-circle', 'bi-dash-circle');
-          } else {
-            icon.classList.replace('bi-dash-circle', 'bi-plus-circle');
-          }
-
-          sublist.style.display = sublist.style.display === 'none' ? '' : 'none';
-        });
         icon.addEventListener('click', (event) => {
+          if(item.nodeId.split(" ")[0] != "Cliente"){
           event.stopPropagation();
           if (icon.classList.contains('bi-plus-circle')) { //Si tiene un botón +
             icon.classList.replace('bi-plus-circle', 'bi-dash-circle');
@@ -183,13 +165,12 @@ export class TreeMenuComponent {
             icon.classList.replace('bi-dash-circle', 'bi-plus-circle');
           }
 
-          sublist.style.display = sublist.style.display === 'none' ? '' : 'none';
+          sublist.style.display = sublist.style.display === 'none' ? '' : 'none';}
         });
 
         const sublist = document.createElement("ul");
         sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
         sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
-
         this.renderBootstrapTreeView(item.nodeChild, sublist, item);
 
         listItem.appendChild(sublist);
@@ -199,3 +180,4 @@ export class TreeMenuComponent {
     });
 }
 }
+
