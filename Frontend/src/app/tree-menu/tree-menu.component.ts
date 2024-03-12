@@ -20,18 +20,19 @@ export class TreeMenuComponent {
   ngOnInit() {
     this.getMethod();
   }
-
+  
   public getJsonValue: any;
-
+  
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
       this.getJsonValue = data;
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];
-        let seguimientos = [];
+        let seguimientosGenerales = [];
         let licitacionesEnEstudio = [];
         let licitacionesGanadas = [];
         let licitacionesPerdidas = [];
+        let seguimientosRecientes = [];
         let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
 
         for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
@@ -49,8 +50,20 @@ export class TreeMenuComponent {
           });
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
-          seguimientos.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
-      }
+          if(new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000){
+            seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+          }else{
+            seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+          }
+        }
+        let seguimientos = [];
+        if(seguimientosRecientes.length > 0){
+          seguimientos.push({nodeId: "", nodeText: 'Ultimos', nodeChild: seguimientosRecientes})
+        }
+        if(seguimientosGenerales.length > 0){
+          seguimientos.push({nodeId: "", nodeText: 'Todos', nodeChild: seguimientosGenerales})
+        }
+
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
           switch (this.getJsonValue[i].licitaciones[j].ganada) {
             case 0:
@@ -80,7 +93,7 @@ export class TreeMenuComponent {
           { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
           }]
         })
-
+        
       }
       console.log("Hola gianfranco");
       // Clear the existing treeview content

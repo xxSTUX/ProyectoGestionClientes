@@ -16,6 +16,7 @@ import { LoadingComponent } from '../loading/loading.component';
 
 
 
+
 @Component({
     selector: 'app-dashboard',
     standalone: true,
@@ -24,14 +25,15 @@ import { LoadingComponent } from '../loading/loading.component';
     imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent]
 })
 export class DashboardComponent implements OnInit {
-
   halal = true;
   //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
+  
   //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
+
     console.log("Componente principal inicializado");
     this.updateFragmentObservable();
     // Observa los cambios de la ruta y actualiza el fragment$
@@ -57,6 +59,5 @@ getFragmentTipoNodo(fragment: string): string {
   const fragmentType = fragment.split('=')[0];
   return fragmentType;
 }
-
 }
 
