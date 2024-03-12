@@ -36,7 +36,7 @@ namespace HManagementLead.Dal.Mapping
                                     Id = l.Id,
                                     Nombre = l.Nombre,
                                     Tipo = l.Tipo,
-                                    Ganada = l.Ganada,
+                                    Estado = l.Estado,
                                 }).ToList(),
             };
         }

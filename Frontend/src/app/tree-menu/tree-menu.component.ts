@@ -65,7 +65,7 @@ export class TreeMenuComponent {
         }
 
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
-          switch (this.getJsonValue[i].licitaciones[j].ganada) {
+          switch (this.getJsonValue[i].licitaciones[j].estado) {
             case 0:
               licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;

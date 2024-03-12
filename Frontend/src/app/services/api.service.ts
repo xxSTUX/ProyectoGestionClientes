@@ -48,12 +48,13 @@ export class ApiService {
       throw new Error(`Error! Status: ${response.status}`);
     }
   }
-  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,ganada:string) {
+  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
       const bodyProyecto = {
         nombre: nombre,
         tipo:tipo,
-        ganada:ganada
+        estado:estado
       };
+      alert(estado)
       const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
