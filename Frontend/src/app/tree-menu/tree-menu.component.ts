@@ -138,7 +138,7 @@ export class TreeMenuComponent {
             }else{
               itemPadre = 'Cliente';
               itemId = itemId.split("-")[0];
-              alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
+              alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText + 'Pasando a vista tabmenu del cliente: ' + itemId);
               }
           }else{
                 itemId = itemId.split("-")[1];
