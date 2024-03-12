@@ -132,12 +132,16 @@ export class TreeMenuComponent {
           let itemPadre = parentNode.nodeText;
           let itemId = item.nodeId.toString();
           if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
-            itemPadre = 'Cliente';
-            itemId = itemId.split("-")[0];
-            alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
+            if( itemPadre === 'Ganadas' || itemPadre === 'Perdidas'){
+              itemPadre = 'Licitaciones'
+              itemId = itemId.split("-")[1];
+            }else{
+              itemPadre = 'Cliente';
+              itemId = itemId.split("-")[0];
+              alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText);
+              }
           }else{
-            console.log('else:', itemId);
-            itemId = itemId.split("-")[1];
+                itemId = itemId.split("-")[1];
           }
           this.location.go(this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Cambiamos la ruta parentNode.Text + "/" +
           const newPath = (this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Actualizamos la ruta en consecuencia al nombre

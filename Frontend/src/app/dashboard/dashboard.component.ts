@@ -61,11 +61,11 @@ const match = fragmentType.match(regex);
 let fragResultado = "";
 
 if (match && match.length > 1) {
-    const fragmet = match[1];
+    const fragment = match[1];
     fragResultado = fragment;
-    console.log("fragmet a pasar:", fragmet);
+    console.log("fragmet a pasar:", fragResultado);
 } else {
-    console.error("Error al obtener elfragmet");
+    //console.error("Error al obtener elfragmet");
 }
   return fragResultado;
 }
