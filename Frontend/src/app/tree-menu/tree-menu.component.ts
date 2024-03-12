@@ -146,6 +146,7 @@ export class TreeMenuComponent {
           this.location.go(this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Cambiamos la ruta parentNode.Text + "/" +
           const newPath = (this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Actualizamos la ruta en consecuencia al nombre
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
+          console.log("Navigation end provocado");
         });
       }
       listItem.appendChild(icon);

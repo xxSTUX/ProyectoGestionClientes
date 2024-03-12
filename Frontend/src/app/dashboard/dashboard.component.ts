@@ -48,7 +48,7 @@ updateFragmentObservable(): void {
       map(fragment => fragment || 'default')
     );
     this.fragment$.subscribe(fragment => {
-      console.log("Valor del fragmento:", fragment);
+      //console.log("Valor del fragmento:", fragment);
     });
 }
 getFragmentTipoNodo(fragment: string): string {
@@ -63,7 +63,7 @@ let fragResultado = "";
 if (match && match.length > 1) {
     const fragment = match[1];
     fragResultado = fragment;
-    console.log("fragmet a pasar:", fragResultado);
+    //console.log("fragmet a pasar:", fragResultado);
 } else {
     //console.error("Error al obtener elfragmet");
 }
