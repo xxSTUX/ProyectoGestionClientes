@@ -1,38 +1,34 @@
-<section class="background-radial-gradient overflow-hidden">
-    <div class="row vh-100 justify-content-center align-items-center">
-        <div class="card bg-glass col-auto bg-light p-5">
-            <div class="card-body px-4 py-5 px-md-5">
-                <p class="mb-4 opacity-70 text-center font-weight-bold" style="color: hsl(0, 0%, 0%); font-size: 24px;">
-                    Crea un nuevo proyecto
-                </p>                
-                <form formGroup="reestablishForm" (submit)="creaproyecto()">
-                    <div class="row">
-                        <!-- Client input -->
-                        <div class="mb-4">
-                            <input formControlName="nombreproyecto" class="form-control" id="nombreproyecto" 
-                              placeholder="Nombre del proyecto" required style="text-align: center" autocomplete="off"/>
-                        </div>
-                        <div class="mb-4">
-                            <input formControlName="estadoproyecto" class="form-control" id="estadoproyecto" 
-                              placeholder="Estado del proyecto" required style="text-align: center" autocomplete="off"/>
-                        </div>
-                        <div class="mb-4">
-                            <input formControlName="tipoproyecto" class="form-control" id="tipoproyecto" 
-                              placeholder="Tipo del proyecto" required style="text-align: center" autocomplete="off"/>
-                        </div>
-                        <select name="opciones" id="opciones">
-                            
-                        </select>
+<div class="card bg-glass col-auto bg-light p-5 background-radial-gradient">
+    <div class="card-body px-4 py-5 px-md-5">
+        <p class="mb-4 opacity-70 text-center font-weight-bold" style="color: hsl(0, 12%, 87%); font-size: 24px;">
+            Crea un nuevo proyecto
+        </p>
+        <form formGroup="reestablishForm" (submit)="creaproyecto()">
+            <div class="row">
+                <!-- Client input -->
+                <div class="mb-4">
+                    <input formControlName="nombreproyecto" class="form-control" id="nombreproyecto"
+                        placeholder="Nombre del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <div class="mb-4">
+                    <input formControlName="estadoproyecto" class="form-control" id="estadoproyecto"
+                        placeholder="Estado del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <div class="mb-4">
+                    <input formControlName="tipoproyecto" class="form-control" id="tipoproyecto"
+                        placeholder="Tipo del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <select name="opciones" id="opciones">
 
-                        
-                    
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-primary btn-block mb-4">
-                            Crea el proyecto
-                        </button>
-                    </div>
-                </form>      
+                </select>
+
+
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Crea el proyecto
+                </button>
             </div>
-        </div>
+        </form>
     </div>
-</section>
+</div>
