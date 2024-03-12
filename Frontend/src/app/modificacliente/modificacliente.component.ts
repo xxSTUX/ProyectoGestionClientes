@@ -172,8 +172,8 @@ export class ModificaclienteComponent {
     this.apiService.deleteClientFromAPI(parseInt(this.id));
   }
 
-  toasty(){
-    const toast = document.getElementById("añadirContacto");
+  toasty(nombreArchivo: string){
+    const toast = document.getElementById(nombreArchivo);
     if (toast!=null){
       const toastElement = new bootstrap.Toast(toast, this.option);
       toastElement.show();

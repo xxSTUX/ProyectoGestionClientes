@@ -40,5 +40,6 @@ export class CreaClienteComponent {
                 console.error(error); // En caso de que haya un error en la solicitud
             }
         );
+        alert("Se ha creado el cliente "+nombreCliente);
     }
 }
