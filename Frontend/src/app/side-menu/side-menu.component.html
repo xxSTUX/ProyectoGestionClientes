@@ -1,10 +1,9 @@
-
 <div class="container-fluid">
   <div class="row">
     <div class="col md-12 p-0">
       <nav class="sidebar close hoverable">
         <div class="logo_items flex">
-          <span class="nav_image" >
+          <span class="nav_image">
             <img src="../../assets/images/logoHiberus.jpg" alt="logo_img" (click)="onHomeClick()" />
           </span>
           <span class="logo_name">Hiberus</span>
@@ -19,10 +18,23 @@
                 <span class="line"></span>
               </div>
               <li class="item">
-                <a href="/creacliente" class="link flex">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="link flex"
+                  onclick="openCreaCliente($event)">
                   <i class="bi bi-person"></i>
                   <span>Añadir cliente</span>
                 </a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <app-crea-cliente></app-crea-cliente>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
               <li class="item">
                 <a href="/creaproyecto" class="link flex">
