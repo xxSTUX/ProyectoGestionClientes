@@ -18,6 +18,7 @@ export class CreaSeguimientoComponent {
   fechaCre!: Date;
   nombre: string = '';
   observaciones: string= '';
+  date!: Date;
 
   constructor(private router: Router, private http: HttpClient, private apiService: ApiService) {
     // ,@Inject(Number) public _id?:string
@@ -41,9 +42,13 @@ export class CreaSeguimientoComponent {
     ]
   };
 
+  ngOnInit() {
+    let date = new Date;
+  }
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
     console.log(this.apiService.postSeguimientoToAPI(this.nombre,this.id,this.observaciones,this.fechaCre));
+    window.location.reload()
   }
 
   public delete(){

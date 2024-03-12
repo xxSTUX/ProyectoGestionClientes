@@ -38,5 +38,7 @@ export class CreaClienteComponent {
         });
         console.log("Se deberia haber creado un nuevo cliente");
         this.router.navigate(['dashboard']);
+        
+        
     }
 }

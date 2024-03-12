@@ -76,7 +76,7 @@ export class ApiService {
     const bodyProyecto = {
       nombre: nombre,
       tipo:"",
-      fechaCre:fechaCre,
+      fecha:fechaCre,
       observaciones:text
     };
     const response = await fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
