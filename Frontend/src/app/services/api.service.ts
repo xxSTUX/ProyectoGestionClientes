@@ -101,4 +101,6 @@ export class ApiService {
    deleteProyectoToAPI(id:number){
     return this.http.delete<any>(this.ip+'Proyecto/'+id);
   }
+
+  
 }

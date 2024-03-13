@@ -10,5 +10,7 @@ namespace HManagementLead.Entities
         public string Tipo { get; set; } = null!;
         public DateTime Fecha { get; set; } = DateTime.Today;
         public string Observaciones { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
     }
 }
