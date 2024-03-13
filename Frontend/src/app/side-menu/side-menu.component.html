@@ -11,22 +11,20 @@
           <i class="bi bi-lock bi-lock-fill" id="sidebar-close"></i>
         </div>
         <div class="menu_container p-0">
-          <div class="menu_items">
+          <div class="menu_items"> 
             <ul class="menu_item">
               <div class="menu_title flex">
-                <span class="title">Dashboard</span>
+                <span class="title">Cliente</span>
                 <span class="line"></span>
               </div>
               <li class="item">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="link flex"
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreaCliente" class="link flex"
                   onclick="openCreaCliente($event)">
                   <i class="bi bi-person"></i>
                   <span>Añadir cliente</span>
                 </a>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                  aria-hidden="true">
-                  <div class="modal-dialog">
+                <div class="modal fade" id="modalCreaCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                       <div class="modal-body">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -37,10 +35,21 @@
                 </div>
               </li>
               <li class="item">
-                <a href="/creaproyecto" class="link flex">
-                  <i class="bi bi-laptop"></i>
-                  <span>Añadir proyecto</span>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreaProyecto" class="link flex"
+                  onclick="openCreaCliente($event)">
+                  <i class="bi bi-person"></i>
+                  <span>Crea proyecto</span>
                 </a>
+                <div class="modal fade" id="modalCreaProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                      <div class="modal-body">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <app-crea-proyecto></app-crea-proyecto>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </li>
             </ul>
             <ul class="menu_item">

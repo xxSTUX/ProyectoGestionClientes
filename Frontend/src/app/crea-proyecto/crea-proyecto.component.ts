@@ -27,7 +27,7 @@ export class CreaProyectoComponent {
   ngOnInit(): void {
     this.getclientes("opciones");
   }
-  creaproyecto(){
+  async creaproyecto(){
 
     const idcliente = parseInt((<HTMLInputElement>document.getElementById('opciones')).value);
     const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
@@ -40,10 +40,9 @@ export class CreaProyectoComponent {
         estado:estado
     }
 
-    alert("Se va a crear el proyecto: " + nombreproyecto);
     this.apiService.postProyectosFromAPI(idcliente,body.nombre,body.tipo,body.estado);
+    alert("Se va a crear el proyecto: " + nombreproyecto);
     console.log("Se deberia haber creado un nuevo proyecto");
-    this.router.navigate(['dashboard']);
 }
 
 getclientes(opciones: string){

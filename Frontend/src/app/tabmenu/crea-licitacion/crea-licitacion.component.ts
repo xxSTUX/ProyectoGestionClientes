@@ -17,7 +17,7 @@ export class CreaLicitacionComponent {
   id:string = '1';
   nombre: string = '';
   tipo: string= '';
-  ganada: string='';
+  estado: string='';
 
   constructor(private router: Router, private http: HttpClient, private apiService: ApiService) {
     // ,@Inject(Number) public _id?:string
@@ -26,7 +26,7 @@ export class CreaLicitacionComponent {
 
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    console.log(this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.ganada));
+    console.log(this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.estado));
   }
 
   public delete(){

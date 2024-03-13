@@ -1,13 +1,14 @@
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
+import { CreaProyectoComponent } from "../crea-proyecto/crea-proyecto.component";
 
 @Component({
     selector: 'app-side-menu',
     standalone: true,
     templateUrl: './side-menu.component.html',
     styleUrl: './side-menu.component.css',
-    imports: [CreaClienteComponent]
+    imports: [CreaClienteComponent, CreaProyectoComponent]
 })
 export class SideMenuComponent {
 sidebar: HTMLElement | null = null;

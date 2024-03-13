@@ -8,19 +8,24 @@ import { data } from 'jquery';
 })
 export class ApiService {
 
+  ip: string = 'https://localhost:7075/api/';
+
   constructor(private http: HttpClient) { }
 
   getDataClientesFromAPI(): Observable<any> {
-    return this.http.get<any>('https://localhost:7075/api/cliente');
+    return this.http.get<any>(this.ip+'cliente');
   }
+
   getDataProyectosFromAPI(): Observable<any> {
-    return this.http.get<any>('https://localhost:7075/api/proyecto');
+    return this.http.get<any>(this.ip+'proyecto');
   }
+
   getDataLicitacionesFromAPI(): Observable<any> {
-    return this.http.get<any>('https://localhost:7075/api/licitacion');
+    return this.http.get<any>(this.ip+'licitacion');
   }
+
   getDataSeguimientosFromAPI(): Observable<any> {
-    return this.http.get<any>('"https://localhost:7075/api/seguimineto');
+    return this.http.get<any>(this.ip+'seguimineto');
   }
 
    
@@ -28,7 +33,7 @@ export class ApiService {
     const bodyCliente = {
       nombre: nombre
     };
-    return this.http.post<any>('https://localhost:7075/api/proyecto', bodyCliente);
+    return this.http.post<any>(this.ip+'proyecto', bodyCliente);
   }
   async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:String) {
     const bodyProyecto = {
@@ -36,7 +41,7 @@ export class ApiService {
       estado:estado,
       tipo:tipo
     };
-    const response = await fetch('https://localhost:7075/api/Cliente/InsertProyecto/'+ id, {
+    const response = await fetch(this.ip+'Cliente/InsertProyecto/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
@@ -48,13 +53,14 @@ export class ApiService {
       throw new Error(`Error! Status: ${response.status}`);
     }
   }
-  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,ganada:string) {
+  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
       const bodyProyecto = {
         nombre: nombre,
         tipo:tipo,
-        ganada:ganada
+        estado:estado
       };
-      const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+ id, {
+      alert(estado)
+      const response = await fetch(this.ip+'InsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
           'accept': '*/*',
@@ -79,7 +85,7 @@ export class ApiService {
       fecha:fechaCre,
       observaciones:text
     };
-    const response = await fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
+    const response = await fetch(this.ip+'Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
