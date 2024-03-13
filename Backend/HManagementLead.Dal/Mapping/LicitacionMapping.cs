@@ -38,5 +38,15 @@ namespace HManagementLead.Dal.Mapping
                 Descripcion = p.Nombre,
             };
         }
+        //Map para simplificar los dats que van al arbol
+        public static Expression<Func<Cliente, LicitacionSimplificado>> MapLicitacionToLicitacionSimplificado()
+        {
+
+            return p => new LicitacionSimplificado
+            {
+                LicitacionId = p.Id,
+                Nombre = p.Nombre,
+            };
+        }
     }
 }

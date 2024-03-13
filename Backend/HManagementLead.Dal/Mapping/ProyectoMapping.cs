@@ -25,6 +25,32 @@ namespace HManagementLead.Dal.Mapping;
                                 }).ToList()
             };   
         }
+    //Map del proyecto pasando seguimientos y licitaciones simplificados
+    public static Expression<Func<Proyecto, ProyectoSimplificado>> MapTProyectoSimplificado(ApplicationDbContext dbContext)
+    {
+
+        return p => new ProyectoSimplificado
+        {
+            ProyectoId = p.Id,
+            Nombre = p.Nombre,
+            Seguimientos = (from cs in p.SeguimientosProyectos
+                            join s in dbContext.Seguimientos
+                            on cs.SeguimientoId equals s.Id
+                            select new SeguimientoSimplificado
+                            {
+                                SeguimientoId = s.Id,
+                                Nombre = s.Nombre,
+                            }).ToList(),
+            Licitaciones = (from cl in p.LicitacionesProyectos
+                            join l in dbContext.Licitaciones
+                            on cl.LicitacionId equals l.Id
+                            select new LicitacionSimplificado
+                            {
+                                LicitacionId = l.Id,
+                                Nombre = l.Nombre,
+                            }).ToList()
+        };
+    }
 
     public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(DbSet<Seguimiento> seguimientos, DbSet<Licitacion> licitaciones) //Igual que la funcion de arriba pero pasandole las licitaciones tambien
     {

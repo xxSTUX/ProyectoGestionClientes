@@ -7,6 +7,7 @@ namespace HManagementLead.Dal.Interfaces
         Task<ClienteDetalle> GetClienteByIdAsync(int id);
 
         Task<List<ClienteDetalle>> GetAllClientesAsync();
+        Task<List<ClienteDetalle>> GetAllClientesCompletoAsync();
 
         Task<int> InsertClienteAsync(ClienteDetalle cliente);
 
