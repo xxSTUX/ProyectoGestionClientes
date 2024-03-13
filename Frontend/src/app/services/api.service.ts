@@ -97,4 +97,8 @@ export class ApiService {
       throw new Error(`Error! Status: ${response.status}`);
     }
 }
+
+  async deleteProyectoToAPI(id:string){
+    return this.http.delete<any>(this.ip+'Proyecto/'+id);
+  }
 }
