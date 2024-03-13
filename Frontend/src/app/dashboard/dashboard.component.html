@@ -11,13 +11,12 @@
                             <app-tree-menu></app-tree-menu>
                         </ng-template>
                         <ng-template pTemplate>
+                                <button (click)="creaComponente1()">Crea un nuevo componente</button>
+                                <button (click)="creaComponente2()">Elimina el componente antiguo y crea uno nuevo</button>
                             <!-- Contenido del segundo panel (tabmenu) -->
-                            <ng-container *ngIf="fragment$ | async as fragment">
-                              <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
-                              <app-licitaciones *ngIf="getFragmentTipoNodo(fragment) === 'Licitaciones'"></app-licitaciones>
-                              <app-seguimientos *ngIf="getFragmentTipoNodo(fragment) === 'Seguimientos'"></app-seguimientos>
-                              <app-tabmenu *ngIf="getFragmentTipoNodo(fragment) === 'Cliente'"></app-tabmenu>
-                          </ng-container>
+                            <div #contenedor class="container-fluid" id='contenedor'>
+                                <!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
+                            </div>
                         </ng-template>
                     </p-splitter>
                 </div>

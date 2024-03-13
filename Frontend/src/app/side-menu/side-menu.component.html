@@ -14,13 +14,14 @@
           <div class="menu_items">
             <ul class="menu_item">
               <div class="menu_title flex">
+                <i class="bi bi-building"></i>
                 <span class="title">Dashboard</span>
                 <span class="line"></span>
               </div>
               <li class="item">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreaCliente" class="link flex"
-                  onclick="openCreaCliente($event)">
-                  <i class="bi bi-person"></i>
+                  onclick="noRedirigir($event)">
+                  <i class="bi bi-building-add"></i>
                   <span>Añadir cliente</span>
                 </a>
                 <div class="modal fade" id="modalCreaCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -35,9 +36,53 @@
                 </div>
               </li>
               <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-building-gear"></i>
+                  <span>Modificar cliente</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-clipboard-x"></i>
+                  <span>Eliminar cliente</span>
+                </a>
+              </li>
+            </ul>
+            <ul class="menu_item">
+              <div class="menu_title flex">
+                <i class="bi bi-clipboard"></i>
+                <span class="title">Seguimiento</span>
+                <span class="line"></span>
+              </div>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-clipboard-plus"></i>
+                  <span>Añadir seguimiento</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class=""></i>
+                  <span>Editar seguimiento</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-clipboard-x"></i>
+                  <span>Eliminar seguimiento</span>
+                </a>
+              </li>
+            </ul>
+            <ul class="menu_item">
+              <div class="menu_title flex">
+                <i class="bi bi-database"></i>
+                <span class="title">Proyectos</span>
+                <span class="line"></span>
+              </div>
+              <li class="item">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#modalCreaProyecto" class="link flex"
-                  onclick="openCreaCliente($event)">
-                  <i class="bi bi-person"></i>
+                  onclick="noRedirigir($event)">
+                  <i class="bi bi-database-add"></i>
                   <span>Crea proyecto</span>
                 </a>
                 <div class="modal fade" id="modalCreaProyecto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
@@ -51,52 +96,66 @@
                   </div>
                 </div>
               </li>
-            </ul>
-            <ul class="menu_item">
-              <div class="menu_title flex">
-                <span class="title">Editor</span>
-                <span class="line"></span>
-              </div>
               <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-star"></i>
-                  <span>Magic Build</span>
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-database-up"></i>
+                  <span>Editar proyecto</span>
                 </a>
               </li>
               <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-cart"></i>
-                  <span>New Projects</span>
-                </a>
-              </li>
-              <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-phone"></i>
-                  <span>Upload New</span>
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-database-x"></i>
+                  <span>Eliminar proyecto</span>
                 </a>
               </li>
             </ul>
             <ul class="menu_item">
               <div class="menu_title flex">
-                <span class="title">Setting</span>
+                <i class="bi bi-person"></i>
+                <span class="title">Puestos</span>
                 <span class="line"></span>
               </div>
               <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-gear"></i>
-                  <span>Notice Board</span>
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-person-add"></i>
+                  <span>Añadir puesto</span>
                 </a>
               </li>
               <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-envelope"></i>
-                  <span>Award</span>
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-person-gear"></i>
+                  <span>Editar puesto</span>
                 </a>
               </li>
               <li class="item">
-                <a href="#" class="link flex">
-                  <i class="bi bi-trash"></i>
-                  <span>Setting</span>
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-person-x"></i>
+                  <span>Eliminar puesto</span>
+                </a>
+              </li>
+            </ul>
+            <ul class="menu_item">
+              <div class="menu_title flex">
+                <i class="bi bi-folder"></i>
+                <span class="title">Licitaciones</span>
+                <span class="line"></span>
+              </div>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-folder-plus"></i>
+                  <span>Añadir licitacion</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-folder2-open"></i>
+                  <span>Editar licitacion</span>
+                </a>
+              </li>
+              <li class="item">
+                <a href="#" class="link flex" onclick="noRedirigir($event)">
+                  <i class="bi bi-folder-x"></i>
+                  <span>Eliminar licitacion</span>
                 </a>
               </li>
             </ul>

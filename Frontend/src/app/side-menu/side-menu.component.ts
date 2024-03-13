@@ -21,7 +21,7 @@ sidebar: HTMLElement | null = null;
     this.router.navigate(['/dashboard']);
   }
 
-  openCreaCliente(event: Event) {
+  noRedirigir(event: Event) {
     event.preventDefault();
   }
 
