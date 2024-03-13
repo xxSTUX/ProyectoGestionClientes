@@ -98,7 +98,7 @@ export class ApiService {
     }
 }
 
-  async deleteProyectoToAPI(id:string){
+   deleteProyectoToAPI(id:number){
     return this.http.delete<any>(this.ip+'Proyecto/'+id);
   }
 }

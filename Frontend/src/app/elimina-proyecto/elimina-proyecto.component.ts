@@ -26,11 +26,8 @@ export class EliminaProyectoComponent {
   }
   async eliminarproyecto(){
 
-    const idcliente = ((<HTMLInputElement>document.getElementById('opcionesEliminarProyecto')).value);
+    const idcliente = parseInt((<HTMLInputElement>document.getElementById('opcionesEliminarProyecto')).value);
     
-
-   
-
     this.apiService.deleteProyectoToAPI(idcliente);
     alert("Se va a crear el proyecto: " + idcliente);
     console.log("Se deberia haber creado un nuevo proyecto");
