@@ -99,7 +99,22 @@ export class ApiService {
 }
 
    deleteProyectoToAPI(id:number){
-    return this.http.delete<any>(this.ip+'Proyecto/'+id);
+    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+  deleteContactoAPI(id:number){
+    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
   }
 
   

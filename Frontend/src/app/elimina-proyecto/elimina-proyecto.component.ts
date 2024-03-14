@@ -37,16 +37,16 @@ getproyectos(opciones: string){
   const options = document.getElementById(opciones) as HTMLOptionElement;
   this.apiService.getDataProyectosFromAPI().subscribe((data: any) =>{
     console.log(data);
-  if(options != null){
+  if(options != null ){
     for (let i = 0; i < data.length; i++) {
-      const option = document.createElement('option');
-      console.log(data[i]);
-      option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-      option.textContent = data[i].nombre; // Asigna el nombre del cliente como texto del option
-      console.log(option.textContent = data[i].nombre); // Asigna el nombre del cliente como texto del option
-      options.appendChild(option); // Agrega el option al elemento select
+      if(!data[i].eliminado){
+        const option = document.createElement('option');
+        console.log(data[i].eliminado);
+        option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
+        option.textContent = data[i].nombre; // Asigna el nombre del cliente como texto del option
+        options.appendChild(option); // Agrega el option al elemento select
+      }
     }
-    
   }
     });
     
