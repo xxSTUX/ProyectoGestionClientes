@@ -17,36 +17,16 @@ export class CreaLicitacionComponent {
   id:string = '1';
   nombre: string = '';
   tipo: string= '';
+  estado: string='';
 
   constructor(private router: Router, private http: HttpClient, private apiService: ApiService) {
     // ,@Inject(Number) public _id?:string
     // if (_id != null) this.id = _id;
   }
 
-  config: AngularEditorConfig = {
-    editable: true,
-    spellcheck: true,
-    height: '32vh',
-    minHeight: '5rem',
-    placeholder: 'Enter text here...',
-    translate: 'no',
-    defaultParagraphSeparator: 'p',
-    defaultFontName: 'Arial',
-    toolbarHiddenButtons:[
-      [
-        'insertImage',
-        'insertVideo',
-      ]
-    ]
-  };
-
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    const body = {
-      nombre: this.nombre,
-      tipo: this.tipo
-    }
-    console.log(this.apiService.postLicitacionFromAPI(body.nombre,body.tipo));
+    console.log(this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.estado));
   }
 
   public delete(){

@@ -1,0 +1,26 @@
+*{
+    font-size: small;
+}
+.input-group-text{
+    font-size: small !important;
+}
+button:hover a{
+    color: white !important;
+}
+button:hover {
+    
+    background-color: rgb(6, 6, 121);
+}
+button{
+    margin: 0;
+    border-color: rgb(136, 136, 224);
+    border-width: 1px;
+    font-size: small;
+
+}
+a{
+    text-decoration: none;
+}
+.input-group{
+    margin: 0.8rem;
+}

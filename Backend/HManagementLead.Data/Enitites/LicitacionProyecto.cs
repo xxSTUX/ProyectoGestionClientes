@@ -10,6 +10,7 @@ namespace HManagementLead.Data.Enitites
         public Proyecto Proyecto { get; set; } = null!;
         public int LicitacionId { get; set; }
         public Licitacion Licitacion { get; set; } = null!;
+
         public LicitacionProyecto() { }
         public LicitacionProyecto(int IdProyecto, int IdLicitacion) 
         {

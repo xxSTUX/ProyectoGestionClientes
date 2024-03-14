@@ -14,6 +14,9 @@ namespace HManagementLead.Data.Enitites
         public string Nombre { get; set; } = null!;
         public string Tipo { get; set; }
 
+        public int Estado { get; set; }
+        public bool Eliminado { get; set; } = false;
+
         public virtual ICollection<LicitacionCliente> LicitacionesClientes { get; set; } = new List<LicitacionCliente>();
         public virtual ICollection<LicitacionProyecto> LicitacionesProyectos { get; set; } = new List<LicitacionProyecto>();
 
@@ -29,6 +32,7 @@ namespace HManagementLead.Data.Enitites
             Id = licitacion.Id;
             Nombre = licitacion.Nombre;
             Tipo = licitacion.Tipo;
+            Estado = licitacion.Estado;
         }
     }
 }

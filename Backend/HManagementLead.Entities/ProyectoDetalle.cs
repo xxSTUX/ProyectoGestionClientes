@@ -9,6 +9,8 @@ namespace HManagementLead.Entities
         [JsonIgnore]
         public int IdCliente { get; set; }
         public string Estado { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
         public string Tipo { get; set; } = null!;
         [JsonIgnore]
         public IList<TablaIntermedia> SeguimientoProyecto { get; set; } = new List<TablaIntermedia>();

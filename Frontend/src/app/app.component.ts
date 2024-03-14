@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorComponent } from './error/error.component';
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

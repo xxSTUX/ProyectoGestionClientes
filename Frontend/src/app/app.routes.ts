@@ -13,6 +13,7 @@ import { SeguimientosComponent } from './child/seguimientos/seguimientos.compone
 import { NgModule } from '@angular/core';
 import { CreaClienteComponent } from './crea-cliente/crea-cliente.component';
 import { ModificaclienteComponent } from './modificacliente/modificacliente.component';
+import { CreaProyectoComponent } from './crea-proyecto/crea-proyecto.component';
 
 
 export const routes: Routes = [
@@ -26,10 +27,11 @@ export const routes: Routes = [
     { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
     { path: "modificacliente", component: ModificaclienteComponent, pathMatch: "full"},
     { path: "datatable", component: DatatableComponent, pathMatch: "full" },
+    { path: "creaproyecto",component:CreaProyectoComponent, pathMatch: "full" },
     { path: "creacliente", component: CreaClienteComponent, pathMatch: "full" },
     { path: 'licitaciones', component: LicitacionesComponent,  },
     { path: 'seguimientos', component: SeguimientosComponent,  },
-    { path: ':nodeName', component: ChildComponent },
+    { path: ':nodeName', component: ChildComponent }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

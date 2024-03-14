@@ -96,6 +96,24 @@ namespace HManagementLead.Controllers
             }
         }
 
+        [HttpPut()]
+        public async Task<IActionResult> UpdateEliminadoAsync([FromBody] ProyectoDetalle value)
+        {
+            try
+            {
+
+                var resultado = await _proyectoService.UpdateProyectoAsync(value);
+
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Put");
+                throw;
+            }
+        }
+
         // DELETE api/<ClienteController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
