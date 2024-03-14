@@ -1,182 +1,156 @@
-import { Component, Renderer2 } from '@angular/core';
-import { AngularEditorModule } from '@kolkov/angular-editor';
-import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { ApiService } from '../services/api.service';
-import * as bootstrap from 'bootstrap';
-import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
-import { AniadecontactoComponent } from "../aniadecontacto/aniadecontacto.component";
 import { CommonModule } from '@angular/common';
-import { Observable, map } from 'rxjs';
-
-interface Elemento{
-  id: any;
-  click: boolean;
-  nombre: string;
-  deleted:boolean;
-}
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-modificacliente',
   standalone: true,
   templateUrl: './modificacliente.component.html',
   styleUrls: ['./modificacliente.component.css'],
-  imports: [AngularEditorModule, FormsModule, HttpClientModule, CreaClienteComponent, AniadecontactoComponent, CommonModule]
+  imports: [CommonModule, FormsModule]
 })
 
 export class ModificaclienteComponent {
-  id = '';
-  nombre = '';
-  fecha = '';
+  //Contactos
+  listaContactos: any[] = [];
+  idsContactosSeleccionados: number[] = [];
+  todosContactosSeleccionados = false;
+  listaContactosSeleccionados: any;
+  botonEliminarContactosVisible = false;
+  botonAniadirContactosVisible = true;
 
-  constructor(private http: HttpClient, private apiService: ApiService, private renderer: Renderer2) {}
+  //Proyectos
+  listaProyectos: any[] = [];
+  idsProyectosSeleccionados: number[] = [];
+  todosProyectosSeleccionados = false;
+  listaProyectosSeleccionados: any;
+  botonEliminarProyectosVisible = false;
+  botonAniadirProyectosVisible = true;
 
-  option={
-    animation:true,
-    delay:2000
+  constructor(private apiService: ApiService) { 
+    //Contactos
+    this.apiService.getDataContactosFromAPI().subscribe((data: any[]) => {
+      this.listaContactos = data
+        .filter((item: any) => item.eliminado === false)
+        .map((item: any) => ({ ...item, isContactoSelected: false }));
+    });    
+    
+    this.actualizarListaContactosSeleccionados();
+
+    //Proyectos
+    this.apiService.getDataProyectosFromAPI().subscribe((data: any[]) => {
+      this.listaProyectos = data
+        .filter((item: any) => item.Eliminado === false)
+        .map((item: any) => ({ ...item, isProyectoSelected: false }));
+    });    
+    
+    this.actualizarListaProyectosSeleccionados();
   }
-
-  contactos: Observable<any> | undefined;
-  proyectos: Observable<any> | undefined;
-  licitaciones: Observable<any> | undefined;
-  seguimientos: Observable<any> | undefined;
-
-  creatabla(nombreelemento: string, elementos: Elemento[]) {
-    const tabla = document.getElementById(nombreelemento);
-    if (tabla != null) {
-      for (const elemento of elementos) {
-        const tr = document.createElement('tr');
-        const tdCheckbox = document.createElement('td');
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-        checkbox.checked = elemento.click;
-        tdCheckbox.appendChild(checkbox);
-
-        const tdNombre = document.createElement('td');
-        tdNombre.textContent = elemento.nombre;
-
-        const tdBotones = document.createElement('td');
-        const botonModificar = document.createElement('button');
-        botonModificar.textContent = 'Modificar';
-        botonModificar.addEventListener('click', () => this.modifica(elemento.id));
-        const botonEliminar = document.createElement('button');
-        botonEliminar.textContent = 'Eliminar';
-        botonEliminar.addEventListener('click', () => this.eliminar());
-
-        tdBotones.appendChild(botonModificar);
-        tdBotones.appendChild(botonEliminar);
-
-        tr.appendChild(tdCheckbox);
-        tr.appendChild(tdNombre);
-        tr.appendChild(tdBotones);
-
-        tabla.appendChild(tr);
-      }
+  
+  //CONTACTOS
+  actualizarListaContactosSeleccionados(){
+    this.listaContactosSeleccionados = [];
+    for (var i = 0; i < this.listaContactos.length; i++) {
+      if(this.listaContactos[i].isContactoSelected)
+      this.listaContactosSeleccionados.push(this.listaContactos[i]);
     }
+    this.listaContactosSeleccionados = JSON.stringify(this.listaContactosSeleccionados);
   }
 
-  async modifica(id: number) {
-    const contacto = await this.apiService.getContactoById(id).toPromise();
-    if (contacto) {
-      // Mostrar el popup con los datos del contacto
-      // Puedes usar un modal o cualquier otra forma de mostrar la información del contacto
-      alert(`ID: ${contacto.id}
-      Cargo: ${contacto.cargo}
-      Email: ${contacto.email}
-      Teléfono: ${contacto.telefono}`);
-
-      // Código para editar los datos del contacto
-      const cargoEditado = prompt("Introduce el nuevo cargo:", contacto.cargo);
-      const emailEditado = prompt("Introduce el nuevo email:", contacto.email);
-      const telefonoEditado = prompt("Introduce el nuevo teléfono:", contacto.telefono);
-
-      // Actualizar la información del contacto
-      const updatedContact = {
-        cargo: cargoEditado ? cargoEditado : contacto.cargo,
-        email: emailEditado ? emailEditado : contacto.email,
-        telefono: telefonoEditado ? telefonoEditado : contacto.telefono,
-      };
-
-      await this.apiService.putContactoFromAPI(id, updatedContact).toPromise();
-
-      alert("Contacto actualizado correctamente");
+  verificarSiTodosLosContactosEstanSeleccionados() {
+    this.todosContactosSeleccionados = this.listaContactos.every(function(item:any) {
+      return item.isContactoSelected == true;
+    })
+    this.idsContactosSeleccionados = this.listaContactos.filter(c => c.isContactoSelected).map(c => c.id);
+    this.botonEliminarContactosVisible = this.idsContactosSeleccionados.length > 0;
+    this.botonAniadirContactosVisible = this.idsContactosSeleccionados.length === 0;
+    this.actualizarListaContactosSeleccionados();
+    console.log('IDs de Contactos Seleccionados:', this.idsContactosSeleccionados);
+  }
+  
+  seleccionarDeseleccionarTodosLosContactos() {
+    for (var i = 0; i < this.listaContactos.length; i++) {
+      this.listaContactos[i].isContactoSelected = this.todosContactosSeleccionados;
+    }
+    if(this.todosContactosSeleccionados){
+      this.verificarSiTodosLosContactosEstanSeleccionados();
     } else {
-      alert("No se ha encontrado el contacto con ID " + id);
+      this.idsContactosSeleccionados = [];
+      this.botonEliminarContactosVisible = false;
+      this.botonAniadirContactosVisible = true;
+      console.log('IDs de Contactos Seleccionados:', this.idsContactosSeleccionados);
     }
+    this.actualizarListaContactosSeleccionados();
   }
 
-  async eliminar() {
+  eliminarContactos() {
     // Recorrer todos los contactos
-    this.contactos?.forEach(contacto => {
-      // Si el contacto está seleccionado, marcarlo como eliminado
-      if (contacto.click) {
-        contacto.deleted = true;
+    this.listaContactos.forEach(contacto => {
+      // Si el ID del contacto está en el array idsContactosSeleccionados, marcarlo como eliminado
+      if (this.idsContactosSeleccionados.includes(contacto.id)) {
+        contacto.contactoEliminado = true;
+  
+        // Actualizar el contacto en la base de datos
+        this.apiService.putContactoFromAPI(contacto.id, contacto).subscribe(response => {
+          console.log('Contacto actualizado correctamente en la base de datos', response);
+        }, error => {
+          console.error('Error actualizando el contacto en la base de datos', error);
+        });
       }
     });
-  
-    alert("Contactos marcados como eliminados correctamente");
-  }
-  
-
-  toggleTodos(event: any) {
-    let isChecked = event.target.checked;
-    this.contactos?.forEach(contacto => contacto.click = isChecked);
-  }
-  
-  hayContactosSeleccionados(): Observable<boolean> | undefined {
-    return this.contactos?.pipe(
-      map((contactos: Elemento[]) => {
-        let haySeleccionados = contactos.some(contacto => contacto.click);
-        console.log('hayContactosSeleccionados:', haySeleccionados);
-        return haySeleccionados;
-      })
-    );
-  }   
-   
-
-  ngOnInit() {
-    // **Llamada a la API solo una vez**
-    this.contactos = this.apiService.getDataContactosFromAPI().pipe(
-      map(contactos => contactos.filter((contacto: Elemento) => {
-        return !contacto.deleted && typeof contacto === 'object';
-      }))
-    );    
-    this.proyectos = this.apiService.getDataProyectosFromAPI();
-    this.licitaciones = this.apiService.getDataLicitacionesFromAPI();
-    this.seguimientos = this.apiService.getDataSeguimientosFromAPI();
-
-    this.contactos.subscribe((data) => {
-      this.creatabla('bodytable-contactos', data);
-    });
-
-    this.proyectos.subscribe((data) => {
-      this.creatabla('bodytable-proyectos', data);
-    });
-
-    this.licitaciones.subscribe((data) => {
-      this.creatabla('bodytable-licitaciones', data);
-    });
-
-    this.seguimientos.subscribe((data) => {
-      this.creatabla('bodytable-seguimientos', data);
-    });
   }
 
-  updateClient(){
-    alert('Cliente modificado a nombre: '+this.nombre+' id: '+this.id+ 'fecha nacimiento: '+this.fecha);
-    this.apiService.putClienteFromAPI(parseInt(this.id), this.nombre);
-  }
-
-  deleteClient(){
-    alert('Cliente borrado');
-    this.apiService.deleteClientFromAPI(parseInt(this.id));
-  }
-
-  toasty(){
-    const toast = document.getElementById("añadirContacto");
-    if (toast!=null){
-      const toastElement = new bootstrap.Toast(toast, this.option);
-      toastElement.show();
+  //PROYECTOS
+  actualizarListaProyectosSeleccionados(){
+    this.listaProyectosSeleccionados = [];
+    for (var i = 0; i < this.listaProyectos.length; i++) {
+      if(this.listaProyectos[i].isProyectoselected)
+      this.listaProyectosSeleccionados.push(this.listaProyectos[i]);
     }
+    this.listaProyectosSeleccionados = JSON.stringify(this.listaProyectosSeleccionados);
+  }
+
+  verificarSiTodosLosProyectosEstanSeleccionados() {
+    this.todosProyectosSeleccionados = this.listaProyectos.every(function(item:any) {
+      return item.isProyectoselected == true;
+    })
+    this.idsProyectosSeleccionados = this.listaProyectos.filter(c => c.isProyectoselected).map(c => c.id);
+    this.botonEliminarProyectosVisible = this.idsProyectosSeleccionados.length > 0;
+    this.botonAniadirProyectosVisible = this.idsProyectosSeleccionados.length === 0;
+    this.actualizarListaProyectosSeleccionados();
+    console.log('IDs de Proyectos Seleccionados:', this.idsProyectosSeleccionados);
+  }
+  
+  seleccionarDeseleccionarTodosLosProyectos() {
+    for (var i = 0; i < this.listaProyectos.length; i++) {
+      this.listaProyectos[i].isProyectoselected = this.todosProyectosSeleccionados;
+    }
+    if(this.todosProyectosSeleccionados){
+      this.verificarSiTodosLosProyectosEstanSeleccionados();
+    } else {
+      this.idsProyectosSeleccionados = [];
+      this.botonEliminarProyectosVisible = false;
+      this.botonAniadirProyectosVisible = true;
+      console.log('IDs de Proyectos Seleccionados:', this.idsProyectosSeleccionados);
+    }
+    this.actualizarListaProyectosSeleccionados();
+  }
+
+  eliminarProyectos() {
+    // Recorrer todos los Proyectos
+    this.listaProyectos.forEach(proyecto => {
+      // Si el ID del proyecto está en el array idsProyectosSeleccionados, marcarlo como eliminado
+      if (this.idsProyectosSeleccionados.includes(proyecto.id)) {
+        proyecto.proyectoEliminado = true;
+  
+        // Actualizar el proyecto en la base de datos
+        this.apiService.putProyectoFromAPI(proyecto.id, proyecto).subscribe(response => {
+          console.log('Proyecto actualizado correctamente en la base de datos', response);
+        }, error => {
+          console.error('Error actualizando el proyecto en la base de datos', error);
+        });
+      }
+    });
   }
 }

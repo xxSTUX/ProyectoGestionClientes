@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { data } from 'jquery';
-
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +18,7 @@ export class ApiService {
     return this.http.get<any>('https://localhost:7075/api/licitacion');
   }
   getDataSeguimientosFromAPI(): Observable<any> {
-    return this.http.get<any>('https://localhost:7075/api/seguimineto');
+    return this.http.get<any>('https://localhost:7075/api/seguimiento');
   }
   getDataContactosFromAPI():Observable<any> {
     return this.http.get<any>('https://localhost:7075/api/contacto');
@@ -37,14 +35,6 @@ export class ApiService {
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyCliente);
   }
 
-  postProyectosFromAPI(id:number, nombre:String, tipo:String): Observable<any> {
-    const bodyProyecto = {
-      id:id,
-      nombre: nombre,
-      tipo:tipo
-    };
-    return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
-  }
   async postLicitacionFromAPI(nombre:string,tipo:string) {
       const bodyProyecto = {
         nombre: nombre,
@@ -82,9 +72,39 @@ export class ApiService {
       cargo: updatedContact.cargo,
       email: updatedContact.email,
       telefono: updatedContact.telefono,
+      contactoEliminado: updatedContact.contactoEliminado,
     };
   
     return this.http.put<any>(`https://localhost:7075/api/contacto/${id}`, bodyContacto);
   }
+
+  putProyectoFromAPI(id: number, updatedProyecto: any): Observable<any> {
+    const bodyProyecto = {
+      nombre: updatedProyecto.nombre,
+      estado: updatedProyecto.estado,
+      tipo: updatedProyecto.tipo,
+      seguimientos: updatedProyecto.seguimientos,
+      licitaciones: updatedProyecto.licitaciones,
+      facturacion: updatedProyecto.facturacion,
+      puestos: updatedProyecto.puestos,
+      proyectoEliminado: updatedProyecto.proyectoEliminado,
+    };
+  
+    return this.http.put<any>(`https://localhost:7075/api/proyecto/${id}`, bodyProyecto);
+  }
+
+  postProyectoFromAPI(newProyecto: any): Observable<any> {
+    const bodyProyecto = {
+      nombre: newProyecto.nombre,
+      estado: newProyecto.estado,
+      tipo: newProyecto.tipo,
+      seguimientos: newProyecto.seguimientos,
+      licitaciones: newProyecto.licitaciones,
+      facturacion: newProyecto.facturacion,
+      puestos: newProyecto.puestos,
+    };
+  
+    return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
+  }  
   
 }
