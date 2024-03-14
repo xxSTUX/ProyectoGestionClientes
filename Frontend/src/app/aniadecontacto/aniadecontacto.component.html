@@ -1,0 +1,21 @@
+<div class="card bg-glass col-auto bg-light p-5 background-radial-gradient">
+    <div class="card-body px-4 py-5 px-md-5">
+        <p class="mb-4 opacity-70 text-center font-weight-bold" style="color: hsl(0, 12%, 87%); font-size: 24px;">
+            Añade un nuevo contacto
+        </p>
+        <form formGroup="reestablishForm" (submit)="aniadeContacto()">
+            <div class="row">
+                <!-- Client input -->
+                <div class="mb-4">
+                    <input formControlName="nombreContacto" class="form-control" id="nombreContacto"
+                        placeholder="Nombre del contacto" required style="text-align: center" autocomplete="off" />
+                </div>
+
+                <!-- Submit button -->
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Añade el contacto
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
