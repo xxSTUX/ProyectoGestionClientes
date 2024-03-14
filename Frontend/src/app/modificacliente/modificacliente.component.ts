@@ -33,16 +33,16 @@ export class ModificaclienteComponent {
     this.apiService.getDataContactosFromAPI().subscribe((data: any[]) => {
       this.listaContactos = data
         .filter((item: any) => item.eliminado === false)
-        .map((item: any) => ({ ...item, isContactoSelected: false }));
+        .map((item: any) => ({ ...item, isContactSelected: false }));
     });    
     
-    this.actualizarListaContactosSeleccionados();
+    this.actualizarListaContactosSeleccionados();   
 
     //Proyectos
     this.apiService.getDataProyectosFromAPI().subscribe((data: any[]) => {
       this.listaProyectos = data
         .filter((item: any) => item.Eliminado === false)
-        .map((item: any) => ({ ...item, isProyectoSelected: false }));
+        .map((item: any) => ({ ...item, isProjectSelected: false }));
     });    
     
     this.actualizarListaProyectosSeleccionados();
@@ -52,7 +52,7 @@ export class ModificaclienteComponent {
   actualizarListaContactosSeleccionados(){
     this.listaContactosSeleccionados = [];
     for (var i = 0; i < this.listaContactos.length; i++) {
-      if(this.listaContactos[i].isContactoSelected)
+      if(this.listaContactos[i].isContactSelected)
       this.listaContactosSeleccionados.push(this.listaContactos[i]);
     }
     this.listaContactosSeleccionados = JSON.stringify(this.listaContactosSeleccionados);
@@ -60,9 +60,9 @@ export class ModificaclienteComponent {
 
   verificarSiTodosLosContactosEstanSeleccionados() {
     this.todosContactosSeleccionados = this.listaContactos.every(function(item:any) {
-      return item.isContactoSelected == true;
+      return item.isContactSelected == true;
     })
-    this.idsContactosSeleccionados = this.listaContactos.filter(c => c.isContactoSelected).map(c => c.id);
+    this.idsContactosSeleccionados = this.listaContactos.filter(c => c.isContactSelected).map(c => c.id);
     this.botonEliminarContactosVisible = this.idsContactosSeleccionados.length > 0;
     this.botonAniadirContactosVisible = this.idsContactosSeleccionados.length === 0;
     this.actualizarListaContactosSeleccionados();
@@ -71,7 +71,7 @@ export class ModificaclienteComponent {
   
   seleccionarDeseleccionarTodosLosContactos() {
     for (var i = 0; i < this.listaContactos.length; i++) {
-      this.listaContactos[i].isContactoSelected = this.todosContactosSeleccionados;
+      this.listaContactos[i].isContactSelected = this.todosContactosSeleccionados;
     }
     if(this.todosContactosSeleccionados){
       this.verificarSiTodosLosContactosEstanSeleccionados();
@@ -89,7 +89,7 @@ export class ModificaclienteComponent {
     this.listaContactos.forEach(contacto => {
       // Si el ID del contacto está en el array idsContactosSeleccionados, marcarlo como eliminado
       if (this.idsContactosSeleccionados.includes(contacto.id)) {
-        contacto.contactoEliminado = true;
+        contacto.liminado = true;
   
         // Actualizar el contacto en la base de datos
         this.apiService.putContactoFromAPI(contacto.id, contacto).subscribe(response => {
@@ -105,7 +105,7 @@ export class ModificaclienteComponent {
   actualizarListaProyectosSeleccionados(){
     this.listaProyectosSeleccionados = [];
     for (var i = 0; i < this.listaProyectos.length; i++) {
-      if(this.listaProyectos[i].isProyectoselected)
+      if(this.listaProyectos[i].isProjectSelected)
       this.listaProyectosSeleccionados.push(this.listaProyectos[i]);
     }
     this.listaProyectosSeleccionados = JSON.stringify(this.listaProyectosSeleccionados);
@@ -113,9 +113,9 @@ export class ModificaclienteComponent {
 
   verificarSiTodosLosProyectosEstanSeleccionados() {
     this.todosProyectosSeleccionados = this.listaProyectos.every(function(item:any) {
-      return item.isProyectoselected == true;
+      return item.isProjectSelected == true;
     })
-    this.idsProyectosSeleccionados = this.listaProyectos.filter(c => c.isProyectoselected).map(c => c.id);
+    this.idsProyectosSeleccionados = this.listaProyectos.filter(c => c.isProjectSelected).map(c => c.id);
     this.botonEliminarProyectosVisible = this.idsProyectosSeleccionados.length > 0;
     this.botonAniadirProyectosVisible = this.idsProyectosSeleccionados.length === 0;
     this.actualizarListaProyectosSeleccionados();
@@ -124,7 +124,7 @@ export class ModificaclienteComponent {
   
   seleccionarDeseleccionarTodosLosProyectos() {
     for (var i = 0; i < this.listaProyectos.length; i++) {
-      this.listaProyectos[i].isProyectoselected = this.todosProyectosSeleccionados;
+      this.listaProyectos[i].isProjectSelected = this.todosProyectosSeleccionados;
     }
     if(this.todosProyectosSeleccionados){
       this.verificarSiTodosLosProyectosEstanSeleccionados();
@@ -142,7 +142,7 @@ export class ModificaclienteComponent {
     this.listaProyectos.forEach(proyecto => {
       // Si el ID del proyecto está en el array idsProyectosSeleccionados, marcarlo como eliminado
       if (this.idsProyectosSeleccionados.includes(proyecto.id)) {
-        proyecto.proyectoEliminado = true;
+        proyecto.Eliminado = true;
   
         // Actualizar el proyecto en la base de datos
         this.apiService.putProyectoFromAPI(proyecto.id, proyecto).subscribe(response => {

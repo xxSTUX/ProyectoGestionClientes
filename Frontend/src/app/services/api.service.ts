@@ -8,31 +8,31 @@ import { data } from 'jquery';
 })
 export class ApiService {
  
-  ip: string = 'https://localhost:7075/api/';
+  api: string = 'https://localhost:7075/api/';
  
   constructor(private http: HttpClient) { }
  
   getDataClientesFromAPI(): Observable<any> {
-    return this.http.get<any>(this.ip+'cliente');
+    return this.http.get<any>(this.api+'cliente');
   }
  
   getDataProyectosFromAPI(): Observable<any> {
-    return this.http.get<any>(this.ip+'proyecto');
+    return this.http.get<any>(this.api+'Proyecto');
   }
  
   getDataLicitacionesFromAPI(): Observable<any> {
-    return this.http.get<any>(this.ip+'licitacion');
+    return this.http.get<any>(this.api+'licitacion');
   }
  
   getDataSeguimientosFromAPI(): Observable<any> {
-    return this.http.get<any>(this.ip+'seguimineto');
+    return this.http.get<any>(this.api+'seguimineto');
   }
 
   getDataContactosFromAPI():Observable<any> {
-    return this.http.get<any>('https://localhost:7075/api/contacto');
+    return this.http.get<any>(this.api+'contacto');
   }
-  getContactoById(id: number):Observable<any> {
-    return this.http.get<any>(`https://localhost:7075/api/contacto/${id}`);
+  getContactoById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.api}/contacto/${id}`);
   }
  
    
@@ -40,15 +40,15 @@ export class ApiService {
     const bodyCliente = {
       nombre: nombre
     };
-    return this.http.post<any>(this.ip+'proyecto', bodyCliente);
+    return this.http.post<any>(this.api+'proyecto', bodyCliente);
   }
-  async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:String) {
+  async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:String) {
     const bodyProyecto = {
       nombre: nombre,
       estado:estado,
-      tipo:tipo
+      tapio:tapio
     };
-    const response = await fetch(this.ip+'Cliente/InsertProyecto/'+ id, {
+    const response = await fetch(this.api+'Cliente/InsertProyecto/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
@@ -61,10 +61,10 @@ export class ApiService {
     }
   }
 
-  async postLicitacionFromAPI(nombre:string,tipo:string) {
+  async postLicitacionFromAPI(nombre:string,tapio:string) {
     const bodyProyecto = {
       nombre: nombre,
-      tipo:tipo
+      tapio:tapio
     };
     console.log(bodyProyecto)
     const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/2', {
@@ -81,14 +81,14 @@ export class ApiService {
     }
 }
 
-  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
+  async postLicitacionToClienteAPI(nombre:string,tapio:string,id:string,estado:string) {
       const bodyProyecto = {
         nombre: nombre,
-        tipo:tipo,
+        tapio:tapio,
         estado:estado
       };
       alert(estado)
-      const response = await fetch(this.ip+'Cliente/rInsertLicitacion/'+ id, {
+      const response = await fetch(this.api+'Cliente/rInsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
           'accept': '*/*',
@@ -109,11 +109,11 @@ export class ApiService {
  
     const bodyProyecto = {
       nombre: nombre,
-      tipo:"",
+      tapio:"",
       fecha:fechaCre,
       observaciones:text
     };
-    const response = await fetch(this.ip+'Cliente/InsertSeguimiento/'+ id, {
+    const response = await fetch(this.api+'Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
@@ -127,7 +127,7 @@ export class ApiService {
 }
  
    deleteProyectoToAPI(id:number){
-    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+    const response = fetch(this.api+'Proyecto/UpdateEliminado/'+ id, {
       method: 'PUT',
       headers: {
         'accept': '*/*',
@@ -136,7 +136,7 @@ export class ApiService {
     });
   }
   deleteContactoAPI(id:number){
-    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+    const response = fetch(this.api+'Proyecto/UpdateEliminado/'+ id, {
       method: 'PUT',
       headers: {
         'accept': '*/*',
@@ -168,7 +168,7 @@ export class ApiService {
     const bodyProyecto = {
       nombre: newProyecto.nombre,
       estado: newProyecto.estado,
-      tipo: newProyecto.tipo,
+      tapio: newProyecto.tapio,
       seguimientos: newProyecto.seguimientos,
       licitaciones: newProyecto.licitaciones,
       facturacion: newProyecto.facturacion,
@@ -182,7 +182,7 @@ export class ApiService {
     const bodyProyecto = {
       nombre: updatedProyecto.nombre,
       estado: updatedProyecto.estado,
-      tipo: updatedProyecto.tipo,
+      tapio: updatedProyecto.tapio,
       seguimientos: updatedProyecto.seguimientos,
       licitaciones: updatedProyecto.licitaciones,
       facturacion: updatedProyecto.facturacion,

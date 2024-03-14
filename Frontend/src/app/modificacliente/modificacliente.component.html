@@ -37,8 +37,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let contacto of listaContactos;">
-                        <th class="center" scope="row"><input type="checkbox" [(ngModel)]="contacto.isSelected"
+                    <tr *ngFor="let contacto of listaContactos">
+                        <th class="center" scope="row"><input type="checkbox" [(ngModel)]="contacto.isContactSelected"
                                 (change)="verificarSiTodosLosContactosEstanSeleccionados()"></th>
                             <td class="clickeable tooltip-container">{{contacto.cargo}}
                             </td>
@@ -82,8 +82,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let proyecto of listaProyectos;">
-                        <th scope="row" class="center"><input type="checkbox" [(ngModel)]="proyecto.isSelected"
+                    <tr *ngFor="let proyecto of listaProyectos">
+                        <th scope="row" class="center"><input type="checkbox" [(ngModel)]="proyecto.isProjectSelected"
                                 (change)="verificarSiTodosLosProyectosEstanSeleccionados()"></th>
                             <td class="clickeable tooltip-container">{{proyecto.nombre}}
                             </td>
