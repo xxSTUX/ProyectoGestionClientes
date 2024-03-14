@@ -62,6 +62,7 @@ namespace HManagementLead.Dal.Mapping
                                 {
                                     LicitacionId = l.Id,
                                     Nombre = l.Nombre,
+                                    Ganada = l.Ganada,
                                 }).OrderBy(l => l.Nombre).ToList(),
             };
         }

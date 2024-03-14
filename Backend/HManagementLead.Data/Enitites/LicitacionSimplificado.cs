@@ -12,5 +12,6 @@ namespace HManagementLead.Data.Enitites
         [Key]
         public int LicitacionId { get; set; }
         public String Nombre { get; set; } = null!;
+        public int Ganada { get; set; }
     }
 }
