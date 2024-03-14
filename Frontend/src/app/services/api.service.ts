@@ -60,7 +60,7 @@ export class ApiService {
         estado:estado
       };
       alert(estado)
-      const response = await fetch(this.ip+'InsertLicitacion/'+ id, {
+      const response = await fetch(this.ip+'Cliente/rInsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
           'accept': '*/*',
