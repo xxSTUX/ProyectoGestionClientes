@@ -27,6 +27,13 @@ export class ApiService {
   getDataSeguimientosFromAPI(): Observable<any> {
     return this.http.get<any>(this.ip+'seguimineto');
   }
+
+  getDataContactosFromAPI():Observable<any> {
+    return this.http.get<any>('https://localhost:7075/api/contacto');
+  }
+  getContactoById(id: number):Observable<any> {
+    return this.http.get<any>(`https://localhost:7075/api/contacto/${id}`);
+  }
  
    
   postClientesFromAPI(nombre:String): Observable<any> {
@@ -53,6 +60,27 @@ export class ApiService {
       throw new Error(`Error! Status: ${response.status}`);
     }
   }
+
+  async postLicitacionFromAPI(nombre:string,tipo:string) {
+    const bodyProyecto = {
+      nombre: nombre,
+      tipo:tipo
+    };
+    console.log(bodyProyecto)
+    const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/2', {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyProyecto),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error! Status: ${response.status}`);
+    }
+}
+
   async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
       const bodyProyecto = {
         nombre: nombre,
@@ -116,6 +144,52 @@ export class ApiService {
       }
     });
   }
+
+  putClienteFromAPI(id: number, nombre: string): Observable<any> {
+    const bodyCliente = {
+      nombre: nombre,
+    };
+  
+    return this.http.put<any>('https://localhost:7075/api/proyecto/${id}', bodyCliente);
+  }
+
+  putContactoFromAPI(id: number, updatedContact: any): Observable<any> {
+    const bodyContacto = {
+      cargo: updatedContact.cargo,
+      email: updatedContact.email,
+      telefono: updatedContact.telefono,
+      contactoEliminado: updatedContact.contactoEliminado,
+    };
+  
+    return this.http.put<any>(`https://localhost:7075/api/contacto/${id}`, bodyContacto);
+  }
+
+  postProyectoFromAPI(newProyecto: any): Observable<any> {
+    const bodyProyecto = {
+      nombre: newProyecto.nombre,
+      estado: newProyecto.estado,
+      tipo: newProyecto.tipo,
+      seguimientos: newProyecto.seguimientos,
+      licitaciones: newProyecto.licitaciones,
+      facturacion: newProyecto.facturacion,
+      puestos: newProyecto.puestos,
+    };
+  
+    return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
+  }  
  
- 
+  putProyectoFromAPI(id: number, updatedProyecto: any): Observable<any> {
+    const bodyProyecto = {
+      nombre: updatedProyecto.nombre,
+      estado: updatedProyecto.estado,
+      tipo: updatedProyecto.tipo,
+      seguimientos: updatedProyecto.seguimientos,
+      licitaciones: updatedProyecto.licitaciones,
+      facturacion: updatedProyecto.facturacion,
+      puestos: updatedProyecto.puestos,
+      proyectoEliminado: updatedProyecto.proyectoEliminado,
+    };
+  
+    return this.http.put<any>(`https://localhost:7075/api/proyecto/${id}`, bodyProyecto);
+  }
 }
