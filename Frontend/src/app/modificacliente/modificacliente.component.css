@@ -1,0 +1,164 @@
+.table__title {
+  font-weight: 900;
+  font-size: 1rem;
+  margin-bottom: 0rem;
+}
+
+.eliminar-button {
+  padding: 0vh !important;
+  margin-left: auto !important;
+  width: 9.375rem !important;
+  height: 3.125rem !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: red;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  background: #e62222;
+ }
+ 
+ .eliminar-button, .eliminar-button span {
+  transition: 200ms;
+ }
+ 
+ .eliminar-button .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+ }
+ 
+ .eliminar-button .icon {
+  position: absolute;
+  border-left: 1px solid #c41b1b;
+  transform: translateX(110px);
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .eliminar-button svg {
+  width: 1rem;
+  fill: #eee;
+ }
+ 
+ .eliminar-button:hover {
+  background: #ff3636;
+ }
+ 
+ .eliminar-button:hover .text {
+  color: transparent;
+ }
+ 
+ .eliminar-button:hover .icon {
+  width: 9.375rem;
+  border-left: none;
+  transform: translateX(0);
+ }
+ 
+ .eliminar-button:focus {
+  outline: none;
+ }
+ 
+ .eliminar-button:active .icon svg {
+  transform: scale(0.8);
+ }
+
+.tooltip-container {
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.tooltip-container:hover {
+  transform: scale(0.8);
+}
+
+
+.aniadir-button {
+  padding: 0vh !important;
+  margin-left: auto !important;
+  width: 9.375rem !important;
+  height: 3.125rem !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: radial-gradient(650px circle at 0% 0%,
+  hsl(218, 41%, 35%) 15%,
+  hsl(218, 41%, 30%) 35%,
+  hsl(218, 41%, 20%) 75%,
+  hsl(218, 41%, 19%) 80%,
+  transparent 100%),
+radial-gradient(1250px circle at 100% 100%,
+  hsl(218, 41%, 45%) 15%,
+  hsl(218, 41%, 30%) 35%,
+  hsl(218, 41%, 20%) 75%,
+  hsl(218, 41%, 19%) 80%,
+  transparent 100%);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+ }
+ 
+ .aniadir-button, .aniadir-button span {
+  transition: 200ms;
+ }
+ 
+ .aniadir-button .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+ }
+ 
+ .aniadir-button .icon {
+  position: absolute;
+  border-left: 1px solid #000000;
+  transform: translateX(110px);
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .aniadir-button svg {
+  width: 1rem;
+  fill: #eee;
+ }
+ 
+ .aniadir-button:hover {
+  background: #5cb85c
+ }
+ 
+ .aniadir-button:hover .text {
+  color: transparent;
+ }
+ 
+ .aniadir-button:hover .icon {
+  width: 9.375rem;
+  border-left: none;
+  transform: translateX(0);
+ }
+ 
+ .aniadir-button:focus {
+  outline: none;
+ }
+ 
+ .aniadir-button:active .icon svg {
+  transform: scale(0.8) rotate(45deg);
+ }
+
+.text-buttons{
+  display: flex;
+  align-items: end;
+}
+
+table{
+  margin-top: 1rem;
+}
+
+.center{
+  text-align: center;
+}

@@ -2,12 +2,6 @@
 INSERT INTO Clientes (Nombre)
 VALUES ('Cliente 1'), ('Cliente 2');
 
--- Insertar datos de prueba en la tabla Contactos
-INSERT INTO Contactos (Cargo, Email, Telefono)
-VALUES 
-    ('Cargo 1', 'email1@example.com', '123456789'),
-    ('Cargo 2', 'email2@example.com', '987654321');
-
 -- Insertar datos de prueba en la tabla Proyectos
 INSERT INTO Proyectos (ClienteId, Estado, Nombre, Tipo)
 VALUES 
@@ -38,3 +32,10 @@ INSERT INTO Seguimientos (Fecha, Nombre, Tipo)
 VALUES 
     ('2024-02-27', 'Seguimiento 1', 'Tipo 1'),
     ('2024-02-28', 'Seguimiento 2', 'Tipo 2');
+
+-- Insertar datos de prueba en la tabla Contactos
+INSERT INTO [PruebaDatabase].[dbo].[Contactos] ([Cargo], [Email], [Telefono], [eliminado])
+VALUES
+('Gerente de Ventas', 'gerente_ventas@example.com', '123456789', 0),
+('Analista de Marketing', 'analista_marketing@example.com', '987654321', 0),
+('Desarrollador de Software', 'dev_software@example.com', '555555555', 0);

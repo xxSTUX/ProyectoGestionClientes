@@ -12,9 +12,8 @@ import { LicitacionesComponent } from "../child/licitaciones/licitaciones.compon
 import { SeguimientosComponent } from "../child/seguimientos/seguimientos.component";
 import { Observable } from 'rxjs';
 import { SplitterModule } from "primeng/splitter";
+import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
-
-
 
 
 @Component({
@@ -22,7 +21,7 @@ import { LoadingComponent } from '../loading/loading.component';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent]
 })
 export class DashboardComponent implements OnInit {
   halal = true;

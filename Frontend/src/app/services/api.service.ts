@@ -2,32 +2,32 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { data } from 'jquery';
-
+ 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-
+ 
   ip: string = 'https://localhost:7075/api/';
-
+ 
   constructor(private http: HttpClient) { }
-
+ 
   getDataClientesFromAPI(): Observable<any> {
     return this.http.get<any>(this.ip+'cliente');
   }
-
+ 
   getDataProyectosFromAPI(): Observable<any> {
     return this.http.get<any>(this.ip+'proyecto');
   }
-
+ 
   getDataLicitacionesFromAPI(): Observable<any> {
     return this.http.get<any>(this.ip+'licitacion');
   }
-
+ 
   getDataSeguimientosFromAPI(): Observable<any> {
     return this.http.get<any>(this.ip+'seguimineto');
   }
-
+ 
    
   postClientesFromAPI(nombre:String): Observable<any> {
     const bodyCliente = {
@@ -60,7 +60,7 @@ export class ApiService {
         estado:estado
       };
       alert(estado)
-      const response = await fetch(this.ip+'InsertLicitacion/'+ id, {
+      const response = await fetch(this.ip+'Cliente/rInsertLicitacion/'+ id, {
         method: 'POST',
         headers: {
           'accept': '*/*',
@@ -72,13 +72,13 @@ export class ApiService {
         throw new Error(`Error! Status: ${response.status}`);
       }
   }
-
+ 
   async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
-    
+   
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
     var text = oDOM.body.innerText;
-
+ 
     const bodyProyecto = {
       nombre: nombre,
       tipo:"",
@@ -97,10 +97,25 @@ export class ApiService {
       throw new Error(`Error! Status: ${response.status}`);
     }
 }
-
+ 
    deleteProyectoToAPI(id:number){
-    return this.http.delete<any>(this.ip+'Proyecto/'+id);
+    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
   }
-
-  
+  deleteContactoAPI(id:number){
+    const response = fetch(this.ip+'Proyecto/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+ 
+ 
 }
