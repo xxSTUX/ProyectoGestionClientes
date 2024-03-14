@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,10 +7,11 @@ using System.Threading.Tasks;
 using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
 
-namespace HManagementLead.Data.Enitites
+namespace HManagementLead.Data
 {
     public partial class ClienteSimplificado
     {
+        [Key]
         public int ClienteId { get; set; }
         public String Nombre { get; set; } = null!;
         public List<ProyectoSimplificado> Proyectos { get; set; } = new List<ProyectoSimplificado>();

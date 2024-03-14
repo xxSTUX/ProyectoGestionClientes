@@ -1,5 +1,6 @@
 ﻿using HManagementLead.Bll.Interfaces;
 using HManagementLead.Dal.Interfaces;
+using HManagementLead.Data;
 using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
 
@@ -23,7 +24,7 @@ namespace HManagementLead.Bll
             var resultado = _repository.GetAllClientesAsync();
             return resultado;
         }
-
+        //clientes con sus objetos pero solo id y nombre para generar el arbol
         public Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
         {
             var resultado = _repository.GetAllClientesCompletoAsync();

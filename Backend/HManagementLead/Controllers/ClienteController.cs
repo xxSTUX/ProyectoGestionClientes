@@ -36,6 +36,21 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+        [HttpGet("Arbol")]
+        public async Task<IActionResult> GetBasic2()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesCompletoAsync();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
 
         // GET api/<ClienteController>/5
         [HttpGet("{id}")]

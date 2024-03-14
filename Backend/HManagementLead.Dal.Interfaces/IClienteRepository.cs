@@ -1,4 +1,5 @@
-﻿using HManagementLead.Entities;
+﻿using HManagementLead.Data;
+using HManagementLead.Entities;
 
 namespace HManagementLead.Dal.Interfaces
 {
@@ -7,7 +8,8 @@ namespace HManagementLead.Dal.Interfaces
         Task<ClienteDetalle> GetClienteByIdAsync(int id);
 
         Task<List<ClienteDetalle>> GetAllClientesAsync();
-        Task<List<ClienteDetalle>> GetAllClientesCompletoAsync();
+        //Arbol
+        Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync();
 
         Task<int> InsertClienteAsync(ClienteDetalle cliente);
 

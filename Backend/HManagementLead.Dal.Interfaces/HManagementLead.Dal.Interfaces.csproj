@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HManagementLead.Data\HManagementLead.Data.csproj" />
     <ProjectReference Include="..\HManagementLead.Entities\HManagementLead.Entities.csproj" />
   </ItemGroup>
 

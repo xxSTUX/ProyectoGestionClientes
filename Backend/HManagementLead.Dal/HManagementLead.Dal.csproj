@@ -19,8 +19,4 @@
     <ProjectReference Include="..\HManagementLead.Data\HManagementLead.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="NewFolder\" />
-  </ItemGroup>
-
 </Project>
