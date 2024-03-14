@@ -14,7 +14,7 @@ namespace HManagementLead.Data.Enitites
         public string Cargo { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telefono { get; set; } = null!;
-        public bool eliminado { get; set; } = false;
+        public bool Eliminado { get; set; } = false;
 
         public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
         public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();

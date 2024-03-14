@@ -28,6 +28,14 @@ export class ModificaclienteComponent {
   botonEliminarProyectosVisible = false;
   botonAniadirProyectosVisible = true;
 
+  //Licitaciones
+  listaLicitaciones: any[] = [];
+  idsLicitacionesSeleccionados: number[] = [];
+  todosLicitacionesSeleccionados = false;
+  listaLicitacionesSeleccionados: any;
+  botonEliminarLicitacionesVisible = false;
+  botonAniadirLicitacionesVisible = true;
+
   constructor(private apiService: ApiService) { 
     //Contactos
     this.apiService.getDataContactosFromAPI().subscribe((data: any[]) => {
@@ -41,11 +49,20 @@ export class ModificaclienteComponent {
     //Proyectos
     this.apiService.getDataProyectosFromAPI().subscribe((data: any[]) => {
       this.listaProyectos = data
-        .filter((item: any) => item.Eliminado === false)
+        .filter((item: any) => item.eliminado === false)
         .map((item: any) => ({ ...item, isProjectSelected: false }));
     });    
     
     this.actualizarListaProyectosSeleccionados();
+
+    //Licitaciones
+    this.apiService.getDataLicitacionesFromAPI().subscribe((data: any[]) => {
+      this.listaLicitaciones = data
+        .filter((item: any) => item.eliminado === false)
+        .map((item: any) => ({ ...item, isLicitationSelected: false }));
+    });    
+    
+    this.actualizarListaLicitacionesSeleccionados();
   }
   
   //CONTACTOS
@@ -89,7 +106,7 @@ export class ModificaclienteComponent {
     this.listaContactos.forEach(contacto => {
       // Si el ID del contacto está en el array idsContactosSeleccionados, marcarlo como eliminado
       if (this.idsContactosSeleccionados.includes(contacto.id)) {
-        contacto.liminado = true;
+        contacto.Eliminado = true;
   
         // Actualizar el contacto en la base de datos
         this.apiService.putContactoFromAPI(contacto.id, contacto).subscribe(response => {
@@ -153,4 +170,57 @@ export class ModificaclienteComponent {
       }
     });
   }
+
+  //PROPUESTAS Y LICITACIONES
+  actualizarListaLicitacionesSeleccionados(){
+    this.listaLicitacionesSeleccionados = [];
+    for (var i = 0; i < this.listaLicitaciones.length; i++) {
+      if(this.listaLicitaciones[i].isLicitationSelected)
+      this.listaLicitacionesSeleccionados.push(this.listaLicitaciones[i]);
+    }
+    this.listaLicitacionesSeleccionados = JSON.stringify(this.listaLicitacionesSeleccionados);
+  }
+
+  verificarSiTodosLosLicitacionesEstanSeleccionados() {
+    this.todosLicitacionesSeleccionados = this.listaLicitaciones.every(function(item:any) {
+      return item.isLicitationSelected == true;
+    })
+    this.idsLicitacionesSeleccionados = this.listaLicitaciones.filter(c => c.isLicitationSelected).map(c => c.id);
+    this.botonEliminarLicitacionesVisible = this.idsLicitacionesSeleccionados.length > 0;
+    this.botonAniadirLicitacionesVisible = this.idsLicitacionesSeleccionados.length === 0;
+    this.actualizarListaLicitacionesSeleccionados();
+    console.log('IDs de Licitaciones Seleccionados:', this.idsLicitacionesSeleccionados);
+  }
+  
+  seleccionarDeseleccionarTodosLosLicitaciones() {
+    for (var i = 0; i < this.listaLicitaciones.length; i++) {
+      this.listaLicitaciones[i].isLicitationSelected = this.todosLicitacionesSeleccionados;
+    }
+    if(this.todosLicitacionesSeleccionados){
+      this.verificarSiTodosLosLicitacionesEstanSeleccionados();
+    } else {
+      this.idsLicitacionesSeleccionados = [];
+      this.botonEliminarLicitacionesVisible = false;
+      this.botonAniadirLicitacionesVisible = true;
+      console.log('IDs de Licitaciones Seleccionados:', this.idsLicitacionesSeleccionados);
+    }
+    this.actualizarListaLicitacionesSeleccionados();
+  }
+
+  // eliminarLicitaciones() {
+  //   // Recorrer todos los Licitaciones
+  //   this.listaLicitaciones.forEach(licitacion => {
+  //     // Si el ID del licitacion está en el array idsLicitacionesSeleccionados, marcarlo como eliminado
+  //     if (this.idsLicitacionesSeleccionados.includes(licitacion.id)) {
+  //       licitacion.Eliminado = true;
+  
+  //       // Actualizar el licitacion en la base de datos
+  //       this.apiService.puticitacionFromAPI(licitacion.id, licitacion).subscribe(response => {
+  //         console.log('licitacion actualizado correctamente en la base de datos', response);
+  //       }, error => {
+  //         console.error('Error actualizando el licitacion en la base de datos', error);
+  //       });
+  //     }
+  //   });
+  // }
 }

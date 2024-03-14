@@ -192,4 +192,13 @@ export class ApiService {
   
     return this.http.put<any>(`https://localhost:7075/api/proyecto/${id}`, bodyProyecto);
   }
+
+  async putLicitacionFromAPI(id: number, updatedLicitacion: any): Promise<void> {
+    const response = await this.http.put<any>(`${this.api}licitacion/${id}`, updatedLicitacion).toPromise();
+  
+    if (!response) {
+      throw new Error('Error al actualizar la licitación.');
+    }
+}
+
 }
