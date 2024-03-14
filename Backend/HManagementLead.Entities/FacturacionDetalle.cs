@@ -12,5 +12,7 @@ namespace HManagementLead.Entities
         [JsonIgnore]
         public int Id { get; set; }
         public string Datos { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
     }
 }

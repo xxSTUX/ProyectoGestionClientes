@@ -1,8 +1,16 @@
-#loader {
-  display: block;
+.loader-overlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
 }
- 
+
 .tree {
+  position: relative;
   border-radius: 0.4rem;
   top: 0;
   padding-top: 1rem;
@@ -24,4 +32,24 @@
   box-sizing: border-box;
   overflow-y: auto;
   height: calc(100vh - 3.875rem);
+  font-size: small;
+}
+
+::-webkit-scrollbar {
+  width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
 }

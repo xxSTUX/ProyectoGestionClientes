@@ -3,51 +3,38 @@
         <div class="col">
             <div class="input-group input-group-sm">
                 <span class="input-group-text">Id</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="id" readonly></textarea>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;"
+                    [(ngModel)]="id" readonly></textarea>
             </div>
         </div>
         <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">Fecha.C</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="fechaCre" readonly></textarea>
-            </div>
-        </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">F.Mod</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="fechaMod" readonly></textarea>
+            <div class="input-group input-group-sm font-size-md">
+                <span class="input-group-text ">Fecha.C</span>
+                <input type="date" id="start" name="trip-start" [(ngModel)]="fechaCre"/>
+                <!-- <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="fechaCre" readonly></textarea> -->
             </div>
         </div>
     </div>
     <div class="row my-3">
         <div class="col">
         </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">Usuario</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="usuario" readonly></textarea>
-            </div>
-        </div>
-        <div class="col">
-            <div class="input-group input-group-sm">
-                <span class="input-group-text">Usuario Mod</span>
-                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="usuarioMod" readonly></textarea>
-            </div>
-        </div>
     </div>
     <div class="row my-3">
-    <div class="col">
-        <div class="input-group input-group-sm">
-            <span class="input-group-text">Nombre</span>
-            <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="nombre"></textarea>
+        <div class="col">
+            <div class="input-group input-group-sm">
+                <span class="input-group-text">Nombre</span>
+                <textarea class="form-control no-resize" aria-label="With textarea" style="height: 20px;" [(ngModel)]="nombre"></textarea>
+            </div>
         </div>
     </div>
-</div>
-    <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="texto"></angular-editor>
-    <div class="row my-1">
-        <div class="col-md-6 col-sm-1 col-xs-1"></div>
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-block btn-outline-dark" (click)="delete()"><a class="text-danger">Eliminar</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11 text-center"><button type="button" class="btn btn-light btn-outline-dark" (click)="create()"><a class="text-success">Crear</a></button></div>
-        <div class="col-md-2 col-sm-3 col-xs-11"><button type="button" class="btn btn-light btn-outline-dark" (click)="cancel()"><a class=text-secondary>Cancelar</a></button></div>
-    </div>
-  </body>
+    <angular-editor [placeholder]="'Enter text here...'" [config]="config" [(ngModel)]="observaciones"></angular-editor>
+    <button type="button" class="button btn btn-labeled btn-light float-right" (click)="cancel()">
+        <span class="btn-label"><i class="bi bi-backspace-fill "></i></span>Cancelar</button>
+        
+    <button type="button" class="button btn btn-labeled btn-danger float-right" (click)="delete()">
+        <span class="btn-label"><i class="bi bi-trash"></i></span>Eliminar</button>
+    
+    <button type="button" class="button btn btn-labeled btn-success float-right" (click)="create()">
+        <span class="btn-label"><i class="bi bi-check-circle"></i></span>Crear</button>
+    
+</body>

@@ -13,8 +13,10 @@ namespace HManagementLead.Data.Enitites
         public int Id { get; set; }
         public string Nombre{ get; set; }
         public DateTime Fecha { get; set; }
-
+        public string Observaciones { get; set; }
         public string Tipo { get; set; }
+        public bool Eliminado { get; set; } = false;
+
 
         public virtual ICollection<SeguimientoCliente> SeguimientosClientes { get; set; } = new List<SeguimientoCliente>();
         public virtual ICollection<SeguimientoProyecto> SeguimientosProyectos { get; set; } = new List<SeguimientoProyecto>();
@@ -31,7 +33,8 @@ namespace HManagementLead.Data.Enitites
             Id = seguimiento.Id;
             Nombre = seguimiento.Nombre;
             Tipo = seguimiento.Tipo;
-            
+            Fecha = seguimiento.Fecha;
+            Observaciones = seguimiento.Observaciones;     
         }
     }
 }

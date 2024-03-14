@@ -28,11 +28,27 @@ namespace HManagementLead.Controllers
             {
                 var resultado = await _clienteService.GetAllClientesAsync();
 
+
                 return Ok(resultado);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
+                throw;
+            }
+        }
+        [HttpGet("Codigo")]
+        public async Task<IActionResult> GetCodigo()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesAsyncToCodigo();
+
+                return Ok(resultado);
+    }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
                 throw;
             }
         }

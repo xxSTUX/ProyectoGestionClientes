@@ -15,6 +15,7 @@ namespace HManagementLead.Data.Enitites
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; } = null!;
         public int LicitacionId { get; set; }
+
         public Licitacion Licitacion { get; set; } = null!;
         public LicitacionCliente() { }
         public LicitacionCliente(int IdCliente, int IdLicitacion) 

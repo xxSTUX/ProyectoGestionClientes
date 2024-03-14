@@ -13,6 +13,7 @@ import { SeguimientosComponent } from "../child/seguimientos/seguimientos.compon
 import { Observable } from 'rxjs';
 import { SplitterModule } from "primeng/splitter";
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
+import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
@@ -20,17 +21,18 @@ import { ModificaclienteComponent } from "../modificacliente/modificacliente.com
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, ModificaclienteComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent]
 })
 export class DashboardComponent implements OnInit {
-
   halal = true;
   //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef) { }
+  
   //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
+
     console.log("Componente principal inicializado");
     this.updateFragmentObservable();
     // Observa los cambios de la ruta y actualiza el fragment$
@@ -52,6 +54,9 @@ updateFragmentObservable(): void {
       console.log("Valor del fragmento:", fragment);
     });
 }
-
+getFragmentTipoNodo(fragment: string): string {
+  const fragmentType = fragment.split('=')[0];
+  return fragmentType;
+}
 }
 

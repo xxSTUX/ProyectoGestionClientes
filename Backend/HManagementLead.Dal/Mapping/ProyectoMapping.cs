@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace HManagementLead.Dal.Mapping;
     public static class ProyectoMapping
     {
-        public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(DbSet<Seguimiento> seguimientos)
+        public static Expression<Func<Proyecto, ProyectoDetalle>> MapToProyecto(ApplicationDbContext dbContext)
         {
 
             return p => new ProyectoDetalle
@@ -16,7 +16,7 @@ namespace HManagementLead.Dal.Mapping;
                 IdCliente = p.ClienteId,
                 Nombre = p.Nombre,
                 Seguimientos = (from cs in p.SeguimientosProyectos
-                                join s in seguimientos
+                                join s in dbContext.Seguimientos
                                 on cs.SeguimientoId equals s.Id
                                 select new SeguimientoDetalle
                                 {
@@ -70,7 +70,7 @@ namespace HManagementLead.Dal.Mapping;
             
             return p => new Codigo
             {
-                Id = p.Id,
+                CodigoId = p.Id,
                 Descripcion = p.Nombre,
             };
         }
@@ -80,7 +80,7 @@ namespace HManagementLead.Dal.Mapping;
         {
             return p => new Codigo
             {
-                Id = p.Id,
+                CodigoId = p.Id,
                 Descripcion = p.Nombre,
             };
         }
