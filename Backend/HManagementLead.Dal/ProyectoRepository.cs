@@ -48,6 +48,16 @@ namespace HManagementLead.Dal
             }
         }
 
+        public async Task<int> UpdateEliminadoAsync(ProyectoDetalle proyecto)
+        {
+            proyecto.Eliminado = true;
+            var nuevoProyecto = new Proyecto(proyecto);
+            _context.Proyectos.Add(nuevoProyecto);
+            _context.Update(nuevoProyecto);
+            await _context.SaveChangesAsync();
+            return nuevoProyecto.Id;
+        }
+
         public Task<ProyectoDetalle> UpdateProyectoAsync(ProyectoDetalle proyecto)
         {
             var nuevoProyecto = new Proyecto(proyecto);

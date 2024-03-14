@@ -6,11 +6,11 @@ import { LoadingComponent } from '../loading/loading.component';
 
 
 @Component({
-    selector: 'app-tree-menu',
-    standalone: true,
-    templateUrl: './tree-menu.component.html',
-    styleUrl: './tree-menu.component.css',
-    imports: [HttpClientModule, LoadingComponent]
+  selector: 'app-tree-menu',
+  standalone: true,
+  templateUrl: './tree-menu.component.html',
+  styleUrl: './tree-menu.component.css',
+  imports: [HttpClientModule, LoadingComponent]
 })
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
@@ -20,9 +20,9 @@ export class TreeMenuComponent {
   ngOnInit() {
     this.getMethod();
   }
-  
+
   public getJsonValue: any;
-  
+
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
       this.getJsonValue = data;
@@ -50,18 +50,18 @@ export class TreeMenuComponent {
           });
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
-          if(new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000){
+          if (new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000) {
             seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
-          }else{
+          } else {
             seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
           }
         }
         let seguimientos = [];
-        if(seguimientosRecientes.length > 0){
-          seguimientos.push({nodeId: "", nodeText: 'Ultimos', nodeChild: seguimientosRecientes})
+        if (seguimientosRecientes.length > 0) {
+          seguimientos.push({ nodeId: "", nodeText: 'Ultimos', nodeChild: seguimientosRecientes })
         }
-        if(seguimientosGenerales.length > 0){
-          seguimientos.push({nodeId: "", nodeText: 'Todos', nodeChild: seguimientosGenerales})
+        if (seguimientosGenerales.length > 0) {
+          seguimientos.push({ nodeId: "", nodeText: 'Todos', nodeChild: seguimientosGenerales })
         }
 
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
@@ -78,30 +78,31 @@ export class TreeMenuComponent {
           }
         }
         let licitaciones = [];
-        if(licitacionesEnEstudio.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio})
+        if (licitacionesEnEstudio.length > 0) {
+          licitaciones.push({ nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio })
         }
-        if(licitacionesGanadas.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas})
+        if (licitacionesGanadas.length > 0) {
+          licitaciones.push({ nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas })
         }
-        if(licitacionesPerdidas.length > 0){
-          licitaciones.push({nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas})
+        if (licitacionesPerdidas.length > 0) {
+          licitaciones.push({ nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas })
         }
         this.data.push({
           nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
           { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
-          { nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
+          {
+            nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
           }]
         })
-        
+
       }
       console.log("Hola gianfranco");
       // Clear the existing treeview content
       const treeviewElement = document.getElementById("treeview");
-        if (treeviewElement) {
-            treeviewElement.innerHTML = "";
-            this.renderBootstrapTreeView(this.data, treeviewElement);
-        }
+      if (treeviewElement) {
+        treeviewElement.innerHTML = "";
+        this.renderBootstrapTreeView(this.data, treeviewElement);
+      }
       // Ocultar el elemento #loader una vez que los datos se hayan cargado
       const loaderElement = document.getElementById("loader");
       if (loaderElement) {
@@ -117,21 +118,65 @@ export class TreeMenuComponent {
     data.forEach(item => {
       //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
-      listItem.classList.add("list-group-item");
+      listItem.classList.add("list-group-item", "d-inline-block");
       const icon = document.createElement("i");
+      const iconCliente = document.createElement("i");
+
       let nodePath = "";
 
       if (!parentNode) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
-        item.textContent ="Cliente/" + item.nodeText;
+        item.textContent = "Cliente/" + item.nodeText;
       }
-      else{ //Si 
+      else { //Si 
         item.textContent = parentNode.textContent + "/" + item.nodeText; // Concatenar el nombre del padre a la ruta
       }
-      
+
       if (item.nodeChild && item.nodeChild.length > 0) {
-        
+
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
+        if (parentNode !== undefined) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
+          switch (parentNode.nodeText) {
+            case "Proyectos":
+              iconCliente.classList.add("bi", "bi-database", "me-2")
+              break;
+            case "Seguimientos":
+              iconCliente.classList.add("bi", "bi-clipboard", "me-2")
+              break;
+            case "Licitaciones":
+              iconCliente.classList.add("bi", "bi-folder", "me-2")
+              break;
+          }
+
+        } else {
+          iconCliente.classList.add("bi", "bi-building", "me-2")
+        }
+
+
+        console.log(parentNode);
+
+        switch (item.nodeText) {
+          case "Proyectos":
+            iconCliente.classList.add("bi", "bi-database", "me-2")
+            break;
+          case "Seguimientos":
+            iconCliente.classList.add("bi", "bi-clipboard", "me-2")
+            break;
+          case "Licitaciones":
+            iconCliente.classList.add("bi", "bi-folder", "me-2")
+            break;
+        }
       } else {
+        switch (item.nodeText) {
+          case "Proyectos":
+            iconCliente.classList.add("bi", "bi-database", "me-2")
+            break;
+          case "Seguimientos":
+            iconCliente.classList.add("bi", "bi-clipboard", "me-2")
+            break;
+          case "Licitaciones":
+            iconCliente.classList.add("bi", "bi-folder", "me-2")
+            break;
+        }
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
@@ -153,16 +198,17 @@ export class TreeMenuComponent {
       listItem.appendChild(icon);
       const textSpan = document.createElement("span");
       textSpan.textContent = item.nodeText;
-      
+
 
       textSpan.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
         event.stopPropagation();
-      
+
         const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
         window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
       }); //Hasta aqui 
 
       listItem.appendChild(icon);
+      listItem.appendChild(iconCliente);
       listItem.appendChild(textSpan);
 
       if (item.nodeChild && item.nodeChild.length > 0) {
@@ -189,5 +235,5 @@ export class TreeMenuComponent {
 
       parentElement.appendChild(listItem);
     });
-}
+  }
 }

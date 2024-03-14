@@ -9,5 +9,7 @@ namespace HManagementLead.Entities
         public string Nombre { get; set; } = null!;
         public string Tipo { get; set; } = null!;
         public int Estado { get; set; } = 0;
+        public bool Eliminado { get; set; } = false;
+
     }
 }

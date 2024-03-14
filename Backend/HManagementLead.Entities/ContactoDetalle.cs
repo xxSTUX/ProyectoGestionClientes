@@ -14,5 +14,7 @@ namespace HManagementLead.Entities
         public string Cargo { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telefono { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
     }
 }
