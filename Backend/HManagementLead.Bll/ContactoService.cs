@@ -21,5 +21,11 @@ namespace HManagementLead.Bll
         {
             return _repository.GetContactoByIdAsync(id);
         }
+
+       public Task<ContactoDetalle> UpdateEliminadoAsync(int id)
+        {
+            return _repository.UpdateEliminadoAsync(id);
+        }
+
     }
 }

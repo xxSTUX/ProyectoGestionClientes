@@ -16,8 +16,7 @@ namespace HManagementLead.Dal.Mapping
                 Cargo = p.Cargo,
                 Email = p.Email,
                 Telefono = p.Telefono,
-                eliminado = p.eliminado,
-                
+                Eliminado = p.Eliminado,
             };
         }
 

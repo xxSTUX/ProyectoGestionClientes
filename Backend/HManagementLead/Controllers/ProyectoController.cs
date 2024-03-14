@@ -96,13 +96,13 @@ namespace HManagementLead.Controllers
             }
         }
 
-        [HttpPut()]
-        public async Task<IActionResult> UpdateEliminadoAsync([FromBody] ProyectoDetalle value)
+        [HttpPut("UpdateEliminado/{id}")]
+        public async Task<IActionResult> UpdateEliminadoAsync(int id)
         {
             try
             {
 
-                var resultado = await _proyectoService.UpdateProyectoAsync(value);
+                var resultado = await _proyectoService.UpdateEliminadoAsync(id);
 
 
                 return Ok(resultado);

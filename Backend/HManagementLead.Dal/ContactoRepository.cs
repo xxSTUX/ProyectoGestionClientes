@@ -28,5 +28,15 @@ namespace HManagementLead.Dal
                 .Select(ContactoMapping.MapToContacto())
                 .FirstAsync();
         }
+        public async Task<ContactoDetalle> UpdateEliminadoAsync(int id)
+        {
+            var contacto = _context.Contactos.Where(p => p.Id.Equals(id)).Select(ContactoMapping.MapToContacto()).FirstOrDefault();
+            contacto.Eliminado = true;
+            var nuevoContacto = new Contacto(contacto);
+            _context.Contactos.Add(nuevoContacto);
+            _context.Update(nuevoContacto);
+            await _context.SaveChangesAsync();
+            return contacto;
+        }
     }
 }

@@ -39,6 +39,7 @@ public partial class Proyecto
         ClienteId = proyecto.IdCliente;
         Estado = proyecto.Estado;
         Tipo = proyecto.Tipo;
+        Eliminado = proyecto.Eliminado;
         foreach (var seguimientoCliente in proyecto.SeguimientoProyecto)
         {
             if (!seguimientoCliente.IdModelo.Equals(0))

@@ -7,5 +7,7 @@ namespace HManagementLead.Bll.Interfaces
         Task<ContactoDetalle> GetContactoByIdAsync(int id);
 
         Task<List<ContactoDetalle>> GetAllContactoAsync();
+
+        Task<ContactoDetalle> UpdateEliminadoAsync(int id);
     }
 }
