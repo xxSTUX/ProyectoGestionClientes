@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
 
+
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace HManagementLead.Controllers
@@ -24,7 +25,15 @@ namespace HManagementLead.Controllers
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
             var arbol = _clienteService.GetAllClientesCompletoAsync().Result; //datos del árbol;inicializar al iniciar el constructor
             _arbolJson = arbol;
-            // Imprimir al inicar
+            try
+            {
+                _logger.LogInformation("Controlador iniciado: {0}", _arbolJson);
+            }
+            catch (Exception ex)
+    {
+                _logger.LogError(ex, "Error al inicializar el controlador");
+                throw;
+            }
             Console.WriteLine("Controlador iniciado :" + _arbolJson);
             //InitializeAsync().Wait();
         }

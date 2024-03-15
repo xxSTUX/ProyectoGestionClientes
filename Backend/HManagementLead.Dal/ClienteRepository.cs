@@ -36,8 +36,8 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
         {
-            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).ToListAsync();
-            return cliente;
+            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).ToListAsync();
+            return ClienteSimplificado;
         }
 
         public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta

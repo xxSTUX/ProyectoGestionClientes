@@ -39,7 +39,7 @@ namespace HManagementLead.Dal.Mapping
             };
         }
         //Map para simplificar los dats que van al arbol
-        public static Expression<Func<Cliente, SeguimientoSimplificado>> MapSeguimientoSimplificado()
+        public static Expression<Func<Seguimiento, SeguimientoSimplificado>> MapSeguimientoSimplificado()
         {
 
             return p => new SeguimientoSimplificado
