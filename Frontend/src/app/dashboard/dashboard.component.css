@@ -10,7 +10,7 @@
     display: block !important;
   } 
 }
-button{
+.button-aniadir{
   width: 10rem;
   margin-left: 0.88rem;
   font-weight: bold;
@@ -21,11 +21,11 @@ button{
   color:rgb(59, 79, 145);
   font-size: small;
 }
-button:hover{
+.button-aniadir:hover{
   background-color:rgb(202, 240, 243);
   transition:230ms;
 }
 
-i{
+.icono-aniadir{
   padding-right: 0.3rem;
 }

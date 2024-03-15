@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 import { SplitterModule } from "primeng/splitter";
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
+import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { LoadingComponent } from '../loading/loading.component';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent, CreaClienteComponent]
 })
 export class DashboardComponent implements OnInit {
   halal = true;
@@ -43,6 +44,9 @@ export class DashboardComponent implements OnInit {
       console.log("La ruta ha cambiado");
       this.cdr.detectChanges(); // Actualizar la vista
     });
+  }
+  openCreaCliente(event: Event) {
+    event.preventDefault();
   }
 
 updateFragmentObservable(): void {

@@ -1,27 +1,44 @@
 <div class="container-fluid">
-        <div class="row">
-            <div class="col">
-                <app-header></app-header>
-                <div class="row">
-                    <button type="button"> <i class="bi bi-building-add"></i>Crear cliente</button>
-                </div>  
-                <div class="row">
-                    <p-splitter [panelSizes]="[25, 75]" [minSizes]="[15, 50]">
-                        <ng-template pTemplate>
-                            <!-- Contenido del primer panel (árbol) -->
-                            <app-tree-menu></app-tree-menu>
-                        </ng-template>
-                        <ng-template pTemplate>
-                            <!-- Contenido del segundo panel (tabmenu) -->
-                            <div class="container-fluid" *ngIf="fragment$ | async as fragment">
-                                <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
-                                      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
-                                      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
-                                      <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
-                                    </div>
-                        </ng-template>
-                    </p-splitter>
+    <div class="row">
+        <div class="col">
+            <app-header></app-header>
+            <div class="row">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#modalCreaCliente" class="link flex button-aniadir"
+                    onclick="openCreaCliente($event)">
+                    <i class="bi bi-building-add icono-aniadir"></i>
+                    <span>Añadir cliente</span>
+                </button>
+                <div class="modal fade" id="modalCreaCliente" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                <app-crea-cliente></app-crea-cliente>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="row">
+                <p-splitter [panelSizes]="[25, 75]" [minSizes]="[15, 50]">
+                    <ng-template pTemplate>
+                        <!-- Contenido del primer panel (árbol) -->
+                        <app-tree-menu></app-tree-menu>
+                    </ng-template>
+                    <ng-template pTemplate>
+                        <!-- Contenido del segundo panel (tabmenu) -->
+                        <div class="container-fluid" *ngIf="fragment$ | async as fragment">
+                            <app-tabmenu
+                                *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
+                            <app-licitaciones *ngIf="fragment === 'Licitaciones'"></app-licitaciones>
+                            <app-seguimientos *ngIf="fragment === 'Seguimientos'"></app-seguimientos>
+                            <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
+                        </div>
+                    </ng-template>
+                </p-splitter>
             </div>
         </div>
     </div>
+</div>
