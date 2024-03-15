@@ -30,7 +30,12 @@ namespace HManagementLead.Bll
             var resultado = _repository.GetAllClientesCompletoAsync();
             return resultado;
         }
-
+        //Arbol cliente y Id nombre
+        public Task<List<ClienteNombreId>> GetAllClientesNombreIdAsync()
+        {
+            var resultado = _repository.GetAllClientesNombreIdAsync();
+            return resultado;
+        }
         public Task<ClienteDetalle> GetClienteByIdAsync(int id)
         {
             return _repository.GetClienteByIdAsync(id);

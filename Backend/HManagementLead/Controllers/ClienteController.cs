@@ -88,6 +88,22 @@ namespace HManagementLead.Controllers
         {
             return Ok(_arbolJson); // Devuelve el JSON generado
         }
+        //Obtener todos los clientes sus nombres e id
+        [HttpGet("clientesNombreId")]
+        public async Task<IActionResult> GetClientenombreId()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesNombreIdAsync();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
 
         // GET api/<ClienteController>/5
         [HttpGet("{id}")]

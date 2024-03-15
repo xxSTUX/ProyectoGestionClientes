@@ -9,6 +9,7 @@ using HManagementLead.Entities;
 
 namespace HManagementLead.Data
 {
+    //Cliente con sus poryectos seguimientos y licitaciones
     public partial class ClienteSimplificado
     {
         [Key]

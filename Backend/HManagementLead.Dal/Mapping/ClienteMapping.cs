@@ -66,6 +66,17 @@ namespace HManagementLead.Dal.Mapping
                                 }).OrderBy(l => l.Nombre).ToList(),
             };
         }
+        //obtener nombre e id de los clientes
+        public static Expression<Func<Cliente, ClienteNombreId>> MapClienteNombreId(ApplicationDbContext dbContext)
+        {
+            return c => new ClienteNombreId
+            {
+                id = c.Id,
+                Nombre = c.Nombre
+              
+            };
+        }
+
         public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto()
         {
 
