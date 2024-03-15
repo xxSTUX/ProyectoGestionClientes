@@ -85,8 +85,14 @@ namespace HManagementLead.Dal
             await _context.SaveChangesAsync();
             return await _context.Proyectos
                 .Where(c => c.Id == proyecto.Id)
-                .Select(ProyectoMapping.MapToProyecto())
+                .Select(ProyectoMapping.MapToProyecto(_context))
                 .FirstAsync();
+        }
+
+        public Task<List<EstadoProyectoDetalle>> GetEstadoPoryectos()
+        {
+            var estados = _context.EstadoProyecto.Select(ProyectoMapping.MapEstadoProyectoToEstadoProyecDetalles()).ToListAsync();
+            return estados;
         }
     }
 }
