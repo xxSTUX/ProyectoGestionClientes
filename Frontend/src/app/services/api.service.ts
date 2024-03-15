@@ -35,19 +35,24 @@ export class ApiService {
     return this.http.get<any>(`${this.api}/contacto/${id}`);
   }
  
+  getEstadoProyectos(): Observable<any>{
+    return this.http.get<any>(this.api+'Proyecto/GetEstadoPoryectos');
+  }
    
   postClientesFromAPI(nombre:String): Observable<any> {
     const bodyCliente = {
       nombre: nombre
     };
+    alert("A")
     return this.http.post<any>(this.api+'proyecto', bodyCliente);
   }
-  async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:String) {
+  async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:string) {
     const bodyProyecto = {
       nombre: nombre,
       estado:estado,
       tapio:tapio
     };
+    
     const response = await fetch(this.api+'Cliente/InsertProyecto/'+ id, {
       method: 'POST',
       headers: {
@@ -174,7 +179,7 @@ export class ApiService {
       facturacion: newProyecto.facturacion,
       puestos: newProyecto.puestos,
     };
-  
+    
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
   }  
  

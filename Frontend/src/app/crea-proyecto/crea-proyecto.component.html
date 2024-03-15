@@ -5,7 +5,7 @@
         </p>
         <form formGroup="reestablishForm" (submit)="creaproyecto()">
             <div class="row">
-                <select name="opciones" id="opciones" class="mb-4">
+                <select name="clientes" id="clientes" class="mb-4">
 
                 </select>
                 <!-- Client input -->
@@ -13,6 +13,9 @@
                     <input formControlName="nombreproyecto" class="form-control" id="nombreproyecto"
                         placeholder="Nombre del proyecto" required style="text-align: center" autocomplete="off" />
                 </div>
+                <select name="estado" id="estado" class="mb-4">
+
+                </select>
                 <div class="mb-4">
                     <input formControlName="estadoproyecto" class="form-control" id="estadoproyecto"
                         placeholder="Estado del proyecto" required style="text-align: center" autocomplete="off" />

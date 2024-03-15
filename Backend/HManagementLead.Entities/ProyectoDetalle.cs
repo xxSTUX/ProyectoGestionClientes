@@ -8,7 +8,7 @@ namespace HManagementLead.Entities
         public string Nombre { get; set; } = null!;
         [JsonIgnore]
         public int IdCliente { get; set; }
-        public string Estado { get; set; } = null!;
+        public int Estado { get; set; }
         public bool Eliminado { get; set; } = false;
 
         public string Tipo { get; set; } = null!;

@@ -147,5 +147,21 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
+        [HttpGet("GetEstadoPoryectos")]
+        public async Task<IActionResult> GetEstadoPoryectos()
+        {
+            try
+            {
+                var resultado = await _proyectoService.GetEstadoPoryectos();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
+                throw;
+            }
+        }
     }
 }

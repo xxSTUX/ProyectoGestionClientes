@@ -41,25 +41,6 @@ namespace HManagementLead.Dal.Mapping
                 Eliminado = c.Eliminado,
             };
         }
-        public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto()
-        {
-
-            return p => new ClienteDetalle
-            {
-                Id = p.Id,
-                Nombre = p.Nombre,
-                Proyectos = p.Proyectos.AsQueryable().Select(ProyectoMapping.MapToProyecto()).ToList(),
-            };
-        }
-        public static Expression<Func<Cliente, ClienteDetalle>> MapToCreateClientDetalle()
-        {
-
-            return p => new ClienteDetalle
-            {
-                Id = p.Id,
-                Nombre = p.Nombre
-            };
-        }
 
         public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()
         {
@@ -71,25 +52,6 @@ namespace HManagementLead.Dal.Mapping
             };
         }
 
-
-        public static Expression<Func<Proyecto, Codigo>> MapProyectoToCodigo()
-        {
-            return p => new Codigo
-            {
-                CodigoId = p.Id,
-                Descripcion = p.Nombre,
-            };
-        }
-
-        public static Expression<Func<Seguimiento, Codigo>> MapSeguimientoToCodigo()
-        {
-
-            return p => new Codigo
-            {
-                CodigoId = p.Id,
-                Descripcion = p.Nombre,
-            };
-        }
         public static Expression<Func<SeguimientoCliente, TablaIntermedia>> MapSeguimienClientestoToTablaIntermedia()
         {
 
