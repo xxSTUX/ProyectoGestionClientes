@@ -38,7 +38,8 @@ public partial class ApplicationDbContext : DbContext
     public DbSet<Seguimiento> Seguimientos => Set<Seguimiento>();
     public DbSet<SeguimientoCliente> SeguimientoCliente => Set<SeguimientoCliente>();
     public DbSet<SeguimientoProyecto> SeguimientoProyecto => Set<SeguimientoProyecto>();
-
+    public DbSet<EstadoProyecto> EstadoProyecto => Set<EstadoProyecto>();
+    public DbSet<EstadoProyectoDetalle> EstadoProyectoDetalle => Set<EstadoProyectoDetalle>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured) return;

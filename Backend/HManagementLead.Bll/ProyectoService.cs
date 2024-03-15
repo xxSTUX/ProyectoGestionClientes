@@ -46,5 +46,9 @@ namespace HManagementLead.Bll
         {
             return _repository.UpdateEliminadoAsync(id);
         }
+        public Task<List<EstadoProyectoDetalle>> GetEstadoPoryectos()
+        {
+            return _repository.GetEstadoPoryectos();
+        }
     }
 }
