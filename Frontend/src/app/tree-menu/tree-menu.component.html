@@ -1,6 +1,14 @@
-<div id='container' class="tree">
+<!-- Añade el botón de hamburguesa -->
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+
+<!-- Envuelve tu menú en un div con la clase "collapse navbar-collapse" y un id que coincida con el data-bs-target del botón -->
+<div class="collapse navbar-collapse" id="navbarNav">
+  <div id='container' class="tree">
     <app-loading id="loader" class="loader-overlay"></app-loading>
     <div id="tree">
       <ul class="list-group" id="treeview"></ul>
     </div>
   </div>
+</div>
