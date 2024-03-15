@@ -10,3 +10,22 @@
     display: block !important;
   } 
 }
+button{
+  width: 10rem;
+  margin-left: 0.88rem;
+  font-weight: bold;
+  border-radius: 0 !important;
+  background-color: rgb(222, 245, 245);
+  height: 3.2rem;
+  border: 0;
+  color:rgb(59, 79, 145);
+  font-size: small;
+}
+button:hover{
+  background-color:rgb(202, 240, 243);
+  transition:230ms;
+}
+
+i{
+  padding-right: 0.3rem;
+}
