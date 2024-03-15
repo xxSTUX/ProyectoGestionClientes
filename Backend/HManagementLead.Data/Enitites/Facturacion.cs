@@ -10,6 +10,8 @@ namespace HManagementLead.Data.Enitites
     {
         public int Id { get; set; }
         public string Datos { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
 
         public virtual ICollection<FacturacionCliente> FacturacionesClientes { get; set; } = new List<FacturacionCliente>();
         public virtual ICollection<FacturacionProyecto> FacturacionesProyectos { get; set; } = new List<FacturacionProyecto>();

@@ -15,6 +15,8 @@ namespace HManagementLead.Data.Enitites
         public string Tipo { get; set; }
 
         public int Estado { get; set; }
+        public bool Eliminado { get; set; } = false;
+
         public virtual ICollection<LicitacionCliente> LicitacionesClientes { get; set; } = new List<LicitacionCliente>();
         public virtual ICollection<LicitacionProyecto> LicitacionesProyectos { get; set; } = new List<LicitacionProyecto>();
 

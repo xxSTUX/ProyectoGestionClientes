@@ -19,13 +19,13 @@ namespace HManagementLead.Dal
         {
             return _context.Proyectos
                 .Where(p => p.Id == id)
-                .Select(ProyectoMapping.MapToProyecto(_context.Seguimientos,_context.Licitaciones)) //Borrar el _licitaciones si no va nada.
+                .Select(ProyectoMapping.MapToProyecto(_context)) //Borrar el _licitaciones si no va nada.
                 .FirstAsync();
         }
 
         public async Task<List<ProyectoDetalle>> GetAllProyectosAsync()
         {
-            var cliente = await _context.Proyectos.Select(ProyectoMapping.MapToProyecto(_context.Seguimientos, _context.Licitaciones)).ToListAsync(); //Borrar el _licitaciones si no va nada
+            var cliente = await _context.Proyectos.Select(ProyectoMapping.MapToProyecto(_context)).ToListAsync(); //Borrar el _licitaciones si no va nada
             return cliente;
 
         }
@@ -46,6 +46,18 @@ namespace HManagementLead.Dal
                 _context.Proyectos.Remove(proyecto);
                 await _context.SaveChangesAsync();
             }
+        }
+
+        public async Task<ProyectoDetalle> UpdateEliminadoAsync(int id)
+        {
+            
+            var proyecto = _context.Proyectos.Where(p => p.Id.Equals(id)).Select(ProyectoMapping.MapToProyecto(_context)).FirstOrDefault();
+            proyecto.Eliminado = true;
+            var nuevoProyecto = new Proyecto(proyecto);
+            _context.Proyectos.Add(nuevoProyecto);
+            _context.Update(nuevoProyecto);
+            await _context.SaveChangesAsync();
+            return proyecto;    
         }
 
         public Task<ProyectoDetalle> UpdateProyectoAsync(ProyectoDetalle proyecto)

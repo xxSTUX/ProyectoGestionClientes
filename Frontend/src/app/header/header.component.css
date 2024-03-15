@@ -3,15 +3,25 @@
   margin: 0;
   font-size: 1rem;
   text-align: center;
+  color: white;
 
 }
 .navbar-toggler-icon{
   text-align: center;
 }
-
+.navbar{
+  background-color: rgb(39, 59, 112) !important;
+}
 #title{
   font-size: large;
   cursor: pointer;
 }
-
+#logo_hiberus{
+width: 2rem;
+border-radius: 100px;
+margin-right: 1rem;
+}
+i{
+  cursor: pointer;
+}
 

@@ -38,6 +38,7 @@ namespace HManagementLead.Dal.Mapping
                                     Tipo = l.Tipo,
                                     Estado = l.Estado,
                                 }).ToList(),
+                Eliminado = c.Eliminado,
             };
         }
         public static Expression<Func<Cliente, ClienteDetalle>> MapToClientDetalleConProyecto()

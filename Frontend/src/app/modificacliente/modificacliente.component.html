@@ -1,0 +1,98 @@
+
+<div class="container">
+    <!-- Contactos -->
+    <div class="row">
+        <div class="col table-responsive">
+            <div class="text-buttons">
+                <h2 class="table__title">CONTACTOS</h2>
+                <button [hidden]="!botonEliminarContactosVisible" (click)="eliminarContactos()"
+                    class="eliminar-button">
+                    <span class="text">Eliminar</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+                <button [hidden]="!botonAniadirContactosVisible" class="aniadir-button">
+                    <span class="text">Añadir</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            transform="rotate(45)">
+                            <path
+                                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="center"><input type="checkbox" [(ngModel)]="todosContactosSeleccionados"
+                                (change)="seleccionarDeseleccionarTodosLosContactos()"></th>
+                        <th scope="col">CARGO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let contacto of listaContactos">
+                        <th class="center" scope="row"><input type="checkbox" [(ngModel)]="contacto.isContactSelected"
+                                (change)="verificarSiTodosLosContactosEstanSeleccionados()"></th>
+                            <td class="clickeable tooltip-container">{{contacto.cargo}}
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- PROYECTOS -->
+        <div class="table-responsive col">
+            <div class="text-buttons">
+                <h2 class="table__title">PROYECTOS</h2>
+                <button [hidden]="!botonEliminarProyectosVisible" (click)="eliminarProyectos()"
+                    class="eliminar-button">
+                    <span class="text">Eliminar</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+                <button [hidden]="!botonAniadirProyectosVisible" class="aniadir-button">
+                    <span class="text">Añadir</span>
+                    <span class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            transform="rotate(45)">
+                            <path
+                                d="M24 20.188l-8.315-8.209 8.2-8.282-3.697-3.697-8.212 8.318-8.31-8.203-3.666 3.666 8.321 8.24-8.206 8.313 3.666 3.666 8.237-8.318 8.285 8.203z">
+                            </path>
+                        </svg>
+                    </span>
+                </button>
+            </div>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="center"><input type="checkbox" [(ngModel)]="todosProyectosSeleccionados"
+                                (change)="seleccionarDeseleccionarTodosLosProyectos()"></th>
+                        <th scope="col">NOMBRE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let proyecto of listaProyectos">
+                        <th scope="row" class="center"><input type="checkbox" [(ngModel)]="proyecto.isProjectSelected"
+                                (change)="verificarSiTodosLosProyectosEstanSeleccionados()"></th>
+                            <td class="clickeable tooltip-container">{{proyecto.nombre}}
+                            </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        
+    </div>
+  </div>

@@ -15,6 +15,8 @@ namespace HManagementLead.Entities
         //[JsonIgnore]
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
         public IList<ProyectoDetalle> Proyectos { get; set; } = new List<ProyectoDetalle>();
         public virtual IList<SeguimientoDetalle> Seguimientos { get; set; } = new List<SeguimientoDetalle>();
         public virtual IList<LicitacionDetalle> Licitaciones { get; set; } = new List<LicitacionDetalle>();

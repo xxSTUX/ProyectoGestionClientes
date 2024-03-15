@@ -10,6 +10,8 @@ namespace HManagementLead.Data.Enitites
     {
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
+        public bool Eliminado { get; set; } = false;
+
 
         public virtual ICollection<PuestoCliente> PuestosClientes { get; set; } = new List<PuestoCliente>();
         public virtual ICollection<PuestoProyecto> PuestosProyectos { get; set; } = new List<PuestoProyecto>();

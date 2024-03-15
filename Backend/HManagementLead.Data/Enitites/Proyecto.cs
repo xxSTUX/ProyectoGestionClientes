@@ -14,6 +14,8 @@ public partial class Proyecto
 
     public string Estado { get; set; }
     public string Tipo { get; set; }
+    public bool Eliminado { get; set; } = false;
+
     public virtual ICollection<FacturacionProyecto> FacturacionesProyectos { get; set; } = new List<FacturacionProyecto>();
     public virtual ICollection<LicitacionProyecto> LicitacionesProyectos { get; set; } = new List<LicitacionProyecto>();
     public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();
@@ -37,6 +39,7 @@ public partial class Proyecto
         ClienteId = proyecto.IdCliente;
         Estado = proyecto.Estado;
         Tipo = proyecto.Tipo;
+        Eliminado = proyecto.Eliminado;
         foreach (var seguimientoCliente in proyecto.SeguimientoProyecto)
         {
             if (!seguimientoCliente.IdModelo.Equals(0))

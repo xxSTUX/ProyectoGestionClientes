@@ -9,6 +9,7 @@ import { CreaLicitacionComponent } from "./crea-licitacion/crea-licitacion.compo
 import { DatatableComponent } from "../datatable/datatable.component";
 
 import { Subject } from 'rxjs';
+import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 
 
 @Component({
@@ -16,7 +17,7 @@ import { Subject } from 'rxjs';
     standalone: true,
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent]
 })
 export class TabmenuComponent {
   

@@ -1,9 +1,10 @@
 <div class="container-fluid">
         <div class="row">
-            <div class="custom-col">
-              <app-side-menu></app-side-menu>
-              </div>
-            <div class="col"><app-header></app-header>
+            <div class="col">
+                <app-header></app-header>
+                <div class="row">
+                    <button type="button"> <i class="bi bi-building-add"></i>Crear cliente</button>
+                </div>  
                 <div class="row">
                     <p-splitter [panelSizes]="[25, 75]" [minSizes]="[15, 50]">
                         <ng-template pTemplate>
@@ -12,12 +13,12 @@
                         </ng-template>
                         <ng-template pTemplate>
                             <!-- Contenido del segundo panel (tabmenu) -->
-                            <ng-container *ngIf="fragment$ | async as fragment">
-                              <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
-                              <app-licitaciones *ngIf="getFragmentTipoNodo(fragment) === 'Licitaciones'"></app-licitaciones>
-                              <app-seguimientos *ngIf="getFragmentTipoNodo(fragment) === 'Seguimientos'"></app-seguimientos>
-                              <app-tabmenu *ngIf="getFragmentTipoNodo(fragment) === 'Cliente'"></app-tabmenu>
-                          </ng-container>
+                            <div class="container-fluid" *ngIf="fragment$ | async as fragment">
+                                <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
+                                      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
+                                      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
+                                      <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
+                                    </div>
                         </ng-template>
                     </p-splitter>
                 </div>
