@@ -53,16 +53,7 @@ export class HomeComponent {
       icon2.classList.add('col-1');
       icon2.classList.add('bi','bi-clipboard-plus','h3');
       col1.appendChild(icon2);
-
-      
-
-
-    }
-    
-  }
-    });
+    }  
+  }});
  }
-  
-
-
 }

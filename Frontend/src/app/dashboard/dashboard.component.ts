@@ -1,3 +1,4 @@
+import { AngularSplitModule } from 'angular-split';
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
@@ -13,6 +14,7 @@ import { Observable } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
+import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
 
 
 @Component({
@@ -20,7 +22,7 @@ import { HomeComponent } from '../home/home.component';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule]
 })
 export class DashboardComponent implements OnInit {
   showTreeMenu: boolean = true;
