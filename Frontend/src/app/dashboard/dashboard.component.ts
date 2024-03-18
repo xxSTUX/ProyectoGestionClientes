@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
-import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
+import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
 
 
 @Component({
@@ -22,7 +22,7 @@ import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule]
 })
 export class DashboardComponent implements OnInit {
   showTreeMenu: boolean = true;
