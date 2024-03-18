@@ -1,27 +1,32 @@
 <div class="container-fluid">
-        <div class="row">
-            <div class="col">
+    <div class="row">
+        <div class="col">
+            <div class="row">
                 <app-header></app-header>
-                <div class="row">
-                    <button type="button"> <i class="bi bi-building-add"></i>Crear cliente</button>
-                </div>  
-                <div class="row">
-                    <p-splitter [panelSizes]="[25, 75]" [minSizes]="[15, 50]">
-                        <ng-template pTemplate>
-                            <!-- Contenido del primer panel (árbol) -->
-                            <app-tree-menu></app-tree-menu>
-                        </ng-template>
-                        <ng-template pTemplate>
-                            <!-- Contenido del segundo panel (tabmenu) -->
-                            <div class="container-fluid" *ngIf="fragment$ | async as fragment">
-                                <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu><!--Si no se ha selecionado nada en el menú, el fragmet no se actualiza y por lo tanto tiene el valor default, mostrar el tab menu cuando esto ocurra-->
-                                      <app-licitaciones *ngIf="fragment === 'Licitaciones'" ></app-licitaciones>
-                                      <app-seguimientos *ngIf="fragment === 'Seguimientos'" ></app-seguimientos>
-                                      <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
-                                    </div>
-                        </ng-template>
-                    </p-splitter>
-                </div>
+            </div>
+            <div class="row">
+                <button *ngIf="showTreeMenu" (click)="creaTree()">Crear TreeMenu</button>
+                <button *ngIf="!showTreeMenu" (click)="eliminaTree()">Eliminar TreeMenu</button>
+
+                <button type="button"> <i class="bi bi-building-add"></i>Crear cliente</button>
+            </div>
+            <div class="row sizePane">
+                <as-split >
+                    <as-split-area [size]="30" minSize="20" maxSize="60" [hidden]="!isTreeVisible">
+                        <div #contenedor class="container-fluid" id='contenedor'></div>
+                    </as-split-area>
+                    <as-split-area>
+                        <div class="container-fluid">
+                            <ng-container *ngIf="fragment$ | async as fragment">
+                                <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
+                                <app-licitaciones *ngIf="fragment === 'Licitaciones'"></app-licitaciones>
+                                <app-seguimientos *ngIf="fragment === 'Seguimientos'"></app-seguimientos>
+                                <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
+                            </ng-container>
+                        </div>
+                    </as-split-area>
+                </as-split>
             </div>
         </div>
     </div>
+</div>

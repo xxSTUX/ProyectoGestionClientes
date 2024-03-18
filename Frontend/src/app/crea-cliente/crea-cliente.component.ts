@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { SideMenuComponent } from "../side-menu/side-menu.component";
 import { HeaderComponent } from "../header/header.component";
 import { TreeMenuComponent } from "../tree-menu/tree-menu.component";
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -11,7 +10,7 @@ import { Router } from '@angular/router';
     standalone: true,
     templateUrl: './crea-cliente.component.html',
     styleUrl: './crea-cliente.component.css',
-    imports: [SideMenuComponent, HeaderComponent, TreeMenuComponent, HttpClientModule]
+    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule]
 })
 export class CreaClienteComponent {
 

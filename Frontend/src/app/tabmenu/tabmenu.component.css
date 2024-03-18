@@ -1,16 +1,6 @@
-
-.tabmenu{
-  overflow-y: auto;
-  height: calc(100vh - 3.875rem);
-}
 *{
     font-size: small;
     
-}
-
-.tabmenu{
-    overflow-y: auto;
-    height: calc(100vh - 3.875rem);
 }
 
 ::-webkit-scrollbar {
