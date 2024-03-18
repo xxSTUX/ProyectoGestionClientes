@@ -1,3 +1,4 @@
+import { AngularSplitModule } from 'angular-split';
 import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
@@ -22,6 +23,7 @@ import{ AngularSplitModule } from "angular-split"
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule]
     imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule]
 })
 export class DashboardComponent implements OnInit {
