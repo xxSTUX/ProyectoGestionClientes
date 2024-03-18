@@ -1,5 +1,4 @@
-import { withInterceptorsFromDi } from '@angular/common/http';
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
 import { TabmenuComponent } from '../tabmenu/tabmenu.component';
@@ -13,15 +12,15 @@ import { SeguimientosComponent } from "../child/seguimientos/seguimientos.compon
 import { Observable } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
-import { AngularSplitModule } from 'angular-split';
+import { HomeComponent } from '../home/home.component';
 
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
-  imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, AngularSplitModule]
+    selector: 'app-dashboard',
+    standalone: true,
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css',
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent]
 })
 export class DashboardComponent implements OnInit {
   showTreeMenu: boolean = true;
@@ -47,6 +46,9 @@ export class DashboardComponent implements OnInit {
       console.log("La ruta ha cambiado");
       this.cdr.detectChanges(); // Actualizar la vista
     });
+  }
+  openCreaCliente(event: Event) {
+    event.preventDefault();
   }
 
   updateFragmentObservable(): void {

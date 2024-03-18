@@ -24,22 +24,24 @@ export class CreaProyectoComponent {
 
   }
   ngOnInit(): void {
-    this.getclientes("opciones");
+    this.getclientes("clientes");
+    this.getEstados();
   }
   async creaproyecto(){
 
-    const idcliente = parseInt((<HTMLInputElement>document.getElementById('opciones')).value);
+    const idcliente = parseInt((<HTMLInputElement>document.getElementById('clientes')).value);
     const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
     const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
-    const estado = (<HTMLInputElement>document.getElementById('estadoproyecto')).value;
+    const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
 
     const body = {
         nombre: nombreproyecto,
         tipo:tipo,
         estado:estado
     }
+    
 
-    this.apiService.postProyectosFromAPI(idcliente,body.nombre,body.tipo,body.estado);
+    this.apiService.postProyectosFromAPI(idcliente,body.nombre,body.tipo,body.estado+"");
     alert("Se va a crear el proyecto: " + nombreproyecto);
     console.log("Se deberia haber creado un nuevo proyecto");
 }
@@ -59,6 +61,21 @@ getclientes(opciones: string){
   }
     });
     
+ }
+ getEstados(){
+  const options = document.getElementById("estado") as HTMLOptionElement;
+  this.apiService.getEstadoProyectos().subscribe((data: any) =>{
+  if(options != null){
+    for (let i = 0; i < data.length; i++) {
+      const option = document.createElement('option');
+      console.log(data[i]);
+      option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
+      option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
+      options.appendChild(option); // Agrega el option al elemento select
+    }
+    
+  }
+    });
  }
 
 }
