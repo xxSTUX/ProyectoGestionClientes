@@ -86,39 +86,35 @@ export class ApiService {
     }
 }
 
-  async postLicitacionToClienteAPI(nombre:string,tapio:string,id:string,estado:string) {
-      const bodyProyecto = {
-        nombre: nombre,
-        tapio:tapio,
-        estado:estado
-      };
-      alert(estado)
-      const response = await fetch(this.api+'Cliente/rInsertLicitacion/'+ id, {
-        method: 'POST',
-        headers: {
-          'accept': '*/*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyProyecto),
-      });  
-      if (!response.ok) {
-        throw new Error(`Error! Status: ${response.status}`);
-      }
+  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
+    const bodyProyecto = {
+      nombre: nombre,
+      tipo: tipo,
+      estado:estado
+    };
+    console.log(bodyProyecto)
+    const response = fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+id, {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyProyecto),
+    }); 
   }
  
-  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
+  async postSeguimientoToAPI(nombre:string,id:string,text:string,fecha:Date) {
    
     var oParser = new DOMParser();
-    var oDOM = oParser.parseFromString(observaciones, "text/html");
-    var text = oDOM.body.innerText;
+    var oDOM = oParser.parseFromString(text, "text/html");
+    var observaciones = oDOM.body.innerText;
  
     const bodyProyecto = {
       nombre: nombre,
-      tapio:"",
-      fecha:fechaCre,
-      observaciones:text
+      fecha: fecha,
+      observaciones: observaciones
     };
-    const response = await fetch(this.api+'Cliente/InsertSeguimiento/'+ id, {
+    const response = fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
@@ -126,9 +122,7 @@ export class ApiService {
       },
       body: JSON.stringify(bodyProyecto),
     });
-    if (!response.ok) {
-      throw new Error(`Error! Status: ${response.status}`);
-    }
+    
 }
  
    deleteProyectoToAPI(id:number){
