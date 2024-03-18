@@ -15,6 +15,7 @@ import { SplitterModule } from "primeng/splitter";
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { LoadingComponent } from '../loading/loading.component';
 import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
+import { HomeComponent } from '../home/home.component';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { CreaClienteComponent } from '../crea-cliente/crea-cliente.component';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent, CreaClienteComponent]
+    imports: [HeaderComponent, SideMenuComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, SplitterModule, LoadingComponent, ModificaclienteComponent, CreaClienteComponent, HomeComponent]
 })
 export class DashboardComponent implements OnInit {
   halal = true;
