@@ -39,24 +39,24 @@ export class TreeMenuComponent {
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
-            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].id, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].SeguimientoId, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
           }
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
-            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].id, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].LicitacionId, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
           }
           if(!this.getJsonValue[i].proyectos[j].eliminado){
             proyectos.push({
-              nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-              { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+              nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+              { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
             });
           }
 
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
           if (new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000) {
-            seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+            seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].SeguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
           } else {
-            seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].id, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+            seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].SeguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
           }
         }
         let seguimientos = [];
@@ -70,13 +70,13 @@ export class TreeMenuComponent {
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
           switch (this.getJsonValue[i].licitaciones[j].estado) {
             case 0:
-              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
             case 1:
-              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
             case 2:
-              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].id, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
           }
         }
