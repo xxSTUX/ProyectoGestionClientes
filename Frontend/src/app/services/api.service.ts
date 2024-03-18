@@ -39,11 +39,11 @@ export class ApiService {
     return this.http.get<any>(this.api+'Proyecto/GetEstadoPoryectos');
   }
    
-  postClientesFromAPI(nombre:String): Observable<any> {
+  postClientesFromAPI(nombre:String, descripcion:String): Observable<any> {
     const bodyCliente = {
-      nombre: nombre
+      nombre: nombre,
+      descripcion: descripcion
     };
-    alert("A")
     return this.http.post<any>(this.api+'proyecto', bodyCliente);
   }
   async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:string) {
