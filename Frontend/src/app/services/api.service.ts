@@ -103,16 +103,16 @@ export class ApiService {
     }); 
   }
  
-  async postSeguimientoToAPI(nombre:string,id:string,text:string,fecha:Date) {
+  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
    
     var oParser = new DOMParser();
-    var oDOM = oParser.parseFromString(text, "text/html");
-    var observaciones = oDOM.body.innerText;
- 
+    var oDOM = oParser.parseFromString(observaciones, "text/html");
+    var text = oDOM.body.innerText;
     const bodyProyecto = {
       nombre: nombre,
-      fecha: fecha,
-      observaciones: observaciones
+      tipo:"",
+      fechaCre:fechaCre,
+      observaciones:text
     };
     const response = fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
