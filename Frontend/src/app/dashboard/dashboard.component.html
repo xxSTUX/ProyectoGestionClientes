@@ -29,9 +29,15 @@
                     </ng-template>
                     <ng-template pTemplate>
                         <!-- Contenido del segundo panel (tabmenu) -->
-                       <app-home></app-home>
+                        <app-home></app-home>
+                        <!-- <div class="container-fluid" *ngIf="fragment$ | async as fragment">
                             
-                           
+                            <app-tabmenu>
+                                *ngIf="fragment === 'default'"></app-tabmenu>
+                            <app-licitaciones *ngIf="fragment === 'Licitaciones'"></app-licitaciones>
+                            <app-seguimientos *ngIf="fragment === 'Seguimientos'"></app-seguimientos>
+                            <app-modificacliente *ngIf="fragment === 'Cliente'"></app-modificacliente>
+                        </div> -->
                     </ng-template>
                 </p-splitter>
             </div>
