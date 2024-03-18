@@ -16,40 +16,14 @@ namespace HManagementLead.Controllers
     {
         private readonly IClienteService _clienteService;
         private readonly ILogger<ClienteController> _logger;
-        private  List<ClienteSimplificado> _arbolJson; // El contenido del arbol antes de que se haga la peticion
+        //private  List<ClienteSimplificado> _arbolJson; // El contenido del arbol antes de que se haga la peticion
 
         public ClienteController(IClienteService clienteService,
             ILogger<ClienteController> logger)
         {
             _clienteService = clienteService ?? throw new ArgumentNullException(nameof(clienteService)); //Si es nulo tira el ArgumentNullException
             _logger = logger ?? throw new ArgumentNullException(nameof(_logger));
-            var arbol = _clienteService.GetAllClientesCompletoAsync().Result; //datos del árbol;inicializar al iniciar el constructor
-            _arbolJson = arbol;
-            try
-            {
-                _logger.LogInformation("Controlador iniciado: {0}", _arbolJson);
-            }
-            catch (Exception ex)
-    {
-                _logger.LogError(ex, "Error al inicializar el controlador");
-                throw;
-            }
-            Console.WriteLine("Controlador iniciado :" + _arbolJson);
-            //InitializeAsync().Wait();
-        }
-        //Prueba con wait
-        private async Task InitializeAsync()
-        {
-            try
-            {
-                var arbol = await _clienteService.GetAllClientesCompletoAsync(); // 
-                _arbolJson = arbol; //Pasar los datos a la variable glob
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error iniciar arbol-Prueba");
-                throw;
-            }
+            
         }
         // GET: api/<ClienteController>
         [HttpGet]
@@ -67,6 +41,7 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+        //Arbol nombres e ids de todos los clientes
         [HttpGet("Arbol")]
         public async Task<IActionResult> GetBasic2()
         {
@@ -81,12 +56,6 @@ namespace HManagementLead.Controllers
                 _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
                 throw;
             }
-        }
-        // GET: api/<ClienteController/ArbolInicial>
-        [HttpGet("ArbolInicial")]
-        public IActionResult GetArbolInicial()
-        {
-            return Ok(_arbolJson); // Devuelve el JSON generado
         }
         //Obtener todos los clientes sus nombres e id
         [HttpGet("clientesNombreId")]

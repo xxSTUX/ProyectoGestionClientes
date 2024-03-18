@@ -23,7 +23,7 @@ export class TreeMenuComponent {
   public getJsonValue: any;
 
   public getMethod() {
-    this.http.get("https://localhost:7075/api/Cliente/ArbolInicial").subscribe((data: any) => {
+    this.http.get("https://localhost:7075/api/Cliente/Arbol").subscribe((data: any) => {
       this.getJsonValue = data;
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];

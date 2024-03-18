@@ -33,11 +33,10 @@ namespace HManagementLead.Dal
             var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
             return cliente;
         }
-        //Arbol
-
+        //Arbolsolo nombres e ids
         public async Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
         {
-            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).ToListAsync();
+            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).OrderBy(cs => cs.Nombre).ToListAsync();//Ordenar la lista
             return ClienteSimplificado;
         }
 

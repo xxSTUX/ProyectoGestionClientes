@@ -30,7 +30,7 @@ builder.Host.UseSerilog();
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowSpecificOrigin",
         builder => builder
-            .WithOrigins("http://localhost:4200")  // Aqui ponemos la IP y puerto del frontend
+            .WithOrigins("http://localhost:4200", "http://localhost:4200")  // Aqui ponemos la IP y puerto del frontend
             .AllowAnyMethod()
             .AllowAnyHeader());
 });
