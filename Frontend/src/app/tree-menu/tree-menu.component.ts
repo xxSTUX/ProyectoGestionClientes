@@ -24,7 +24,7 @@ export class TreeMenuComponent {
   public getJsonValue: any;
 
   public getMethod() {
-    this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+    this.http.get("https://localhost:7075/api/Cliente/Arbol").subscribe((data: any) => {
       this.getJsonValue = data;
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let proyectos = [];
@@ -50,7 +50,7 @@ export class TreeMenuComponent {
               { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].id, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
             });
           }
-          
+
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
           if (new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000) {
@@ -129,7 +129,7 @@ export class TreeMenuComponent {
       if (!parentNode) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
         item.textContent = "Cliente/" + item.nodeText;
       }
-      else { //Si 
+      else { //Si
         item.textContent = parentNode.textContent + "/" + item.nodeText; // Concatenar el nombre del padre a la ruta
       }
 
@@ -197,7 +197,7 @@ export class TreeMenuComponent {
 
         const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
         window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
-      }); //Hasta aqui 
+      }); //Hasta aqui
 
       listItem.appendChild(icon);
       listItem.appendChild(iconCliente);

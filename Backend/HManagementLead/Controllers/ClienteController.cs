@@ -37,6 +37,22 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+        //Arbol nombres e ids de todos los clientes
+        [HttpGet("Arbol")]
+        public async Task<IActionResult> GetBasic2()
+        {
+            try
+            {
+                var resultado = await _clienteService.GetAllClientesCompletoAsync();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                throw;
+            }
+        }
         [HttpGet("Codigo")]
         public async Task<IActionResult> GetCodigo()
         {

@@ -27,7 +27,7 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
-            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            //if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
             if(_context.EstadoProyecto.IsNullOrEmpty()) { _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Oportunidad" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Aceptado" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Finalizado" });
@@ -44,6 +44,12 @@ namespace HManagementLead.Dal
             //await _context.SaveChangesAsync();
             var codigo = await _context.Clientes.Select(ClienteMapping.MapClienteToCodigo()).ToListAsync();
             return codigo;
+        }
+        //Arbolsolo nombres e ids
+        public async Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
+        {
+            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).OrderBy(cs => cs.Nombre).ToListAsync();//Ordenar la lista
+            return ClienteSimplificado;
         }
 
         public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta
