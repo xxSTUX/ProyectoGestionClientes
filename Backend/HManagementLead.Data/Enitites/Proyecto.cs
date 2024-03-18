@@ -1,11 +1,13 @@
 ﻿using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace HManagementLead.Data;
 
 public partial class Proyecto
 {
+    [Key]
     public int Id { get; set; }
 
     public int ClienteId { get; set; }

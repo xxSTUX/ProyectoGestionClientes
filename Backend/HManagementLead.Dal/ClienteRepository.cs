@@ -13,6 +13,7 @@ namespace HManagementLead.Dal
         private readonly ApplicationDbContext _context;
         public ClienteRepository (ApplicationDbContext context)
         {
+            Console.WriteLine("DB contex ok");
             _context = context ?? throw new ArgumentNullException(nameof(context));
             
         }

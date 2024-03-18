@@ -1,6 +1,7 @@
 ﻿using HManagementLead.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace HManagementLead.Data.Enitites
 {
     public partial class Licitacion //Las clases en singular, por favor
     {
+        [Key]
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
         public string Tipo { get; set; }

@@ -1,10 +1,12 @@
 ﻿using HManagementLead.Data.Enitites;
 using HManagementLead.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace HManagementLead.Data;
 
 public partial class Cliente
 {
+    [Key]
     public int Id { get; set; }
 
     public string Nombre { get; set; } = null!;
