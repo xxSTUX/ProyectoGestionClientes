@@ -1,16 +1,13 @@
 * {
   font-size: small;
- 
 }
  
 ::-webkit-scrollbar {
   width: 1.2rem;
-}
- 
+} 
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
- 
 ::-webkit-scrollbar-thumb {
   background-color: #d6dee1;
   border-radius: 20px;
@@ -34,3 +31,4 @@ hr{
   background-color: #044ea1;
   height: 1px;
 }
+

@@ -70,8 +70,7 @@ export class HomeComponent {
       icon2.onclick = crearSeguimiento;
       col4.appendChild(icon2);
       row.appendChild(col4);
-     
- 
+      
       // const icon = document.createElement('i');
       // icon.classList.add('col-1',);
       // icon.classList.add('bi','bi-building-gear','h3');
@@ -108,7 +107,6 @@ export class HomeComponent {
     }
    
   }
-    });
- 
+    }); 
      
     } }

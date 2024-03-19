@@ -5,20 +5,24 @@
                 <app-header></app-header>
             </div>
             <div class="row">
-                <button class="link flex button-aniadir" *ngIf="showTreeMenu" (click)="creaTree()">Crear TreeMenu</button>
-                <button class="link flex button-aniadir" *ngIf="!showTreeMenu" (click)="eliminaTree()">Eliminar TreeMenu</button>
+                <button class="link flex button-aniadir" *ngIf="showTreeMenu" (click)="creaTree()">Crear
+                    TreeMenu</button>
+                <button class="link flex button-aniadir" *ngIf="!showTreeMenu" (click)="eliminaTree()">Eliminar
+                    TreeMenu</button>
 
-                <button href="#" data-bs-toggle="modal" data-bs-target="#modalCreaCliente" class="link flex button-aniadir"
-                    onclick="openCreaCliente($event)">
+                <button href="#" data-bs-toggle="modal" data-bs-target="#modalCreaCliente"
+                    class="link flex button-aniadir" onclick="openCreaCliente($event)">
                     <i class="bi bi-building-add icono-aniadir"></i>
                     <span>Añadir cliente</span>
                 </button>
-                <div class="modal fade" id="modalCreaCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                <div class="modal fade" id="modalCreaCliente" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header d-flex justify-content-between">
                                 <h5 class="modal-title font-weight-bold">Crear nuevo cliente</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body p-6">
                                 <app-crea-cliente></app-crea-cliente>
@@ -45,4 +49,3 @@
             </div>
         </div>
     </div>
-</div>
