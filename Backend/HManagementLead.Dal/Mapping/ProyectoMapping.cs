@@ -61,12 +61,12 @@ namespace HManagementLead.Dal.Mapping;
         }
 
 
-        public static Expression<Func<Proyecto, Codigo>> MapProyectoToCodigo()
+        public static Expression<Func<EstadoProyecto, EstadoProyectoDetalle>> MapEstadoProyectoToEstadoProyecDetalles()
         {
-            return p => new Codigo
+            return epd => new EstadoProyectoDetalle
             {
-                CodigoId = p.Id,
-                Descripcion = p.Nombre,
+                Id = epd.Id,
+                Estado = epd.Estado,
             };
         }
 
