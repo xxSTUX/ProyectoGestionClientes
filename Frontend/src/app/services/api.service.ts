@@ -39,13 +39,22 @@ export class ApiService {
     return this.http.get<any>(this.api+'Proyecto/GetEstadoPoryectos');
   }
    
-  postClientesFromAPI(nombre:String, descripcion:String): Observable<any> {
+  postClientesFromAPI(nombre:String, descripcion:String) {
     const bodyCliente = {
       nombre: nombre,
       descripcion: descripcion
     };
-    return this.http.post<any>(this.api+'proyecto', bodyCliente);
+    const response = fetch(this.api+'Cliente', {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyCliente),
+    });  
+    
   }
+
   async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:string) {
     const bodyProyecto = {
       nombre: nombre,
@@ -124,8 +133,17 @@ export class ApiService {
     });
     
 }
- 
-   deleteProyectoToAPI(id:number){
+  deleteCliente(id:number){
+    const response = fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  deleteProyectoToAPI(id:number){
     const response = fetch(this.api+'Proyecto/UpdateEliminado/'+ id, {
       method: 'PUT',
       headers: {

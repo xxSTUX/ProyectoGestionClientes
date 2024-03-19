@@ -1,21 +1,26 @@
 <form formGroup="reestablishForm" (submit)="creaCliente()">
-  <div class="form-group">
-    <label for="nombreCliente">Nombre de cliente</label>
-    <input formControlName="nombreCliente" class="form-control" id="nombreCliente" required autocomplete="off" />
-  </div>
-  <div class="form-group">
-    <label for="descripcion">Descripción</label>
-    <textarea formControlName="descripcionCliente" class="form-control" id="descripcionCliente" required autocomplete="off"></textarea>
-  </div>
-</form>
-<div class="d-flex m-2 justify-content-end">
-  <button type="button" class="btn btn-link">
-    Cancelar
-</button>
-  <button type="submit" class="btn btn-primary mr-2">
-      Crear cliente
-  </button>
-</div>
+            <div class="row">
+                <!-- Client input -->
+                <div class="form-group">
+                    <label for="nombreCliente">Nombre de cliente</label>
+                    <input formControlName="nombreCliente" class="form-control" id="nombreCliente" required autocomplete="off" />
+                </div>
+                <div class="form-group">
+                    <label for="descripcion">Descripción</label>
+                    <textarea formControlName="descripcionCliente" class="form-control" id="descripcionCliente" required autocomplete="off"></textarea>
+                </div>
+
+                <!-- Submit button -->
+                <div class="d-flex m-2 justify-content-end">
+                    <button type="button" class="btn btn-link">
+                      Cancelar
+                  </button>
+                    <button type="submit" class="btn btn-primary mr-2">
+                        Crear cliente
+                    </button>
+                  </div>
+            </div>
+        </form>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
