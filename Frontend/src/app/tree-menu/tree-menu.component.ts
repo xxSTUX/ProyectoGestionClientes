@@ -33,30 +33,30 @@ export class TreeMenuComponent {
         let licitacionesGanadas = [];
         let licitacionesPerdidas = [];
         let seguimientosRecientes = [];
-        let clienteId = this.getJsonValue[i].id; // Obtener el ID del cliente
+        let clienteId = this.getJsonValue[i].clienteId; // Obtener el ID del cliente
 
         for (let j = 0; j < this.getJsonValue[i].proyectos.length; j++) { //Recorre proyectos del cliente
           let licitacionesProyecto = [];
           let seguimientosProyecto = [];
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].seguimientos.length; k++) { //Recorre seguimientos dentro del proyecto
-            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].SeguimientoId, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
+            seguimientosProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].seguimientos[k].seguimientoId, nodeText: this.getJsonValue[i].proyectos[j].seguimientos[k].nombre })
           }
           for (let k = 0; k < this.getJsonValue[i].proyectos[j].licitaciones.length; k++) { //Recorre licitaciones dentro del proyecto
-            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].LicitacionId, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
+            licitacionesProyecto.push({ nodeId: clienteId + "-" + this.getJsonValue[i].proyectos[j].licitaciones[k].licitacionId, nodeText: this.getJsonValue[i].proyectos[j].licitaciones[k].nombre })
           }
           if(!this.getJsonValue[i].proyectos[j].eliminado){
             proyectos.push({
-              nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
-              { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].ProyectoId, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
+              nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].proyectoId, nodeText: this.getJsonValue[i].proyectos[j].nombre, nodeChild: [{ nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].proyectoId, nodeText: 'Seguimientos', nodeChild: seguimientosProyecto },
+              { nodeId: clienteId + '-' + this.getJsonValue[i].proyectos[j].proyectoId, nodeText: 'Licitaciones', nodeChild: licitacionesProyecto }]
             });
           }
 
         }
         for (let j = 0; j < this.getJsonValue[i].seguimientos.length; j++) { // Recorre seguimientos del cliente
           if (new Date().getTime() - new Date(this.getJsonValue[i].seguimientos[j].fecha).getTime() > 7776000000) {
-            seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].SeguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+            seguimientosGenerales.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].seguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
           } else {
-            seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].SeguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
+            seguimientosRecientes.push({ nodeId: clienteId + '-' + this.getJsonValue[i].seguimientos[j].seguimientoId, nodeText: this.getJsonValue[i].seguimientos[j].nombre })
           }
         }
         let seguimientos = [];
@@ -70,28 +70,28 @@ export class TreeMenuComponent {
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
           switch (this.getJsonValue[i].licitaciones[j].estado) {
             case 0:
-              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesEnEstudio.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].licitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
             case 1:
-              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesGanadas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].licitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
             case 2:
-              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].LicitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
+              licitacionesPerdidas.push({ nodeId: clienteId + '-' + this.getJsonValue[i].licitaciones[j].licitacionId, nodeText: this.getJsonValue[i].licitaciones[j].nombre });
               break;
           }
         }
         let licitaciones = [];
         if (licitacionesEnEstudio.length > 0) {
-          licitaciones.push({ nodeId: "", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio })
+          licitaciones.push({ nodeId: "estudio", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio })
         }
         if (licitacionesGanadas.length > 0) {
-          licitaciones.push({ nodeId: "", nodeText: 'Ganadas', nodeChild: licitacionesGanadas })
+          licitaciones.push({ nodeId: "Ganadas", nodeText: 'Ganadas', nodeChild: licitacionesGanadas })
         }
         if (licitacionesPerdidas.length > 0) {
-          licitaciones.push({ nodeId: "", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas })
+          licitaciones.push({ nodeId: "Perdidas", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas })
         }
         this.data.push({
-          nodeId: "*", nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
+          nodeId: clienteId, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
           { nodeId: clienteId, nodeText: 'Seguimientos', nodeChild: seguimientos },
           {
             nodeId: clienteId, nodeText: 'Licitaciones', nodeChild: licitaciones
@@ -136,7 +136,13 @@ export class TreeMenuComponent {
       if (item.nodeChild && item.nodeChild.length > 0) {
 
         icon.classList.add("bi", "bi-plus-circle", "me-2"); // Icono de 'plus' de Bootstrap
-        if (parentNode !== undefined) {//Si el nodo no tiene padre, la ruta la cambia al nombre del nodo (lo guardo en el campo textContent para poder utilizarlo luego)
+        listItem.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
+          event.stopPropagation();
+
+          this.location.go(this.location.path() + '#' + item.textContent + '#/Cliente' + '=' +  item.nodeId.toString()); // Cambiamos la ruta parentNode.Text + "/" +
+          //window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
+        }); //Hasta aqui
+        if (parentNode !== undefined) {//Iconos de el nodo
           switch (parentNode.nodeText) {
             case "Proyectos":
               iconCliente.classList.add("bi", "bi-database", "me-2")
@@ -150,11 +156,8 @@ export class TreeMenuComponent {
           }
 
         } else {
-          iconCliente.classList.add("bi", "bi-building", "me-2")
+            iconCliente.classList.add("bi", "bi-building", "me-2")
         }
-
-
-
         switch (item.nodeText) {
           case "Proyectos":
             iconCliente.classList.add("bi", "bi-database", "me-2")
@@ -166,25 +169,43 @@ export class TreeMenuComponent {
             iconCliente.classList.add("bi", "bi-folder", "me-2")
             break;
         }
-      } else {
-        switch (item.nodeText) {
-          case "Proyectos":
-            iconCliente.classList.add("bi", "bi-database", "me-2")
-            break;
-          case "Seguimientos":
-            iconCliente.classList.add("bi", "bi-clipboard", "me-2")
-            break;
-          case "Licitaciones":
-            iconCliente.classList.add("bi", "bi-folder", "me-2")
-            break;
-        }
-        // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
-        listItem.addEventListener('click', (event) => {
+      } else {//Nodo no tiene hijos
+          switch (item.nodeText) {
+            case "Proyectos":
+              iconCliente.classList.add("bi", "bi-database", "me-2")
+              break;
+            case "Seguimientos":
+              iconCliente.classList.add("bi", "bi-clipboard", "me-2")
+              break;
+            case "Licitaciones":
+              iconCliente.classList.add("bi", "bi-folder", "me-2")
+              break;
+
+          }
+          // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
+          listItem.addEventListener('click', (event) => {
+            console.log("nodo sin hijos");
           event.stopPropagation();
           // Obtener el padre
-          this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
-          const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
+          //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien si no es ninguno de estos buscar el cliente
+          let itemPadre = parentNode.nodeText;
+          let itemId = item.nodeId.toString();
+          if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
+            if( itemPadre === 'Ganadas' || itemPadre === 'Perdidas'){
+              itemPadre = 'Licitaciones'
+              itemId = itemId.split("-")[1];
+            }else{
+              itemPadre = 'Cliente';
+              itemId = itemId.split("-")[0];
+              alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText + 'Pasando a vista tabmenu del cliente: ' + itemId);
+              }
+          }else{
+                itemId = itemId.split("-")[1];
+          }
+          this.location.go(this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Cambiamos la ruta parentNode.Text + "/" +
+          const newPath = (this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Actualizamos la ruta en consecuencia al nombre
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
+          console.log("Navigation end provocado");
         });
       }
       listItem.appendChild(icon);
@@ -192,12 +213,12 @@ export class TreeMenuComponent {
       textSpan.textContent = item.nodeText;
 
 
-      textSpan.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
-        event.stopPropagation();
+      // textSpan.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
+      //   event.stopPropagation();
 
-        const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
-        window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
-      }); //Hasta aqui
+      //   const newPath = window.location.pathname + '#' + item.textContent; // Cambiamos la ruta parentNode.Text + "/" +
+      //   window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
+      // }); //Hasta aqui
 
       listItem.appendChild(icon);
       listItem.appendChild(iconCliente);
@@ -205,7 +226,7 @@ export class TreeMenuComponent {
 
       if (item.nodeChild && item.nodeChild.length > 0) {
         // Añadir evento click para cambiar el ícono y colapsar/expandir elementos hijos
-        listItem.addEventListener('click', (event) => {
+        icon.addEventListener('click', (event) => {
           event.stopPropagation();
           if (icon.classList.contains('bi-plus-circle')) {
             icon.classList.replace('bi-plus-circle', 'bi-dash-circle');
