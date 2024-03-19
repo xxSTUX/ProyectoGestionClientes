@@ -23,8 +23,6 @@ export class DatatableComponent implements OnInit {
 
   }
 
-
-
   dtoptions: DataTables.Settings = {}
   dtTrigger: Subject<any> = new Subject<any>();
 
@@ -51,5 +49,40 @@ export class DatatableComponent implements OnInit {
       this.getJsonValue = data;
       this.dtTrigger.next(null);
     });
+  }
+  over(id:number, idCliente:number){
+    switch (id) {
+      case 1:
+          var i = document.getElementById("iconoEditar"+idCliente)
+          i?.classList.replace("bi-building-gear","bi-building-fill-gear")
+        break;
+      case 2:
+          var i = document.getElementById("iconoEliminar"+idCliente)
+          i?.classList.replace("bi-building-x","bi-building-fill-x")
+        break;
+      case 3:
+          var i = document.getElementById("iconoPortapapeles"+idCliente)
+          i?.classList.replace("bi-clipboard-plus","bi-clipboard-plus-fill")
+        break;
+    }
+    
+  }
+  out(id:number, idCliente:number){
+    switch (id) {
+      case 1:
+          var i = document.getElementById("iconoEditar"+idCliente)
+          i?.classList.replace("bi-building-fill-gear","bi-building-gear")
+        break;
+    
+      case 2:
+          var i = document.getElementById("iconoEliminar"+idCliente)
+          i?.classList.replace("bi-building-fill-x","bi-building-x")
+        break;
+      case 3:
+          var i = document.getElementById("iconoPortapapeles"+idCliente)
+          i?.classList.replace("bi-clipboard-plus-fill","bi-clipboard-plus")
+        break;
+    }
+    
   }
 }
