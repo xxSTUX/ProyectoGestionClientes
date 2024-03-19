@@ -94,6 +94,7 @@ export class HomeComponent {
       function eliminarCliente(){
 
       }
+      
       function editarCliente(){
 
       }
