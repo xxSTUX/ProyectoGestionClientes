@@ -50,7 +50,9 @@
                         }
                         <td style="width: 20% allign-items-center">
                             <i class="bi bi-building-gear h3" (click)="editCliente()"></i>&nbsp;&nbsp;
-                            <i class="bi bi-building-x h3" (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
+                            @if(cliente.nombre != "Hiberus"){
+                                <i class="bi bi-building-x h3" (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
+                            }
                             <i class="bi bi-clipboard-plus h3"></i>
                         </td>
                     </tr>
