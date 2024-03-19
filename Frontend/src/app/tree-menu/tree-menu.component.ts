@@ -61,10 +61,10 @@ export class TreeMenuComponent {
         }
         let seguimientos = [];
         if (seguimientosRecientes.length > 0) {
-          seguimientos.push({ nodeId: "", nodeText: 'Ultimos', nodeChild: seguimientosRecientes })
+          seguimientos.push({ nodeId: clienteId, nodeText: 'Ultimos', nodeChild: seguimientosRecientes })
         }
         if (seguimientosGenerales.length > 0) {
-          seguimientos.push({ nodeId: "", nodeText: 'Todos', nodeChild: seguimientosGenerales })
+          seguimientos.push({ nodeId: clienteId, nodeText: 'Todos', nodeChild: seguimientosGenerales })
         }
 
         for (let j = 0; j < this.getJsonValue[i].licitaciones.length; j++) { //Recorre licitaciones del cliente
@@ -82,13 +82,13 @@ export class TreeMenuComponent {
         }
         let licitaciones = [];
         if (licitacionesEnEstudio.length > 0) {
-          licitaciones.push({ nodeId: "estudio", nodeText: 'En estudio', nodeChild: licitacionesEnEstudio })
+          licitaciones.push({ nodeId: clienteId, nodeText: 'En estudio', nodeChild: licitacionesEnEstudio })
         }
         if (licitacionesGanadas.length > 0) {
-          licitaciones.push({ nodeId: "Ganadas", nodeText: 'Ganadas', nodeChild: licitacionesGanadas })
+          licitaciones.push({ nodeId: clienteId, nodeText: 'Ganadas', nodeChild: licitacionesGanadas })
         }
         if (licitacionesPerdidas.length > 0) {
-          licitaciones.push({ nodeId: "Perdidas", nodeText: 'Perdidas', nodeChild: licitacionesPerdidas })
+          licitaciones.push({ nodeId: clienteId, nodeText: 'Perdidas', nodeChild: licitacionesPerdidas })
         }
         this.data.push({
           nodeId: clienteId, nodeText: this.getJsonValue[i].nombre, nodeChild: [{ nodeId: clienteId, nodeText: 'Proyectos', nodeChild: proyectos },
@@ -188,15 +188,15 @@ export class TreeMenuComponent {
           event.stopPropagation();
           // Obtener el padre
           //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien si no es ninguno de estos buscar el cliente
-          let itemPadre = parentNode.nodeText;
-          let itemId = item.nodeId.toString();
+          let itemPadre = parentNode.nodeText;//El nombre del campo de la BBDD
+          let itemId = item.nodeId.toString();//El id del campo
           if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
             switch(itemPadre){
                 case 'Ganadas' || 'Perdidas':
                   itemPadre = 'Licitaciones';
                   itemId = itemId.split("-")[1];
                   break;
-                case 'Perdidas':
+                  case  'Perdidas':
                   itemPadre = 'Licitaciones';
                   itemId = itemId.split("-")[1];
                   break;
