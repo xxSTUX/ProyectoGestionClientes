@@ -32,6 +32,7 @@ public partial class Cliente
         Id = cliente.Id;
         Nombre = cliente.Nombre;
         Descripcion = cliente.Descripcion;
+        Eliminado = cliente.Eliminado;
         foreach (var proyecto in cliente.Proyectos)
         {
             if (!proyecto.Id.Equals(0))

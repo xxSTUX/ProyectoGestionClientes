@@ -12,7 +12,7 @@ namespace HManagementLead.Bll
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Task DeleteClienteAsync(int id)
+        public Task<ClienteDetalle> DeleteClienteAsync(int id)
         {
             return _repository.DeleteClienteAsync(id);
         }

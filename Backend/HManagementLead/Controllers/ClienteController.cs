@@ -106,14 +106,13 @@ namespace HManagementLead.Controllers
         }
 
         // DELETE api/<ClienteController>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPut("UpdateEliminado/{id}")]
+        public async Task<IActionResult> Put(int id)
         {
             try
             {
-                await _clienteService.DeleteClienteAsync(id);
-
-                return NoContent();
+                var resultado = await _clienteService.DeleteClienteAsync(id);
+                return Ok(resultado);
             }
             catch (Exception ex)
             {

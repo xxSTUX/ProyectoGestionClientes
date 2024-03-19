@@ -17,7 +17,6 @@
 .mybutton{
     margin: 0;
     color: black;
-    border-color: rgb(136, 136, 224);
     border-width: 1px;
     font-size: small;
     background-color: aliceblue;
@@ -25,4 +24,7 @@
 }
 a{
     text-decoration: none;
+}
+i:hover{
+    background-color: aqua;
 }

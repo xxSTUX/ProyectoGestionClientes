@@ -1,82 +1,60 @@
 <div class="container-fluid my-4">
-    <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table table-bordered">
+    <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table stripe hover">
         <thead class="bg-dark text-white">
             <tr>
-                <th>Nombre</th>
+                <th>Cliente</th>
                 <th>Proyectos</th>
-                <th>Seguimientos</th>
-                <th>Licitaciones</th>
-                <th>Editar</th>
-                <th>Borrar</th>
+                <th>Propuestas</th>
+                <th>Ultimo Seguimiento</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @for (cliente of getJsonValue; track $index) {
-            <tr>
-                <td>{{cliente.nombre}}</td>
-                @if (cliente.proyectos.length === 0) {
-                <td>No tiene proyectos</td>
-                }
-                @else {
-                <td>
-
-                    @for (proyecto of cliente.proyectos; track $index) {
-                    <a href="#" class="link-sin-estilo">
-                        @if ($index === (cliente.proyectos.length - 1)) {
-                        {{proyecto.nombre}}
+                @if(!cliente.eliminado){
+                    <tr>
+                        <td>{{cliente.nombre}}</td>
+                        @if (cliente.proyectos.length === 0) {
+                        <td>No tiene proyectos</td>
                         }
                         @else {
-                        {{proyecto.nombre}},
+                        <td>
+                            <a href="#" class="link-sin-estilo">
+                                {{cliente.proyectos.length}}
+                            </a>
+                        </td>
                         }
-                    </a>
-                    }
-                </td>
-                }
-
-                @if (cliente.seguimientos.length === 0) {
-                <td>No tiene seguimientos</td>
-                }
-                @else {
-                <td>
-
-                    @for (seguimiento of cliente.seguimientos; track $index) {
-                    <a href="/dashboard#Seguimiento/{{seguimiento.id}}" class="link-sin-estilo">
-                        @if ($index === (cliente.seguimientos.length - 1)) {
-                        {{seguimiento.nombre}}
+        
+                        @if (cliente.seguimientos.length === 0) {
+                        <td>No tiene seguimientos</td>
                         }
                         @else {
-                        {{seguimiento.nombre}},
+                        <td>
+        
+                            @for (licitaciones of cliente.licitaciones; track $index) {
+                            <a href="/dashboard#Seguimiento/{{licitaciones.id}}" class="link-sin-estilo">
+                                {{cliente.licitaciones.length}}
+                            </a>
+                            }
+                        </td>
                         }
-                    </a>
-                    }
-                </td>
-                }
-                @if (cliente.licitaciones.length === 0) {
-                <td>No tiene licitaciones</td>
-                }
-                @else {
-                <td>
-                    @for (licitacion of cliente.licitaciones; track $index) {
-                    <a href="#" class="link-sin-estilo">
-                        @if ($index === (cliente.licitaciones.length - 1)) {
-                        {{licitacion.nombre}}
+                        @if (cliente.licitaciones.length === 0) {
+                            <td>
+                                16/12/2002
+                            </td>
                         }
                         @else {
-                        {{licitacion.nombre}},
+                        <td>
+                            16/12/2002
+                        </td>
                         }
-                    </a>
-                    }
-                </td>
+                        <td style="width: 20% allign-items-center">
+                            <i class="bi bi-building-gear h3" (click)="editCliente()"></i>&nbsp;&nbsp;
+                            <i class="bi bi-building-x h3" (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
+                            <i class="bi bi-clipboard-plus h3"></i>
+                        </td>
+                    </tr>
                 }
-                <td style="width: 20% allign-items-center">
-                    <a class="btn btn-primary mybutton">Edit</a>
-                    <!-- <a class="btn btn-success">Print</a> |
-                    <a class="btn btn-success">Download</a> -->
-                </td>
-                <td style="width: 20% allign-items-center">
-                    <a class="btn btn-danger mybutton" >Delete</a>
-                </td>
-            </tr>
             }
         </tbody>
     </table>
