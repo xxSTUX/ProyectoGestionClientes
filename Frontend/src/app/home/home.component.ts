@@ -67,10 +67,10 @@ export class HomeComponent {
 
       const icon2 = document.createElement('i');
       icon2.classList.add('bi','bi-clipboard-plus','h3');
-      dev-funcionalidad-botones-home
       icon2.onclick = crearSeguimiento;
       col4.appendChild(icon2);
       row.appendChild(col4);
+      
 
       // const icon = document.createElement('i');
       // icon.classList.add('col-1',);
@@ -110,9 +110,5 @@ export class HomeComponent {
   }
     });
 
-      col1.appendChild(icon2);
-    }  
-  }});
-
- }
-}
+      
+    } }

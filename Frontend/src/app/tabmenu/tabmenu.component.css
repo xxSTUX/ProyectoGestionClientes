@@ -1,23 +1,41 @@
-*{
-    font-size: small;
-    
+* {
+  font-size: small;
+
 }
 
 ::-webkit-scrollbar {
-    width: 1.2rem;
+  width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.mycol {
+  text-align: center;
+
+}
+
+a {
+  color: #153963; 
+}
+hr{
+  background-color: #044ea1;
+  height: 1px;
+}
+@media (max-width:98vh){
+  a{
+    font-size: 1px;
   }
-  
-  ::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background-color: #d6dee1;
-    border-radius: 20px;
-    border: 6px solid transparent;
-    background-clip: content-box;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: #a8bbbf;
-  }
+}
