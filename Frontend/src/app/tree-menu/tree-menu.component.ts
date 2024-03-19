@@ -191,14 +191,33 @@ export class TreeMenuComponent {
           let itemPadre = parentNode.nodeText;
           let itemId = item.nodeId.toString();
           if (!(itemPadre === 'Proyectos' || itemPadre === 'Seguimientos' || itemPadre === 'Licitaciones')) {
-            if( itemPadre === 'Ganadas' || itemPadre === 'Perdidas'){
-              itemPadre = 'Licitaciones'
-              itemId = itemId.split("-")[1];
-            }else{
-              itemPadre = 'Cliente';
-              itemId = itemId.split("-")[0];
-              alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText + 'Pasando a vista tabmenu del cliente: ' + itemId);
-              }
+            switch(itemPadre){
+                case 'Ganadas' || 'Perdidas':
+                  itemPadre = 'Licitaciones';
+                  itemId = itemId.split("-")[1];
+                  break;
+                case 'Perdidas':
+                  itemPadre = 'Licitaciones';
+                  itemId = itemId.split("-")[1];
+                  break;
+                case 'Ultimos':
+                  itemPadre = 'Seguimientos';
+                  itemId = itemId.split("-")[1];
+                  break;
+                default:
+                  itemPadre = 'Cliente';
+                  itemId = itemId.split("-")[0];
+                  alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText + 'Pasando a vista ver cliente: ' + itemId);
+                  break;
+            }
+            // if( itemPadre === 'Ganadas' || itemPadre === 'Perdidas'){
+            //   itemPadre = 'Licitaciones'
+            //   itemId = itemId.split("-")[1];
+            // }else{
+            //   itemPadre = 'Cliente';
+            //   itemId = itemId.split("-")[0];
+            //   alert('No existen: ' +  item.nodeText + ' para:' + parentNode.nodeText + 'Pasando a vista ver cliente: ' + itemId);
+            //   }
           }else{
                 itemId = itemId.split("-")[1];
           }
