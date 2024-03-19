@@ -61,7 +61,7 @@ export class HomeComponent {
  
       const icon1 = document.createElement('i');
       icon1.classList.add('col-1');
-      icon1.classList.add('bi','bi-building-x','h3');
+      icon1.classList.add('bi','bi-building-fill-x','h3');
       icon1.onclick = eliminarCliente;
       col4.appendChild(icon1);
  

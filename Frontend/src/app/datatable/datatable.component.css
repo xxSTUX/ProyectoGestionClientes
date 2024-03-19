@@ -25,6 +25,6 @@
 a{
     text-decoration: none;
 }
-i:hover{
-    background-color: aqua;
+i{
+    cursor: pointer;
 }
