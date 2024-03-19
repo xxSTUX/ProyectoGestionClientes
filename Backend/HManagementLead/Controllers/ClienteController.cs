@@ -49,7 +49,7 @@ namespace HManagementLead.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes to codigo");
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get Arbol");
                 throw;
             }
         }
