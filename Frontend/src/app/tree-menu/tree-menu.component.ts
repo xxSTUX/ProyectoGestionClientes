@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { LoadingComponent } from '../loading/loading.component';
   standalone: true,
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css',
-  imports: [HttpClientModule, LoadingComponent]
+  imports: [HttpClientModule, LoadingComponent, DashboardComponent]
 })
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];

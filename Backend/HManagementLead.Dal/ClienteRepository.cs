@@ -27,7 +27,7 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
-            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" , Descripcion = "Lorem Ipsum"}); }
             if(_context.EstadoProyecto.IsNullOrEmpty()) { _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Oportunidad" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Aceptado" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Finalizado" });
