@@ -40,8 +40,10 @@ export class DatatableComponent implements OnInit {
   public editCliente(){
     alert("Funca");
   }
-  public eliminarCliente(id:number){
-    this.apiService.deleteCliente(id);
+  public async eliminarCliente(id:number){
+    alert("Se procede a eliminar el elemento seleccionado: " + id)
+    await this.apiService.deleteCliente(id);
+    window.location.reload();
   }
   public getMethod() {
     this.apiService.getDataClientesFromAPI().subscribe((data) => {
