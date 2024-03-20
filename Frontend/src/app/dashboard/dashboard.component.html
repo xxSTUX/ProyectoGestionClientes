@@ -35,8 +35,16 @@
                     <as-split-area [size]="30" minSize="20" maxSize="60" [hidden]="!isTreeVisible">
                         <div #contenedor class="container-fluid" id='contenedor'></div>
                     </as-split-area>
-                    <as-split-area>
-                        <div class="container-fluid">
+                    <as-split-area class="m-4">
+                        <div id="contenedorTitulo" class="row">
+                            <div class="col-8"><h2 id="Titulo">Clientes</h2></div>
+                            <div class="col d-flex flex-row-reverse"><button class="botonCrear btn" id="botonCrearElemento"><i class="bi bi-plus-lg"></i> Crear nuevo cliente</button></div>
+                        </div>
+                        <div id="tablaClientes">
+                            <app-datatable></app-datatable>
+                        </div>
+                        
+                        <div id="tabMenu" class="d-none" >
                             <ng-container *ngIf="fragment$ | async as fragment">
                                 <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
                                 <app-licitaciones *ngIf="fragment === 'Licitaciones'"></app-licitaciones>

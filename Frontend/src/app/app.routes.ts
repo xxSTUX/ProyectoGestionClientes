@@ -15,6 +15,7 @@ import { CreaClienteComponent } from './crea-cliente/crea-cliente.component';
 import { ModificaclienteComponent } from './modificacliente/modificacliente.component';
 import { CreaProyectoComponent } from './crea-proyecto/crea-proyecto.component';
 import { HomeComponent } from './home/home.component';
+import { DatatableProyectosComponent } from './datatableProyectos/datatableProyectos.component';
 
 
 export const routes: Routes = [
@@ -33,7 +34,8 @@ export const routes: Routes = [
     { path: 'licitaciones', component: LicitacionesComponent,  },
     { path: 'seguimientos', component: SeguimientosComponent,  },
     { path: ':home', component: HomeComponent },
-    { path: ':nodeName', component: ChildComponent }
+    { path: ':nodeName', component: ChildComponent },
+    { path: "datatableProyecto", component: DatatableProyectosComponent, pathMatch: "full" },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

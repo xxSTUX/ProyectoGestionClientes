@@ -1,5 +1,5 @@
 import { AngularSplitModule } from 'angular-split';
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
 import { TabmenuComponent } from '../tabmenu/tabmenu.component';
@@ -15,6 +15,9 @@ import { ModificaclienteComponent } from "../modificacliente/modificacliente.com
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
 import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
+import { DatatableComponent } from '../datatable/datatable.component';
+import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
+import { contains } from 'jquery';
 
 
 @Component({
@@ -22,9 +25,10 @@ import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent]
 })
 export class DashboardComponent implements OnInit {
+  public getJsonValue: any;
   showTreeMenu: boolean = true;
   private componentRef: any;
   public isTreeVisible: boolean = false;
@@ -87,5 +91,19 @@ export class DashboardComponent implements OnInit {
       this.isTreeVisible = false;
     }
   }
+  public seleccionarCliente(cliente:any){
+    console.log(cliente)
+    
+    const contenedor = document.getElementById("tablaClientes");
+    const tabMenu = document.getElementById("tabMenu");
+    var txt = document.getElementById("Titulo") ;
+    contenedor?.classList.add("d-none");
+    tabMenu?.classList.remove("d-none");
+    if (txt) txt.innerHTML = cliente.nombre;
+    this.getJsonValue = cliente;
+  }
 
+  public reload(){
+    window.location.reload()
+  }
 }

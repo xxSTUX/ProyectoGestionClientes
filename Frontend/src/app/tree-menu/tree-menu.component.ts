@@ -26,6 +26,7 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
+      this.getJsonValue = data;
       console.log(this.getJsonValue)
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let nombre:String = this.getJsonValue[i].nombre;

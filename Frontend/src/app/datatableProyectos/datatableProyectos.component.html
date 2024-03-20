@@ -1,61 +1,25 @@
 <div class="container-fluid my-4">
+    <button (click)="reload()">Reload</button>
     <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table stripe hover">
         <thead class="bg-dark text-white">
             <tr>
-                <th>Cliente</th>
-                <th>Proyectos</th>
-                <th>Propuestas</th>
-                <th>Ultimo Seguimiento</th>
-                <th>             </th>
+                <th>Nombre</th>
+                <th>Estado</th>
+                <th>Tipo</th>
             </tr>
         </thead>
         <tbody>
-            @for (cliente of getJsonValue; track $index) {
-                @if(!cliente.eliminado){
+            @for (proyecto of getJsonValue; track $index) {
+                @if(!proyecto.eliminado){
                     <tr>
-                        <td class="cliente" (click)="seleCliente(cliente)">{{cliente.nombre}}</td>
-                        @if (cliente.proyectos.length === 0) {
-                        <td>No tiene proyectos</td>
-                        }
-                        @else {
+                        <td class="cliente">{{proyecto.nombre}}</td>
                         <td>
                             <a href="#" class="link-sin-estilo">
-                                {{cliente.proyectos.length}}
+                                {{proyecto.estado}}
                             </a>
                         </td>
-                        }
-        
-                        @if (cliente.seguimientos.length === 0) {
-                        <td>No tiene seguimientos</td>
-                        }
-                        @else {
                         <td>
-        
-                            @for (licitaciones of cliente.licitaciones; track $index) {
-                            <a href="/dashboard#Seguimiento/{{licitaciones.id}}" class="link-sin-estilo">
-                                {{cliente.licitaciones.length}}
-                            </a>
-                            }
-                        </td>
-                        }
-                        @if (cliente.licitaciones.length === 0) {
-                            <td>
-                                16/12/2002
-                            </td>
-                        }
-                        @else {
-                        <td>
-                            16/12/2002
-                        </td>
-                        }
-                        <td style="width: 20% allign-items-center">
-                            <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;
-
-                            @if(cliente.nombre != "Hiberus"){
-                                <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
-                            }
-                            
-                            <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)'></i>
+                            {{proyecto.tipo}} 
                         </td>
                     </tr>
                 }
