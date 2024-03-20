@@ -3,6 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { LoadingComponent } from '../loading/loading.component';
   standalone: true,
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css',
-  imports: [HttpClientModule, LoadingComponent]
+  imports: [HttpClientModule, LoadingComponent, DashboardComponent]
 })
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
@@ -25,8 +26,10 @@ export class TreeMenuComponent {
 
   public getMethod() {
     this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
-      this.getJsonValue = data;
+      console.log(this.getJsonValue)
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
+        let nombre:String = this.getJsonValue[i].nombre;
+        this.getJsonValue[i].nombre = nombre.toLocaleUpperCase()
         let proyectos = [];
         let seguimientosGenerales = [];
         let licitacionesEnEstudio = [];
@@ -103,6 +106,10 @@ export class TreeMenuComponent {
       const treeviewElement = document.getElementById("treeview");
       if (treeviewElement) {
         treeviewElement.innerHTML = "";
+
+        this.data.sort((a,b)=>
+        ( (a['nodeText']) > b['nodeText'])?1:((b['nodeText'] > a['nodeText'])?-1:0));
+
         this.renderBootstrapTreeView(this.data, treeviewElement);
       }
       // Ocultar el elemento #loader una vez que los datos se hayan cargado
@@ -113,8 +120,6 @@ export class TreeMenuComponent {
     }
     );
   }
-
-
 
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {

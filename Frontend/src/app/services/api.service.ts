@@ -39,13 +39,22 @@ export class ApiService {
     return this.http.get<any>(this.api+'Proyecto/GetEstadoPoryectos');
   }
    
-  postClientesFromAPI(nombre:String): Observable<any> {
+  postClientesFromAPI(nombre:String, descripcion:String) {
     const bodyCliente = {
-      nombre: nombre
+      nombre: nombre,
+      descripcion: descripcion
     };
-    alert("A")
-    return this.http.post<any>(this.api+'proyecto', bodyCliente);
+    const response = fetch(this.api+'Cliente', {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyCliente),
+    });  
+    
   }
+
   async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:string) {
     const bodyProyecto = {
       nombre: nombre,
@@ -86,24 +95,21 @@ export class ApiService {
     }
 }
 
-  async postLicitacionToClienteAPI(nombre:string,tapio:string,id:string,estado:string) {
-      const bodyProyecto = {
-        nombre: nombre,
-        tapio:tapio,
-        estado:estado
-      };
-      alert(estado)
-      const response = await fetch(this.api+'Cliente/rInsertLicitacion/'+ id, {
-        method: 'POST',
-        headers: {
-          'accept': '*/*',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bodyProyecto),
-      });  
-      if (!response.ok) {
-        throw new Error(`Error! Status: ${response.status}`);
-      }
+  async postLicitacionToClienteAPI(nombre:string,tipo:string,id:string,estado:string) {
+    const bodyProyecto = {
+      nombre: nombre,
+      tipo: tipo,
+      estado:estado
+    };
+    console.log(bodyProyecto)
+    const response = fetch('https://localhost:7075/api/Cliente/InsertLicitacion/'+id, {
+      method: 'POST',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(bodyProyecto),
+    }); 
   }
  
   async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
@@ -111,14 +117,13 @@ export class ApiService {
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
     var text = oDOM.body.innerText;
- 
     const bodyProyecto = {
       nombre: nombre,
-      tapio:"",
-      fecha:fechaCre,
+      tipo:"",
+      fechaCre:fechaCre,
       observaciones:text
     };
-    const response = await fetch(this.api+'Cliente/InsertSeguimiento/'+ id, {
+    const response = fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {
         'accept': '*/*',
@@ -126,12 +131,19 @@ export class ApiService {
       },
       body: JSON.stringify(bodyProyecto),
     });
-    if (!response.ok) {
-      throw new Error(`Error! Status: ${response.status}`);
-    }
+    
 }
- 
-   deleteProyectoToAPI(id:number){
+  deleteCliente(id:number){
+    const response = fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
+      method: 'PUT',
+      headers: {
+        'accept': '*/*',
+        'Content-Type': 'application/json',
+      }
+    });
+  }
+
+  deleteProyectoToAPI(id:number){
     const response = fetch(this.api+'Proyecto/UpdateEliminado/'+ id, {
       method: 'PUT',
       headers: {
