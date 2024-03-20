@@ -44,3 +44,58 @@
 .modal-header{
   color: #153963;
 }
+
+.hamburger {
+  cursor: pointer;
+}
+
+.hamburger input {
+  display: none;
+}
+
+.hamburger svg {
+  height: 4em;
+  transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line {
+  fill: none;
+  stroke: rgb(27, 30, 179);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 3;
+  /* Define the transition for transforming the Stroke */
+  transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+              stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.line-top-bottom {
+  stroke-dasharray: 12 63;
+}
+
+.hamburger input:checked + svg {
+  transform: rotate(-45deg);
+}
+
+.hamburger input:checked + svg .line-top-bottom {
+  stroke-dasharray: 20 300;
+  stroke-dashoffset: -32.42;
+}
+
+.boton-hamburger{
+  width: 5rem;
+  margin-left: 0.88rem;
+  font-weight: bold;
+  border-radius: 0 !important;
+  background-color: rgb(222, 245, 245);
+  height: 3.2rem;
+  border: 0;
+  color:rgb(59, 79, 145);
+  font-size: small;
+  cursor: default;
+}
+
+.boton-hamburger:hover{
+  background-color:rgb(202, 240, 243);
+  transition:230ms;
+}

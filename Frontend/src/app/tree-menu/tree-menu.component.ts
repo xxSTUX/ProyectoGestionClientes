@@ -1,3 +1,4 @@
+import { ApiService } from './../services/api.service';
 import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
@@ -16,7 +17,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
 
-  constructor(private http: HttpClient, private location: Location, private router: Router) { }
+  constructor(private http: HttpClient, private location: Location, private router: Router, private ApiService: ApiService) { }
 
   ngOnInit() {
     this.getMethod();
@@ -25,8 +26,13 @@ export class TreeMenuComponent {
   public getJsonValue: any;
 
   public getMethod() {
-    this.http.get("https://localhost:7075/api/cliente").subscribe((data: any) => {
-      console.log(this.getJsonValue)
+    this.ApiService.getDataClientesFromAPI().subscribe((data: any) => {
+      this.getJsonValue = data;
+      console.log(this.getJsonValue); // Verifica que los datos se han asignado correctamente
+      
+      // Ordena los clientes alfabéticamente por su nombre
+      this.getJsonValue.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
+
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let nombre:String = this.getJsonValue[i].nombre;
         this.getJsonValue[i].nombre = nombre.toLocaleUpperCase()
@@ -107,8 +113,7 @@ export class TreeMenuComponent {
       if (treeviewElement) {
         treeviewElement.innerHTML = "";
 
-        this.data.sort((a,b)=>
-        ( (a['nodeText']) > b['nodeText'])?1:((b['nodeText'] > a['nodeText'])?-1:0));
+        this.data.sort((a, b) => ((a['nodeText']) > b['nodeText']) ? 1 : ((b['nodeText'] > a['nodeText']) ? -1 : 0));
 
         this.renderBootstrapTreeView(this.data, treeviewElement);
       }
