@@ -34,14 +34,7 @@ export class CreaClienteComponent {
             descripcion: descripcionCliente
         }
 
-        this.ApiService.postClientesFromAPI(nombreCliente, descripcionCliente).subscribe(
-            (response) => {
-                console.log(response);
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
+        this.ApiService.postClientesFromAPI(nombreCliente, descripcionCliente);
         alert("Se ha creado el cliente "+nombreCliente + " con la descripcion: " + descripcionCliente);
     }
 }

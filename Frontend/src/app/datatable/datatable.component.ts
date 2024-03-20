@@ -30,13 +30,19 @@ export class DatatableComponent implements OnInit {
 
   ngOnInit(): void {
     this.dtoptions = {
-      pagingType: "full_numbers"
+      pagingType: "full_numbers",
+      "search": false,
 
     };
-
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
 
+  public editCliente(){
+    alert("Funca");
+  }
+  public eliminarCliente(id:number){
+    this.apiService.deleteCliente(id);
+  }
   public getMethod() {
     this.apiService.getDataClientesFromAPI().subscribe((data) => {
       console.log(data);
