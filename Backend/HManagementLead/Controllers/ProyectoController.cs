@@ -96,6 +96,24 @@ namespace HManagementLead.Controllers
             }
         }
 
+        [HttpPut("UpdateEliminado/{id}")]
+        public async Task<IActionResult> UpdateEliminadoAsync(int id)
+        {
+            try
+            {
+
+                var resultado = await _proyectoService.UpdateEliminadoAsync(id);
+
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Put");
+                throw;
+            }
+        }
+
         // DELETE api/<ClienteController>/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
@@ -126,6 +144,22 @@ namespace HManagementLead.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
+
+        [HttpGet("GetEstadoPoryectos")]
+        public async Task<IActionResult> GetEstadoPoryectos()
+        {
+            try
+            {
+                var resultado = await _proyectoService.GetEstadoPoryectos();
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get clientes");
                 throw;
             }
         }

@@ -4,12 +4,13 @@ namespace HManagementLead.Entities
 {
     public class ProyectoDetalle
     {
-        [JsonIgnore]
         public int Id { get; set; }
         public string Nombre { get; set; } = null!;
         [JsonIgnore]
         public int IdCliente { get; set; }
-        public string Estado { get; set; } = null!;
+        public int Estado { get; set; }
+        public bool Eliminado { get; set; } = false;
+
         public string Tipo { get; set; } = null!;
         [JsonIgnore]
         public IList<TablaIntermedia> SeguimientoProyecto { get; set; } = new List<TablaIntermedia>();

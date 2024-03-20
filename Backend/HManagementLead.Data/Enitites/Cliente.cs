@@ -9,12 +9,16 @@ public partial class Cliente
     public int Id { get; set; }
     public string Nombre { get; set; } = null!;
 
+    public bool Eliminado { get; set; } = false;
+
+    public string Descripcion {  get; set; } = null;
     public virtual ICollection<Proyecto> Proyectos { get; set; } = new List<Proyecto>();
     public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
     public virtual ICollection<FacturacionCliente> FacturacionesClientes { get; set; } = new List<FacturacionCliente>();
     public virtual ICollection<LicitacionCliente> LicitacionesClientes { get; set; } = new List<LicitacionCliente>();
     public virtual ICollection<PuestoCliente> PuestosClientes { get; set; } = new List<PuestoCliente>();
     public virtual ICollection<SeguimientoCliente> SeguimientosClientes { get; set; } = new List<SeguimientoCliente>();
+
     //public virtual ICollection<SeguimientoCliente> Seguimientos { get; set; } = new List<SeguimientoCliente>();
     //public virtual ICollection<LicitacionCliente> Licitaciones { get; set; } = new List<LicitacionCliente>();
 
@@ -27,6 +31,8 @@ public partial class Cliente
     {
         Id = cliente.Id;
         Nombre = cliente.Nombre;
+        Descripcion = cliente.Descripcion;
+        Eliminado = cliente.Eliminado;
         foreach (var proyecto in cliente.Proyectos)
         {
             if (!proyecto.Id.Equals(0))

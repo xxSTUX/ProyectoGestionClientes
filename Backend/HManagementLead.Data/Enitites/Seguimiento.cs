@@ -15,6 +15,8 @@ namespace HManagementLead.Data.Enitites
         public DateTime Fecha { get; set; }
         public string Observaciones { get; set; }
         public string Tipo { get; set; }
+        public bool Eliminado { get; set; } = false;
+
 
         public virtual ICollection<SeguimientoCliente> SeguimientosClientes { get; set; } = new List<SeguimientoCliente>();
         public virtual ICollection<SeguimientoProyecto> SeguimientosProyectos { get; set; } = new List<SeguimientoProyecto>();

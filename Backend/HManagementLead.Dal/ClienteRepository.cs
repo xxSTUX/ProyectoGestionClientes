@@ -27,7 +27,12 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
-            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" }); }
+            if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" , Descripcion = "Lorem Ipsum"}); }
+            if(_context.EstadoProyecto.IsNullOrEmpty()) { _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Oportunidad" });
+                                                          _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Aceptado" });
+                                                          _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Finalizado" });
+                                                          _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Rechazado" });
+            }
             await _context.SaveChangesAsync();
             var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
             return cliente;
@@ -71,14 +76,14 @@ namespace HManagementLead.Dal
 
             return await _context.Clientes
                 .Where(c => c.Id == cliente.Id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto())
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
 
         }
 
-        public async Task DeleteClienteAsync(int id) 
+        public async Task<ClienteDetalle> DeleteClienteAsync(int id) 
         {
-            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
+            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).FirstAsync();
             var proyectos = _context.Proyectos.Where(p => p.ClienteId.Equals(cliente.Id)).ToList();
             foreach (var cp in proyectos)
             {
@@ -86,7 +91,14 @@ namespace HManagementLead.Dal
                 _context.Proyectos.Add(cp);
                 _context.Update(cp);
                 await _context.SaveChangesAsync();
-            }            
+            }
+            cliente.Eliminado = true;
+            var nuevoCliente = new Cliente(cliente);
+            _context.Clientes.Add(nuevoCliente);
+            _context.Update(nuevoCliente);
+            await _context.SaveChangesAsync();
+            return cliente;
+
         }
 
         public async Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto)
@@ -101,12 +113,12 @@ namespace HManagementLead.Dal
             await _context.SaveChangesAsync();
             return await _context.Clientes
                 .Where(c => c.Id == cliente.Id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto())
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
         }
         public async Task DeleteProyectoInClienteAsync(int id)
         {
-            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToCreateClientDetalle()).FirstAsync();
+            var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).FirstAsync();
             var proyectos = _context.Proyectos.Where(p => p.ClienteId.Equals(cliente.Id)).ToList();
             foreach (var cp in proyectos)
             {
@@ -137,7 +149,7 @@ namespace HManagementLead.Dal
             await _context.SaveChangesAsync();
             return await _context.Clientes
                 .Where(c => c.Id == cliente.Id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto())
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
         }
 
@@ -159,7 +171,7 @@ namespace HManagementLead.Dal
             await _context.SaveChangesAsync();
             return await _context.Clientes
                 .Where(c => c.Id == cliente.Id)
-                .Select(ClienteMapping.MapToClientDetalleConProyecto())
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
         }
         private async void DeleteSeguimientosDeProyecto(ClienteDetalle cliente)

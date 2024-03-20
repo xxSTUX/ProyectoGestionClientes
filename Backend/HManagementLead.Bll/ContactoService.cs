@@ -12,7 +12,7 @@ namespace HManagementLead.Bll
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Task<List<Codigo>> GetAllContactoAsync()
+        public Task<List<ContactoDetalle>> GetAllContactoAsync()
         {
             return _repository.GetAllContactoAsync();
         }
@@ -21,5 +21,11 @@ namespace HManagementLead.Bll
         {
             return _repository.GetContactoByIdAsync(id);
         }
+
+       public Task<ContactoDetalle> UpdateEliminadoAsync(int id)
+        {
+            return _repository.UpdateEliminadoAsync(id);
+        }
+
     }
 }

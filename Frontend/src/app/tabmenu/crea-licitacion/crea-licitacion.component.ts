@@ -26,7 +26,8 @@ export class CreaLicitacionComponent {
 
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    console.log(this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.estado));
+    this.apiService.postLicitacionToClienteAPI(this.nombre,this.tipo,this.id,this.estado);
+    
   }
 
   public delete(){

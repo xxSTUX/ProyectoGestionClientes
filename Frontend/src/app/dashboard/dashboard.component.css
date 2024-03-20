@@ -1,12 +1,46 @@
-.custom-col{
-  width: calc(100rem/25);
-  float: left;
-  /* height: 100px; */
-
+.button-aniadir{
+  width: 10rem;
+  margin-left: 0.88rem;
+  font-weight: bold;
+  border-radius: 0 !important;
+  background-color: rgb(222, 245, 245);
+  height: 3.2rem;
+  border: 0;
+  color:rgb(59, 79, 145);
+  font-size: small;
+}
+.button-aniadir:hover{
+  background-color:rgb(202, 240, 243);
+  transition:230ms;
 }
 
- :host {
-  ::ng-deep .p-splitter-panel-nested {
-    display: block !important;
-  } 
+.icono-aniadir{
+  padding-right: 0.3rem;
+}
+
+.sizePane{
+  height: calc(100vh - 7.055rem);
+}
+
+::-webkit-scrollbar {
+  width: 1.2rem;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d6dee1;
+  border-radius: 20px;
+  border: 6px solid transparent;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.modal-header{
+  color: #153963;
 }
