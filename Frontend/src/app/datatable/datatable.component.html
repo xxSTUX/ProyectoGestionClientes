@@ -49,9 +49,13 @@
                         </td>
                         }
                         <td style="width: 20% allign-items-center">
-                            <i class="bi bi-building-gear h3" (click)="editCliente()"></i>&nbsp;&nbsp;
-                            <i class="bi bi-building-x h3" (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
-                            <i class="bi bi-clipboard-plus h3"></i>
+                            <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;
+
+                            @if(cliente.nombre != "Hiberus"){
+                                <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
+                            }
+                            
+                            <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)'></i>
                         </td>
                     </tr>
                 }
