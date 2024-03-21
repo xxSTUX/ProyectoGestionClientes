@@ -29,11 +29,10 @@ import { contains } from 'jquery';
 })
 export class DashboardComponent implements OnInit {
   public getJsonValue: any;
-  showTreeMenu: boolean = true;
   private componentRef: any;
   public isTreeVisible: boolean = false;
   @ViewChild('contenedor', { read: ViewContainerRef }) contenedor!: ViewContainerRef;
-  
+
   //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 
@@ -71,19 +70,23 @@ export class DashboardComponent implements OnInit {
     return fragmentType;
   }
 
-  creaTree() {
+  toggleTree() {
     const contenedor = document.getElementById("contenedor");
     if (contenedor != null) {
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(TreeMenuComponent);
-      if (this.componentRef) {
-        this.componentRef.destroy();
+      if (this.isTreeVisible) {
+        // Si el árbol ya está visible, lo eliminamos
+        if (this.componentRef) {
+          this.componentRef.destroy();
+        }
+        this.isTreeVisible = false;
+      } else {
+        // Si el árbol no está visible, lo creamos
+        this.componentRef = this.contenedor.createComponent(componentFactory);
+        this.isTreeVisible = true;
       }
-      this.componentRef = this.contenedor.createComponent(componentFactory);
-      this.showTreeMenu = false;
-      this.isTreeVisible = true;
     }
   }
-
   eliminaTree() {
     if (this.componentRef) {
       this.componentRef.destroy();

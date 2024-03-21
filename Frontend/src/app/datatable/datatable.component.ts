@@ -45,7 +45,7 @@ export class DatatableComponent implements OnInit {
     alert("Se procede a eliminar el elemento seleccionado: " + id)
     await this.apiService.deleteCliente(id);
     window.location.reload();
-  }
+}
   public getMethod() {
     this.apiService.getDataClientesFromAPI().subscribe((data) => {
       console.log(data);

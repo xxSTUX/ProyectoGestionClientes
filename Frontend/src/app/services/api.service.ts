@@ -133,15 +133,15 @@ export class ApiService {
     });
     
 }
-  deleteCliente(id:number){
-    const response = fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
-      method: 'PUT',
-      headers: {
-        'accept': '*/*',
-        'Content-Type': 'application/json',
-      }
-    });
-  }
+async deleteCliente(id:number){
+  const response = await fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
+    method: 'PUT',
+    headers: {
+      'accept': '*/*',
+      'Content-Type': 'application/json',
+    }
+  });
+}
 
   deleteProyectoToAPI(id:number){
     const response = fetch(this.api+'Proyecto/UpdateEliminado/'+ id, {
