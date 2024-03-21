@@ -1,14 +1,9 @@
 <body class="tabmenu">
   <div class="row mt-3">
     <nav class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-      <div class="col-2 mycol active">
-        <a class="text-decoration-none" id="nav-clientes-tab" data-bs-toggle="tab" href="#nav-clientes" role="tab"
-          aria-controls="nav-clientes" aria-selected="true">Clientes</a>
-        <hr class="myhr">
-      </div>
       <div class="col-2 mycol">
         <a class="text-decoration-none" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
-          aria-controls="nav-home" aria-selected="true">Crear seguimiento</a>
+          aria-controls="nav-home" aria-selected="true">Proyectos</a>
         <hr class="myhr">
       </div>
       <div class="col-2 mycol">
@@ -29,11 +24,8 @@
     </nav>
   </div>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active" id="nav-clientes" role="tabpanel" aria-labelledby="nav-clientes-tab">
-      <app-datatable></app-datatable>
-    </div>
-    <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <app-crea-seguimiento></app-crea-seguimiento>
+    <div class="tab-pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <app-datatable-proyecto></app-datatable-proyecto>
     </div>
     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
       <app-home></app-home>

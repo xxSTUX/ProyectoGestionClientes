@@ -32,7 +32,6 @@ export class TreeMenuComponent {
       
       // Ordena los clientes alfabéticamente por su nombre
       this.getJsonValue.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
-
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let nombre:String = this.getJsonValue[i].nombre;
         this.getJsonValue[i].nombre = nombre.toLocaleUpperCase()
@@ -112,9 +111,6 @@ export class TreeMenuComponent {
       const treeviewElement = document.getElementById("treeview");
       if (treeviewElement) {
         treeviewElement.innerHTML = "";
-
-        this.data.sort((a, b) => ((a['nodeText']) > b['nodeText']) ? 1 : ((b['nodeText'] > a['nodeText']) ? -1 : 0));
-
         this.renderBootstrapTreeView(this.data, treeviewElement);
       }
       // Ocultar el elemento #loader una vez que los datos se hayan cargado

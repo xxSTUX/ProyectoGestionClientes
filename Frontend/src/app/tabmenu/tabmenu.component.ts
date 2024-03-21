@@ -6,6 +6,7 @@ import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor
 import { CreaSeguimientoComponent } from "./crea-seguimiento/crea-seguimiento.component";
 import { CreaLicitacionComponent } from "./crea-licitacion/crea-licitacion.component";
 import { DatatableComponent } from "../datatable/datatable.component";
+import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
 
 import { Subject } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
@@ -15,14 +16,17 @@ import { HomeComponent } from '../home/home.component';
 @Component({
     selector: 'app-tabmenu',
     standalone: true,
+    template: '<app-datatable-proyecto [childProperty]="cliente"></app-datatable-proyecto>',
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent]
+    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent]
 })
 export class TabmenuComponent {
 
+    public cliente:any;
     ngOnInit() {
         this.changeHrColorOnClick();
+        
     }
 
     changeHrColorOnClick() {
@@ -56,5 +60,6 @@ export class TabmenuComponent {
                 console.error('Error: No se encontró el enlace o el <hr> dentro del div.');
             }
         });
+        
     }
 }
