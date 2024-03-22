@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Location } from '@angular/common';
 import { DataTablesModule } from "angular-datatables"
 import { OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
@@ -7,11 +8,11 @@ import { Subject } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
-
+import { CreaSeguiminetoComponent } from '../crea-seguimineto/crea-seguimineto.component';
 @Component({
   selector: 'app-datatable',
   standalone: true,
-  imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent, DatatableProyectosComponent],
+  imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent, DatatableProyectosComponent, CreaSeguiminetoComponent],
   templateUrl: './datatable.component.html',
   styleUrl: './datatable.component.css'
 })
@@ -21,8 +22,9 @@ export class DatatableComponent implements OnInit {
   public getJsonValue: any;
   public postJsonValue: any;
   public keysJson: any;
+  router: any;
 
-  constructor(private http: HttpClient, private apiService: ApiService, private dashboard: DashboardComponent) {
+  constructor(private http: HttpClient, private location:Location, private apiService: ApiService, private dashboard: DashboardComponent) {
 
   }
 
@@ -38,6 +40,12 @@ export class DatatableComponent implements OnInit {
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
 
+  openCreaSeg(event: Event, cliente:any) {
+    this.location.go(this.location.path()+"/" +cliente.id);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
+    const newPath = this.location.path();//conseguir la ruta padre del item + el id del elemento clickado
+    this.router.navigateByUrl(newPath);
+    event.preventDefault();
+  }
   public editCliente(){
     alert("Funca");
   }
