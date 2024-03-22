@@ -56,5 +56,9 @@ namespace HManagementLead.Bll
         public Task<List<Codigo>> GetAllClientesAsyncToCodigo() {
             return _repository.GetAllClientesAsyncToCodigo();
         }
+        public Task<ClienteDetalle> GetClienteByNombre(string nombre)
+        {
+            return _repository.GetClienteByNombre(nombre);
+        }
     }
 }

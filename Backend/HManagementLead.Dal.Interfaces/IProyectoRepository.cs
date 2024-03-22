@@ -19,6 +19,6 @@ namespace HManagementLead.Dal.Interfaces
         Task<ProyectoDetalle> UpdateEliminadoAsync(int id);
         Task<List<EstadoProyectoDetalle>> GetEstadoPoryectos();
 
-        Task<ProyectoDetalle> GetPoyectoByNombre(string nombre);
+        
     }
 }

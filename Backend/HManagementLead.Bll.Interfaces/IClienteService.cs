@@ -22,6 +22,8 @@ namespace HManagementLead.Bll.Interfaces
 
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
 
+        Task<ClienteDetalle> GetClienteByNombre(string nombre);
+
 
     }
 }

@@ -164,21 +164,6 @@ namespace HManagementLead.Controllers
             }
         }
 
-        [HttpGet("proyectonomnre/{nombre}")]
-        public async Task<IActionResult> GetProyectoNombre(string nombre)
-        {
-            try
-            {
-                var resultado = await _proyectoService.GetPoyectoByNombre(nombre);
-
-
-                return Ok(resultado);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
-                throw;
-            }
-        }
+        
     }
 }

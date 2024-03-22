@@ -1,4 +1,5 @@
-﻿using HManagementLead.Bll.Interfaces;
+﻿using HManagementLead.Bll;
+using HManagementLead.Bll.Interfaces;
 using HManagementLead.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -168,6 +169,22 @@ namespace HManagementLead.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
+        [HttpGet("clientenombre/{nombre}")]
+        public async Task<IActionResult> GetClienteNombre(string nombre)
+        {
+            try
+            {
+                var resultado = await _clienteService.GetClienteByNombre(nombre);
+
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
                 throw;
             }
         }

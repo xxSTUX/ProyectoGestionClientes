@@ -196,5 +196,14 @@ namespace HManagementLead.Dal
             _context.Clientes.Remove(new Cliente(cliente));
             await _context.SaveChangesAsync();
         }
+        public async Task<ClienteDetalle> GetClienteByNombre(string nombre)
+        {
+            return await _context.Clientes
+                .Where(c => c.Nombre == nombre)
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
+                .FirstAsync();
+
+        }
+     
     }
 }
