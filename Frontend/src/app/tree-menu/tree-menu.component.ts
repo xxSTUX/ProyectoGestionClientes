@@ -21,6 +21,17 @@ export class TreeMenuComponent {
 
   ngOnInit() {
     this.getMethod();
+
+    // Después de agregar elementos al árbol
+    const treeContainer = document.getElementById("tree-container");
+    if (treeContainer) {
+        treeContainer.addEventListener('focus', (event) => {
+            const target = event.target as HTMLElement;
+            if (target.classList.contains('list-group-item') || target.classList.contains('parent-item')) {
+                target.focus();
+            }
+        }, true);
+    }
   }
 
   public getJsonValue: any;
@@ -127,6 +138,10 @@ export class TreeMenuComponent {
       //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item", "d-inline-block");
+      listItem.setAttribute("tabindex", "0");
+      if (parentNode) {
+        listItem.classList.add("parent-item"); // Agregar clase 'parent-item' a los elementos padres
+      }
       const icon = document.createElement("i");
       const iconCliente = document.createElement("i");
 
@@ -187,7 +202,6 @@ export class TreeMenuComponent {
         // Si el nodo no tiene hijos, añadir el evento click para el enrutamiento
         listItem.addEventListener('click', (event) => {
           event.stopPropagation();
-          // Obtener el padre
           this.location.go(this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
           const newPath = this.location.path() + '#' + parentNode.nodeText + '=' + item.nodeId;//conseguir la ruta padre del item + el id del elemento clickado
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
@@ -224,6 +238,7 @@ export class TreeMenuComponent {
 
         const sublist = document.createElement("ul");
         sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
+
         sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
 
         this.renderBootstrapTreeView(item.nodeChild, sublist, item);
