@@ -7,10 +7,13 @@
     color: white !important;
     margin-left: 1rem !important;
     background-color: #fff0 !important;
+    cursor: pointer !important;
 }
 
-.list-group-item:hover {
+.parent-item:focus,
+.parent-item:focus-within,
+.list-group-item:focus,
+.list-group-item:focus-within {
     color: #00ccff !important;
     cursor: pointer !important;
-
 }
