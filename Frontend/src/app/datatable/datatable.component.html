@@ -25,28 +25,31 @@
                         </td>
                         }
         
-                        @if (cliente.seguimientos.length === 0) {
-                        <td>No tiene seguimientos</td>
+                        @if (cliente.licitaciones.length === 0) {
+                        <td>No tiene licitaciones</td>
                         }
                         @else {
                         <td>
         
-                            @for (licitaciones of cliente.licitaciones; track $index) {
-                            <a href="/dashboard#Seguimiento/{{licitaciones.id}}" class="link-sin-estilo">
+                
+                            <a href="#" class="link-sin-estilo">
                                 {{cliente.licitaciones.length}}
                             </a>
-                            }
+                            
                         </td>
                         }
-                        @if (cliente.licitaciones.length === 0) {
+                        @if (cliente.seguimientos.length === 0) {
                             <td>
-                                16/12/2002
+                                No tiene seguimientos
                             </td>
                         }
                         @else {
-                        <td>
-                            16/12/2002
-                        </td>
+                            @for(seguimientos of cliente.seguimientos; track $index){
+                                <td>
+                                    {{seguimientos.fecha}}
+                                </td>
+                            }
+                        
                         }
                         <td style="width: 20% allign-items-center">
                             <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;
@@ -55,7 +58,7 @@
                                 <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
                             }
                             
-                            <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)'></i>
+                            <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" data-bs-toggle="modal" data-bs-target="#modalCreaSeg" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)' (click)="openCreaSeg($event,cliente)"></i>
                         </td>
                     </tr>
                 }
@@ -63,7 +66,21 @@
         </tbody>
     </table>
 </div>
-
+<div class="modal fade" id="modalCreaSeg" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex justify-content-between">
+                                <h5 class="modal-title font-weight-bold">Crear nuevo cliente</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-6">
+                                <app-crea-seguimineto></app-crea-seguimineto>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
 
 <!-- <h1>{{getJsonValue}}</h1>
 <h1>Mi variable es de tipo {{obtenerTipoVariable(getJsonValue)}}</h1> -->

@@ -116,7 +116,7 @@ export class ApiService {
     }); 
   }
  
-  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string,fechaCre:Date) {
+  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string) {
    
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
@@ -124,7 +124,6 @@ export class ApiService {
     const bodyProyecto = {
       nombre: nombre,
       tipo:"",
-      fechaCre:fechaCre,
       observaciones:text
     };
     const response = fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
