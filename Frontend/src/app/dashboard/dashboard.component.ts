@@ -18,6 +18,7 @@ import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
 import { DatatableComponent } from '../datatable/datatable.component';
 import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
 import { contains } from 'jquery';
+import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component';
 
 
 @Component({
@@ -25,7 +26,7 @@ import { contains } from 'jquery';
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent]
 })
 export class DashboardComponent implements OnInit {
   private buttonBaseText = "Crear nuevo ";
@@ -38,6 +39,7 @@ export class DashboardComponent implements OnInit {
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver) { }
+  
 
   //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
@@ -54,6 +56,9 @@ export class DashboardComponent implements OnInit {
     });
   }
   openCreaCliente(event: Event) {
+    event.preventDefault();
+  }
+  openCreaProyecto(event: Event) {
     event.preventDefault();
   }
 
@@ -96,7 +101,7 @@ export class DashboardComponent implements OnInit {
   }
   public seleccionarCliente(cliente:any){
     console.log(cliente)
-    
+    alert(cliente.nombre);
     const contenedor = document.getElementById("tablaClientes");
     const tabMenu = document.getElementById("tabMenu");
     var btn = document.getElementById("botonCrearElemento")
@@ -105,8 +110,6 @@ export class DashboardComponent implements OnInit {
     tabMenu?.classList.remove("d-none");
     if (txt) txt.innerHTML = cliente.nombre;
     this.getJsonValue = cliente;
-    
-    tabMenu
   }
 
   getClienteProyectos(){
@@ -114,5 +117,15 @@ export class DashboardComponent implements OnInit {
   }
   public reload(){
     window.location.reload()
+  }
+
+  creaProyecto(){
+    const creaProyecto = document.getElementById("proyecto");
+    if(creaProyecto?.className === "d-none"){
+      creaProyecto.classList.remove("d-none");
+      return;
+    }
+
+    creaProyecto?.classList.add("d-none");
   }
 }

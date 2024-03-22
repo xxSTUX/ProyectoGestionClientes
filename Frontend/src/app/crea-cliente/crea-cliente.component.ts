@@ -30,26 +30,26 @@ export class CreaClienteComponent {
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
     
         // Verificar si el cliente ya existe
-        this.checkIfClientExists(nombreCliente).then((exists) => {
-            if (exists) {
-                this.showWarningModal();
-            } else {
+        // this.checkIfClientExists(nombreCliente).then((exists) => {
+        //     if (exists) {
+        //         this.showWarningModal();
+        //     } else {
                 this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
                 alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
             }
-        });
-    }
+    //     });
+    // }
     
     // Método para verificar si el cliente ya existe
-    async checkIfClientExists(nombreCliente: string): Promise<boolean> {
-        const data = await this.apiService.getDataClientesFromAPI().toPromise();
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].nombre === nombreCliente) {
-                return true;
-            }
-        }
-        return false;
-    }
+    // async checkIf_ClientExists(nombreCliente: string): Promise<boolean> {
+    //     const data = await this.apiService.getDataClientesFromAPI().toPromise();
+    //     for (let i = 0; i < data.length; i++) {
+    //         if (data[i].nombre === nombreCliente) {
+    //             return true;
+    //         }
+    //     }
+    //     return false;
+    // }
     
 
 

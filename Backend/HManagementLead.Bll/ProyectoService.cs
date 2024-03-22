@@ -50,5 +50,9 @@ namespace HManagementLead.Bll
         {
             return _repository.GetEstadoPoryectos();
         }
+        public Task<ProyectoDetalle> GetPoyectoByNombre(string nombre)
+        {
+            return _repository.GetPoyectoByNombre(nombre);
+        }
     }
 }

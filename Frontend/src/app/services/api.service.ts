@@ -55,11 +55,11 @@ export class ApiService {
     
   }
 
-  async postProyectosFromAPI(id:number, nombre:String, tapio:String, estado:string) {
+  async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:string) {
     const bodyProyecto = {
       nombre: nombre,
       estado:estado,
-      tapio:tapio
+      tipo:tipo
     };
     
     const response = await fetch(this.api+'Cliente/InsertProyecto/'+ id, {
@@ -75,10 +75,10 @@ export class ApiService {
     }
   }
 
-  async postLicitacionFromAPI(nombre:string,tapio:string) {
+  async postLicitacionFromAPI(nombre:string,tipo:string) {
     const bodyProyecto = {
       nombre: nombre,
-      tapio:tapio
+      tipo:tipo
     };
     console.log(bodyProyecto)
     const response = await fetch('https://localhost:7075/api/Cliente/InsertLicitacion/2', {
@@ -185,7 +185,7 @@ async deleteCliente(id:number){
     const bodyProyecto = {
       nombre: newProyecto.nombre,
       estado: newProyecto.estado,
-      tapio: newProyecto.tapio,
+      tipo: newProyecto.tipo,
       seguimientos: newProyecto.seguimientos,
       licitaciones: newProyecto.licitaciones,
       facturacion: newProyecto.facturacion,
@@ -199,7 +199,7 @@ async deleteCliente(id:number){
     const bodyProyecto = {
       nombre: updatedProyecto.nombre,
       estado: updatedProyecto.estado,
-      tapio: updatedProyecto.tapio,
+      tipo: updatedProyecto.tipo,
       seguimientos: updatedProyecto.seguimientos,
       licitaciones: updatedProyecto.licitaciones,
       facturacion: updatedProyecto.facturacion,
