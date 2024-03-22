@@ -17,7 +17,6 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 export class DatatableProyectosComponent implements OnInit {
 
   public getJsonValue: any;
-  public postJsonValue: any;
   public keysJson: any;
 
   constructor(private http: HttpClient, private apiService: ApiService, private dashboard:DashboardComponent) {
@@ -35,9 +34,6 @@ export class DatatableProyectosComponent implements OnInit {
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
 
-  public editCliente(){
-    alert("Funca");
-  }
   public async eliminarCliente(id:number){
     alert("Se procede a eliminar el elemento seleccionado: " + id)
     await this.apiService.deleteCliente(id);
@@ -83,7 +79,7 @@ export class DatatableProyectosComponent implements OnInit {
     
   }
   reload(){
-    this.getJsonValue = this.dashboard.getJsonValue.proyectos
+    this.getJsonValue = this.dashboard.getClienteProyectos()
     this.ngOnInit()
   }
 }

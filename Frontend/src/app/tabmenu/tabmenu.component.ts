@@ -31,7 +31,7 @@ export class TabmenuComponent {
 
     changeHrColorOnClick() {
         const mycolDivs = document.querySelectorAll('.mycol'); // Selecciona todos los divs con clase mycol
-
+        
         mycolDivs.forEach((div) => {
             const link = div.querySelector('a'); // Encuentra el enlace dentro del div actual
             const hr = div.querySelector('hr'); // Encuentra el hr dentro del div actual

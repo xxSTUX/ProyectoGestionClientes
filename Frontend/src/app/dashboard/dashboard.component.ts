@@ -28,6 +28,7 @@ import { contains } from 'jquery';
     imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent]
 })
 export class DashboardComponent implements OnInit {
+  private buttonBaseText = "Crear nuevo ";
   public getJsonValue: any;
   private componentRef: any;
   public isTreeVisible: boolean = false;
@@ -90,7 +91,6 @@ export class DashboardComponent implements OnInit {
   eliminaTree() {
     if (this.componentRef) {
       this.componentRef.destroy();
-      this.showTreeMenu = true;
       this.isTreeVisible = false;
     }
   }
@@ -99,13 +99,19 @@ export class DashboardComponent implements OnInit {
     
     const contenedor = document.getElementById("tablaClientes");
     const tabMenu = document.getElementById("tabMenu");
+    var btn = document.getElementById("botonCrearElemento")
     var txt = document.getElementById("Titulo") ;
     contenedor?.classList.add("d-none");
     tabMenu?.classList.remove("d-none");
     if (txt) txt.innerHTML = cliente.nombre;
     this.getJsonValue = cliente;
+    
+    tabMenu
   }
 
+  getClienteProyectos(){
+    return this.getJsonValue.proyectos;
+  }
   public reload(){
     window.location.reload()
   }
