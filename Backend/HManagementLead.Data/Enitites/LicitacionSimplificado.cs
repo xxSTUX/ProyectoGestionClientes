@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace HManagementLead.Data.Enitites
 {
-    public class EstadoProyecto
+    public partial class LicitacionSimplificado
     {
         [Key]
-        public int Id { get; set; }
-
-        public string Estado { get; set; } = null;
-        public EstadoProyecto() { }
+        public int LicitacionId { get; set; }
+        public String Nombre { get; set; } = null!;
+        public int Estado { get; set; }
     }
 }

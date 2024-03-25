@@ -42,7 +42,33 @@ namespace HManagementLead.Dal.Mapping
                 Eliminado = c.Eliminado,
             };
         }
-
+        //Arbol
+        public static Expression<Func<Cliente, ClienteSimplificado>> MapToClientBasicDetalleConProyecto(ApplicationDbContext dbContext)
+        {
+            return c => new ClienteSimplificado
+            {
+                ClienteId = c.Id,
+                Nombre = c.Nombre,
+                Proyectos = c.Proyectos.AsQueryable().OrderBy(p => p.Nombre).Select(ProyectoMapping.MapTProyectoSimplificado(dbContext)).ToList(),
+                Seguimientos = (from cs in c.SeguimientosClientes
+                                join s in dbContext.Seguimientos
+                                on cs.SeguimientoId equals s.Id
+                                select new SeguimientoSimplificado
+                                {
+                                    SeguimientoId = s.Id,
+                                    Nombre = s.Nombre,
+                                }).OrderBy(s => s.Nombre).ToList(),
+                Licitaciones = (from cl in c.LicitacionesClientes
+                                join l in dbContext.Licitaciones
+                                on cl.LicitacionId equals l.Id
+                                select new LicitacionSimplificado
+                                {
+                                    LicitacionId = l.Id,
+                                    Nombre = l.Nombre,
+                                    Estado = l.Estado,
+                                }).OrderBy(l => l.Nombre).ToList(),
+            };
+        }
         public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()
         {
             
