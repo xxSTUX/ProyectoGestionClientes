@@ -1,4 +1,5 @@
-﻿using HManagementLead.Bll.Interfaces;
+﻿using HManagementLead.Bll;
+using HManagementLead.Bll.Interfaces;
 using HManagementLead.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -122,14 +123,13 @@ namespace HManagementLead.Controllers
         }
 
         // DELETE api/<ClienteController>/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        [HttpPut("UpdateEliminado/{id}")]
+        public async Task<IActionResult> Put(int id)
         {
             try
             {
-                await _clienteService.DeleteClienteAsync(id);
-
-                return NoContent();
+                var resultado = await _clienteService.DeleteClienteAsync(id);
+                return Ok(resultado);
             }
             catch (Exception ex)
             {
@@ -185,6 +185,22 @@ namespace HManagementLead.Controllers
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
+        [HttpGet("clientenombre/{nombre}")]
+        public async Task<IActionResult> GetClienteNombre(string nombre)
+        {
+            try
+            {
+                var resultado = await _clienteService.GetClienteByNombre(nombre);
+
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
                 throw;
             }
         }

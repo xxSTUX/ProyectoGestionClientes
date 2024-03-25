@@ -13,7 +13,7 @@ namespace HManagementLead.Bll
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public Task DeleteClienteAsync(int id)
+        public Task<ClienteDetalle> DeleteClienteAsync(int id)
         {
             return _repository.DeleteClienteAsync(id);
         }
@@ -63,6 +63,10 @@ namespace HManagementLead.Bll
 
         public Task<List<Codigo>> GetAllClientesAsyncToCodigo() {
             return _repository.GetAllClientesAsyncToCodigo();
+        }
+        public Task<ClienteDetalle> GetClienteByNombre(string nombre)
+        {
+            return _repository.GetClienteByNombre(nombre);
         }
     }
 }

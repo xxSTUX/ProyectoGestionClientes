@@ -1,13 +1,13 @@
 -- Insertar datos de prueba en la tabla Clientes
-INSERT INTO Clientes (Nombre, Eliminado)
-VALUES ('Cliente 1', 0), ('Cliente 2', 0);
+INSERT INTO Clientes (Nombre, Eliminado, Descripcion)
+VALUES ('Cliente 1', 0, 'fasjkldfhkasj'), ('Cliente 2', 0, 'asjdhasoikdf');
 
 -- Insertar datos de prueba en la tabla Proyectos
 INSERT INTO Proyectos (ClienteId, Estado, Nombre, Tipo, Eliminado)
 VALUES 
-    (1, 'En progreso', 'Proyecto A', 'Tipo 1', 0),
-    (1, 'Finalizado', 'Proyecto B', 'Tipo 2', 0),
-    (2, 'En progreso', 'Proyecto C', 'Tipo 1', 0);
+    (1, '1', 'Proyecto A', 'Tipo 1', 0),
+    (1, '2', 'Proyecto B', 'Tipo 2', 0),
+    (2, '1', 'Proyecto C', 'Tipo 1', 0);
 
 -- Insertar datos de prueba en la tabla Facturaciones
 INSERT INTO Facturaciones (Datos, Eliminado)

@@ -15,7 +15,7 @@ namespace HManagementLead.Bll.Interfaces
 
         Task<ClienteDetalle> UpdateClienteAsync(ClienteDetalle cliente);
 
-        Task DeleteClienteAsync(int id);
+        Task <ClienteDetalle> DeleteClienteAsync(int id);
 
         Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto);
 
@@ -24,6 +24,8 @@ namespace HManagementLead.Bll.Interfaces
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
 
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
+
+        Task<ClienteDetalle> GetClienteByNombre(string nombre);
 
 
     }

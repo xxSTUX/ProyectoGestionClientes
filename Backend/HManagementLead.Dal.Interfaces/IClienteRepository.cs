@@ -15,13 +15,15 @@ namespace HManagementLead.Dal.Interfaces
         //Arbol
         Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync();
 
-        Task DeleteClienteAsync(int id);
+        Task <ClienteDetalle> DeleteClienteAsync(int id);
 
         Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto);
 
         Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento);
 
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
+
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
+        Task<ClienteDetalle> GetClienteByNombre(string nombre);
     }
 }

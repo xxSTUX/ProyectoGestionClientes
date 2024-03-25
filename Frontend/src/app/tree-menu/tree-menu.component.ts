@@ -1,8 +1,10 @@
+import { ApiService } from './../services/api.service';
 import { Component } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoadingComponent } from '../loading/loading.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 
 @Component({
@@ -10,23 +12,42 @@ import { LoadingComponent } from '../loading/loading.component';
   standalone: true,
   templateUrl: './tree-menu.component.html',
   styleUrl: './tree-menu.component.css',
-  imports: [HttpClientModule, LoadingComponent]
+  imports: [HttpClientModule, LoadingComponent, DashboardComponent]
 })
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
 
-  constructor(private http: HttpClient, private location: Location, private router: Router) { }
+  constructor(private http: HttpClient, private location: Location, private router: Router, private ApiService: ApiService) { }
 
   ngOnInit() {
     this.getMethod();
+
+    // Después de agregar elementos al árbol
+    const treeContainer = document.getElementById("tree-container");
+    if (treeContainer) {
+        treeContainer.addEventListener('focus', (event) => {
+            const target = event.target as HTMLElement;
+            if (target.classList.contains('list-group-item') || target.classList.contains('parent-item')) {
+                target.focus();
+            }
+        }, true);
+    }
   }
 
   public getJsonValue: any;
 
   public getMethod() {
-    this.http.get("https://localhost:7075/api/Cliente/Arbol").subscribe((data: any) => {
+
+    this.ApiService.getDataClientesFromAPI().subscribe((data: any) => {
+
       this.getJsonValue = data;
+      console.log(this.getJsonValue); // Verifica que los datos se han asignado correctamente
+      
+      // Ordena los clientes alfabéticamente por su nombre
+      this.getJsonValue.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre));
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
+        let nombre:String = this.getJsonValue[i].nombre;
+        this.getJsonValue[i].nombre = nombre.toLocaleUpperCase()
         let proyectos = [];
         let seguimientosGenerales = [];
         let licitacionesEnEstudio = [];
@@ -114,13 +135,15 @@ export class TreeMenuComponent {
     );
   }
 
-
-
   private renderBootstrapTreeView(data: any[], parentElement: HTMLElement, parentNode?: any) {
     data.forEach(item => {
       //this.location.go(this.location.path() + '#' + item.nodeText);//Cambio de la ruta mostrada
       const listItem = document.createElement("li");
       listItem.classList.add("list-group-item", "d-inline-block");
+      listItem.setAttribute("tabindex", "0");
+      if (parentNode) {
+        listItem.classList.add("parent-item"); // Agregar clase 'parent-item' a los elementos padres
+      }
       const icon = document.createElement("i");
       const iconCliente = document.createElement("i");
 
@@ -186,6 +209,7 @@ export class TreeMenuComponent {
           listItem.addEventListener('click', (event) => {
             console.log("nodo sin hijos");
           event.stopPropagation();
+
           // Obtener el padre
           //Contemplar que todo padre que nosea licitaciones,seguimientos,... sea cliene para que funcione bien si no es ninguno de estos buscar el cliente
           let itemPadre = parentNode.nodeText;//El nombre del campo de la BBDD
@@ -223,6 +247,8 @@ export class TreeMenuComponent {
           }
           this.location.go(this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Cambiamos la ruta parentNode.Text + "/" +
           const newPath = (this.location.path() + '#' +  item.textContent + '#' + '/' + itemPadre + '=' +  itemId ); // Actualizamos la ruta en consecuencia al nombre
+
+
           this.router.navigateByUrl(newPath);//Provocar un navigationEnd para que se actualice el div dinamico que muestra un componente u otro
           console.log("Navigation end provocado");
         });
@@ -258,6 +284,7 @@ export class TreeMenuComponent {
 
         const sublist = document.createElement("ul");
         sublist.classList.add("list-group", "ms-3"); // Añadir margen a la izquierda para los elementos hijos
+
         sublist.style.display = 'none'; // Ocultar inicialmente los elementos hijos
 
         this.renderBootstrapTreeView(item.nodeChild, sublist, item);
