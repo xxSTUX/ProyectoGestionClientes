@@ -2,28 +2,31 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { data } from 'jquery';
- 
+
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
- 
+
   api: string = 'https://localhost:7075/api/';
- 
+
   constructor(private http: HttpClient) { }
- 
+
   getDataClientesFromAPI(): Observable<any> {
     return this.http.get<any>(this.api+'cliente');
   }
- 
+  getDataArbolFromAPI(): Observable<any> {
+    return this.http.get<any>(this.api+'cliente/Arbol');
+  }
+
   getDataProyectosFromAPI(): Observable<any> {
     return this.http.get<any>(this.api+'Proyecto');
   }
- 
+
   getDataLicitacionesFromAPI(): Observable<any> {
     return this.http.get<any>(this.api+'licitacion');
   }
- 
+
   getDataSeguimientosFromAPI(): Observable<any> {
     return this.http.get<any>(this.api+'seguimineto');
   }
@@ -34,7 +37,7 @@ export class ApiService {
   getContactoById(id: number): Observable<any> {
     return this.http.get<any>(`${this.api}/contacto/${id}`);
   }
- 
+
   getEstadoProyectos(): Observable<any>{
     return this.http.get<any>(this.api+'Proyecto/GetEstadoPoryectos');
   }
@@ -42,7 +45,7 @@ export class ApiService {
     alert(nombre)
     return this.http.get<any>(this.api+'Cliente/clientenombre/'+nombre);
   }
-   
+
   postClientesFromAPI(nombre:String, descripcion:String) {
     const bodyCliente = {
       nombre: nombre,
@@ -55,8 +58,8 @@ export class ApiService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(bodyCliente),
-    });  
-    
+    });
+
   }
 
   async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:string) {
@@ -65,7 +68,7 @@ export class ApiService {
       estado:estado,
       tipo:tipo
     };
-    
+
     const response = await fetch(this.api+'Cliente/InsertProyecto/'+ id, {
       method: 'POST',
       headers: {
@@ -73,7 +76,7 @@ export class ApiService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(bodyProyecto),
-    });  
+    });
     if (!response.ok) {
       throw new Error(`Error! Status: ${response.status}`);
     }
@@ -113,11 +116,11 @@ export class ApiService {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(bodyProyecto),
-    }); 
+    });
   }
- 
+
   async postSeguimientoToAPI(nombre:string,id:string,observaciones:string) {
-   
+
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
     var text = oDOM.body.innerText;
@@ -134,7 +137,7 @@ export class ApiService {
       },
       body: JSON.stringify(bodyProyecto),
     });
-    
+
 }
 async deleteCliente(id:number){
   const response = await fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
@@ -169,7 +172,7 @@ async deleteCliente(id:number){
     const bodyCliente = {
       nombre: nombre,
     };
-  
+
     return this.http.put<any>('https://localhost:7075/api/proyecto/${id}', bodyCliente);
   }
 
@@ -180,7 +183,7 @@ async deleteCliente(id:number){
       telefono: updatedContact.telefono,
       contactoEliminado: updatedContact.contactoEliminado,
     };
-  
+
     return this.http.put<any>(`https://localhost:7075/api/contacto/${id}`, bodyContacto);
   }
 
@@ -194,10 +197,10 @@ async deleteCliente(id:number){
       facturacion: newProyecto.facturacion,
       puestos: newProyecto.puestos,
     };
-    
+
     return this.http.post<any>('https://localhost:7075/api/proyecto', bodyProyecto);
-  }  
- 
+  }
+
   putProyectoFromAPI(id: number, updatedProyecto: any): Observable<any> {
     const bodyProyecto = {
       nombre: updatedProyecto.nombre,
@@ -209,13 +212,13 @@ async deleteCliente(id:number){
       puestos: updatedProyecto.puestos,
       proyectoEliminado: updatedProyecto.proyectoEliminado,
     };
-  
+
     return this.http.put<any>(`https://localhost:7075/api/proyecto/${id}`, bodyProyecto);
   }
 
   async putLicitacionFromAPI(id: number, updatedLicitacion: any): Promise<void> {
     const response = await this.http.put<any>(`${this.api}licitacion/${id}`, updatedLicitacion).toPromise();
-  
+
     if (!response) {
       throw new Error('Error al actualizar la licitación.');
     }
