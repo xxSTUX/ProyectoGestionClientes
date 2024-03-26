@@ -50,7 +50,7 @@ namespace HManagementLead.Dal
         //Arbolsolo nombres e ids
         public async Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
         {
-            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).OrderBy(cs => cs.Nombre).ToListAsync();//Ordenar la lista
+            var ClienteSimplificado = await _context.Clientes.Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context)).OrderBy(cs => cs.Nombre).ThenBy(cs => cs.ClienteId).AsSplitQuery().ToListAsync();//Ordenar la lista
             return ClienteSimplificado;
         }
 
