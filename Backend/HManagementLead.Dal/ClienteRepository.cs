@@ -36,7 +36,7 @@ namespace HManagementLead.Dal
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Rechazado" });
             }
             await _context.SaveChangesAsync();
-            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
+            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).OrderBy(c => c.Nombre).ThenBy(c => c.Id).AsSplitQuery().ToListAsync();//Ordenar por nombre e id
             return cliente;
         }
 
