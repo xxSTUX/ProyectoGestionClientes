@@ -162,7 +162,7 @@ export class TreeMenuComponent {
         listItem.addEventListener('click', (event) => { //Para poder clicar en el texto de un nodo y que cambie la ruta, independientemente de si es hijo o no
           event.stopPropagation();
 
-          this.location.go(this.location.path() + '#' + item.textContent + '#/Cliente' + '=' +  item.nodeId.toString()); // Cambiamos la ruta parentNode.Text + "/" +
+          this.location.go(this.location.path() + '#' + item.textContent + '#/Cliente' + '=' +  item.nodeId.toString().split("-")[0]); // Cambiamos la ruta parentNode.Text + "/" +
           //window.location.href = newPath; // Actualizamos la ruta en consecuencia al nombre
         }); //Hasta aqui
         if (parentNode !== undefined) {//Iconos de el nodo
