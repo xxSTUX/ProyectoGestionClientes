@@ -2,6 +2,7 @@
 using HManagementLead.Dal.Interfaces;
 using HManagementLead.Data;
 using HManagementLead.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HManagementLead.Bll
 {
@@ -34,6 +35,12 @@ namespace HManagementLead.Bll
         public Task<ClienteDetalle> GetClienteByIdAsync(int id)
         {
             return _repository.GetClienteByIdAsync(id);
+        }
+
+        public  Task<bool> ClienteExistsAsync(string nombre)
+        {
+            var resultado = _repository.ClienteExistsAsync(nombre);
+            return resultado;
         }
 
         public Task<int> InsertClienteAsync(ClienteDetalle cliente)
