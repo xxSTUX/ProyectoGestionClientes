@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.get<any>(this.api+'cliente');
   }
   getDataArbolFromAPI(): Observable<any> {
-    return this.http.get<any>(this.api+'cliente/Arbol');
+    return this.http.get<any>(this.api+'cliente/Arbol'); 
   }
 
   getDataProyectosFromAPI(): Observable<any> {
