@@ -42,8 +42,6 @@ export class DatatableComponent implements OnInit {
 
   openCreaSeg(event: Event, cliente:any) {
     this.location.go(this.location.path()+"/" +cliente.id);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
-    const newPath = this.location.path();//conseguir la ruta padre del item + el id del elemento clickado
-    this.router.navigateByUrl(newPath);
     event.preventDefault();
   }
   public editCliente(){
@@ -99,6 +97,7 @@ export class DatatableComponent implements OnInit {
   public seleCliente(cliente:any){
     console.log(cliente)
     this.cliente = cliente;
+    this.location.go(this.location.path()+"/" +cliente.id)
     this.dashboard.seleccionarCliente(cliente)
   }
 }

@@ -44,12 +44,9 @@
                             </td>
                         }
                         @else {
-                            @for(seguimientos of cliente.seguimientos; track $index){
                                 <td>
-                                    {{seguimientos.fecha}}
+                                    {{cliente.seguimientos[cliente.seguimientos.length-1].fecha}}
                                 </td>
-                            }
-                        
                         }
                         <td style="width: 20% allign-items-center">
                             <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;

@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
+import { Alert } from 'bootstrap';
+import { Location } from '@angular/common';
 
 
 
@@ -20,7 +22,7 @@ export class CreaProyectoComponent {
 
   data: any;
 
-  constructor(private router: Router, private http: HttpClient, private apiService: ApiService) {
+  constructor(private router: Router, private http: HttpClient, private apiService: ApiService, private location:Location) {
 
   }
   ngOnInit(): void {
@@ -32,25 +34,19 @@ export class CreaProyectoComponent {
     const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
     const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
     const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
-    var id = 2;
-    var titulo = document.getElementById('Titulo')?.textContent?.toString();
-    if (!(titulo === undefined)) {
-      this.apiService.getClientePorNombre(titulo).subscribe((cliente) => {
-        id = cliente.id
-      });
-    }
+    const id = this.location.path().split("/")[2];
     const body = {
       id: id,
       nombre: nombreproyecto,
       tipo: tipo,
       estado: estado
     }
-
+    
     this.apiService.postProyectosFromAPI(body.id, body.nombre, body.tipo, body.estado + "");
     alert("Se va a crear el proyecto: " + nombreproyecto);
     console.log("Se deberia haber creado un nuevo proyecto");
-
-
+    const newPath = this.location.path().split("/")[1];
+    this.location.go(newPath);
   }
 
 

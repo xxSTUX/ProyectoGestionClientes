@@ -112,6 +112,9 @@ export class DashboardComponent implements OnInit {
     this.getJsonValue = cliente;
   }
 
+  getClienteId(){
+    return this.getJsonValue.id;
+  }
   getClienteProyectos(){
     return this.getJsonValue.proyectos;
   }

@@ -62,7 +62,7 @@ export class ApiService {
 
   }
 
-  async postProyectosFromAPI(id:number, nombre:String, tipo:String, estado:string) {
+  async postProyectosFromAPI(id:string, nombre:String, tipo:String, estado:string) {
     const bodyProyecto = {
       nombre: nombre,
       estado:estado,
@@ -120,7 +120,7 @@ export class ApiService {
   }
 
   async postSeguimientoToAPI(nombre:string,id:string,observaciones:string) {
-
+    alert("ayiyi")
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
     var text = oDOM.body.innerText;

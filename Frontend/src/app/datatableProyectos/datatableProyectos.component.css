@@ -28,3 +28,12 @@ a{
 i,.cliente{
     cursor: pointer;
 }
+.botonCrear{
+    background-color: rgb(39, 59, 112);
+    color: #FFF;
+}
+.botonCrear:hover{
+    background-color: rgb(80, 104, 170);
+    color: #FFF;
+  
+  }
