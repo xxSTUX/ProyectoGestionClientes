@@ -14,7 +14,6 @@ export class CreaSeguiminetoComponent {
   @ViewChild('warningModal') warningModal: any;
   router: any;
   
-
   constructor(private apiservice:ApiService, private location:Location){}
   async creaSeg() {
     const nombreSeg = (<HTMLInputElement>document.getElementById('nombreSeg')).value;
@@ -23,6 +22,7 @@ export class CreaSeguiminetoComponent {
     const id = this.location.path().split("/")[2];
     this.apiservice.postSeguimientoToAPI(nombreSeg,id,obsevacionSeg);
     this.location.go(newPath);
+    
   }
   showWarningModal() {
     this.warningModal.nativeElement.classList.add('show');
