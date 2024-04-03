@@ -86,8 +86,9 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
-       
 
+
+        // GET api/<ClienteController>
         [HttpGet("nombre/{nombre}")]
         public async Task<IActionResult> GetName(string nombre)
         {
@@ -95,8 +96,7 @@ namespace HManagementLead.Controllers
             {
                 var clienteExists = await _clienteService.ClienteExistsAsync(nombre); // Método para verificar si el cliente existe en la base de datos
 
-                // Devolver el resultado en formato de texto plano
-                return Content(clienteExists.ToString(), "text/plain");
+                return Ok(clienteExists);
             }
             catch (Exception ex)
             {
@@ -113,19 +113,9 @@ namespace HManagementLead.Controllers
         {
             try
             {
-                //recorrer todos los clientes existentes y comprobar si el insertado existe en la base de datos
-                var clientes = await _clienteService.GetAllClientesAsync();
-                var cliente = clientes.FirstOrDefault(c => c.Nombre.ToLower() == value.Nombre.ToLower());
-                if (cliente == null)
-                {
-                    var resultado = await _clienteService.InsertClienteAsync(value);
-                    return Ok(resultado);
-                }
-                else
-                {
-                    return BadRequest("El cliente ya existe");
-                }
-               
+                var resultado = await _clienteService.InsertClienteAsync(value);
+
+                return Ok(resultado); ;
             }
             catch (Exception ex)
             {
