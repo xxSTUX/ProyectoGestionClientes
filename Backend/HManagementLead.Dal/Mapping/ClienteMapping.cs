@@ -67,6 +67,7 @@ namespace HManagementLead.Dal.Mapping
                                     Nombre = l.Nombre,
                                     Estado = l.Estado,
                                 }).OrderBy(l => l.Nombre).ToList(),
+                Eliminado = c.Eliminado,
             };
         }
         public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()

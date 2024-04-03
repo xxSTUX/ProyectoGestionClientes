@@ -18,5 +18,6 @@ namespace HManagementLead.Data
         public List<ProyectoSimplificado> Proyectos { get; set; } = new List<ProyectoSimplificado>();
         public List<SeguimientoSimplificado> Seguimientos { get; set; } = new List<SeguimientoSimplificado>();
         public List<LicitacionSimplificado> Licitaciones { get; set; } = new List<LicitacionSimplificado>();
+        public bool Eliminado { get; set; } = false;
     }
 }
