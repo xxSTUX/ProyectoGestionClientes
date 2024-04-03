@@ -1,9 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { TreeMenuComponent } from "../tree-menu/tree-menu.component";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -25,26 +24,12 @@ export class CreaClienteComponent {
         });
     }
 
-    creaCliente() {
+    async creaCliente() {
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-        const clienteExiste = this.apiService.getClienteNombre(nombreCliente);
-        
-
-
-
-        {
-
-        }
-        // this.checkIfClientExists(nombreCliente).then((exists) => {
-        //     if (exists) {
-        //         this.showWarningModal();
-        //     } else {
-               // this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
-               // alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
-            }
-    //     });
-    // }
+        await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+        alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+    }
 
     // Método para mostrar el modal de advertencia
     showWarningModal() {

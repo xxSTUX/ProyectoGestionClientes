@@ -61,7 +61,6 @@ export class DashboardComponent implements OnInit {
   openCreaProyecto(event: Event) {
     event.preventDefault();
   }
-
   updateFragmentObservable(): void {
     console.log("fragmentupdate");
     this.fragment$ = this.route.fragment.pipe(
@@ -112,8 +111,14 @@ export class DashboardComponent implements OnInit {
     this.getJsonValue = cliente;
   }
 
+  getClienteId(){
+    return this.getJsonValue.id;
+  }
   getClienteProyectos(){
     return this.getJsonValue.proyectos;
+  }
+  getClienteSeguimientos(){
+    return this.getJsonValue.seguimientos;
   }
   public reload(){
     window.location.reload()

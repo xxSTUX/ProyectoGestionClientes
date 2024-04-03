@@ -6,18 +6,19 @@ import { CommonModule } from '@angular/common';
 import { Subject } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
 
 @Component({
-  selector: 'app-datatable-proyecto',
-  standalone: true,
-  imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent],
-  templateUrl: './datatableProyectos.component.html',
-  styleUrl: './datatableProyectos.component.css'
+    selector: 'app-datatable-seguimiento',
+    standalone: true,
+    templateUrl: './datatableSeguimientos.component.html',
+    styleUrl: './datatableSeguimientos.component.css',
+    imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent, CreaSeguiminetoComponent]
 })
-export class DatatableProyectosComponent implements OnInit {
+export class DatatableSeguimientosComponent implements OnInit {
 
   public clienteId: any;
-  public proyectos: any;
+  public seguimientos: any;
   public keysJson: any;
 
   constructor(private http: HttpClient, private apiService: ApiService, private dashboard:DashboardComponent) {
@@ -46,10 +47,10 @@ export class DatatableProyectosComponent implements OnInit {
   
   reload(){
     this.clienteId = this.dashboard.getClienteId()
-    this.proyectos = this.dashboard.getClienteProyectos()
+    this.seguimientos = this.dashboard.getClienteSeguimientos()
     this.ngOnInit()
   }
-  openCreaProyecto(event: Event) {
+  openCreaSeguimiento(event: Event) {
     event.preventDefault();
   }
 }

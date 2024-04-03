@@ -11,6 +11,7 @@ import { DatatableProyectosComponent } from '../datatableProyectos/datatableProy
 import { Subject } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { HomeComponent } from '../home/home.component';
+import { DatatableSeguimientosComponent } from "../datatableSeguimientos/datatableSeguimientos.component";
 
 
 @Component({
@@ -19,7 +20,7 @@ import { HomeComponent } from '../home/home.component';
     template: '<app-datatable-proyecto [childProperty]="cliente"></app-datatable-proyecto>',
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent]
+    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent, DatatableSeguimientosComponent]
 })
 export class TabmenuComponent {
 
