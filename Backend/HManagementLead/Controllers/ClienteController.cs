@@ -113,9 +113,12 @@ namespace HManagementLead.Controllers
         {
             try
             {
-                var resultado = await _clienteService.InsertClienteAsync(value);
-
-                return Ok(resultado); ;
+                if (await _clienteService.ClienteExistsAsync(value.Nombre) == false)
+                {
+                    await _clienteService.InsertClienteAsync(value);
+                    return Ok(true);
+                }else
+                    return Ok(false); 
             }
             catch (Exception ex)
             {
