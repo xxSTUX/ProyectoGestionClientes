@@ -1,9 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { TreeMenuComponent } from "../tree-menu/tree-menu.component";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
 
 @Component({
@@ -25,34 +24,12 @@ export class CreaClienteComponent {
         });
     }
 
-    creaCliente() {
+    async creaCliente() {
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-    
-        // Verificar si el cliente ya existe
-        // this.checkIfClientExists(nombreCliente).then((exists) => {
-        //     if (exists) {
-        //         this.showWarningModal();
-        //     } else {
-                this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
-                alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
-            }
-    //     });
-    // }
-    
-    // Método para verificar si el cliente ya existe
-    // async checkIf_ClientExists(nombreCliente: string): Promise<boolean> {
-    //     const data = await this.apiService.getDataClientesFromAPI().toPromise();
-    //     for (let i = 0; i < data.length; i++) {
-    //         if (data[i].nombre === nombreCliente) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-    
-
-
+        await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+        alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+    }
 
     // Método para mostrar el modal de advertencia
     showWarningModal() {

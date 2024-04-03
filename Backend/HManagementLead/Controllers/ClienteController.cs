@@ -93,9 +93,19 @@ namespace HManagementLead.Controllers
         {
             try
             {
-                var resultado = await _clienteService.InsertClienteAsync(value);
-
-                return Ok(resultado); ;
+                //recorrer todos los clientes existentes y comprobar si el insertado existe en la base de datos
+                var clientes = await _clienteService.GetAllClientesAsync();
+                var cliente = clientes.FirstOrDefault(c => c.Nombre.ToLower() == value.Nombre.ToLower());
+                if (cliente == null)
+                {
+                    var resultado = await _clienteService.InsertClienteAsync(value);
+                    return Ok(resultado);
+                }
+                else
+                {
+                    return BadRequest("El cliente ya existe");
+                }
+               
             }
             catch (Exception ex)
             {

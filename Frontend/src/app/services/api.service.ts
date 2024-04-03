@@ -51,16 +51,15 @@ export class ApiService {
       nombre: nombre,
       descripcion: descripcion
     };
-    const response = fetch(this.api+'Cliente', {
+    return fetch(this.api+'Cliente', {
       method: 'POST',
       headers: {
         'accept': '*/*',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(bodyCliente),
-    });
-
-  }
+    }).then(response => response.json());
+}
 
   async postProyectosFromAPI(id:string, nombre:String, tipo:String, estado:string) {
     const bodyProyecto = {

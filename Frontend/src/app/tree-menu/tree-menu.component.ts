@@ -17,7 +17,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 export class TreeMenuComponent {
   data: { [key: string]: Object }[] = [];
 
-  constructor(private http: HttpClient, private location: Location, private router: Router, private ApiService: ApiService) { }
+  constructor(private location: Location, private router: Router, private ApiService: ApiService) { }
 
   ngOnInit() {
     this.getMethod();
