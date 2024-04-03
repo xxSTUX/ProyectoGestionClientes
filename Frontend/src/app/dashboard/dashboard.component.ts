@@ -120,6 +120,9 @@ export class DashboardComponent implements OnInit {
   getClienteSeguimientos(){
     return this.getJsonValue.seguimientos;
   }
+  getClienteLicitaciones(){
+    return this.getJsonValue.licitaciones;
+  }
   public reload(){
     window.location.reload()
   }
