@@ -40,8 +40,8 @@ export class TreeMenuComponent {
 
     this.ApiService.getDataArbolFromAPI().subscribe((data: any) => {
 
-      this.getJsonValue = data;
-      console.log(this.getJsonValue); // Verifica que los datos se han asignado correctamente
+      this.getJsonValue = data.filter((contacto: any) => contacto.eliminado === false);
+      console.log(this.getJsonValue);
 
       // Ordena los clientes alfabéticamente por su nombre
       //this.getJsonValue.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre)); ya se ordena en BBDD
