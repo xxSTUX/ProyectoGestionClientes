@@ -24,15 +24,5 @@ namespace HManagementLead.Entities
         public virtual IList<ContactoDetalle> Contactos { get; set; } = new List<ContactoDetalle>();
         public virtual IList<FacturacionDetalle> Facturacion { get; set; } = new List<FacturacionDetalle>();
         public virtual IList<PuestoDetalle> Puestos { get; set; } = new List<PuestoDetalle>();
-
-
-
-
-
-
-
-
-
-
     }
 }
