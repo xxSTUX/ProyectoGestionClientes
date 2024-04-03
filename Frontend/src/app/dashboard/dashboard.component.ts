@@ -34,11 +34,13 @@ export class DashboardComponent implements OnInit {
   private componentRef: any;
   public isTreeVisible: boolean = false;
   @ViewChild('contenedor', { read: ViewContainerRef }) contenedor!: ViewContainerRef;
+
   //Fragment es la condicion que hace que se muestre un componente u otro segun el valor de este en el div
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver) { }
   
+
   //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
 
@@ -59,7 +61,6 @@ export class DashboardComponent implements OnInit {
   openCreaProyecto(event: Event) {
     event.preventDefault();
   }
-
   updateFragmentObservable(): void {
     console.log("fragmentupdate");
     this.fragment$ = this.route.fragment.pipe(
@@ -115,6 +116,9 @@ export class DashboardComponent implements OnInit {
   }
   getClienteProyectos(){
     return this.getJsonValue.proyectos;
+  }
+  getClienteSeguimientos(){
+    return this.getJsonValue.seguimientos;
   }
   public reload(){
     window.location.reload()

@@ -18,6 +18,7 @@ import { HomeComponent } from './home/home.component';
 import { DatatableProyectosComponent } from './datatableProyectos/datatableProyectos.component';
 import { CreaSeguiminetoComponent } from './crea-seguimineto/crea-seguimineto.component';
 import { CreaSeguimientoComponent } from './tabmenu/crea-seguimiento/crea-seguimiento.component';
+import { DatatableSeguimientosComponent } from './datatableSeguimientos/datatableSeguimientos.component';
 
 
 export const routes: Routes = [
@@ -38,6 +39,7 @@ export const routes: Routes = [
     { path: ':home', component: HomeComponent },
     { path: ':nodeName', component: ChildComponent },
     { path: "datatableProyecto", component: DatatableProyectosComponent, pathMatch: "full" },
+    { path: "datatableSeguimiento", component: DatatableSeguimientosComponent, pathMatch: "full" },
     { path: "creaseguimiento",component:CreaSeguimientoComponent, pathMatch: "full" },
 ];
 @NgModule({
