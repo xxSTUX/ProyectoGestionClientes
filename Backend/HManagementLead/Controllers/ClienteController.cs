@@ -71,8 +71,8 @@ namespace HManagementLead.Controllers
         }
 
         // GET api/<ClienteController>/5
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        [HttpGet("id/{id}")]
+        public async Task<IActionResult> GetId(int id)
         {
             try
             {
@@ -86,6 +86,26 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+       
+
+        [HttpGet("nombre/{nombre}")]
+        public async Task<IActionResult> GetName(string nombre)
+        {
+            try
+            {
+                var clienteExists = await _clienteService.ClienteExistsAsync(nombre); // Método para verificar si el cliente existe en la base de datos
+
+                // Devolver el resultado en formato de texto plano
+                return Content(clienteExists.ToString(), "text/plain");
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Get cliente");
+                throw;
+            }
+        }
+
+
 
         // POST api/<ClienteController>
         [HttpPost]

@@ -108,6 +108,11 @@ namespace HManagementLead.Dal
             return cliente;
 
         }
+        public async Task<bool> ClienteExistsAsync(string nombre)
+        {
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Nombre == nombre);
+            return cliente != null;
+        }
 
         public async Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto)
         {
