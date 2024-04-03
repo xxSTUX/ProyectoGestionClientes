@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { data } from 'jquery';
-
+import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -45,6 +45,12 @@ export class ApiService {
     alert(nombre)
     return this.http.get<any>(this.api+'Cliente/clientenombre/'+nombre);
   }
+
+
+  getClienteNombre(nombre: string) : Observable<any> {
+    return this.http.get<any>(this.api + 'Cliente/nombre/' + nombre);
+  }
+
 
   postClientesFromAPI(nombre:String, descripcion:String) {
     const bodyCliente = {

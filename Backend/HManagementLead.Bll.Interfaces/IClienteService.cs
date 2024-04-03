@@ -6,6 +6,7 @@ namespace HManagementLead.Bll.Interfaces
     public interface IClienteService
     {
         Task<ClienteDetalle> GetClienteByIdAsync(int id);
+        Task<bool> ClienteExistsAsync(string nombre);
 
         Task<List<ClienteDetalle>> GetAllClientesAsync();
         //Arbol

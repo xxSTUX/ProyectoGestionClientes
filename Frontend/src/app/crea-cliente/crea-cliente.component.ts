@@ -28,31 +28,23 @@ export class CreaClienteComponent {
     creaCliente() {
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-    
-        // Verificar si el cliente ya existe
+        const clienteExiste = this.apiService.getClienteNombre(nombreCliente);
+        
+
+
+
+        {
+
+        }
         // this.checkIfClientExists(nombreCliente).then((exists) => {
         //     if (exists) {
         //         this.showWarningModal();
         //     } else {
-                this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
-                alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+               // this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+               // alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
             }
     //     });
     // }
-    
-    // Método para verificar si el cliente ya existe
-    // async checkIf_ClientExists(nombreCliente: string): Promise<boolean> {
-    //     const data = await this.apiService.getDataClientesFromAPI().toPromise();
-    //     for (let i = 0; i < data.length; i++) {
-    //         if (data[i].nombre === nombreCliente) {
-    //             return true;
-    //         }
-    //     }
-    //     return false;
-    // }
-    
-
-
 
     // Método para mostrar el modal de advertencia
     showWarningModal() {
