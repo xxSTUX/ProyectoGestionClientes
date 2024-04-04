@@ -27,8 +27,8 @@ export class CreaClienteComponent {
     async creaCliente() {
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-        await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
         alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+        await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
     }
 
     // Método para mostrar el modal de advertencia

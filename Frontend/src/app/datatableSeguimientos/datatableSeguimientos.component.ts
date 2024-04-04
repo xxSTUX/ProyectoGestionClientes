@@ -2,11 +2,11 @@ import { Component, Input, input } from '@angular/core';
 import { DataTablesModule } from "angular-datatables"
 import { OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Subject } from 'rxjs';
 import { ApiService } from '../services/api.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
+import { CreaSeguiminetoComponent } from '../crea-seguimineto/crea-seguimineto.component';
 
 @Component({
     selector: 'app-datatable-seguimiento',
@@ -21,7 +21,7 @@ export class DatatableSeguimientosComponent implements OnInit {
   public seguimientos: any;
   public keysJson: any;
 
-  constructor(private http: HttpClient, private apiService: ApiService, private dashboard:DashboardComponent) {
+  constructor(private http: HttpClient, private apiService: ApiService, private dashboard:DashboardComponent, private location:Location) {
     
   }
   dtoptions: DataTables.Settings = {}
@@ -36,10 +36,42 @@ export class DatatableSeguimientosComponent implements OnInit {
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
 
+  openCreaSeg(event: Event, cliente:any) {
+    this.location.go(this.location.path()+"/" +cliente.id);//Cambio de la ruta mostrada, mostrar la del padre del item TODO-Gian quitar a aprtir del = en la fragmet para tratar el componente mostrado
+    event.preventDefault();
+  }
+
+  over(id:number, idCliente:number){
+    switch (id) {
+      case 1:
+        var i = document.getElementById("editarSeguimiento"+idCliente)
+        i?.classList.replace("bi-pencil","bi-pencil-fill")
+        break;
+      case 2:
+        var i = document.getElementById("eliminarSeguimiento"+idCliente)
+        i?.classList.replace("bi-trash","bi-trash-fill")
+        break;
+    }
+    
+  }
+  out(id:number, idCliente:number){
+    switch (id) {
+      case 1:
+          var i = document.getElementById("editarSeguimiento"+idCliente)
+          i?.classList.replace("bi-pencil-fill","bi-pencil")
+        break;
+      case 2:
+        var i = document.getElementById("eliminarSeguimiento"+idCliente)
+        i?.classList.replace("bi-trash-fill","bi-trash")
+        break;
+    }
+    
+  }
+
   public async eliminarCliente(id:number){
     alert("Se procede a eliminar el elemento seleccionado: " + id)
     await this.apiService.deleteCliente(id);
-    window.location.reload();
+    this.reload();
   }
   public getMethod() {
     this.dtTrigger.next(null);

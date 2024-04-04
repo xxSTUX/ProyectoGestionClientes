@@ -10,29 +10,36 @@
             data-bs-target="#modalCreaSeg" class="botonCrear btn mb-5"
             (click)="openCreaSeguimiento($event)" id="botonCrearElemento"><i
                 class="bi bi-plus-lg"></i>Crear nueva
-            Licitacion</button>
+            Area</button>
         </div>
     </div>
     
     <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table stripe hover">
         <thead class="bg-dark text-white">
             <tr>
-                <th>Nombre</th>
-                <th>Tipo</th>
-                <th>Estado</th>
+                <th>Area</th>
+                <th>Responsable</th>
+                <th>Email</th>
+                <th>Último seguimiento</th>
             </tr>
         </thead>
         <tbody>
-            @for (licitacion of licitaciones; track $index) {
-                @if(!licitacion.eliminado){
+            @for (area of areas; track $index) {
+                @if(!area.eliminado){
                     <tr>
-                        <td class="cliente">{{licitacion.nombre}}</td>
-                        <td>
-                            <a href="#" class="link-sin-estilo">
-                                {{licitacion.tipo}}
-                            </a>
-                        </td>
-                        <td class="cliente">{{licitacion.estado}}</td>
+                        <td>{{area.nombre}}</td>
+                        <td>{{area.responsable}}</td>
+                        <td>{{area.email}}</td>
+                        @if (area.seguimientos.length === 0) {
+                            <td>
+                                No tiene seguimientos
+                            </td>
+                        }
+                        @else {
+                                <td>
+                                    {{area.seguimientos[area.seguimientos.length-1].fecha}}
+                                </td>
+                        }
                     </tr>
                 }
             }

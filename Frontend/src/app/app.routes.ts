@@ -20,6 +20,7 @@ import { CreaSeguiminetoComponent } from './crea-seguimineto/crea-seguimineto.co
 import { CreaSeguimientoComponent } from './tabmenu/crea-seguimiento/crea-seguimiento.component';
 import { DatatableSeguimientosComponent } from './datatableSeguimientos/datatableSeguimientos.component';
 import { DatatableLicitacionesComponent } from './datatableLicitaciones/datatableLicitaciones.component';
+import { DatatableAreaComponent } from './datatableArea/datatableArea.component';
 
 
 export const routes: Routes = [
@@ -42,6 +43,7 @@ export const routes: Routes = [
     { path: "datatableProyecto", component: DatatableProyectosComponent, pathMatch: "full" },
     { path: "datatableSeguimiento", component: DatatableSeguimientosComponent, pathMatch: "full" },
     { path: "datatableLicitaciones", component: DatatableLicitacionesComponent, pathMatch: "full" },
+    { path: "datatableArea", component: DatatableAreaComponent, pathMatch: "full" },
     { path: "creaseguimiento",component:CreaSeguimientoComponent, pathMatch: "full" },
 ];
 @NgModule({

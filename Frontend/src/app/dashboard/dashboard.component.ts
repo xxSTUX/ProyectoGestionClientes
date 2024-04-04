@@ -19,6 +19,7 @@ import { DatatableComponent } from '../datatable/datatable.component';
 import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
 import { contains } from 'jquery';
 import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component';
+import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
 
 
 @Component({
@@ -26,7 +27,7 @@ import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component'
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent]
 })
 export class DashboardComponent implements OnInit {
   private buttonBaseText = "Crear nuevo ";
@@ -122,6 +123,9 @@ export class DashboardComponent implements OnInit {
   }
   getClienteLicitaciones(){
     return this.getJsonValue.licitaciones;
+  }
+  getClienteArea(){
+    return this.getJsonValue.areas;
   }
   public reload(){
     window.location.reload()

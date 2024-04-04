@@ -2,12 +2,12 @@
   <div class="row mt-3">
     <nav class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
       <div class="col-2 mycol">
-        <a class="text-decoration-none" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab"
+        <a class="text-decoration-none" id="nav-home-tab" data-bs-toggle="tab" href="#nav-proyecto" role="tab"
           aria-controls="nav-home" aria-selected="true">Proyectos</a>
         <hr class="myhr">
       </div>
       <div class="col-2 mycol">
-        <a class="text-decoration-none" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab"
+        <a class="text-decoration-none" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-seguimiento" role="tab"
           aria-controls="nav-profile" aria-selected="false">Seguimientos</a>
         <hr class="myhr">
       </div>
@@ -16,17 +16,25 @@
           role="tab" aria-controls="nav-licitaciones2" aria-selected="false">Licitaciones</a>
         <hr class="myhr">
       </div>
+      <div class="col-2 mycol">
+        <a class="text-decoration-none" id="nav-area-tab" data-bs-toggle="tab" href="#nav-area"
+          role="tab" aria-controls="nav-area" aria-selected="false">Area</a>
+        <hr class="myhr">
+      </div>
     </nav>
   </div>
   <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+    <div class="tab-pane active" id="nav-proyecto" role="tabpanel" aria-labelledby="nav-home-tab">
       <app-datatable-proyecto></app-datatable-proyecto>
     </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+    <div class="tab-pane fade" id="nav-seguimiento" role="tabpanel" aria-labelledby="nav-profile-tab">
       <app-datatable-seguimiento></app-datatable-seguimiento>
     </div>
     <div class="tab-pane fade" id="nav-licitaciones" role="tabpanel" aria-labelledby="nav-licitaciones-tab">
       <app-datatable-licitacion></app-datatable-licitacion>
+    </div>
+    <div class="tab-pane fade" id="nav-area" role="tabpanel" aria-labelledby="nav-area-tab">
+      <app-datatable-area></app-datatable-area>
     </div>
   </div>
 </body>

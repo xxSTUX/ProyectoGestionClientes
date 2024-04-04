@@ -13,6 +13,7 @@ import { ModificaclienteComponent } from "../modificacliente/modificacliente.com
 import { HomeComponent } from '../home/home.component';
 import { DatatableSeguimientosComponent } from "../datatableSeguimientos/datatableSeguimientos.component";
 import { DatatableLicitacionesComponent } from "../datatableLicitaciones/datatableLicitaciones.component";
+import { DatatableAreaComponent } from "../datatableArea/datatableArea.component";
 
 
 @Component({
@@ -21,7 +22,7 @@ import { DatatableLicitacionesComponent } from "../datatableLicitaciones/datatab
     template: '<app-datatable-proyecto [childProperty]="cliente"></app-datatable-proyecto>',
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent, DatatableSeguimientosComponent, DatatableLicitacionesComponent]
+    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent, DatatableSeguimientosComponent, DatatableLicitacionesComponent, DatatableAreaComponent]
 })
 export class TabmenuComponent {
 

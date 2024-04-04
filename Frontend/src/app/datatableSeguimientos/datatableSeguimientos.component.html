@@ -21,6 +21,7 @@
                 <th>Observciones</th>
                 <th>Usuario</th>
                 <th>Fecha</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -37,12 +38,33 @@
                             {{"A"}} 
                         </td>
                         <td class="cliente">{{seguimiento.fecha}}</td>
+                        <td style="width: 20%">
+                            <div class="d-flex justify-content-center">
+                                <i id="editarSeguimiento{{seguimiento.id}}" class="bi bi-pencil h5 mr-3" (mouseover)='over(1, seguimiento.id)' (mouseout)='out(1,seguimiento.id)'></i>                         
+                                <i id="eliminarSeguimiento{{seguimiento.id}}" class="bi bi-trash h5" (mouseover)='over(2, seguimiento.id)' (mouseout)='out(2,seguimiento.id)'></i>
+                            </div>
+                        </td>
                     </tr>
                 }
             }
         </tbody>
     </table>
 </div>
+<div class="modal fade" id="modalCreaSeg" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header d-flex justify-content-between">
+                                <h5 class="modal-title font-weight-bold">Crear nuevo seguimiento</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body p-6">
+                                <app-crea-seguimineto></app-crea-seguimineto>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
 <!-- <h1>{{getJsonValue}}</h1>
 <h1>Mi variable es de tipo {{obtenerTipoVariable(getJsonValue)}}</h1> -->
 

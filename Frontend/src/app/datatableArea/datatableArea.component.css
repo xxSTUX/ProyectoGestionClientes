@@ -27,7 +27,6 @@ a{
 }
 i,.cliente{
     cursor: pointer;
-    height: 20px;
 }
 .botonCrear{
     background-color: rgb(39, 59, 112);
@@ -37,4 +36,4 @@ i,.cliente{
     background-color: rgb(80, 104, 170);
     color: #FFF;
   
-}
+  }

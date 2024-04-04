@@ -14,7 +14,7 @@ export class HeaderComponent {
 
   onHomeClick() {
     this.router.navigate(['/dashboard']);
-    this.dashboard.reload()
+
   }
 
   onProfileClick() {
