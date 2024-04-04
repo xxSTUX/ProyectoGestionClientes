@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 
+
 @Component({
     selector: 'app-crea-cliente',
     standalone: true,
@@ -16,6 +17,7 @@ export class CreaClienteComponent {
     creaClienteForm: FormGroup;
 
     @ViewChild('warningModal') warningModal: any;
+    @ViewChild('modalCreacion') modalCreacion: any;
 
     constructor(private fb: FormBuilder, private apiService: ApiService) {
         this.creaClienteForm = this.fb.group({
@@ -24,20 +26,21 @@ export class CreaClienteComponent {
         });
     }
 
-    async creaCliente() {
-        console.log("creacliente ejecutado");
+    async creaCliente(event: Event) {
+        event.preventDefault();
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
         try {
+          console.log("creacliente ejecutado");
           const resultado = await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
           console.log("Respuesta del servidor:", resultado);
           if(resultado === true){
-            //this.hideWarningModal();
+            this.hideWarningModal();
             alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
           }
           else
-            //this.showWarningModal();
-            alert("El cliente " + nombreCliente + " ya existe.");
+            this.showWarningModal();
+            //alert("El cliente " + nombreCliente + " ya existe.");
 
         } catch (error) {
           console.error("Error al llamar a la función postClientesFromAPI:", error);
@@ -56,4 +59,7 @@ export class CreaClienteComponent {
         this.warningModal.nativeElement.classList.remove('show');
         this.warningModal.nativeElement.style.display = 'none'; // Ocultar el modal
     }
+    cerrar() {
+      
+  }
 }
