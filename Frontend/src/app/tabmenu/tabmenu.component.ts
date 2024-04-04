@@ -13,6 +13,7 @@ import { ModificaclienteComponent } from "../modificacliente/modificacliente.com
 import { HomeComponent } from '../home/home.component';
 import { DatatableSeguimientosComponent } from "../datatableSeguimientos/datatableSeguimientos.component";
 import { DatatableLicitacionesComponent } from "../datatableLicitaciones/datatableLicitaciones.component";
+import { setAlternateWeakRefImpl, setThrowInvalidWriteToSignalError } from '@angular/core/primitives/signals';
 
 
 @Component({
@@ -25,15 +26,20 @@ import { DatatableLicitacionesComponent } from "../datatableLicitaciones/datatab
 })
 export class TabmenuComponent {
 
-    public cliente:any;
-    ngOnInit() {
-        this.changeHrColorOnClick();
-        
+    public cliente: any;
+    loadedOnce = false;
+    ngOnInit(): void {
+        if (!this.loadedOnce) {
+            // Realiza la recarga o cualquier otra acción que necesites
+            this.changeHrColorOnClick(); // Selecciona todos los divs con clase mycol
+            this.loadedOnce = true;
+            alert("mario butanero");
+        }
     }
 
-    changeHrColorOnClick() {
+    public changeHrColorOnClick() {
         const mycolDivs = document.querySelectorAll('.mycol'); // Selecciona todos los divs con clase mycol
-        
+
         mycolDivs.forEach((div) => {
             const link = div.querySelector('a'); // Encuentra el enlace dentro del div actual
             const hr = div.querySelector('hr'); // Encuentra el hr dentro del div actual
@@ -47,21 +53,28 @@ export class TabmenuComponent {
                         if (otherHr && otherA) {
                             otherHr.style.backgroundColor = ''; // Restaura el color original (puede ser transparente)
                             otherHr.style.height = '';
-                            otherA.style.fontWeight=''; // Restaura la altura original
-                            otherA.style.fontSize=''; // Restaura la altura original
+                            otherA.style.fontWeight = ''; // Restaura la altura original
+                            otherA.style.fontSize = ''; // Restaura la altura original
                         }
                     });
-
                     // Cambia el color del hr actual cuando se hace clic en el enlace
                     hr.style.backgroundColor = 'blue'; // Establece el color deseado
                     hr.style.height = '0.15rem';
                     link.style.fontWeight = 'bold'
                     link.style.fontSize = '0.78rem'; // Ajusta la altura según sea necesario
                 });
+
             } else {
                 console.error('Error: No se encontró el enlace o el <hr> dentro del div.');
             }
+
         });
-        
+
+
+    }
+
+
+    public reload() {
+        window.location.reload()
     }
 }

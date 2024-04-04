@@ -24,14 +24,5 @@ export class CreaSeguiminetoComponent {
     this.location.go(newPath);
     
   }
-  showWarningModal() {
-    this.warningModal.nativeElement.classList.add('show');
-    this.warningModal.nativeElement.style.display = 'block';
-  }
-
-  // Método para ocultar el modal de advertencia
-  hideWarningModal() {
-    this.warningModal.nativeElement.classList.remove('show');
-    this.warningModal.nativeElement.style.display = 'none'; // Ocultar el modal
-  }
+  
 }

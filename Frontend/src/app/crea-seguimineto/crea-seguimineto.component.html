@@ -1,6 +1,5 @@
-<form formGroup="reestablishForm" (submit)="creaSeg()">
+<!-- <form formGroup="reestablishForm" (submit)="creaSeg()">
     <div class="row">
-        <!-- Client input -->
         <div class="form-group">
             <label for="nombreSeg">Nombre seguimiento</label>
             <input formControlName="nombreSeg" class="form-control" id="nombreSeg" required autocomplete="off" />
@@ -10,7 +9,6 @@
             <textarea formControlName="obsevacionSeg" class="form-control" id="obsevacionSeg" required autocomplete="off"></textarea>
         </div>
 
-        <!-- Submit button -->
         <div class="d-flex m-2 justify-content-end">
             <button type="button" class="btn btn-link">
               Cancelar
@@ -20,21 +18,53 @@
             </button>
           </div>
     </div>
-</form>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
-        </div>
-        <div class="modal-body" id="myModalBody">
-          <!-- Aquí se mostrará el mensaje -->
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        </div>
+</form> -->
+
+<form formGroup="reestablishForm" >
+  <div class="row">
+      <!-- Client input -->
+      <div class="form-group">
+          <label for="nombreCliente">Nombre de proyecto</label>
+          <input formControlName="nombreproyecto" class="form-control" id="nombreproyecto" required
+              autocomplete="off" />
       </div>
-    </div>
-  </div>     
+      <div class="form-group">
+          <label for="descripcion">Estado</label>
+          <br>
+          <select class="custom-select custom-select-lg mb-3" name="estado" id="estado" class="mb-4">
+          </select>
+
+      </div>
+      <label for="descripcion">Tipo</label>
+      <div> <input formControlName="tipoproyecto" class="form-control" id="tipoproyecto" required
+              style="text-align: center" autocomplete="off" /></div>
+
+      <!-- Submit button -->
+      <div class="d-flex m-2 justify-content-end">
+          <button type="button" class="btn btn-link">
+              Cancelar
+          </button>
+          <button type="submit" class="btn btn-primary mr-2">
+              Crear proyecto
+          </button>
+      </div>
+  </div>
+</form>
+   
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                      aria-hidden="true">×</span></button>
+              <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+          </div>
+          <div class="modal-body" id="myModalBody">
+              <!-- Aquí se mostrará el mensaje -->
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          </div>
+      </div>
+  </div>
+</div>
