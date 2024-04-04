@@ -52,7 +52,7 @@
                             <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;
 
                             @if(cliente.nombre != "Hiberus"){
-                                <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente(cliente.id)"></i>&nbsp;&nbsp;
+                                <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" data-bs-toggle="modal" data-bs-target="#modalEliminarCliente" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente($event,cliente)"></i>&nbsp;&nbsp;
                             }
                             
                             <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" data-bs-toggle="modal" data-bs-target="#modalCreaSeg" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)' (click)="openCreaSeg($event,cliente)"></i>

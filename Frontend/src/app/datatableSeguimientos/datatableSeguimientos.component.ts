@@ -74,11 +74,6 @@ export class DatatableSeguimientosComponent implements OnInit {
     
   }
 
-  public async eliminarCliente(id:number){
-    alert("Se procede a eliminar el elemento seleccionado: " + id)
-    await this.apiService.deleteCliente(id);
-    this.reload();
-  }
   public getMethod() {
     this.dtTrigger.next(null);
   }

@@ -20,6 +20,7 @@ import { DatatableProyectosComponent } from '../datatableProyectos/datatableProy
 import { contains } from 'jquery';
 import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component';
 import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
+import { EliminarClienteComponent } from "../eliminar-cliente/eliminar-cliente.component";
 
 
 @Component({
@@ -27,7 +28,7 @@ import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.c
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent, EliminarClienteComponent]
 })
 export class DashboardComponent implements OnInit {
   private buttonBaseText = "Crear nuevo ";

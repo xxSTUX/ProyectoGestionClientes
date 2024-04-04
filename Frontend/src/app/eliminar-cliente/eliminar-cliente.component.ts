@@ -12,13 +12,13 @@ import { Location } from '@angular/common';
 
 
 @Component({
-  selector: 'app-crea-proyecto',
+  selector: 'app-eliminar-cliente',
   standalone: true,
   imports: [],
-  templateUrl: './crea-proyecto.component.html',
-  styleUrl: './crea-proyecto.component.css'
+  templateUrl: './eliminar-cliente.component.html',
+  styleUrl: './eliminar-cliente.component.css'
 })
-export class CreaProyectoComponent {
+export class EliminarClienteComponent {
 
   data: any;
 
@@ -28,23 +28,9 @@ export class CreaProyectoComponent {
   ngOnInit(): void {
     this.getEstados();
   }
-  async creaproyecto() {
-
-    const idcliente = parseInt((<HTMLInputElement>document.getElementById('clientes')).value);
-    const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
-    const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
-    const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
+  async eliminarCliente() {
     const id = this.location.path().split("/")[2];
-    const body = {
-      id: id,
-      nombre: nombreproyecto,
-      tipo: tipo,
-      estado: estado
-    }
-    
-    this.apiService.postProyectosFromAPI(body.id, body.nombre, body.tipo, body.estado + "");
-    alert("Se va a crear el proyecto: " + nombreproyecto);
-    console.log("Se deberia haber creado un nuevo proyecto");
+    this.apiService.deleteCliente(id);
     const newPath = this.location.path().split("/")[1];
     this.location.go(newPath);
   }

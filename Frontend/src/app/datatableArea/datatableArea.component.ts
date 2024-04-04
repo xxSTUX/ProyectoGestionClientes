@@ -35,12 +35,6 @@ export class DatatableAreaComponent implements OnInit {
     };
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
-
-  public async eliminarCliente(id:number){
-    alert("Se procede a eliminar el elemento seleccionado: " + id)
-    await this.apiService.deleteCliente(id);
-    window.location.reload();
-  }
   public getMethod() {
     this.dtTrigger.next(null);
   }

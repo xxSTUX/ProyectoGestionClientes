@@ -21,6 +21,7 @@ import { CreaSeguimientoComponent } from './tabmenu/crea-seguimiento/crea-seguim
 import { DatatableSeguimientosComponent } from './datatableSeguimientos/datatableSeguimientos.component';
 import { DatatableLicitacionesComponent } from './datatableLicitaciones/datatableLicitaciones.component';
 import { DatatableAreaComponent } from './datatableArea/datatableArea.component';
+import { EliminarClienteComponent } from './eliminar-cliente/eliminar-cliente.component';
 
 
 export const routes: Routes = [
@@ -45,6 +46,7 @@ export const routes: Routes = [
     { path: "datatableLicitaciones", component: DatatableLicitacionesComponent, pathMatch: "full" },
     { path: "datatableArea", component: DatatableAreaComponent, pathMatch: "full" },
     { path: "creaseguimiento",component:CreaSeguimientoComponent, pathMatch: "full" },
+    { path: "eliminarCliente", component: EliminarClienteComponent, pathMatch: "full" },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -143,7 +143,7 @@ export class ApiService {
     });
 
 }
-async deleteCliente(id:number){
+async deleteCliente(id:string){
   const response = await fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
     method: 'PUT',
     headers: {
