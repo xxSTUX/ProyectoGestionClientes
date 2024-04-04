@@ -25,10 +25,24 @@ export class CreaClienteComponent {
     }
 
     async creaCliente() {
+        console.log("creacliente ejecutado");
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-        alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
-        await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+        try {
+          const resultado = await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+          console.log("Respuesta del servidor:", resultado);
+          if(resultado === true){
+            //this.hideWarningModal();
+            alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+          }
+          else
+            //this.showWarningModal();
+            alert("El cliente " + nombreCliente + " ya existe.");
+
+        } catch (error) {
+          console.error("Error al llamar a la función postClientesFromAPI:", error);
+        }
+
     }
 
     // Método para mostrar el modal de advertencia

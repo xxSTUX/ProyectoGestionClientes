@@ -26,8 +26,14 @@ export class DatatableSeguimientosComponent implements OnInit {
   }
   dtoptions: DataTables.Settings = {}
   dtTrigger: Subject<any> = new Subject<any>();
-
+  loadedOnce = false;
   ngOnInit(): void {
+    if (!this.loadedOnce) {
+      // Realiza la recarga o cualquier otra acción que necesites
+
+      this.reload();
+      this.loadedOnce = true;
+  }
     this.dtoptions = {
       pagingType: "full_numbers",
       "search": false,
@@ -85,4 +91,5 @@ export class DatatableSeguimientosComponent implements OnInit {
   openCreaSeguimiento(event: Event) {
     event.preventDefault();
   }
+  
 }

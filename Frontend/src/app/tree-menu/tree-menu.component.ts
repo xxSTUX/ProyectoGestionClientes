@@ -47,7 +47,7 @@ export class TreeMenuComponent {
       //this.getJsonValue.sort((a: any, b: any) => a.nombre.localeCompare(b.nombre)); ya se ordena en BBDD
       for (let i = 0; i < this.getJsonValue.length; i++) { //Recorre clientes
         let nombre:String = this.getJsonValue[i].nombre;
-        this.getJsonValue[i].nombre = nombre.toLocaleUpperCase()
+        this.getJsonValue[i].nombre = nombre.toLocaleUpperCase();
         let proyectos = [];
         let seguimientosGenerales = [];
         let licitacionesEnEstudio = [];
