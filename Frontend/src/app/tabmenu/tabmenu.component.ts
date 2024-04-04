@@ -33,7 +33,6 @@ export class TabmenuComponent {
             // Realiza la recarga o cualquier otra acción que necesites
             this.changeHrColorOnClick(); // Selecciona todos los divs con clase mycol
             this.loadedOnce = true;
-            alert("mario butanero");
         }
     }
 

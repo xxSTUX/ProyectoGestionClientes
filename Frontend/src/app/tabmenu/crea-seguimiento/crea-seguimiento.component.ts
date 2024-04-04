@@ -42,8 +42,8 @@ export class CreaSeguimientoComponent {
     ]
   };
 
-  ngOnInit() {
-    let date = new Date;
+  ngOnInit(): void {
+      
   }
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
