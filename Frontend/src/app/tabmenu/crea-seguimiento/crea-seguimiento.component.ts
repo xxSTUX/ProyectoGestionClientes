@@ -47,7 +47,7 @@ export class CreaSeguimientoComponent {
   }
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    this.apiService.postSeguimientoToAPI(this.nombre,this.id,this.observaciones);
+    this.apiService.postSeguimientoToAPI(this.id,this.observaciones);
     
   }
 

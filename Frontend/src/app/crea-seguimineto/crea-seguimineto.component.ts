@@ -18,12 +18,11 @@ export class CreaSeguiminetoComponent {
   ngOnInit(): void {
     this.getEstados();
   }
-  async creaSeg() {
-    const nombreSeg = (<HTMLInputElement>document.getElementById('nombreSeg')).value;
+  async creaSeg() { 
     const obsevacionSeg = (<HTMLInputElement>document.getElementById('obsevacionSeg')).value;
     const newPath = this.location.path().split("/")[1];
     const id = this.location.path().split("/")[2];
-    this.apiService.postSeguimientoToAPI(nombreSeg,id,obsevacionSeg);
+    await this.apiService.postSeguimientoToAPI(id,obsevacionSeg);
     this.location.go(newPath);
     
   }

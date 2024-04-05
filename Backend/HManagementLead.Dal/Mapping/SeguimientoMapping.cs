@@ -13,7 +13,7 @@ namespace HManagementLead.Dal.Mapping
             return p => new SeguimientoDetalle
             {
                 Id = p.Id,
-                Nombre = p.Nombre,
+                Usuario = p.Usuario,
 
             };
         }
@@ -24,7 +24,7 @@ namespace HManagementLead.Dal.Mapping
             return p => new SeguimientoDetalle
             {
                 Id = p.Id,
-                Nombre = p.Nombre,
+                Usuario = p.Usuario,
 
             };
         }
@@ -35,7 +35,7 @@ namespace HManagementLead.Dal.Mapping
             return p => new Codigo
             {
                 CodigoId = p.Id,
-                Descripcion = p.Nombre,
+                Descripcion = p.Usuario,
             };
         }
         //Map para simplificar los dats que van al arbol
@@ -45,7 +45,7 @@ namespace HManagementLead.Dal.Mapping
             return p => new SeguimientoSimplificado
             {
                 SeguimientoId = p.Id,
-                Nombre = p.Nombre,
+                Nombre = p.Usuario,
             };
         }
     }

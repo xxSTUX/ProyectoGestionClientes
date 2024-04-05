@@ -25,7 +25,7 @@ namespace HManagementLead.Dal.Mapping;
                             select new SeguimientoDetalle
                             {
                                 Id = s.Id,
-                                Nombre = s.Nombre,
+                                Usuario = s.Usuario,
                             }).ToList(),
             Licitaciones = (from cl in p.LicitacionesProyectos
                             join l in dbContext.Licitaciones
@@ -51,7 +51,7 @@ namespace HManagementLead.Dal.Mapping;
                             select new SeguimientoSimplificado
                             {
                                 SeguimientoId = s.Id,
-                                Nombre = s.Nombre,
+                                Nombre = s.Usuario,
                             }).ToList(),
             Licitaciones = (from cl in p.LicitacionesProyectos
                             join l in dbContext.Licitaciones

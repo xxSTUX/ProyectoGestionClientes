@@ -25,7 +25,7 @@ namespace HManagementLead.Dal.Mapping
                                       select new SeguimientoDetalle
                                       {
                                           Id = s.Id,
-                                          Nombre = s.Nombre,
+                                          Usuario = s.Usuario,
                                           Fecha = s.Fecha,
                                           Observaciones = s.Observaciones,
                                       }).ToList(),
@@ -56,7 +56,7 @@ namespace HManagementLead.Dal.Mapping
                                 select new SeguimientoSimplificado
                                 {
                                     SeguimientoId = s.Id,
-                                    Nombre = s.Nombre,
+                                    Nombre = s.Usuario,
                                 }).OrderBy(s => s.Nombre).ToList(),
                 Licitaciones = (from cl in c.LicitacionesClientes
                                 join l in dbContext.Licitaciones

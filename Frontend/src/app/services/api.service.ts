@@ -123,16 +123,16 @@ export class ApiService {
     });
   }
 
-  async postSeguimientoToAPI(nombre:string,id:string,observaciones:string) {
-    alert("ayiyi")
+  async postSeguimientoToAPI(id:string,observaciones:string) {
+    
     var oParser = new DOMParser();
     var oDOM = oParser.parseFromString(observaciones, "text/html");
     var text = oDOM.body.innerText;
     const bodyProyecto = {
-      nombre: nombre,
-      tipo:"",
+      usuario:"Usuario 1",
       observaciones:text
     };
+    console.log(bodyProyecto)
     const response = fetch('https://localhost:7075/api/Cliente/InsertSeguimiento/'+ id, {
       method: 'POST',
       headers: {

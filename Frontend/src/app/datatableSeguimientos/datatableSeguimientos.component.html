@@ -17,7 +17,6 @@
     <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table stripe hover">
         <thead class="bg-dark text-white">
             <tr>
-                <th>Nombre</th>
                 <th>Observciones</th>
                 <th>Usuario</th>
                 <th>Fecha</th>
@@ -28,14 +27,13 @@
             @for (seguimiento of seguimientos; track $index) {
                 @if(!seguimientos.eliminado){
                     <tr>
-                        <td class="cliente">{{seguimiento.nombre}}</td>
                         <td>
                             <a href="#" class="link-sin-estilo">
                                 {{seguimiento.observaciones}}
                             </a>
                         </td>
                         <td>
-                            {{"A"}} 
+                            {{seguimiento.usuario}} 
                         </td>
                         <td class="cliente">{{seguimiento.fecha}}</td>
                         <td style="width: 20%">
