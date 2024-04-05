@@ -8,5 +8,7 @@ import { Component } from '@angular/core';
   styleUrl: './editar-cliente.component.css'
 })
 export class EditarClienteComponent {
-
+editarCliente(){
+  alert("que miras");
+}
 }

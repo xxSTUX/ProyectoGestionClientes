@@ -1,1 +1,25 @@
-<p>editar-cliente works!</p>
+<form formGroup="reestablishForm" sumbit="editarCliente()">
+    <div class="row">
+        <div class="form-group">
+            <label for="nombreSeg">Nombre Cliente</label>
+            <input formControlName="nombreSeg" class="form-control" id="nombreSeg" required autocomplete="off" />
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <textarea formControlName="obsevacionSeg" class="form-control" id="obsevacionSeg" required autocomplete="off"></textarea>
+        </div>
+
+        <div class="d-flex m-2 justify-content-end">
+            <button type="button" class="btn btn-link">
+              Cancelar
+          </button>
+            <button type="submit" class="btn btn-primary mr-2">
+                Editar cliente
+            </button>
+          </div>
+    </div>
+</form> 
+
+
+
+  
