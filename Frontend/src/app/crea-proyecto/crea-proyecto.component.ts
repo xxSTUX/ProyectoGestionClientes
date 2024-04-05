@@ -60,7 +60,7 @@ export class CreaProyectoComponent {
           const option = document.createElement('option');
           console.log(data[i]);
           option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-          option.textContent = data[i].estado+"HA"; // Asigna el nombre del cliente como texto del option
+          option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
           options.appendChild(option); // Agrega el option al elemento select
         }
 

@@ -128,6 +128,9 @@ export class DashboardComponent implements OnInit {
   getClienteArea(){
     return this.getJsonValue.areas;
   }
+  getClienteContacto(){
+    return this.getJsonValue.contactos;
+  }
   public reload(){
     window.location.reload()
   }

@@ -13,7 +13,7 @@ namespace HManagementLead.Dal.Mapping
             return p => new ContactoDetalle
             {
                 Id = p.Id,
-                Cargo = p.Cargo,
+                Rol = p.Rol,
                 Email = p.Email,
                 Telefono = p.Telefono,
                 Eliminado = p.Eliminado,
