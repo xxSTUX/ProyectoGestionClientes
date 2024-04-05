@@ -16,7 +16,6 @@ export class CreaSeguiminetoComponent {
   
   constructor(private apiService:ApiService, private location:Location){}
   ngOnInit(): void {
-    this.getEstados();
   }
   async creaSeg() { 
     const obsevacionSeg = (<HTMLInputElement>document.getElementById('obsevacionSeg')).value;
@@ -25,20 +24,5 @@ export class CreaSeguiminetoComponent {
     await this.apiService.postSeguimientoToAPI(id,obsevacionSeg);
     this.location.go(newPath);
     
-  }
-  getEstados() {
-    const options = document.getElementById("estado") as HTMLOptionElement;
-    this.apiService.getEstadoProyectos().subscribe((data: any) => {
-      if (options != null) {
-        for (let i = 0; i < data.length; i++) {
-          const option = document.createElement('option');
-          console.log(data[i]);
-          option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-          option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
-          options.appendChild(option); // Agrega el option al elemento select
-        }
-
-      }
-    });
   }
 }

@@ -26,7 +26,6 @@ export class EliminarClienteComponent {
 
   }
   ngOnInit(): void {
-    this.getEstados();
   }
   async eliminarCliente() {
     const id = this.location.path().split("/")[2];
@@ -34,24 +33,4 @@ export class EliminarClienteComponent {
     const newPath = this.location.path().split("/")[1];
     this.location.go(newPath);
   }
-
-
-
-  getEstados() {
-    const options = document.getElementById("estado") as HTMLOptionElement;
-    this.apiService.getEstadoProyectos().subscribe((data: any) => {
-      console.log()
-      if (options != null) {
-        for (let i = 0; i < data.length; i++) {
-          const option = document.createElement('option');
-          console.log(data[i]);
-          option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-          option.textContent = data[i].estado+"HA"; // Asigna el nombre del cliente como texto del option
-          options.appendChild(option); // Agrega el option al elemento select
-        }
-
-      }
-    });
-  }
-
 }

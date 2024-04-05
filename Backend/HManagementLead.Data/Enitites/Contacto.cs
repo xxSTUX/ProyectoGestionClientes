@@ -10,10 +10,11 @@ namespace HManagementLead.Data.Enitites
     public partial class Contacto
     {
         public int Id { get; set; }
-
-        public string Cargo { get; set; } = null!;
+        public string Nombre { get; set; }
+        public string Rol { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telefono { get; set; } = null!;
+        public int Nivel { get; set; }
         public bool Eliminado { get; set; } = false;
 
         public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
@@ -22,9 +23,11 @@ namespace HManagementLead.Data.Enitites
         public Contacto(ContactoDetalle cotnacto)
         {
             Id = cotnacto.Id;
-            Cargo = cotnacto.Cargo;
+            Nombre = cotnacto.Nombre;
+            Rol = cotnacto.Rol;
             Email = cotnacto.Email;
             Telefono = cotnacto.Telefono;
+            Nivel = cotnacto.Nivel;
             Eliminado = cotnacto.Eliminado;
         }
     }

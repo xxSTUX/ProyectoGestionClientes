@@ -39,6 +39,19 @@ namespace HManagementLead.Dal.Mapping
                                     Tipo = l.Tipo,
                                     Estado = l.Estado,
                                 }).ToList(),
+                Contactos = (from cc in c.ContactosClientes
+                               join con in dbContext.Contactos
+                               on cc.ContactoId equals c.Id
+                               select new ContactoDetalle
+                               {
+                                   Id = con.Id,
+                                   Nombre = con.Nombre,
+                                   Rol = con.Rol,
+                                   Email = con.Email,
+                                   Telefono = con.Telefono,
+                                   Nivel = con.Nivel,
+                                   Eliminado = con.Eliminado
+                               }).ToList(),
                 Eliminado = c.Eliminado,
             };
         }
