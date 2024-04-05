@@ -9,10 +9,11 @@ import { ApiService } from '../services/api.service';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
 import { CreaSeguiminetoComponent } from '../crea-seguimineto/crea-seguimineto.component';
+import { EditarClienteComponent } from '../editar-cliente/editar-cliente.component';
 @Component({
   selector: 'app-datatable',
   standalone: true,
-  imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent, DatatableProyectosComponent, CreaSeguiminetoComponent],
+  imports: [DataTablesModule, HttpClientModule, CommonModule, DashboardComponent, DatatableProyectosComponent, CreaSeguiminetoComponent, EditarClienteComponent],
   templateUrl: './datatable.component.html',
   styleUrl: './datatable.component.css'
 })
@@ -47,6 +48,8 @@ export class DatatableComponent implements OnInit {
   public editCliente(){
     alert("Funca");
   }
+
+
   eliminarCliente(event:Event, cliente:any){
     this.location.go(this.location.path()+"/" +cliente.id);
     event.preventDefault();
@@ -98,5 +101,13 @@ export class DatatableComponent implements OnInit {
     this.cliente = cliente;
     this.location.go(this.location.path()+"/" +cliente.id)
     this.dashboard.seleccionarCliente(cliente)
+  }
+
+  openEditarCliente(event: Event) {
+    event.preventDefault();
+    const modal = document.getElementById('ModalEditarCliente');
+        if (modal) {
+            modal.classList.add('show'); // Muestra el modal
+        }
   }
 }

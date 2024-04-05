@@ -6,59 +6,80 @@
                 <th>Proyectos</th>
                 <th>Propuestas</th>
                 <th>Ultimo Seguimiento</th>
-                <th>             </th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
             @for (cliente of getJsonValue; track $index) {
-                @if(!cliente.eliminado){
-                    <tr>
-                        <td class="cliente" (click)="seleCliente(cliente)">{{cliente.nombre}}</td>
-                        @if (cliente.proyectos.length === 0) {
-                        <td>No tiene proyectos</td>
-                        }
-                        @else {
-                        <td>
-                            <a href="#" class="link-sin-estilo">
-                                {{cliente.proyectos.length}}
-                            </a>
-                        </td>
-                        }
-        
-                        @if (cliente.licitaciones.length === 0) {
-                        <td>No tiene licitaciones</td>
-                        }
-                        @else {
-                        <td>
-        
-                
-                            <a href="#" class="link-sin-estilo">
-                                {{cliente.licitaciones.length}}
-                            </a>
-                            
-                        </td>
-                        }
-                        @if (cliente.seguimientos.length === 0) {
-                            <td>
-                                No tiene seguimientos
-                            </td>
-                        }
-                        @else {
-                                <td>
-                                    {{cliente.seguimientos[cliente.seguimientos.length-1].fecha}}
-                                </td>
-                        }
-                        <td style="width: 20% allign-items-center">
-                            <i id="iconoEditar{{cliente.id}}" class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)' (click)="editCliente()"></i>&nbsp;&nbsp;
-
-                            @if(cliente.nombre != "Hiberus"){
-                                <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" data-bs-toggle="modal" data-bs-target="#modalEliminarCliente" (mouseover)='over(2,cliente.id)' (mouseout)='out(2,cliente.id)' (click)="eliminarCliente($event,cliente)"></i>&nbsp;&nbsp;
-                            }
-                            
-                            <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" data-bs-toggle="modal" data-bs-target="#modalCreaSeg" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)' (click)="openCreaSeg($event,cliente)"></i>
-                        </td>
-                    </tr>
+            @if(!cliente.eliminado){
+            <tr>
+                <td class="cliente" (click)="seleCliente(cliente)">{{cliente.nombre}}</td>
+                @if (cliente.proyectos.length === 0) {
+                <td>No tiene proyectos</td>
                 }
+                @else {
+                <td>
+                    <a href="#" class="link-sin-estilo">
+                        {{cliente.proyectos.length}}
+                    </a>
+                </td>
+                }
+
+                @if (cliente.licitaciones.length === 0) {
+                <td>No tiene licitaciones</td>
+                }
+                @else {
+                <td>
+
+
+                    <a href="#" class="link-sin-estilo">
+                        {{cliente.licitaciones.length}}
+                    </a>
+
+                </td>
+                }
+                @if (cliente.seguimientos.length === 0) {
+                <td>
+                    No tiene seguimientos
+                </td>
+                }
+                @else {
+                <td>
+                    {{cliente.seguimientos[cliente.seguimientos.length-1].fecha}}
+                </td>
+                }
+                <td style="width: 20% allign-items-center">
+                    <i id="iconoEditar{{cliente.id}}" data-bs-toggle="modal" data-bs-target="#modalEditarCliente"
+                        class="bi bi-building-gear h3" (mouseover)='over(1, cliente.id)' (mouseout)='out(1,cliente.id)'
+                        (click)="openEditarCliente($event)"></i>&nbsp;&nbsp;
+
+                    <div class="modal fade" id="modalEditarCliente" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header d-flex justify-content-between">
+                                    <h5 class="modal-title font-weight-bold">Editar Cliente</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body p-6">
+                                    <app-editar-cliente></app-editar-cliente>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if(cliente.nombre != "Hiberus"){
+                    <i id="iconoEliminar{{cliente.id}}" class="bi bi-building-x h3" data-bs-toggle="modal"
+                        data-bs-target="#modalEliminarCliente" (mouseover)='over(2,cliente.id)'
+                        (mouseout)='out(2,cliente.id)' (click)="eliminarCliente($event,cliente)"></i>&nbsp;&nbsp;
+                    }
+                    <i id="iconoPortapapeles{{cliente.id}}" class="bi bi-clipboard-plus h3" data-bs-toggle="modal"
+                        data-bs-target="#modalCreaSeg" (mouseover)='over(3,cliente.id)' (mouseout)='out(3,cliente.id)'
+                        (click)="openCreaSeg($event,cliente)"></i>
+                </td>
+            </tr>
+            }
             }
         </tbody>
     </table>
