@@ -29,8 +29,6 @@ export class CreaProyectoComponent {
     this.getEstados();
   }
   async creaproyecto() {
-
-    const idcliente = parseInt((<HTMLInputElement>document.getElementById('clientes')).value);
     const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
     const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
     const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
@@ -46,6 +44,8 @@ export class CreaProyectoComponent {
     alert("Se va a crear el proyecto: " + nombreproyecto);
     console.log("Se deberia haber creado un nuevo proyecto");
     const newPath = this.location.path().split("/")[1];
+    console.log(this.location.path());
+    alert(newPath)
     this.location.go(newPath);
   }
 

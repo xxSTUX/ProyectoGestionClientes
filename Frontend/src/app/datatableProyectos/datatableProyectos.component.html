@@ -28,9 +28,20 @@
                     <tr>
                         <td class="cliente">{{proyecto.nombre}}</td>
                         <td>
-                            <a href="#" class="link-sin-estilo">
-                                {{proyecto.estado}}
-                            </a>
+                            @switch (proyecto.estado) {
+                                @case (1) {
+                                    Oportinudad
+                                }
+                                @case (2) {
+                                    Aceptado
+                                }
+                                @case (3) {
+                                    Finalizado
+                                }
+                                @case (4) {
+                                    Rechazado
+                                }
+                            }
                         </td>
                         <td>
                             {{proyecto.tipo}} 
