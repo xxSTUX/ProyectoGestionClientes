@@ -60,6 +60,6 @@ export class CreaClienteComponent {
         this.warningModal.nativeElement.style.display = 'none'; // Ocultar el modal
     }
     cerrar() {
-      
+      //sadasd
   }
 }
