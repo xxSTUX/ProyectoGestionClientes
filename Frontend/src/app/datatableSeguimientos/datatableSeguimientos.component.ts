@@ -28,9 +28,18 @@ export class DatatableSeguimientosComponent implements OnInit {
   dtTrigger: Subject<any> = new Subject<any>();
   loadedOnce = false;
   ngOnInit(): void {
+    if (!this.loadedOnce) {
+      // Realiza la recarga o cualquier otra acción que necesites
+
+      //TODO RELOAD AL CLICAR EN LA TAB
+
+      this.reload();
+      this.loadedOnce = true;
+  }
     this.dtoptions = {
       pagingType: "full_numbers",
       "search": false,
+
     };
     this.getMethod(); //Llamada al método que trae los datos a la tabla desde la api
   }
