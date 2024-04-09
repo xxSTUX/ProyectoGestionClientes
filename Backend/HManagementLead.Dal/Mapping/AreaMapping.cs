@@ -12,6 +12,28 @@ namespace HManagementLead.Dal.Mapping
 {
     internal class AreaMapping
     {
+        public static Expression<Func<Area, AreaDetalle>> MapToArea(ApplicationDbContext dbContext) //Igual que la funcion de arriba pero pasandole las licitaciones tambien
+        {
+
+            return p => new AreaDetalle
+            {
+                Id = p.Id,
+                IdCliente = p.ClienteId,
+                Nombre = p.Nombre,
+                Responsable = p.Responsable,
+                Email = p.Email,
+                
+                Seguimientos = (from cs in p.SeguimientosArea
+                                join s in dbContext.Seguimientos
+                                on cs.SeguimientoId equals s.Id
+                                select new SeguimientoDetalle
+                                { 
+                                    Id = s.Id,
+                                    Usuario = s.Usuario,
+                                }).ToList(),
+                Eliminado = p.Eliminado,
+            };
+        }
         public static Expression<Func<Puesto, AreaDetalle>> MapToArea()
         {
 

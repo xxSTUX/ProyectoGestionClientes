@@ -212,6 +212,38 @@ namespace HManagementLead.Controllers
                 throw;
             }
         }
+
+        [HttpPost("InsertArea/{id}")]
+        public async Task<IActionResult> postArea(int id, [FromBody] AreaDetalle value)
+        {
+            try
+            {
+                var resultado = await _clienteService.InsertAreaInClienteAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
+
+        [HttpPost("InsertContacto/{id}")]
+        public async Task<IActionResult> postContacto(int id, [FromBody] ContactoDetalle value)
+        {
+            try
+            {
+                var resultado = await _clienteService.InsertContactoInClienteAsync(id, value);
+
+                return Ok(resultado); ;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ocurrió un error en ClientController Post");
+                throw;
+            }
+        }
         [HttpGet("clientenombre/{nombre}")]
         public async Task<IActionResult> GetClienteNombre(string nombre)
         {

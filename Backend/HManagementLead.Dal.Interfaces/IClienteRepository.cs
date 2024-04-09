@@ -24,7 +24,9 @@ namespace HManagementLead.Dal.Interfaces
         Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento);
 
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
+        Task<ClienteDetalle> InsertContactoInClienteAsync(int id, ContactoDetalle contacto);
 
+        Task<ClienteDetalle> InsertAreaInClienteAsync(int id, AreaDetalle area);
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
         Task<ClienteDetalle> GetClienteByNombre(string nombre);
     }

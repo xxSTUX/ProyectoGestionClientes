@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace HManagementLead.Data.Enitites
 {
-
+    
     [PrimaryKey(nameof(ProyectoId), nameof(SeguimientoId))]
     [Index(nameof(ProyectoId), nameof(SeguimientoId))]
     public partial class SeguimientoProyecto

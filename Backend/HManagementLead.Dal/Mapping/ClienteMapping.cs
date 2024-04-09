@@ -49,9 +49,9 @@ namespace HManagementLead.Dal.Mapping
                                    Rol = con.Rol,
                                    Email = con.Email,
                                    Telefono = con.Telefono,
-                                   Nivel = con.Nivel,
-                                   Eliminado = con.Eliminado
+                                   Nivel = con.Nivel
                                }).ToList(),
+                Areas = c.Areas.AsQueryable().Select(AreaMapping.MapToArea(dbContext)).ToList(),
                 Eliminado = c.Eliminado,
             };
         }

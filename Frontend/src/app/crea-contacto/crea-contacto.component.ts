@@ -25,47 +25,29 @@ export class CreaContactoComponent {
   constructor(private router: Router, private http: HttpClient, private apiService: ApiService, private location:Location) {
 
   }
-  ngOnInit(): void {
-    this.getEstados();
-  }
+
   async creaContacto() {
-    const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
-    const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
-    const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
+    const nombre = (<HTMLInputElement>document.getElementById('nombreContacto')).value;
+    const rol = (<HTMLInputElement>document.getElementById('rolContacto')).value;
+    const telefono = (<HTMLInputElement>document.getElementById('telefonoContacto')).value;
+    const email = (<HTMLInputElement>document.getElementById('emailContacto')).value;
+    const nivel = (<HTMLInputElement>document.getElementById('nivel')).value;
     const id = this.location.path().split("/")[2];
     const body = {
       id: id,
-      nombre: nombreproyecto,
-      tipo: tipo,
-      estado: estado
+      nombre: nombre,
+      rol:rol,
+      telefono:telefono,
+      email:email,
+      nivel:nivel
     }
     
-    this.apiService.postProyectosFromAPI(body.id, body.nombre, body.tipo, body.estado + "");
-    alert("Se va a crear el proyecto: " + nombreproyecto);
+    await this.apiService.postContactoToAPI(body.id, body.nombre, body.rol, body.telefono, body.email,body.nivel);
+    alert("Se va a crear el contacto: " + nombre);
     console.log("Se deberia haber creado un nuevo proyecto");
     const newPath = this.location.path().split("/")[1];
     console.log(this.location.path());
     alert(newPath)
     this.location.go(newPath);
   }
-
-
-
-  getEstados() {
-    const options = document.getElementById("estado") as HTMLOptionElement;
-    this.apiService.getEstadoProyectos().subscribe((data: any) => {
-      console.log()
-      if (options != null) {
-        for (let i = 0; i < data.length; i++) {
-          const option = document.createElement('option');
-          console.log(data[i]);
-          option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-          option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
-          options.appendChild(option); // Agrega el option al elemento select
-        }
-
-      }
-    });
-  }
-
 }

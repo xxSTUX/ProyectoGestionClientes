@@ -14,5 +14,11 @@ namespace HManagementLead.Data.Enitites
         public Contacto Contacto { get; set; } = null!;
         public int ClienteId { get; set; }
         public Cliente Cliente { get; set; } = null!;
+        ContactoCliente() { }
+        public ContactoCliente(int IdContacto, int IdCliente)
+        {
+            this.ContactoId = IdContacto;
+            this.ClienteId = IdCliente;
+        }
     }
 }

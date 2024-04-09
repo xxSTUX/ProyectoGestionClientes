@@ -132,6 +132,43 @@ namespace HManagementLead.Dal
                 .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
                 .FirstAsync();
         }
+        public async Task<ClienteDetalle> InsertAreaInClienteAsync(int id, AreaDetalle area)
+        {
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
+
+            var nuevoProyecto = new Area(area);
+
+            cliente.Areas.Add(nuevoProyecto);
+            _context.Clientes.Add(cliente);
+            _context.Update(cliente);
+            _context.Areas.Add(nuevoProyecto);
+            await _context.SaveChangesAsync();
+            return await _context.Clientes
+                .Where(c => c.Id == cliente.Id)
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
+                .FirstAsync();
+        }
+        public async Task<ClienteDetalle> InsertContactoInClienteAsync(int id, ContactoDetalle contacto)
+        {
+            var cliente = _context.Clientes.FirstOrDefault(c => c.Id.Equals(id));
+
+
+            _context.Contactos.Add(new Contacto(contacto));
+            await _context.SaveChangesAsync();
+            var a = _context.Contactos.ToList();
+            contacto.Id = a.LastOrDefault().Id;
+            var contactoCliente = new ContactoCliente(id, contacto.Id);
+            cliente.ContactosClientes.Add(contactoCliente);
+            _context.ContactoCliente.Add(contactoCliente);
+
+            _context.Clientes.Add(cliente);
+            _context.Update(cliente);
+            await _context.SaveChangesAsync();
+            return await _context.Clientes
+                .Where(c => c.Id == cliente.Id)
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
+                .FirstAsync();
+        }
         public async Task DeleteProyectoInClienteAsync(int id)
         {
             var cliente = await _context.Clientes.Where(c => c.Id == id).Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).FirstAsync();

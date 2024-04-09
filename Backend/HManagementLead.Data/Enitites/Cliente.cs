@@ -16,6 +16,7 @@ public partial class Cliente
     //public string Descripcion {  get; set; } = null;
     public string? Descripcion { get; set; } = null;//Para permitir null
     public virtual ICollection<Proyecto> Proyectos { get; set; } = new List<Proyecto>();
+    public virtual ICollection<Area> Areas{ get; set; } = new List<Area>();
     public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
     public virtual ICollection<FacturacionCliente> FacturacionesClientes { get; set; } = new List<FacturacionCliente>();
     public virtual ICollection<LicitacionCliente> LicitacionesClientes { get; set; } = new List<LicitacionCliente>();

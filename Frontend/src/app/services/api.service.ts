@@ -143,6 +143,40 @@ export class ApiService {
     });
 
 }
+async postContactoToAPI(id:string,nombre:string,rol:string,telefono:string,email:string,nivel:string) {
+  const bodyProyecto = {
+    nombre:nombre,
+    rol:rol,
+    telefono:telefono,
+    email:email,
+    nivel:nivel
+  };
+  const response = fetch('https://localhost:7075/api/Cliente/InsertContacto/'+ id, {
+    method: 'POST',
+    headers: {
+      'accept': '*/*',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bodyProyecto),
+  });
+
+}
+async postAreaToAPI(id:string,nombre:string,responsable:string,email:string) {
+  const bodyProyecto = {
+    nombre:nombre,
+    responsable:responsable,
+    email:email,
+  };
+  const response = fetch('https://localhost:7075/api/Cliente/InsertArea/'+ id, {
+    method: 'POST',
+    headers: {
+      'accept': '*/*',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(bodyProyecto),
+  });
+
+}
 async deleteCliente(id:string){
   const response = await fetch(this.api+'Cliente/UpdateEliminado/'+ id, {
     method: 'PUT',

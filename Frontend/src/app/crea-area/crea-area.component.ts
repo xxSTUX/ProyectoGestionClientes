@@ -16,7 +16,7 @@ export class CreaAreaComponent {
   contactos: any;
   constructor(private apiService:ApiService, private location:Location){}
   ngOnInit(): void {
-    this.getEstados();
+    this.getContactos();
   }
   async creaArea() { 
     const obsevacionSeg = (<HTMLInputElement>document.getElementById('obsevacionSeg')).value;
@@ -27,7 +27,7 @@ export class CreaAreaComponent {
     
   }
 
-  getEstados() {
+  getContactos() {
     const options = document.getElementById("contactos") as HTMLOptionElement;
     
     this.apiService.getDataContactosFromAPI().subscribe((data: any) => {

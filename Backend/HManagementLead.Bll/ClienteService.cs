@@ -68,6 +68,16 @@ namespace HManagementLead.Bll
             return _repository.InsertLicitacionInClienteAsync(id, licitacion);
         }
 
+        public Task<ClienteDetalle> InsertAreaInClienteAsync(int id, AreaDetalle area)
+        {
+            return _repository.InsertAreaInClienteAsync(id, area);
+        }
+
+        public Task<ClienteDetalle> InsertContactoInClienteAsync(int id, ContactoDetalle contacto)
+        {
+            return _repository.InsertContactoInClienteAsync(id, contacto);
+        }
+
         public Task<List<Codigo>> GetAllClientesAsyncToCodigo() {
             return _repository.GetAllClientesAsyncToCodigo();
         }

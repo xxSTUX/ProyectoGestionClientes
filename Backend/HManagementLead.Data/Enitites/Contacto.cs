@@ -20,15 +20,14 @@ namespace HManagementLead.Data.Enitites
         public virtual ICollection<ContactoCliente> ContactosClientes { get; set; } = new List<ContactoCliente>();
         public virtual ICollection<ProyectoContacto> ProyectosContactos { get; set; } = new List<ProyectoContacto>();
         public Contacto() { }
-        public Contacto(ContactoDetalle cotnacto)
+        public Contacto(ContactoDetalle contacto)
         {
-            Id = cotnacto.Id;
-            Nombre = cotnacto.Nombre;
-            Rol = cotnacto.Rol;
-            Email = cotnacto.Email;
-            Telefono = cotnacto.Telefono;
-            Nivel = cotnacto.Nivel;
-            Eliminado = cotnacto.Eliminado;
+            Id = contacto.Id;
+            Nombre = contacto.Nombre;
+            Rol = contacto.Rol;
+            Email = contacto.Email;
+            Telefono = contacto.Telefono;
+            Nivel = contacto.Nivel;
         }
     }
 }

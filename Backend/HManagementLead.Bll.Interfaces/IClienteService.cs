@@ -24,6 +24,10 @@ namespace HManagementLead.Bll.Interfaces
 
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
 
+        Task<ClienteDetalle> InsertAreaInClienteAsync(int id, AreaDetalle area);
+
+        Task<ClienteDetalle> InsertContactoInClienteAsync(int id, ContactoDetalle contacto);
+
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
 
         Task<ClienteDetalle> GetClienteByNombre(string nombre);
