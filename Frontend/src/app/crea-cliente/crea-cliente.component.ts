@@ -37,6 +37,7 @@ export class CreaClienteComponent {
           if(resultado === true){
             this.hideWarningModal();
             alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+            window.location.reload();
           }
           else
             this.showWarningModal();
