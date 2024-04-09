@@ -31,6 +31,8 @@ export class DatatableSeguimientosComponent implements OnInit {
     if (!this.loadedOnce) {
       // Realiza la recarga o cualquier otra acción que necesites
 
+      //TODO RELOAD AL CLICAR EN LA TAB
+
       this.reload();
       this.loadedOnce = true;
   }
