@@ -6,26 +6,38 @@ import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor
 import { CreaSeguimientoComponent } from "./crea-seguimiento/crea-seguimiento.component";
 import { CreaLicitacionComponent } from "./crea-licitacion/crea-licitacion.component";
 import { DatatableComponent } from "../datatable/datatable.component";
+import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
 
 import { Subject } from 'rxjs';
 import { ModificaclienteComponent } from "../modificacliente/modificacliente.component";
 import { HomeComponent } from '../home/home.component';
+import { DatatableSeguimientosComponent } from "../datatableSeguimientos/datatableSeguimientos.component";
+import { DatatableLicitacionesComponent } from "../datatableLicitaciones/datatableLicitaciones.component";
+import { DatatableAreaComponent } from "../datatableArea/datatableArea.component";
+import { DatatableContactoComponent } from "../datatableContacto/datatableContacto.component";
 
 
 @Component({
     selector: 'app-tabmenu',
     standalone: true,
+    template: '<app-datatable-proyecto [childProperty]="cliente"></app-datatable-proyecto>',
     templateUrl: './tabmenu.component.html',
     styleUrl: './tabmenu.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent]
+    imports: [HeaderComponent, TreeMenuComponent, HttpClientModule, AngularEditorModule, CreaSeguimientoComponent, DatatableComponent, CreaLicitacionComponent, ModificaclienteComponent, HomeComponent, DatatableProyectosComponent, DatatableSeguimientosComponent, DatatableLicitacionesComponent, DatatableAreaComponent, DatatableContactoComponent]
 })
 export class TabmenuComponent {
 
-    ngOnInit() {
-        this.changeHrColorOnClick();
+    public cliente: any;
+    loadedOnce = false;
+    ngOnInit(): void {
+        if (!this.loadedOnce) {
+            // Realiza la recarga o cualquier otra acción que necesites
+            this.changeHrColorOnClick(); // Selecciona todos los divs con clase mycol
+            this.loadedOnce = true;
+        }
     }
 
-    changeHrColorOnClick() {
+    public changeHrColorOnClick() {
         const mycolDivs = document.querySelectorAll('.mycol'); // Selecciona todos los divs con clase mycol
 
         mycolDivs.forEach((div) => {
@@ -41,20 +53,28 @@ export class TabmenuComponent {
                         if (otherHr && otherA) {
                             otherHr.style.backgroundColor = ''; // Restaura el color original (puede ser transparente)
                             otherHr.style.height = '';
-                            otherA.style.fontWeight=''; // Restaura la altura original
-                            otherA.style.fontSize=''; // Restaura la altura original
+                            otherA.style.fontWeight = ''; // Restaura la altura original
+                            otherA.style.fontSize = ''; // Restaura la altura original
                         }
                     });
-
                     // Cambia el color del hr actual cuando se hace clic en el enlace
                     hr.style.backgroundColor = 'blue'; // Establece el color deseado
                     hr.style.height = '0.15rem';
                     link.style.fontWeight = 'bold'
                     link.style.fontSize = '0.78rem'; // Ajusta la altura según sea necesario
                 });
+
             } else {
                 console.error('Error: No se encontró el enlace o el <hr> dentro del div.');
             }
+
         });
+
+
+    }
+
+
+    public reload() {
+        window.location.reload()
     }
 }

@@ -42,12 +42,13 @@ export class CreaSeguimientoComponent {
     ]
   };
 
-  ngOnInit() {
-    let date = new Date;
+  ngOnInit(): void {
+      
   }
   public create(){
     //alert("Llamar a funcion: createSeguimiento("+this.id+","+this.usuario+","+this.nombre+","+this.texto);
-    this.apiService.postSeguimientoToAPI(this.nombre,this.id,this.observaciones,this.fechaCre);
+    this.apiService.postSeguimientoToAPI(this.id,this.observaciones);
+    
   }
 
   public delete(){

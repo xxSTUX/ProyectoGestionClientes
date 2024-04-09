@@ -40,6 +40,7 @@ public partial class ApplicationDbContext : DbContext
     public DbSet<SeguimientoProyecto> SeguimientoProyecto => Set<SeguimientoProyecto>();
     public DbSet<EstadoProyecto> EstadoProyecto => Set<EstadoProyecto>();
     public DbSet<EstadoProyectoDetalle> EstadoProyectoDetalle => Set<EstadoProyectoDetalle>();
+    public DbSet<Area> Area => Set<Area>();
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (optionsBuilder.IsConfigured) return;

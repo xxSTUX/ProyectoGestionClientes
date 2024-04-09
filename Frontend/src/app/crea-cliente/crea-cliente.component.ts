@@ -1,10 +1,10 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { TreeMenuComponent } from "../tree-menu/tree-menu.component";
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ApiService } from '../services/api.service';
+
 
 @Component({
     selector: 'app-crea-cliente',
@@ -17,6 +17,7 @@ export class CreaClienteComponent {
     creaClienteForm: FormGroup;
 
     @ViewChild('warningModal') warningModal: any;
+    @ViewChild('modalCreacion') modalCreacion: any;
 
     constructor(private fb: FormBuilder, private apiService: ApiService) {
         this.creaClienteForm = this.fb.group({
@@ -25,34 +26,27 @@ export class CreaClienteComponent {
         });
     }
 
-    creaCliente() {
+    async creaCliente(event: Event) {
+        event.preventDefault();
         const nombreCliente = (<HTMLInputElement>document.getElementById('nombreCliente')).value;
         const descripcionCliente = (<HTMLInputElement>document.getElementById('descripcionCliente')).value;
-    
-        // Verificar si el cliente ya existe
-        this.checkIfClientExists(nombreCliente).then((exists) => {
-            if (exists) {
-                this.showWarningModal();
-            } else {
-                this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
-                alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
-            }
-        });
-    }
-    
-    // Método para verificar si el cliente ya existe
-    async checkIfClientExists(nombreCliente: string): Promise<boolean> {
-        const data = await this.apiService.getDataClientesFromAPI().toPromise();
-        for (let i = 0; i < data.length; i++) {
-            if (data[i].nombre === nombreCliente) {
-                return true;
-            }
+        try {
+          console.log("creacliente ejecutado");
+          const resultado = await this.apiService.postClientesFromAPI(nombreCliente, descripcionCliente);
+          console.log("Respuesta del servidor:", resultado);
+          if(resultado === true){
+            this.hideWarningModal();
+            alert("Se ha creado el cliente " + nombreCliente + " con la descripcion: " + descripcionCliente);
+          }
+          else
+            this.showWarningModal();
+            //alert("El cliente " + nombreCliente + " ya existe.");
+
+        } catch (error) {
+          console.error("Error al llamar a la función postClientesFromAPI:", error);
         }
-        return false;
+
     }
-    
-
-
 
     // Método para mostrar el modal de advertencia
     showWarningModal() {
@@ -65,4 +59,7 @@ export class CreaClienteComponent {
         this.warningModal.nativeElement.classList.remove('show');
         this.warningModal.nativeElement.style.display = 'none'; // Ocultar el modal
     }
+    cerrar() {
+      //sadasd
+  }
 }

@@ -1,19 +1,20 @@
 import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { DashboardComponent } from '../dashboard/dashboard.component';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [],
+  imports: [DashboardComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private dashboard: DashboardComponent) { }
 
   onHomeClick() {
     this.router.navigate(['/dashboard']);
+
   }
 
   onProfileClick() {

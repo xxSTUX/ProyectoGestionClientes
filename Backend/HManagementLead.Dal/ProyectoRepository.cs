@@ -94,5 +94,13 @@ namespace HManagementLead.Dal
             var estados = _context.EstadoProyecto.Select(ProyectoMapping.MapEstadoProyectoToEstadoProyecDetalles()).ToListAsync();
             return estados;
         }
+
+        public Task<ProyectoDetalle> GetPoyectoByNombre(string nombre)
+        {
+            return _context.Proyectos
+               .Where(p => p.Nombre == nombre)
+               .Select(ProyectoMapping.MapToProyecto(_context)) //Borrar el _licitaciones si no va nada.
+               .FirstAsync();
+        }
     }
 }

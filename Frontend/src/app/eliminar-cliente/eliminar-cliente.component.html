@@ -1,0 +1,64 @@
+<!-- <div class="card bg-glass col-auto bg-light p-5 background-radial-gradient">
+    <div class="card-body px-4 py-4 px-md-5">
+        <p class="mb-4 opacity-70 text-center font-weight-bold">
+            Crea un nuevo proyecto
+        </p>
+        <form formGroup="reestablishForm" (submit)="creaproyecto()">
+            <div class="row">
+                <div class="mb-4">
+                    <input formControlName="nombreproyecto" class="form-control" id="nombreproyecto"
+                        placeholder="Nombre del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <select name="estado" id="estado" class="mb-4">
+                </select>
+                <div class="mb-4">
+                    <input formControlName="estadoproyecto" class="form-control" id="estadoproyecto"
+                        placeholder="Estado del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <div class="mb-4">
+                    <input formControlName="tipoproyecto" class="form-control" id="tipoproyecto"
+                        placeholder="Tipo del proyecto" required style="text-align: center" autocomplete="off" />
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-4">
+                    Crea el proyecto
+                </button>
+            </div>
+        </form>
+    </div>
+</div> -->
+
+<form formGroup="reestablishForm" (submit)="eliminarCliente()">
+    <div class="row">
+        <!-- Client input -->
+        <div class="form-group">
+            <label for="nombreCliente">¿Estas seguro de que quieres eliminar el cliente seleccionado?</label>
+        </div>
+        <!-- Submit button -->
+        <div class="d-flex m-2 justify-content-end">
+            <button type="button" class="btn btn-link">
+                Cancelar    
+            </button>
+            <button type="submit" class="btn btn-primary mr-2">
+                Eliminar cliente
+            </button>
+        </div>
+    </div>
+</form>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Mensaje</h4>
+            </div>
+            <div class="modal-body" id="myModalBody">
+                <!-- Aquí se mostrará el mensaje -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>

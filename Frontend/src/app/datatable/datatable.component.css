@@ -25,6 +25,6 @@
 a{
     text-decoration: none;
 }
-i{
+i,.cliente{
     cursor: pointer;
 }

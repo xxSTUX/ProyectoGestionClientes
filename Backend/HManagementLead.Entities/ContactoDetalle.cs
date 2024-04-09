@@ -10,9 +10,11 @@ namespace HManagementLead.Entities
     public class ContactoDetalle
     {
         public int Id { get; set; }
-        public string Cargo { get; set; } = null!;
+        public string Nombre { get; set; }
+        public string Rol { get; set; } = null!;
         public string Email { get; set; } = null!;
         public string Telefono { get; set; } = null!;
+        public int Nivel {  get; set; }
         public bool Eliminado { get; set; } = false;
     }
 }

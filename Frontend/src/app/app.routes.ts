@@ -15,6 +15,16 @@ import { CreaClienteComponent } from './crea-cliente/crea-cliente.component';
 import { ModificaclienteComponent } from './modificacliente/modificacliente.component';
 import { CreaProyectoComponent } from './crea-proyecto/crea-proyecto.component';
 import { HomeComponent } from './home/home.component';
+import { DatatableProyectosComponent } from './datatableProyectos/datatableProyectos.component';
+import { CreaSeguiminetoComponent } from './crea-seguimineto/crea-seguimineto.component';
+import { CreaSeguimientoComponent } from './tabmenu/crea-seguimiento/crea-seguimiento.component';
+import { DatatableSeguimientosComponent } from './datatableSeguimientos/datatableSeguimientos.component';
+import { DatatableLicitacionesComponent } from './datatableLicitaciones/datatableLicitaciones.component';
+import { DatatableAreaComponent } from './datatableArea/datatableArea.component';
+import { EliminarClienteComponent } from './eliminar-cliente/eliminar-cliente.component';
+import { EditarClienteComponent } from './editar-cliente/editar-cliente.component';
+import { CreaAreaComponent } from './crea-area/crea-area.component';
+import { CreaContactoComponent } from './crea-contacto/crea-contacto.component'
 
 
 export const routes: Routes = [
@@ -25,15 +35,24 @@ export const routes: Routes = [
     { path: "error", component: ErrorComponent, pathMatch: "full"},
     { path: "forgotten", component: ForgottenComponent, pathMatch: "full" },
     { path: "reestablish", component: ReestablishComponent, pathMatch: "full" },
-    { path: "pruebapantalla", component: PruebapantallaComponent, pathMatch: "full" },
-    { path: "modificacliente", component: ModificaclienteComponent, pathMatch: "full"},
+    { path: "pruebaPantalla", component: PruebapantallaComponent, pathMatch: "full" },
+    { path: "modificaCliente", component: ModificaclienteComponent, pathMatch: "full"},
     { path: "datatable", component: DatatableComponent, pathMatch: "full" },
-    { path: "creaproyecto",component:CreaProyectoComponent, pathMatch: "full" },
-    { path: "creacliente", component: CreaClienteComponent, pathMatch: "full" },
+    { path: "creaProyecto",component:CreaProyectoComponent, pathMatch: "full" },
+    { path: "creaCliente", component: CreaClienteComponent, pathMatch: "full" },
     { path: 'licitaciones', component: LicitacionesComponent,  },
     { path: 'seguimientos', component: SeguimientosComponent,  },
     { path: ':home', component: HomeComponent },
-    { path: ':nodeName', component: ChildComponent }
+    { path: ':nodeName', component: ChildComponent },
+    { path: "datatableProyecto", component: DatatableProyectosComponent, pathMatch: "full" },
+    { path: "datatableSeguimiento", component: DatatableSeguimientosComponent, pathMatch: "full" },
+    { path: "datatableLicitaciones", component: DatatableLicitacionesComponent, pathMatch: "full" },
+    { path: "datatableArea", component: DatatableAreaComponent, pathMatch: "full" },
+    { path: "creaSeguimiento",component:CreaSeguimientoComponent, pathMatch: "full" },
+    { path: "creaArea",component:CreaAreaComponent, pathMatch: "full" },
+    { path: "creaContacto",component:CreaContactoComponent, pathMatch: "full" },
+    { path: "eliminarCliente", component: EliminarClienteComponent, pathMatch: "full" },
+    { path: "editarCliente", component: EditarClienteComponent, pathMatch: "full" },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

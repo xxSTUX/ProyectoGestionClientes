@@ -40,8 +40,94 @@
                         <as-split-area [size]="30" minSize="20" maxSize="60" [hidden]="!isTreeVisible">
                             <div #contenedor class="container-fluid" id='contenedor'></div>
                         </as-split-area>
-                        <as-split-area>
-                            <div class="container-fluid">
+                        <as-split-area class="m-4">
+                            <div id="contenedorTitulo" class="row">
+                                <div class="col-8">
+                                    <h2 id="Titulo">Clientes</h2>
+                                </div>
+
+                                
+                                <!-- <div class="col d-flex flex-row-reverse"><button class="botonCrear btn" id="botonCrearElemento"><i class="bi bi-plus-lg"></i>Crear nuevo cliente</button></div>
+                            <div id="proyecto" class="d-none"><app-crea-proyecto></app-crea-proyecto></div> -->
+                                <div id="proyecto" class="d-none"></div>
+
+                                <div class="modal fade" id="modalCreaProyecto" data-bs-backdrop="static"
+                                    data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header d-flex justify-content-between">
+                                                <h5 class="modal-title font-weight-bold">Crear nuevo cliente</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body p-6">
+                                                <app-crea-proyecto></app-crea-proyecto>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="modalCreaSeg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-between">
+                                            <h5 class="modal-title font-weight-bold">Crear nuevo seguimiento</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-6">
+                                            <app-crea-seguimineto></app-crea-seguimineto>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="modal fade" id="modalCreaArea" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-between">
+                                            <h5 class="modal-title font-weight-bold">Crear nuevo Area</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-6">
+                                            <app-crea-area></app-crea-area>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="modal fade" id="modalCreaContacto" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-between">
+                                            <h5 class="modal-title font-weight-bold">Crear nuevo Contacto</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-6">
+                                            <app-crea-contacto></app-crea-contacto>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="modal fade" id="modalEliminarCliente" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header d-flex justify-content-between">
+                                            <h5 class="modal-title font-weight-bold">Eliminar Cliente</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body p-6">
+                                            <app-eliminar-cliente></app-eliminar-cliente>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div id="tablaClientes">
+                                <app-datatable></app-datatable>
+                            </div>
+
+                            <div id="tabMenu" class="d-none">
                                 <ng-container *ngIf="fragment$ | async as fragment">
                                     <app-tabmenu *ngIf="fragment === 'default'"></app-tabmenu>
                                     <app-licitaciones *ngIf="fragment === 'Licitaciones'"></app-licitaciones>
@@ -53,4 +139,3 @@
                     </as-split>
                 </div>
             </div>
-        </div>

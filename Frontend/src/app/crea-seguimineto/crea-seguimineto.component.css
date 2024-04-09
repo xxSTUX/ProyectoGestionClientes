@@ -1,0 +1,21 @@
+.form-group label{
+    margin-bottom: 0.2rem;
+    color: #000000;
+}
+.form-group{
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+.form-control{
+    border: 1px solid #000000;
+    resize: none;
+}
+
+.btn-primary {
+    background-color: #153963;
+    
+}
+
+.btn-link {
+    margin-right: 2rem;
+}

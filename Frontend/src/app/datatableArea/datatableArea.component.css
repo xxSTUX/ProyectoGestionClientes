@@ -1,0 +1,39 @@
+.link-sin-estilo {
+    color: inherit; /* Hereda el color del texto del elemento padre */
+    text-decoration: none; /* Elimina el subrayado predeterminado del enlace */
+  }
+  
+  .link-sin-estilo:hover {
+    text-decoration: underline; /* Añade subrayado al pasar el ratón sobre el enlace si lo deseas */
+  }
+
+.mybutton:hover a{
+    color: white !important;
+}
+.mybutton:hover {
+    background-color: rgb(6, 6, 121);
+    color: white !important;
+}
+.mybutton{
+    margin: 0;
+    color: black;
+    border-width: 1px;
+    font-size: small;
+    background-color: aliceblue;
+
+}
+a{
+    text-decoration: none;
+}
+i,.cliente{
+    cursor: pointer;
+}
+.botonCrear{
+    background-color: rgb(39, 59, 112);
+    color: #FFF;
+}
+.botonCrear:hover{
+    background-color: rgb(80, 104, 170);
+    color: #FFF;
+  
+  }

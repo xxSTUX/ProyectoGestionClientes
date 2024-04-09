@@ -1,5 +1,5 @@
 import { AngularSplitModule } from 'angular-split';
-import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { ChangeDetectorRef, Component, ComponentFactoryResolver, OnInit, Output, ViewChild, ViewContainerRef } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { TreeMenuComponent } from '../tree-menu/tree-menu.component';
 import { TabmenuComponent } from '../tabmenu/tabmenu.component';
@@ -15,16 +15,26 @@ import { ModificaclienteComponent } from "../modificacliente/modificacliente.com
 import { LoadingComponent } from '../loading/loading.component';
 import { HomeComponent } from '../home/home.component';
 import { CreaClienteComponent } from "../crea-cliente/crea-cliente.component";
+import { DatatableComponent } from '../datatable/datatable.component';
+import { DatatableProyectosComponent } from '../datatableProyectos/datatableProyectos.component';
+import { contains } from 'jquery';
+import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component';
+import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
+import { EliminarClienteComponent } from "../eliminar-cliente/eliminar-cliente.component";
+import { CreaAreaComponent } from "../crea-area/crea-area.component";
+import { CreaContactoComponent } from "../crea-contacto/crea-contacto.component";
 
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
-  imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule]
+    selector: 'app-dashboard',
+    standalone: true,
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css',
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent, EliminarClienteComponent, CreaAreaComponent, CreaContactoComponent]
 })
 export class DashboardComponent implements OnInit {
+  private buttonBaseText = "Crear nuevo ";
+  public getJsonValue: any;
   private componentRef: any;
   public isTreeVisible: boolean = false;
   @ViewChild('contenedor', { read: ViewContainerRef }) contenedor!: ViewContainerRef;
@@ -33,6 +43,7 @@ export class DashboardComponent implements OnInit {
   fragment$: Observable<string> = new Observable<string>;
 
   constructor(private route: ActivatedRoute, private router: Router, private cdr: ChangeDetectorRef, private componentFactoryResolver: ComponentFactoryResolver) { }
+  
 
   //Suscribirse al evento navigationEnd para actulizar el div dinamico con el componente que corresponda cuando se produzca
   ngOnInit(): void {
@@ -51,7 +62,9 @@ export class DashboardComponent implements OnInit {
   openCreaCliente(event: Event) {
     event.preventDefault();
   }
-
+  openCreaProyecto(event: Event) {
+    event.preventDefault();
+  }
   updateFragmentObservable(): void {
     console.log("fragmentupdate");
     this.fragment$ = this.route.fragment.pipe(
@@ -82,5 +95,55 @@ export class DashboardComponent implements OnInit {
         this.isTreeVisible = true;
       }
     }
+  }
+  eliminaTree() {
+    if (this.componentRef) {
+      this.componentRef.destroy();
+      this.isTreeVisible = false;
+    }
+  }
+  public seleccionarCliente(cliente:any){
+    console.log(cliente)
+    alert(cliente.nombre);
+    const contenedor = document.getElementById("tablaClientes");
+    const tabMenu = document.getElementById("tabMenu");
+    var btn = document.getElementById("botonCrearElemento")
+    var txt = document.getElementById("Titulo") ;
+    contenedor?.classList.add("d-none");
+    tabMenu?.classList.remove("d-none");
+    if (txt) txt.innerHTML = cliente.nombre;
+    this.getJsonValue = cliente;
+  }
+
+  getClienteId(){
+    return this.getJsonValue.id;
+  }
+  getClienteProyectos(){
+    return this.getJsonValue.proyectos;
+  }
+  getClienteSeguimientos(){
+    return this.getJsonValue.seguimientos;
+  }
+  getClienteLicitaciones(){
+    return this.getJsonValue.licitaciones;
+  }
+  getClienteArea(){
+    return this.getJsonValue.areas;
+  }
+  getClienteContacto(){
+    return this.getJsonValue.contactos;
+  }
+  public reload(){
+    window.location.reload()
+  }
+
+  creaProyecto(){
+    const creaProyecto = document.getElementById("proyecto");
+    if(creaProyecto?.className === "d-none"){
+      creaProyecto.classList.remove("d-none");
+      return;
+    }
+
+    creaProyecto?.classList.add("d-none");
   }
 }

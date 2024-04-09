@@ -1,4 +1,5 @@
-﻿using HManagementLead.Entities;
+﻿using HManagementLead.Data;
+using HManagementLead.Entities;
 
 namespace HManagementLead.Dal.Interfaces
 {
@@ -11,14 +12,20 @@ namespace HManagementLead.Dal.Interfaces
         Task<int> InsertClienteAsync(ClienteDetalle cliente);
 
         Task<ClienteDetalle> UpdateClienteAsync(ClienteDetalle cliente);
+        //Arbol
+        Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync();
 
         Task <ClienteDetalle> DeleteClienteAsync(int id);
+
+        Task<bool> ClienteExistsAsync(string nombre);
 
         Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto);
 
         Task<ClienteDetalle> InsertSeguimientoInClienteAsync(int id, SeguimientoDetalle seguimiento);
 
         Task<ClienteDetalle> InsertLicitacionInClienteAsync(int id, LicitacionDetalle seguimiento);
+
         Task<List<Codigo>> GetAllClientesAsyncToCodigo();
+        Task<ClienteDetalle> GetClienteByNombre(string nombre);
     }
 }

@@ -27,14 +27,16 @@ namespace HManagementLead.Dal
 
         public async Task<List<ClienteDetalle>> GetAllClientesAsync()
         {
+
             if (_context.Clientes.IsNullOrEmpty()) { _context.Clientes.Add(new Cliente { Nombre = "Hiberus" , Descripcion = "Lorem Ipsum"}); }
+
             if(_context.EstadoProyecto.IsNullOrEmpty()) { _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Oportunidad" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Aceptado" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Finalizado" });
                                                           _context.EstadoProyecto.Add(new EstadoProyecto { Estado = "Rechazado" });
             }
             await _context.SaveChangesAsync();
-            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).ToListAsync();
+            var cliente = await _context.Clientes.Select(ClienteMapping.MapToClientDetalleConProyecto(_context)).OrderBy(c => c.Nombre).ThenBy(c => c.Id).AsSplitQuery().ToListAsync();//Ordenar por nombre e id
             return cliente;
         }
 
@@ -44,6 +46,15 @@ namespace HManagementLead.Dal
             //await _context.SaveChangesAsync();
             var codigo = await _context.Clientes.Select(ClienteMapping.MapClienteToCodigo()).ToListAsync();
             return codigo;
+        }
+        //Arbolsolo nombres e ids
+        public async Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
+        {
+            var ClienteSimplificado = await _context.Clientes
+                 //.Where(cs => cs.Eliminado == false) // Filtrar por clientes eliminados
+                .Select(ClienteMapping.MapToClientBasicDetalleConProyecto(_context))
+                .OrderBy(cs => cs.Nombre).ThenBy(cs => cs.ClienteId).AsSplitQuery().ToListAsync();//Ordenar la lista
+            return ClienteSimplificado;
         }
 
         public async Task<int> InsertClienteAsync(ClienteDetalle cliente) //Si esta mal, dejar esta
@@ -99,6 +110,11 @@ namespace HManagementLead.Dal
             await _context.SaveChangesAsync();
             return cliente;
 
+        }
+        public async Task<bool> ClienteExistsAsync(string nombre)
+        {
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Nombre == nombre);
+            return cliente != null;
         }
 
         public async Task<ClienteDetalle> InsertProyectoInClienteAsync(int id, ProyectoDetalle proyecto)
@@ -196,5 +212,14 @@ namespace HManagementLead.Dal
             _context.Clientes.Remove(new Cliente(cliente));
             await _context.SaveChangesAsync();
         }
+        public async Task<ClienteDetalle> GetClienteByNombre(string nombre)
+        {
+            return await _context.Clientes
+                .Where(c => c.Nombre == nombre)
+                .Select(ClienteMapping.MapToClientDetalleConProyecto(_context))
+                .FirstAsync();
+
+        }
+     
     }
 }

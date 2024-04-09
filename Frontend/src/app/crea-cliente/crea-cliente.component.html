@@ -1,4 +1,4 @@
-<form formGroup="reestablishForm" (submit)="creaCliente()">
+<form formGroup="reestablishForm" (submit)="creaCliente($event)">
             <div class="row">
                 <!-- Client input -->
                 <div class="form-group">
@@ -12,7 +12,7 @@
 
                 <!-- Submit button -->
                 <div class="d-flex m-2 justify-content-end">
-                    <button type="button" class="btn btn-link">
+                  <button type="button" class="btn btn-link" data-dismiss="modal" (click)="cerrar()">
                       Cancelar
                   </button>
                     <button type="submit" class="btn btn-primary mr-2">
@@ -22,7 +22,7 @@
             </div>
         </form>
 <!-- Modal creación -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+<div #modalCreacion class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

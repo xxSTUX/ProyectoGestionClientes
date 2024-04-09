@@ -25,7 +25,7 @@ namespace HManagementLead.Dal.Mapping
                                       select new SeguimientoDetalle
                                       {
                                           Id = s.Id,
-                                          Nombre = s.Nombre,
+                                          Usuario = s.Usuario,
                                           Fecha = s.Fecha,
                                           Observaciones = s.Observaciones,
                                       }).ToList(),
@@ -39,10 +39,50 @@ namespace HManagementLead.Dal.Mapping
                                     Tipo = l.Tipo,
                                     Estado = l.Estado,
                                 }).ToList(),
+                Contactos = (from cc in c.ContactosClientes
+                               join con in dbContext.Contactos
+                               on cc.ContactoId equals c.Id
+                               select new ContactoDetalle
+                               {
+                                   Id = con.Id,
+                                   Nombre = con.Nombre,
+                                   Rol = con.Rol,
+                                   Email = con.Email,
+                                   Telefono = con.Telefono,
+                                   Nivel = con.Nivel,
+                                   Eliminado = con.Eliminado
+                               }).ToList(),
                 Eliminado = c.Eliminado,
             };
         }
-
+        //Arbol
+        public static Expression<Func<Cliente, ClienteSimplificado>> MapToClientBasicDetalleConProyecto(ApplicationDbContext dbContext)
+        {
+            return c => new ClienteSimplificado
+            {
+                ClienteId = c.Id,
+                Nombre = c.Nombre,
+                Proyectos = c.Proyectos.AsQueryable().OrderBy(p => p.Nombre).Select(ProyectoMapping.MapTProyectoSimplificado(dbContext)).ToList(),
+                Seguimientos = (from cs in c.SeguimientosClientes
+                                join s in dbContext.Seguimientos
+                                on cs.SeguimientoId equals s.Id
+                                select new SeguimientoSimplificado
+                                {
+                                    SeguimientoId = s.Id,
+                                    Nombre = s.Usuario,
+                                }).OrderBy(s => s.Nombre).ToList(),
+                Licitaciones = (from cl in c.LicitacionesClientes
+                                join l in dbContext.Licitaciones
+                                on cl.LicitacionId equals l.Id
+                                select new LicitacionSimplificado
+                                {
+                                    LicitacionId = l.Id,
+                                    Nombre = l.Nombre,
+                                    Estado = l.Estado,
+                                }).OrderBy(l => l.Nombre).ToList(),
+                Eliminado = c.Eliminado,
+            };
+        }
         public static Expression<Func<Cliente, Codigo>> MapClienteToCodigo()
         {
             

@@ -50,5 +50,6 @@ namespace HManagementLead.Bll
         {
             return _repository.GetEstadoPoryectos();
         }
+        
     }
 }

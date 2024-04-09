@@ -1,6 +1,8 @@
 ﻿using HManagementLead.Bll.Interfaces;
 using HManagementLead.Dal.Interfaces;
+using HManagementLead.Data;
 using HManagementLead.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HManagementLead.Bll
 {
@@ -23,9 +25,22 @@ namespace HManagementLead.Bll
             return resultado;
         }
 
+        //clientes con sus objetos pero solo id y nombre para generar el arbol
+        public Task<List<ClienteSimplificado>> GetAllClientesCompletoAsync()
+        {
+            var resultado = _repository.GetAllClientesCompletoAsync();
+            return resultado;
+        }
+
         public Task<ClienteDetalle> GetClienteByIdAsync(int id)
         {
             return _repository.GetClienteByIdAsync(id);
+        }
+
+        public  Task<bool> ClienteExistsAsync(string nombre)
+        {
+            var resultado = _repository.ClienteExistsAsync(nombre);
+            return resultado;
         }
 
         public Task<int> InsertClienteAsync(ClienteDetalle cliente)
@@ -55,6 +70,10 @@ namespace HManagementLead.Bll
 
         public Task<List<Codigo>> GetAllClientesAsyncToCodigo() {
             return _repository.GetAllClientesAsyncToCodigo();
+        }
+        public Task<ClienteDetalle> GetClienteByNombre(string nombre)
+        {
+            return _repository.GetClienteByNombre(nombre);
         }
     }
 }

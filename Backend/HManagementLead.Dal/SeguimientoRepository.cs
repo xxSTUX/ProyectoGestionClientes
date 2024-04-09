@@ -39,7 +39,7 @@ namespace HManagementLead.Dal
 
         public async Task<SeguimientoDetalle> UpdateSeguimientoAsync(int id,SeguimientoDetalle seguimiento)
         {
-            var seguimientoModificado = new Seguimiento { Id = id, Nombre = seguimiento.Nombre };
+            var seguimientoModificado = new Seguimiento { Id = id, Usuario = seguimiento.Usuario };
             _context.Update(seguimientoModificado);
             await _context.SaveChangesAsync();
             return await _context.Seguimientos

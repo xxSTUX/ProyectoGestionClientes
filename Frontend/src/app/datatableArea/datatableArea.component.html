@@ -1,0 +1,326 @@
+<div class="container-fluid my-4">
+    <div class="row">
+        <div class="col-8 d-flex">
+            <button class="btn botonCrear mb-5"(click)="reload()"><i class="bi bi-bootstrap-reboot"></i></button>
+        </div>
+        
+        <div class="col d-flex flex-row-reverse">
+        
+            <button href="#" data-bs-toggle="modal"
+            data-bs-target="#modalCreaArea" class="botonCrear btn mb-5"
+            (click)="openCreaArea($event)" id="botonCrearElemento"><i
+                class="bi bi-plus-lg"></i>Crear nueva
+            Area</button>
+        </div>
+    </div>
+    
+    <table datatable [dtOptions]="dtoptions" [dtTrigger]="dtTrigger" class="table stripe hover">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Area</th>
+                <th>Responsable</th>
+                <th>Email</th>
+                <th>Último seguimiento</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (area of areas; track $index) {
+                @if(!area.eliminado){
+                    <tr>
+                        <td>{{area.nombre}}</td>
+                        <td>{{area.responsable}}</td>
+                        <td>{{area.email}}</td>
+                        @if (area.seguimientos.length === 0) {
+                            <td>
+                                No tiene seguimientos
+                            </td>
+                        }
+                        @else {
+                                <td>
+                                    {{area.seguimientos[area.seguimientos.length-1].fecha}}
+                                </td>
+                        }
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<!-- <h1>{{getJsonValue}}</h1>
+<h1>Mi variable es de tipo {{obtenerTipoVariable(getJsonValue)}}</h1> -->
+
+<!-- <div *ngFor="let propiedad of getJsonValue">
+    @if (propiedad === "Licitaciones") {
+        <p>Anashegod</p>
+        }
+</div> -->
+
+<!-- <div *ngFor="let cliente of getJsonValue | keyvalue">
+    <p>{{cliente.key}} y su valor es {{cliente.value}}</p>
+</div>
+
+@for (cliente of getJsonValue; track $index) {
+    <p>{{cliente}} y sus propiedades son: {{cliente.nombre}}, {{cliente.proyectos}}, {{cliente.licitaciones}}, {{cliente.seguimientos}}</p>
+}
+
+@for (cliente of getJsonValue; track $index) {
+    
+} -->
+
+
+
+
+
+<!-- 
+@for (cliente of getJsonValue; track $index) {
+<h1>hola</h1>
+
+<div *ngFor="let propiedad of getJsonValue[0]">
+    <p>{{propiedad}}</p>
+</div> -->
+
+<!-- @for (atributo of keysJson; track $index) {
+            <h1>Mi variable es de tipo {{obtenerTipoVariable(cliente.atributo)}}</h1>
+        } -->
+
+
+<!-- <div class="container my-4">
+    <table datatable class="table table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Nombre</th>
+                <th>Proyectos</th>
+                <th>Seguimientos</th>
+                <th>Licitaciones</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @for (cliente of getJsonValue; track $index) {
+                <tr>
+                    @for (atributo of cliente; track $index) {
+                        <td>{{cliente.atributo}}</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> -->
+
+
+
+
+<!-- <tr *ngFor="let cliente of getJsonValue">
+                @for (atributo of keysJson; track $index) {
+                    <td>{{cliente.atributo}}</td>
+                }
+            </tr> -->
+
+
+
+<!-- @for (cliente of getJsonValue; track $index) {
+                 <p>{{cliente["nombre"]}}</p>
+                @for (propiedad of cliente; track $index) {
+                    <th>{{propiedad}}</th>
+                }
+            } -->
+
+<!-- @for (cliente of getJsonValue; track $index) {
+     <p>{{cliente["nombre"]}}</p> 
+    <h2>{{cliente | json}}</h2>
+} -->
+
+<!-- <h2>{{keysJson}}</h2>
+<h2>{{getJsonValue[0][""]}}</h2> -->
+
+<!-- <div *ngFor="let dato of getJsonValue">
+    <p>{{dato.proyectos}}</p>
+     <div *ngFor="let prueba of dato">
+        <p>{{prueba}}</p>
+        <div *ngFor="let anashe of prueba">
+            <p>{{anashe}}</p>
+        </div>
+    </div>
+</div> -->
+
+<!-- @for (atributo of keysJson; track $index) {
+<h1>{{keysJson[$index]}}</h1>
+<h2>{{$index}}</h2>
+} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container my-4">
+    <table datatable class="table table-bordered">
+        <thead class="bg-dark text-white">
+            <tr>
+                <th>Nombre</th>
+                <th>Edad</th>
+                <th>País</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>María</td>
+                <td>30</td>
+                <td>España</td>
+                <td style="width: 20%">
+                    <a class="btn btn-primary">Edit</a> |
+                    <a class="btn btn-danger">Delete</a> |
+                    <a class="btn btn-success">Print</a> |
+                    <a class="btn btn-success">Download</a>
+                </td>
+
+            </tr>
+            <tr>
+                <td>Pablo</td>
+                <td>25</td>
+                <td>México</td>
+            </tr>
+            <tr>
+                <td>Carlos</td>
+                <td>28</td>
+                <td>Argentina</td>
+            </tr>
+            <tr>
+                <td>Laura</td>
+                <td>22</td>
+                <td>Colombia</td>
+            </tr>
+            <tr>
+                <td>Andrea</td>
+                <td>35</td>
+                <td>Italia</td>
+            </tr>
+            <tr>
+                <td>Juan</td>
+                <td>31</td>
+                <td>Perú</td>
+            </tr>
+            <tr>
+                <td>Sofía</td>
+                <td>27</td>
+                <td>Chile</td>
+            </tr>
+            <tr>
+                <td>Diego</td>
+                <td>24</td>
+                <td>Uruguay</td>
+            </tr>
+            <tr>
+                <td>Isabel</td>
+                <td>29</td>
+                <td>Paraguay</td>
+            </tr>
+            <tr>
+                <td>Ricardo</td>
+                <td>33</td>
+                <td>Brasil</td>
+            </tr>
+            <tr>
+                <td>Ana</td>
+                <td>26</td>
+                <td>Portugal</td>
+            </tr>
+            <tr>
+                <td>Pedro</td>
+                <td>23</td>
+                <td>Costa Rica</td>
+            </tr>
+            <tr>
+                <td>Valentina</td>
+                <td>28</td>
+                <td>Venezuela</td>
+            </tr>
+            <tr>
+                <td>Lucas</td>
+                <td>30</td>
+                <td>Estados Unidos</td>
+            </tr>
+            <tr>
+                <td>Camila</td>
+                <td>24</td>
+                <td>Canadá</td>
+            </tr>
+            <tr>
+                <td>Andrés</td>
+                <td>32</td>
+                <td>Colombia</td>
+            </tr>
+            <tr>
+                <td>Carolina</td>
+                <td>27</td>
+                <td>Ecuador</td>
+            </tr>
+            <tr>
+                <td>Felipe</td>
+                <td>29</td>
+                <td>Chile</td>
+            </tr>
+            <tr>
+                <td>Marta</td>
+                <td>25</td>
+                <td>España</td>
+            </tr>
+            <tr>
+                <td>Gabriel</td>
+                <td>31</td>
+                <td>Argentina</td>
+            </tr>
+            <tr>
+                <td>Valeria</td>
+                <td>26</td>
+                <td>México</td>
+            </tr>
+            <tr>
+                <td>Óscar</td>
+                <td>34</td>
+                <td>Perú</td>
+            </tr>
+            <tr>
+                <td>Clara</td>
+                <td>23</td>
+                <td>Italia</td>
+            </tr>
+            <tr>
+                <td>Emilio</td>
+                <td>28</td>
+                <td>Uruguay</td>
+            </tr>
+            <tr>
+                <td>Helena</td>
+                <td>30</td>
+                <td>Paraguay</td>
+            </tr>
+            <tr>
+                <td>Tomás</td>
+                <td>25</td>
+                <td>Brasil</td>
+            </tr>
+            <tr>
+                <td>Adriana</td>
+                <td>33</td>
+                <td>Portugal</td>
+            </tr>
+            <tr>
+                <td>Matías</td>
+                <td>26</td>
+                <td>Costa Rica</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h1></h1> -->

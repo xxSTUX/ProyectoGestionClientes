@@ -6,6 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from '../services/api.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common'
+import { Alert } from 'bootstrap';
+import { Location } from '@angular/common';
 
 
 
@@ -17,65 +19,53 @@ import { CommonModule } from '@angular/common'
   styleUrl: './crea-proyecto.component.css'
 })
 export class CreaProyectoComponent {
-  
-  data:any;
 
-  constructor(private router: Router, private http: HttpClient,private apiService: ApiService){
+  data: any;
+
+  constructor(private router: Router, private http: HttpClient, private apiService: ApiService, private location:Location) {
 
   }
   ngOnInit(): void {
-    this.getclientes("clientes");
     this.getEstados();
   }
-  async creaproyecto(){
-
-    const idcliente = parseInt((<HTMLInputElement>document.getElementById('clientes')).value);
+  async creaproyecto() {
     const nombreproyecto = (<HTMLInputElement>document.getElementById('nombreproyecto')).value;
     const tipo = (<HTMLInputElement>document.getElementById('tipoproyecto')).value;
     const estado = parseInt((<HTMLInputElement>document.getElementById('estado')).value);
-
+    const id = this.location.path().split("/")[2];
     const body = {
-        nombre: nombreproyecto,
-        tipo:tipo,
-        estado:estado
+      id: id,
+      nombre: nombreproyecto,
+      tipo: tipo,
+      estado: estado
     }
     
-
-    this.apiService.postProyectosFromAPI(idcliente,body.nombre,body.tipo,body.estado+"");
+    this.apiService.postProyectosFromAPI(body.id, body.nombre, body.tipo, body.estado + "");
     alert("Se va a crear el proyecto: " + nombreproyecto);
     console.log("Se deberia haber creado un nuevo proyecto");
-}
+    const newPath = this.location.path().split("/")[1];
+    console.log(this.location.path());
+    alert(newPath)
+    this.location.go(newPath);
+  }
 
-getclientes(opciones: string){
-  const options = document.getElementById(opciones) as HTMLOptionElement;
-  this.apiService.getDataClientesFromAPI().subscribe((data: any) =>{
-  if(options != null){
-    for (let i = 0; i < data.length; i++) {
-      const option = document.createElement('option');
-      console.log(data[i]);
-      option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-      option.textContent = data[i].nombre; // Asigna el nombre del cliente como texto del option
-      options.appendChild(option); // Agrega el option al elemento select
-    }
-    
-  }
+
+
+  getEstados() {
+    const options = document.getElementById("estado") as HTMLOptionElement;
+    this.apiService.getEstadoProyectos().subscribe((data: any) => {
+      console.log()
+      if (options != null) {
+        for (let i = 0; i < data.length; i++) {
+          const option = document.createElement('option');
+          console.log(data[i]);
+          option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
+          option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
+          options.appendChild(option); // Agrega el option al elemento select
+        }
+
+      }
     });
-    
- }
- getEstados(){
-  const options = document.getElementById("estado") as HTMLOptionElement;
-  this.apiService.getEstadoProyectos().subscribe((data: any) =>{
-  if(options != null){
-    for (let i = 0; i < data.length; i++) {
-      const option = document.createElement('option');
-      console.log(data[i]);
-      option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
-      option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
-      options.appendChild(option); // Agrega el option al elemento select
-    }
-    
   }
-    });
- }
 
 }
