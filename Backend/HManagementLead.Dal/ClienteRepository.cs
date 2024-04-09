@@ -113,7 +113,7 @@ namespace HManagementLead.Dal
         }
         public async Task<bool> ClienteExistsAsync(string nombre)
         {
-            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Nombre == nombre);
+            var cliente = await _context.Clientes.FirstOrDefaultAsync(c => c.Nombre.ToLower() == nombre.ToLower());
             return cliente != null;
         }
 

@@ -19,3 +19,9 @@
 .btn-link {
     margin-right: 2rem;
 }
+
+.warning-modal {
+    backdrop-filter: blur(5px);
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1 !important;
+  }
