@@ -44,7 +44,24 @@ export class DatatableAreaComponent implements OnInit {
     this.areas = this.dashboard.getClienteLicitaciones()
     this.ngOnInit()
   }
-  openCreaSeguimiento(event: Event) {
+  openCreaArea(event: Event) {
     event.preventDefault();
+  }
+
+  getEstados() {
+    const options = document.getElementById("estado") as HTMLOptionElement;
+    this.apiService.getDataContactosFromAPI().subscribe((data: any) => {
+      console.log()
+      if (options != null) {
+        for (let i = 0; i < data.length; i++) {
+          const option = document.createElement('option');
+          console.log(data[i]);
+          option.value = data[i].id; // Asigna el valor de la propiedad id del cliente como valor del option
+          option.textContent = data[i].estado; // Asigna el nombre del cliente como texto del option
+          options.appendChild(option); // Agrega el option al elemento select
+        }
+
+      }
+    });
   }
 }

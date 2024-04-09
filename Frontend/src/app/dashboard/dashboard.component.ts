@@ -21,6 +21,8 @@ import { contains } from 'jquery';
 import { CreaProyectoComponent } from '../crea-proyecto/crea-proyecto.component';
 import { CreaSeguiminetoComponent } from "../crea-seguimineto/crea-seguimineto.component";
 import { EliminarClienteComponent } from "../eliminar-cliente/eliminar-cliente.component";
+import { CreaAreaComponent } from "../crea-area/crea-area.component";
+import { CreaContactoComponent } from "../crea-contacto/crea-contacto.component";
 
 
 @Component({
@@ -28,7 +30,7 @@ import { EliminarClienteComponent } from "../eliminar-cliente/eliminar-cliente.c
     standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css',
-    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent, EliminarClienteComponent]
+    imports: [HeaderComponent, TreeMenuComponent, TabmenuComponent, ChildComponent, NgIf, AsyncPipe, ErrorComponent, LicitacionesComponent, SeguimientosComponent, LoadingComponent, ModificaclienteComponent, HomeComponent, CreaClienteComponent, AngularSplitModule, AngularSplitModule, DatatableComponent, DatatableProyectosComponent, CreaProyectoComponent, CreaSeguiminetoComponent, EliminarClienteComponent, CreaAreaComponent, CreaContactoComponent]
 })
 export class DashboardComponent implements OnInit {
   private buttonBaseText = "Crear nuevo ";
